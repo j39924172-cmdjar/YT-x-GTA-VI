@@ -36,3 +36,8 @@
 - Oficina: 32 pruebas automáticas (`node oficina/test_oficina.js`).
 - La investigación cada 2 días ahora se ejecuta en la sesión principal (tarea `trig_01KUgBNkFNc643SCwefs2Pif`). La primera prueba en una sesión nueva investigó bien, pero no pudo hacer push (repositorio no autorizado en sesiones nuevas). Esa investigación se perdió al borrar la tarea antigua: borrar una tarea programada borra también sus sesiones.
 - **Arreglo del botón Producir:** el primer intento falló porque la página no podía usar el conector "Claude Code Remote" en la cuenta de Antonio. Además, la oficina apuntaba como "en cola" encargos que nunca salieron (el fallo estaba en cómo trataba los errores dudosos). Ahora el encargo va como comentario "Send to Claude" (sin conectores), el progreso se guarda en la base de datos de la página y, si el envío falla, el encargo queda "no enviado" con la frase para pegar en el chat. 31 pruebas automáticas.
+
+## 18/11/2026 (noche) — Short 05 desde la oficina (primer encargo real)
+- Antonio pidió desde la oficina "Every GTA 6 Gang Leader in 30 Seconds". El encargo llegó como comentario y la oficina mostró los 8 pasos en directo.
+- **Título ajustado** a "3 GTA 6 Crime Bosses in 30 Seconds": Rockstar no llama "gang leader" a nadie y no hay lista oficial de "todos", así que "Every" no era verificable. Datos de Boobie Ike, Raul Bautista y Brian Heder, citados de rockstargames.com/VI/only-in-leonida.
+- 27,9 s, −14,3 LUFS, 12 capturas oficiales de Rockstar (sin la de las bailarinas). Carpeta `shorts/05-crime-bosses/`. Voz: 1,6 créditos de Higgsfield.
