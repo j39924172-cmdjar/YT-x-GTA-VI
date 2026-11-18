@@ -14,12 +14,13 @@ Basado en el documento maestro (`docs/vicecity-estado.md`). Las personas son las
 ## Flujo de un Short
 Investigación verifica → Guiones escribe (solo con datos verificados) → Visuales asigna capturas → Montaje pone voz y monta → Publicación prepara la ficha → Estrategia revisa y da luz verde → Antonio aprueba y sube.
 
-## Investigación periódica cada 2 días (Jarvis + Nobita)
-Tarea programada en Claude Code: **"Investigación GTA 6 cada 2 días"** (10:23 hora de Madrid). Se ejecuta en la sesión principal de producción, la que tiene permiso para guardar en GitHub. Cada vez:
+## Investigación diaria (Jarvis + Nobita + Taison)
+Tarea programada en Claude Code: **"Investigación GTA 6 y repaso del canal (diario)"** (10:23 hora de Madrid, todos los días). Se ejecuta en la sesión principal de producción, la que tiene permiso para guardar en GitHub. Ritmo de publicación: **2 Shorts al día** (decisión de Adam), así que hacen falta unas 14 ideas por semana. Cada vez:
 1. Lee `CLAUDE.md`, `docs/vicecity-estado.md` y `docs/banco-ideas.md`.
-2. Busca novedades de las últimas 48-72 h: Rockstar Newswire y web oficial (fuente primaria), medios fiables (IGN, GameSpot, Eurogamer, VGC, Polygon, Forbes) y lo que más se comenta.
-3. Verifica cada dato: fuente primaria, o dos medios fiables que coincidan. Los rumores se marcan como rumores y no se usan como hechos.
-4. Añade 3-5 ideas nuevas a `docs/banco-ideas.md` con gancho NUEVO, 3 datos con fuente e imágenes del catálogo.
-5. Actualiza `docs/catalogo-imagenes.md` si Rockstar ha publicado imágenes nuevas.
-6. Anota el resumen en `docs/registro-cambios.md`, hace commit y push, y avisa con un resumen corto.
-No produce vídeos ni gasta créditos: eso lo decide Antonio.
+2. **Repaso del canal** (Taison): `python shorts/canal.py`. Lee los datos públicos de https://www.youtube.com/@vicecitydaystv (suscriptores y visualizaciones de cada Short), los guarda en `docs/canal-estadisticas.json` y compara con el día anterior. Nunca se piden contraseñas: las estadísticas privadas (vistos frente a deslizados, retención) las pasa Adam con capturas de YouTube Studio una vez por semana.
+3. Busca novedades de las últimas 48 h: Rockstar Newswire y web oficial (fuente primaria), medios fiables (IGN, GameSpot, Eurogamer, VGC, Polygon, Forbes) y lo que más se comenta.
+4. Verifica cada dato: fuente primaria, o dos medios fiables que coincidan. Los rumores se marcan como rumores y no se usan como hechos.
+5. Añade 3-5 ideas nuevas a `docs/banco-ideas.md` con gancho NUEVO, 3 datos con fuente e imágenes del catálogo. Da prioridad al tipo de gancho que mejor funciona en el canal.
+6. Actualiza `docs/catalogo-imagenes.md` si Rockstar ha publicado imágenes nuevas.
+7. Anota el resumen en `docs/registro-cambios.md`, hace commit y push, y avisa a Adam con un resumen corto: cómo va el canal y las 2 ideas que producir hoy.
+No produce vídeos ni gasta créditos: eso lo decide Adam.

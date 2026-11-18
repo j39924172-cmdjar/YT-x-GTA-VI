@@ -41,3 +41,10 @@
 - Antonio pidió desde la oficina "Every GTA 6 Gang Leader in 30 Seconds". El encargo llegó como comentario y la oficina mostró los 8 pasos en directo.
 - **Título ajustado** a "3 GTA 6 Crime Bosses in 30 Seconds": Rockstar no llama "gang leader" a nadie y no hay lista oficial de "todos", así que "Every" no era verificable. Datos de Boobie Ike, Raul Bautista y Brian Heder, citados de rockstargames.com/VI/only-in-leonida.
 - 27,9 s, −14,3 LUFS, 12 capturas oficiales de Rockstar (sin la de las bailarinas). Carpeta `shorts/05-crime-bosses/`. Voz: 1,6 créditos de Higgsfield.
+
+## 18/11/2026 (noche) — Investigación diaria y repaso del canal
+- El dueño del canal se llama **Adam** (no Antonio). Las tareas y los resúmenes van dirigidos a Adam.
+- Ritmo decidido: **2 Shorts al día**. La investigación pasa de cada 2 días a **diaria** (10:23 Madrid) e incluye el repaso del canal.
+- Nueva herramienta `shorts/canal.py`: lee los datos públicos de @vicecitydaystv (sin contraseñas ni claves) y guarda el historial en `docs/canal-estadisticas.json`. Primer registro: 1 suscriptor, 3 Shorts públicos, 328 visualizaciones (298 del Short de horarios de lanzamiento).
+- Entorno de nube: se permite `www.youtube.com` para leer el canal.
+- Las estadísticas privadas (vistos frente a deslizados, retención) las pasa Adam con capturas de YouTube Studio.
