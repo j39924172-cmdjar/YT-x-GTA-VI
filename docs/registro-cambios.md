@@ -34,3 +34,4 @@
 - **Coste real de la voz:** unos 1,6 créditos de Higgsfield por Short. La prueba ilimitada NO cubre `text2speech_v2`. Saldo tras los Shorts 03 y 04: 6,85 créditos (unos 4 Shorts más).
 - Entorno de nube: script de preparación que instala Pillow, numpy y faster-whisper al arrancar.
 - Oficina: 32 pruebas automáticas (`node oficina/test_oficina.js`).
+- La investigación cada 2 días ahora se ejecuta en la sesión principal (tarea `trig_01KUgBNkFNc643SCwefs2Pif`). La primera prueba en una sesión nueva investigó bien, pero no pudo hacer push (repositorio no autorizado en sesiones nuevas). Esa investigación se perdió al borrar la tarea antigua: borrar una tarea programada borra también sus sesiones.

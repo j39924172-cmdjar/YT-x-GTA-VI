@@ -15,7 +15,7 @@ Basado en el documento maestro (`docs/vicecity-estado.md`). Las personas son las
 Investigación verifica → Guiones escribe (solo con datos verificados) → Visuales asigna capturas → Montaje pone voz y monta → Publicación prepara la ficha → Estrategia revisa y da luz verde → Antonio aprueba y sube.
 
 ## Investigación periódica cada 2 días (Jarvis + Nobita)
-Tarea programada en Claude Code: **"Investigación GTA 6 cada 2 días"**. Cada vez que se ejecuta:
+Tarea programada en Claude Code: **"Investigación GTA 6 cada 2 días"** (10:23 hora de Madrid). Se ejecuta en la sesión principal de producción, la que tiene permiso para guardar en GitHub. Cada vez:
 1. Lee `CLAUDE.md`, `docs/vicecity-estado.md` y `docs/banco-ideas.md`.
 2. Busca novedades de las últimas 48-72 h: Rockstar Newswire y web oficial (fuente primaria), medios fiables (IGN, GameSpot, Eurogamer, VGC, Polygon, Forbes) y lo que más se comenta.
 3. Verifica cada dato: fuente primaria, o dos medios fiables que coincidan. Los rumores se marcan como rumores y no se usan como hechos.
