@@ -33,23 +33,37 @@ const FIX = {
   shorts: { shorts: Array.from({ length: 4 }, (_, i) => ({ titulo: `Short ${i + 1}`, gancho: "Este lugar no existe de día.", narracion: filler(90) + " Tienes el resto en el vídeo completo.", textos_pantalla: ["SOLO DE NOCHE"], cierre: "Los otros 6, en el vídeo completo." })) },
   launchWeek: { descripcion: "Los 7 secretos de Vice City en GTA 6.\nContenido no oficial hecho por fans. GTA VI es una marca de Rockstar Games.", etiquetas: Array.from({ length: 16 }, (_, i) => `gta 6 ${i}`), hashtags: ["#GTA6", "#ViceCity"], capitulos: [{ tiempo: "0:00", titulo: "Intro" }, { tiempo: "1:10", titulo: "Secreto 2" }, { tiempo: "2:20", titulo: "Secreto 3" }], comentario_fijado: "¿Cuál no conocías?", dia_hora: "Viernes 18:00", pantalla_final: "Coches ocultos", lista: "Secretos GTA 6" },
   launchExpress: { descripcion: "Novedad de GTA 6.\nContenido no oficial hecho por fans. GTA VI es una marca de Rockstar Games.", etiquetas: Array.from({ length: 12 }, (_, i) => `gta 6 ${i}`), hashtags: ["#GTA6", "#Shorts"], capitulos: [], comentario_fijado: "¿Qué opinas?", dia_hora: "Hoy 20:00" },
+  green: { notas: { clic: 8, retencion: 8, shorts: 8, publicacion: 9 }, luz_verde: true, rehacer_desde: "", motivo: "Paquete sólido.", titulo_final: "GTA 6: el lugar que solo aparece de noche", miniatura_final: "B", consejo: "Responde comentarios la primera hora." },
+  redo: { notas: { clic: 5, retencion: 8, shorts: 8, publicacion: 8 }, luz_verde: false, rehacer_desde: "titles", motivo: "Los títulos no generan curiosidad suficiente.", titulo_final: "", miniatura_final: "A" },
   obs: { resumen: "Los vídeos de secretos tienen el doble de clics.", repetir: ["Secretos con número en el título"], evitar: ["Miniaturas con mucho texto"], ideas_de_comentarios: ["Coches ocultos"], siguiente_paso: "Haz una serie de secretos." },
 };
 
 function mockInit({ scenario }) {
-  window.__prompts = [];
+  window.__prompts = []; window.__tiers = [];
   let complianceCalls = 0, scriptCalls = 0;
   const delay = scenario === "slow" ? 1500 : 40;
   const F = window.__FIX;
   async function json(prompt, opts) {
-    window.__prompts.push(prompt);
+    window.__prompts.push(prompt); window.__tiers.push(opts?.modelTier);
+    (window.__working = window.__working || []).push(Object.entries(window.__vshDebug().status).filter(([, v]) => v === "working").map(([k]) => k).join("+"));
     await new Promise((res, rej) => {
       const t = setTimeout(res, delay);
       opts?.signal?.addEventListener("abort", () => { clearTimeout(t); rej({ code: "cancelled" }); });
     });
+    if (scenario === "paced" && /Eres El Chapo/.test(prompt)) await new Promise(r => { window.__release = r; });  // espera a la prueba
     if (scenario === "deny") throw { code: "not_granted", message: "no" };
+    if (scenario === "real") {
+      const MARK = [["greenlight", /Antes de publicar revisas el paquete/], ["trends", /Eres Jarvis/], ["plan", /Eres Almudena/], ["titles", /Eres Torrente/], ["thumbs", /Eres Nil/], ["script", /Eres El Chapo/], ["retention", /Eres Pablito/], ["compliance", /Eres Nobita/], ["shorts", /Eres Victillor/], ["launch", /Eres Guerrero/]];
+      const m = MARK.find(([, re]) => re.test(prompt));
+      return JSON.parse(JSON.stringify(window.__REAL[m[0]]));
+    }
     const express = /Short vertical 9:16 de unos 45 segundos/.test(prompt);
     if (/Eres Jarvis/.test(prompt)) return scenario === "messy" ? { tendencias: "Secretos de Vice City\nDinero rápido\nCoches\nArmas\nMapa" } : F.trends;
+    if (/Antes de publicar revisas el paquete/.test(prompt)) {
+      const n = Number(sessionStorage.getItem("greenCalls") || 0) + 1;
+      sessionStorage.setItem("greenCalls", String(n));
+      return (scenario === "redo" || scenario === "redo_override") && n === 1 ? F.redo : F.green;
+    }
     if (/Eres Almudena/.test(prompt)) return scenario === "messy" ? { tema: "Secretos", promesa: "Ver secretos", shorts_previstos: "uno, dos" } : F.plan;
     if (/Eres Torrente/.test(prompt)) return scenario === "messy" ? { titulos: ["Un título larguísimo sin la palabra clave que se pasa de los setenta caracteres de largo"] } : F.titles;
     if (/Eres Nil/.test(prompt)) return scenario === "messy" ? { miniaturas: [{ texto: "Un texto de miniatura demasiado largo", color: "rojo" }] } : F.thumbs;
@@ -60,6 +74,7 @@ function mockInit({ scenario }) {
       return express ? F.scriptExpress : F.scriptWeek;
     }
     if (/Eres Pablito/.test(prompt)) return scenario === "messy" ? { nota: "8", cambios: "nada" } : F.retention;
+    if (scenario === "paced") scenario = "ok";
     if (/Eres Nobita/.test(prompt)) {
       // el contador sobrevive a las recargas, como lo haría la conversación real
       complianceCalls = Number(sessionStorage.getItem("complianceCalls") || 0) + 1;
@@ -79,7 +94,7 @@ function mockInit({ scenario }) {
 // ------------------------------------------------------------------ utilidades
 const results = [];
 function ok(name, cond, detail = "") { results.push({ name, pass: !!cond, detail }); }
-async function open(browser, scenario, { width = 1024, storage, insights } = {}) {
+async function open(browser, scenario, { width = 1024, storage, insights, real } = {}) {
   const ctx = await browser.newContext({ viewport: { width, height: 1200 } });
   const page = await ctx.newPage();
   const errors = [];
@@ -87,6 +102,7 @@ async function open(browser, scenario, { width = 1024, storage, insights } = {})
   page.on("console", m => { if (m.type() === "error" && !/fonts\.(googleapis|gstatic)|ERR_/.test(m.text())) errors.push(m.text()); });
   await page.addInitScript(`window.__FIX = ${JSON.stringify(FIX)};`);
   await page.addInitScript(mockInit, { scenario });
+  if (real) await page.addInitScript(R => { window.__REAL = R; }, real);
   if (storage) await page.addInitScript(s => { try { if (!sessionStorage.getItem("seeded")) { localStorage.setItem("vice-studio-hq:v3:last", s); sessionStorage.setItem("seeded", "1"); } } catch {} }, storage);
   if (insights) await page.addInitScript(s => { try { localStorage.setItem("vice-studio-hq:v3:insights", s); } catch {} }, insights);
   await page.goto("file://" + FILE);
@@ -104,7 +120,7 @@ const stepOf = async (page, key) => (await steps(page)).find(s => s.step === key
 const statusOf = (page, id) => page.evaluate(id => window.__vshDebug().status[id], id);
 const card = page => page.textContent("#agentCard");
 const reloadPage = async page => { await page.reload(); await page.waitForFunction(() => !/Conectando/.test(document.getElementById("goBtn").textContent)); };
-const KEYS_WEEK = ["trends", "plan", "titles", "thumbs", "script", "retention", "compliance", "shorts", "launch"];
+const KEYS_WEEK = ["trends", "plan", "titles", "thumbs", "script", "retention", "compliance", "shorts", "launch", "greenlight"];
 
 (async () => {
   const browser = await chromium.launch();
@@ -117,15 +133,23 @@ const KEYS_WEEK = ["trends", "plan", "titles", "thumbs", "script", "retention", 
     ok("Equipo: los 12 departamentos aparecen", ["El Radar", "La Sala de Mando", "El Escaparate", "Estudio Neón", "La Fábrica de Guiones", "Laboratorio de Retención", "El Escudo", "Estudio Ocean Drive", "La Sala de Montaje", "La Fábrica de Shorts", "Torre de Lanzamiento", "El Observatorio"].every(n => orgText.includes(n)));
     ok("Equipo: 12 personas dibujadas en la oficina", (await page.evaluate(() => window.__vshDebug().hits.length)) === 12);
     await go(page, { topic: "secretos de Vice City" });
-    await page.waitForSelector('.stage.live[data-step="trends"]');
-    ok("Semana: Jarvis trabaja primero", (await statusOf(page, "jarvis")) === "working");
+    await page.waitForFunction(() => (window.__working || []).length >= 1);
+    await page.waitForFunction(() => window.__prompts.length >= 3);
+    ok("Oficina: el trabajo viaja de una mesa a otra", (await page.evaluate(() => window.__vshDebug().packets)) > 0);
     await idle(page);
     const st = await steps(page);
-    ok("Semana: los 9 puestos automáticos terminan", KEYS_WEEK.every(k => st.find(s => s.step === k && !/pending|failed/.test(s.cls))), JSON.stringify(st.map(s => s.step + ":" + s.cls)));
+    ok("Semana: los 10 pasos automáticos terminan", KEYS_WEEK.every(k => st.find(s => s.step === k && !/pending|failed/.test(s.cls))), JSON.stringify(st.map(s => s.step + ":" + s.cls)));
     ok("Semana: control de calidad sin fallos graves", st.every(s => !s.qc.some(q => q.startsWith("✗"))), JSON.stringify(st.map(s => s.qc)));
     ok("Semana: sin avisos de calidad", st.every(s => !s.qc.some(q => q.startsWith("!"))), JSON.stringify(st.filter(s => s.qc.some(q => q.startsWith("!"))).map(s => s.step + " " + s.qc)));
     const prompts = await page.evaluate(() => window.__prompts);
-    ok("Semana: 9 llamadas, en orden", prompts.length === 9 && ["Jarvis", "Almudena", "Torrente", "Nil", "El Chapo", "Pablito", "Nobita", "Victillor", "Guerrero"].every((n, i) => prompts[i].includes("Eres " + n)), prompts.map(p => (p.match(/Eres (\w+( \w+)?)/) || [])[1]).join(","));
+    const working = await page.evaluate(() => window.__working);
+    ok("Oficina: en cada llamada trabaja la persona correcta (y solo ella)", working.join(",") === "jarvis,almudena,torrente,nil,chapo,pablito,nobita,victillor,guerrero,almudena", working.join(","));
+    ok("Semana: 10 llamadas, en orden", prompts.length === 10 && ["Jarvis", "Almudena", "Torrente", "Nil", "El Chapo", "Pablito", "Nobita", "Victillor", "Guerrero", "Almudena"].every((n, i) => prompts[i].includes("Eres " + n)), prompts.map(p => (p.match(/Eres (\w+( \w+)?)/) || [])[1]).join(","));
+    ok("Experiencia: cada puesto recibe la suya", ["Jarvis", "Almudena", "Torrente", "Nil", "El Chapo", "Pablito", "Nobita", "Victillor", "Guerrero", "Almudena"].every((n, i) => prompts[i].includes("Experiencia de " + n) && prompts[i].includes("nunca comete")));
+    ok("Experiencia: va antes del formato de respuesta", prompts.every(p => p.indexOf("Experiencia de") < p.indexOf("Responde solo con JSON")));
+    const tiers = await page.evaluate(() => window.__tiers);
+    ok("Modelo: títulos, guion, retención y luz verde usan el más capaz", [2, 4, 5, 9].every(i => tiers[i] === "complex") && [0, 1, 3, 6, 7, 8].every(i => tiers[i] === "default"), tiers.join(","));
+    ok("Prompts: ninguno supera el límite de 256 KB", prompts.every(p => new TextEncoder().encode(p).length < 250000));
     ok("Semana: el tema llega a Jarvis", /secretos de Vice City/.test(prompts[0]));
     ok("Semana: Almudena recibe los temas de Jarvis", /Comparativa GTA 5/.test(prompts[1]));
     ok("Semana: títulos antes del guion (El Chapo recibe títulos y miniaturas)", /7 secretos de Vice City que casi nadie/.test(prompts[4]) && /Solo de noche/.test(prompts[4]));
@@ -135,12 +159,15 @@ const KEYS_WEEK = ["trends", "plan", "titles", "thumbs", "script", "retention", 
     ok("Semana: Guerrero recibe tiempos de escena", /escena 2 empieza en/.test(prompts[8]));
     ok("Semana: Pablito ignora cambios en escenas que no existen", (await page.textContent('[data-step="retention"]')).includes("1 mejoras aplicadas"));
     ok("Semana: 3 miniaturas y 4 Shorts en pantalla", (await page.$$eval('[data-step="thumbs"] .thumb', e => e.length)) === 3 && (await page.$$eval('[data-step="shorts"] .scene', e => e.length)) === 4);
+    ok("Luz verde: Almudena revisa todo el paquete", /Pablito: 7\/10/.test(prompts[9]) && /Shorts:/.test(prompts[9]) && /Miniaturas \(A, B, C\)/.test(prompts[9]));
+    ok("Luz verde: se muestran las notas", (await page.$$eval('[data-step="greenlight"] .scorebox', e => e.length)) === 4);
     ok("Semana: Cristiano y Georgina esperan en el chat", (await statusOf(page, "cristiano")) === "waiting" && (await statusOf(page, "georgina")) === "waiting");
     ok("Semana: Taison libre (sin datos aún)", (await statusOf(page, "taison")) === "idle");
     await ctx.grantPermissions(["clipboard-read", "clipboard-write"]);
     await page.click('[data-step="handoff"] .actions button');
     const clip = await page.evaluate(() => navigator.clipboard.readText());
-    ok("Encargo: incluye título principal y títulos para probar", /TÍTULO PRINCIPAL: GTA 6: 7 secretos/.test(clip) && /TÍTULOS PARA PROBAR:/.test(clip));
+    ok("Encargo: usa el título y la miniatura que eligió Almudena", /TÍTULO PRINCIPAL: GTA 6: el lugar que solo aparece de noche/.test(clip) && /MINIATURA PRINCIPAL: opción B/.test(clip) && /CONSEJO DE ALMUDENA/.test(clip));
+    ok("Encargo: los otros títulos quedan para probar", /TÍTULOS PARA PROBAR: GTA 6: 7 secretos[^\n]*encontré 7 sitios/.test(clip) && !/PROBAR:[^\n]*solo aparece de noche/.test(clip));
     ok("Encargo: incluye miniaturas A, B y C", /A\) "Solo de noche"/.test(clip) && /C\) "Sitio oculto"/.test(clip));
     ok("Encargo: usa el guion mejorado por Pablito", /TEXTO MEJORADO POR PABLITO/.test(clip));
     ok("Encargo: incluye los 4 Shorts y la descripción con capítulos", /SHORT 4:/.test(clip) && /0:00 Intro/.test(clip));
@@ -163,7 +190,7 @@ const KEYS_WEEK = ["trends", "plan", "titles", "thumbs", "script", "retention", 
     await go(page, { express: true });
     await idle(page);
     const prompts = await page.evaluate(() => window.__prompts);
-    ok("Exprés: 7 llamadas (sin miniaturas ni Shorts)", prompts.length === 7 && !prompts.some(p => /Eres Nil|Eres Victillor/.test(p)), String(prompts.length));
+    ok("Exprés: 8 llamadas (sin miniaturas ni Shorts)", prompts.length === 8 && !prompts.some(p => /Eres Nil|Eres Victillor/.test(p)), String(prompts.length));
     ok("Exprés: el guion pide 6 escenas", prompts.some(p => /Exactamente 6 escenas/.test(p)));
     const st = await steps(page);
     ok("Exprés: no muestra puestos que no tocan", !st.some(s => s.step === "thumbs" || s.step === "shorts"));
@@ -231,7 +258,7 @@ const KEYS_WEEK = ["trends", "plan", "titles", "thumbs", "script", "retention", 
     await go(page);
     await idle(page);
     const n1 = await page.evaluate(() => window.__prompts.length);
-    ok("Frenado: no se hacen Shorts ni ficha hasta corregir", n1 === 7, String(n1));
+    ok("Frenado: no se hacen Shorts, ficha ni luz verde hasta corregir", n1 === 7, String(n1));
     ok("Frenado: aparece el aviso justo después de Nobita", (await steps(page)).map(s => s.step).join(",").includes("compliance,fix-box"));
     ok("Frenado: Nobita en rojo y sin encargo", (await statusOf(page, "nobita")) === "error" && !(await page.$('[data-step="handoff"]')));
     await reloadPage(page);
@@ -259,7 +286,7 @@ const KEYS_WEEK = ["trends", "plan", "titles", "thumbs", "script", "retention", 
   { // 9. Fuera de Claude
     const { page, ctx, errors } = await open(browser, "no_claude");
     ok("Fuera de Claude: avisa y desactiva", (await page.$eval("#goBtn", b => b.disabled)) && /Abre esta página dentro de Claude/.test(await page.textContent("#capNote")));
-    ok("Fuera de Claude: el ejemplo se ve completo", !!(await page.$('[data-step="handoff"]')) && (await page.$$eval(".stage[data-step]", e => e.length)) === 10);
+    ok("Fuera de Claude: el ejemplo se ve completo", !!(await page.$('[data-step="handoff"]')) && (await page.$$eval(".stage[data-step]", e => e.length)) === 11);
     ok("Fuera de Claude: sin errores de JavaScript", errors.length === 0, errors.join(" | "));
     await ctx.close();
   }
@@ -283,7 +310,58 @@ const KEYS_WEEK = ["trends", "plan", "titles", "thumbs", "script", "retention", 
     await ctx.close();
   }
 
-  { // 11. Pantallas
+  { // 11. Almudena pide rehacer
+    const { page, ctx, errors } = await open(browser, "redo");
+    await go(page);
+    await idle(page);
+    ok("Rehacer: aparece el aviso de Almudena", !!(await page.$('[data-step="redo-box"]')) && /Rehacer desde Torrente/.test(await page.textContent('[data-step="redo-box"]')));
+    ok("Rehacer: Almudena en rojo y sin encargo", (await statusOf(page, "almudena")) === "error" && !(await page.$('[data-step="handoff"]')));
+    ok("Rehacer: la nota baja se marca", (await page.$$eval('[data-step="greenlight"] .scorebox.low', e => e.length)) === 1);
+    const before = await page.evaluate(() => window.__prompts.length);
+    await page.click('[data-step="redo-box"] button.strong');
+    await idle(page);
+    const prompts = await page.evaluate(() => window.__prompts);
+    ok("Rehacer: repite desde Torrente sin volver a Jarvis ni al plan", prompts.length - before === 8 && prompts.filter(p => /Eres Jarvis/.test(p)).length === 1, String(prompts.length - before));
+    ok("Rehacer: después hay luz verde y encargo", !!(await page.$('[data-step="handoff"]')));
+    ok("Rehacer: sin errores de JavaScript", errors.length === 0, errors.join(" | "));
+    await ctx.close();
+  }
+
+  { // 12. Seguir igualmente
+    const { page, ctx, errors } = await open(browser, "redo_override");
+    await go(page);
+    await idle(page);
+    await page.click('[data-step="redo-box"] button:not(.strong)');
+    ok("Seguir igualmente: aparece el encargo", !!(await page.$('[data-step="handoff"]')) && (await statusOf(page, "cristiano")) === "waiting");
+    await reloadPage(page);
+    ok("Seguir igualmente: se recuerda al recargar", !!(await page.$('[data-step="handoff"]')));
+    ok("Seguir igualmente: sin errores de JavaScript", errors.length === 0, errors.join(" | "));
+    await ctx.close();
+  }
+
+  { // 13. Ficha con experiencia
+    const { page, ctx } = await open(browser, "ok");
+    for (const [i, name] of [[1, "Jarvis"], [6, "Pablito"], [12, "Taison"]]) {
+      await page.click(`.org .post:nth-child(${i})`);
+      const txt = await card(page);
+      ok(`Ficha de ${name}: experiencia, saberes y errores`, txt.includes(name) && /Experiencia/.test(txt) && /Lo que sabe y aplica/.test(txt) && /Errores que nunca comete/.test(txt));
+    }
+    await ctx.close();
+  }
+
+  { // 14. Encargo real (respuestas escritas por Claude siguiendo cada instrucción)
+    const REAL = JSON.parse(fs.readFileSync(path.join(__dirname, "pruebas_reales", "respuestas.json"), "utf8"));
+    const { page, ctx, errors } = await open(browser, "real", { real: REAL });
+    await go(page, { topic: "qué explorar primero en Leonida" });
+    await idle(page);
+    const st = await steps(page);
+    ok("Real: los 10 pasos pasan el control de calidad sin avisos", KEYS_WEEK.every(k => { const s = st.find(x => x.step === k); return s && !/failed|pending/.test(s.cls) && s.qc.every(q => q.startsWith("✓")); }), JSON.stringify(st.map(s => s.step + ":" + s.qc.filter(q => !q.startsWith("✓")).join("/"))));
+    ok("Real: aparece el encargo final", !!(await page.$('[data-step="handoff"]')));
+    ok("Real: sin errores de JavaScript", errors.length === 0, errors.join(" | "));
+    await ctx.close();
+  }
+
+  { // 15. Pantallas
     const countOverlaps = tags => {
       let n = 0;
       for (let i = 0; i < tags.length; i++) for (let j = i + 1; j < tags.length; j++) {
@@ -293,13 +371,15 @@ const KEYS_WEEK = ["trends", "plan", "titles", "thumbs", "script", "retention", 
       return n;
     };
     for (const w of [390, 768, 1024, 1366]) {
-      const { page, ctx } = await open(browser, "ok", { width: w });
+      const { page, ctx } = await open(browser, "paced", { width: w });
       ok(`${w}px: sin desplazamiento lateral`, (await page.evaluate(() => document.documentElement.scrollWidth)) <= w);
       await go(page);
-      await page.waitForSelector('.stage.live[data-step="script"]');
+      await page.waitForFunction(() => typeof window.__release === "function");
+      await page.waitForTimeout(120);
       await page.waitForTimeout(80);
       const busyTags = await page.evaluate(() => window.__vshDebug().tags);
-      ok(`${w}px: nombres y bocadillos no se pisan mientras trabajan`, countOverlaps(busyTags) === 0, `${countOverlaps(busyTags)} solapes`);
+      ok(`${w}px: nombres y bocadillos no se pisan mientras trabajan`, countOverlaps(busyTags) === 0 && busyTags.some(t => t.id === "chapo:bubble"), `${countOverlaps(busyTags)} solapes`);
+      await page.evaluate(() => window.__release());
       await idle(page);
       await page.waitForTimeout(80);
       const tags = await page.evaluate(() => window.__vshDebug().tags);
@@ -316,4 +396,7 @@ const KEYS_WEEK = ["trends", "plan", "titles", "thumbs", "script", "retention", 
   for (const r of results) console.log(`${r.pass ? "✓" : "✗"} ${r.name}${r.pass || !r.detail ? "" : "  → " + r.detail}`);
   console.log(`\n${results.length - failed.length}/${results.length} pruebas superadas`);
   process.exit(failed.length ? 1 : 0);
-})().catch(e => { console.error(e); process.exit(2); });
+})().catch(e => {
+  for (const r of results) console.log(`${r.pass ? "✓" : "✗"} ${r.name}${r.pass || !r.detail ? "" : "  → " + r.detail}`);
+  console.error(e); process.exit(2);
+});

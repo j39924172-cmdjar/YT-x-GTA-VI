@@ -1,0 +1,113 @@
+Claude, monta este encargo de mi canal de GTA 6. Antes de empezar dime cuántos créditos de Higgsfield vas a gastar.
+- Cristiano (voz): pon la voz en off del vídeo largo y de los Shorts.
+- Georgina (montaje): monta el vídeo largo en horizontal 16:9 y los Shorts en vertical 9:16, con textos en pantalla y subtítulos. Cambia de plano en cada frase durante el primer minuto y pon el número de zona grande al empezar cada bloque.
+- Haz las miniaturas y mándamelo todo aquí.
+
+TÍTULO PRINCIPAL: GTA 6: qué explorar primero en Leonida (guía del día 1)
+MINIATURA PRINCIPAL: opción B
+CONSEJO DE ALMUDENA: Fija el comentario de la zona favorita y contesta todo lo que puedas en la primera hora: esas respuestas deciden el siguiente vídeo.
+TÍTULOS PARA PROBAR: GTA 6: las 6 zonas de Leonida que tienes que conocer | GTA 6: la zona del mapa que casi nadie está mirando
+MINIATURAS: A) "6 MUNDOS" color #FFE14D — Mapa de Leonida partido en seis zonas de colores saturados, texto enorme arriba a la izquierda | B) "EMPIEZA AQUÍ" color #FF4FA3 — Mapa oscuro con una flecha rosa gigante señalando una zona iluminada; texto a la izquierda | C) "NADIE MIRA AQUÍ" color #33E1D6 — Montaña con bosque al amanecer y un círculo rojo sobre un punto escondido entre los árboles
+CONTENIDO CON IA: sí, declararlo
+PUBLICAR: Viernes a las 18:00 en España (11:00 en México, 13:00 en Argentina)
+
+GUION DEL VÍDEO LARGO
+Las 6 zonas de Leonida y qué explorar primero
+
+Gancho: Leonida no es un mapa: son seis mundos distintos, y la última zona es la que casi nadie está mirando.
+
+Escena 1 — 6 ZONAS, 6 MUNDOS
+Voz: Leonida no es un mapa: son seis mundos distintos, y la última zona es la que casi nadie está mirando. Si empiezas a jugar sin conocerlas, te vas a perder la mitad de GTA 6. Hoy te enseño las seis zonas que Rockstar ha mostrado de forma oficial, qué se ha visto en cada una y qué tienes que buscar primero en cuanto tengas el mando en la mano. Esa última zona, para mí, es la que más sorpresas puede esconder, así que no te la saltes. Todo lo que vas a oír sale de la web oficial y de los tráileres; cuando algo sea una suposición mía, te lo diré claramente. Así no te comes ningún bulo. Vamos con la primera, la que todos conocemos… o eso creemos.
+Se ve: Plano aéreo general del mapa de Leonida, de la costa al interior
+Prompt IA: Cinematic aerial establishing shot over an original tropical state at golden hour, neon city on the coast, wetlands and mountains in the distance, 4k
+
+Escena 2 — LO BÁSICO, RÁPIDO
+Voz: Antes de entrar, lo básico, rápido. Leonida es el estado ficticio de GTA 6, inspirado en Florida, y sus protagonistas son Lucia Caminos y Jason Duval. El mapa tiene seis zonas con personalidad propia: Vice City, los Cayos de Leonida, Grassrivers, Port Gellhorn, Ambrosia y el Parque Nacional del Monte Kalaga. Y no son solo paisajes: cada zona cambia cómo juegas, desde los vehículos que encuentras hasta los negocios que puedes montar o la música que suena en la radio. Te las voy a enseñar de la que más vas a visitar a la que más te puede sorprender. Y atento a la cuarta, porque tiene una pista sobre la historia que casi nadie ha visto. Empezamos.
+Se ve: Mapa dividido en seis colores, uno por zona
+Prompt IA: Stylized animated map of an original fictional tropical state split into six glowing colored regions, neon outlines, top-down view
+
+Escena 3 — 1. VICE CITY
+Voz: Zona uno: Vice City. Es la gran ciudad del juego y el sitio donde vas a pasar más horas. En los tráileres se ven playas llenas de gente, edificios de colores, discotecas, coches de lujo y mucho neón por la noche. Rockstar la presenta como la capital del sol y la diversión, y eso se nota en cada plano. Lo primero que yo buscaría es la vida nocturna: en GTA las ciudades cambian muchísimo cuando se pone el sol, y en el segundo tráiler hay escenas de fiesta que dan pistas de actividades. Lo segundo, el paseo marítimo, porque es donde más gente aparece en los vídeos oficiales. Y un consejo: no te quedes solo en el centro. Las afueras suelen tener los mejores secretos.
+Se ve: Paseo marítimo de día y la misma calle de noche con neón
+Prompt IA: Slow dolly along an original art deco beachfront boulevard transitioning from sunny day to neon night, palm trees, no people faces
+
+Escena 4 — 2. CAYOS DE LEONIDA
+Voz: Zona dos: los Cayos de Leonida. Es una cadena de islas al sur, inspirada claramente en los Cayos de Florida. En las imágenes oficiales se ven aguas turquesas, puentes larguísimos entre islas, barcos y pueblos pequeños junto al mar. Aquí el protagonista no es el coche, es el agua. Así que lo primero que haría en esta zona es conseguir cualquier barco y recorrer la costa, porque en los GTA anteriores los mejores escondites estaban en sitios a los que solo se llega navegando. Ojo: esto último es una suposición basada en otros juegos de Rockstar, no algo confirmado para GTA 6. Lo que sí está confirmado es el ambiente: tranquilo de día, y bastante menos tranquilo cuando cae la noche, según se ve en los tráileres.
+Se ve: Puente largo entre islas y una lancha recorriendo la costa
+Prompt IA: Drone shot following a speedboat along turquoise water past a long bridge connecting small tropical islands, sunset
+
+Escena 5 — 3. GRASSRIVERS
+Voz: Zona tres: Grassrivers. Son humedales enormes, inspirados en los Everglades, y en los tráileres aparecen pantanos, hierba alta, aerodeslizadores y, sí, caimanes. Es la zona más salvaje cerca de la ciudad, y por eso puede ser la más peligrosa. Si vas a explorarla, hazlo con calma y con un vehículo que flote, porque a pie cada charca puede ser una sorpresa. Lo que más me interesa de Grassrivers es el contraste: a pocos minutos del neón de Vice City tienes un lugar donde casi no hay nadie. En los GTA, esos lugares vacíos suelen esconder misiones secundarias, encuentros raros y objetos coleccionables. No está confirmado qué habrá aquí exactamente, pero si yo fuera tú, sería una de mis primeras excursiones.
+Se ve: Aerodeslizador cruzando el pantano entre hierba alta
+Prompt IA: Low angle shot of an airboat gliding through tall sawgrass in a misty swamp at dawn, an alligator's eyes breaking the water surface
+
+Escena 6 — 4. PORT GELLHORN
+Voz: Zona cuatro: Port Gellhorn. Rockstar la describe como un puerto olvidado, y en las imágenes se ve un pueblo costero venido a menos: carteles viejos, moteles, calles vacías y un ambiente mucho más duro que el de Vice City. Esta zona me parece clave para la historia, porque los lugares así suelen ser donde los personajes de GTA empiezan desde abajo o se esconden cuando las cosas se complican. Fíjate en los moteles y en los negocios pequeños, porque en los tráileres aparecen varias veces. Y un detalle que casi nadie comenta: que una zona tenga tanto protagonismo en el material oficial, siendo tan poco glamurosa, suele significar que tiene peso en la trama. Eso es una deducción mía, no un dato confirmado.
+Se ve: Calle de un pueblo portuario con motel y carteles viejos
+Prompt IA: Moody tracking shot down an empty run-down harbor town street with a flickering roadside motel sign and rusty cranes, overcast
+
+Escena 7 — 5. AMBROSIA
+Voz: Zona cinco, y aquí cambia todo: Ambrosia. Se acabaron la playa y el neón. Es el interior industrial y agrícola de Leonida, con fábricas, campos y carreteras larguísimas. Según la web oficial, aquí manda la industria, y eso se nota en todo: más camiones, más trabajadores y casi ningún turista. ¿Y eso qué significa para ti como jugador? Persecuciones largas por carretera, rutas con vehículos pesados y negocios que no tienen nada que ver con la playa. Mi consejo es recorrerla de día, con calma, mirando cada nave y cada granja, porque los detalles del interior son los que más tarda la comunidad en encontrar. Y quien sabe dónde mirar, los encuentra antes que nadie.
+Se ve: Carretera larga entre campos y naves industriales
+Prompt IA: Wide shot of a long straight highway through farmland toward a smoky industrial refinery, heat haze, trucks passing
+
+Escena 8 — 6. MONTE KALAGA
+Voz: Zona seis, y la que te dije que guardaba para el final: el Parque Nacional del Monte Kalaga. Es la parte más salvaje de todo el mapa: bosques, montaña, ríos y rutas por la naturaleza. Apenas aparece en los tráileres, y justo por eso es la zona que menos gente está mirando. En los juegos de Rockstar, las zonas de naturaleza suelen tener actividades propias, como caza, pesca o rutas, y sitios con vistas espectaculares. Que lo tenga GTA 6 está por confirmar, así que tómatelo como algo a comprobar cuando juguemos. Pero piensa en esto: si Rockstar le ha dado nombre de parque nacional, es porque quiere que lo explores. Y en los GTA, donde menos gente mira es donde más secretos aparecen.
+Se ve: Bosque y montaña al amanecer, sendero entre árboles
+Prompt IA: Sunrise crane shot rising over a dense green forest toward a mountain peak, river below, mist, cinematic
+
+Escena 9 — TU PLAN DE INICIO
+Voz: Entonces, ¿por dónde empiezo? Mi plan para las primeras horas es este. Primero, sigue la historia hasta que el juego te deje moverte con libertad, sin desviarte demasiado. Segundo, da una vuelta por Vice City de día y de noche, para ver cómo cambia. Tercero, consigue un barco y baja a los Cayos. Cuarto, haz una excursión a Grassrivers y a Kalaga, que son las zonas con más pinta de esconder cosas. Y quinto, apunta todo lo raro que veas: un edificio cerrado, un personaje extraño, un ruido en mitad del pantano. En los primeros días, la comunidad va a descubrir secretos a toda velocidad, y tú puedes ser de los primeros si sabes dónde mirar.
+Se ve: Lista de 5 pasos sobre gameplay variado
+Prompt IA: Fast montage-style shot of a car speeding from neon city streets to a coastal bridge to a swamp road, motion blur
+
+Escena 10 — ¿CUÁL EXPLORAS PRIMERO?
+Voz: Y ahora te toca a ti: dime en los comentarios cuál de las seis zonas vas a explorar primero y qué crees que esconde. Las respuestas más repetidas serán los próximos vídeos del canal. Si te ha servido esta guía, suscríbete y activa la campana, porque en cuanto salga el juego vamos a recorrer Leonida zona por zona, buscando secretos, coches escondidos y todo lo que la gente no ve a la primera. Y si quieres seguir ahora mismo, tienes en pantalla el siguiente vídeo, donde repasamos todo lo que se sabe de Lucia y Jason. Recuerda: este es un canal de fans, no oficial de Rockstar. Nos vemos en Leonida.
+Se ve: Mapa con las seis zonas y una pregunta en pantalla
+Prompt IA: Slow pull-back from a glowing neon map of six regions on a table to reveal a night skyline through a window
+
+Cierre: Suscríbete y dime en comentarios qué zona exploras primero; siguiente vídeo: Lucia y Jason.
+
+SHORTS
+SHORT 1: La zona de GTA 6 que nadie está mirando
+Gancho: Todo el mundo habla de Vice City, y se está olvidando de esto.
+Voz: Todo el mundo habla de Vice City, y se está olvidando de esto. En el mapa de GTA 6 hay una zona que apenas sale en los tráileres, con bosques, montaña y ríos. Rockstar le ha dado nombre de parque nacional, y eso no se hace por casualidad. Si quieres saber cuál es y por qué creo que esconde más secretos que ninguna otra, te lo cuento con todo detalle en el vídeo completo del canal.
+En pantalla: NADIE MIRA AQUÍ · NOMBRE DE PARQUE NACIONAL
+Cierre: La zona y sus secretos, en el vídeo completo.
+
+SHORT 2: Vice City cambia por completo de noche
+Gancho: Esta calle de día parece tranquila. Ahora mírala de noche.
+Voz: Esta calle de día parece tranquila. Ahora mírala de noche. En los tráileres de GTA 6, Vice City se transforma cuando se pone el sol: neón, discotecas y fiestas que dan pistas de actividades. Mi consejo para tus primeras horas es que recorras la ciudad dos veces, una de día y otra de noche, porque no parecen el mismo sitio. En el vídeo completo te enseño qué buscar en las otras cinco zonas del mapa.
+En pantalla: DE DÍA · DE NOCHE
+Cierre: Las otras 5 zonas, en el vídeo completo.
+
+SHORT 3: En GTA 6 consigue un barco cuanto antes
+Gancho: En esta zona de GTA 6 el coche no te va a servir.
+Voz: En esta zona de GTA 6 el coche no te va a servir. Los Cayos de Leonida son una cadena de islas con puentes larguísimos y aguas turquesas, y aquí el protagonista es el agua. En otros juegos de Rockstar los mejores escondites estaban en sitios a los que solo se llega navegando; en GTA 6 está por confirmar, pero yo no me la jugaría. Tienes mi plan de inicio completo en el vídeo largo del canal.
+En pantalla: CONSIGUE UN BARCO · POR CONFIRMAR
+Cierre: Mi plan de inicio, en el vídeo completo.
+
+SHORT 4: La zona de GTA 6 con más pinta de historia
+Gancho: Esta es la zona menos bonita de GTA 6, y puede que la más importante.
+Voz: Esta es la zona menos bonita de GTA 6, y puede que la más importante. Port Gellhorn es un puerto olvidado: moteles, carteles viejos y calles vacías. Aun así, aparece una y otra vez en el material oficial. Y cuando Rockstar enseña tanto un sitio tan poco glamuroso, suele ser porque pesa en la historia. Es una teoría mía, no un dato confirmado, y te explico por qué en el vídeo completo.
+En pantalla: LA MENOS BONITA · TEORÍA
+Cierre: La teoría completa, en el vídeo completo.
+
+DESCRIPCIÓN
+GTA 6: las 6 zonas de Leonida explicadas y qué explorar primero el día 1.
+Vice City, los Cayos, Grassrivers, Port Gellhorn, Ambrosia y el Monte Kalaga: lo confirmado por Rockstar y lo que es suposición, separado.
+Serie “Leonida zona por zona”: suscríbete para no perderte ninguna.
+Contenido no oficial hecho por fans. GTA VI es una marca de Rockstar Games.
+
+0:00 Seis mundos
+0:51 Lo básico de Leonida
+1:38 Vice City
+2:28 Cayos de Leonida
+3:19 Grassrivers
+4:07 Port Gellhorn
+4:56 Ambrosia
+5:42 Monte Kalaga
+6:32 Tu plan para empezar
+7:18 ¿Cuál exploras primero?
+
+#GTA6 #GTAVI #Leonida #ViceCity

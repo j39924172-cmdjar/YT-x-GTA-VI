@@ -133,6 +133,11 @@
   .facts dt { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); }
   .facts dd { margin: 0; font-size: 14px; }
   .facts ul { margin: 0; padding-left: 18px; }
+  .know { display: grid; gap: 6px; border-top: 1px solid var(--line); padding-top: 10px; }
+  .know summary { font-family: var(--font-display); font-weight: 800; cursor: pointer; }
+  .know ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 13.5px; }
+  .know .k { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); }
+  .know .avoid li::marker { color: var(--red); }
   .chip {
     display: inline-flex; align-items: center; gap: 6px; padding: 2px 9px; border-radius: 999px;
     font-size: 11px; font-family: var(--font-mono); border: 1px solid var(--line); color: var(--muted); white-space: nowrap;
@@ -183,6 +188,10 @@
     line-height: 1; text-transform: uppercase; -webkit-text-stroke: 1.2px #120B24; paint-order: stroke fill;
   }
   .score { font-family: var(--font-display); font-weight: 800; font-size: 30px; line-height: 1; }
+  .scores { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 8px; }
+  .scorebox { background: var(--panel-2); border-radius: 10px; padding: 10px; display: grid; gap: 4px; }
+  .scorebox.low .score { color: var(--red); }
+  .scorebox .k { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); }
   .score small { font-size: 14px; color: var(--muted); }
   .issue { padding: 8px 10px 8px 12px; border-radius: 10px; background: var(--panel-2); border-left: 3px solid var(--sun); font-size: 14px; }
   .issue.block { border-left-color: var(--red); }
@@ -341,6 +350,123 @@
   const COLS = 4, ROWS = 3;
   const roomById = Object.fromEntries(ROOMS.map(r => [r.id, r]));
   const agent = id => AGENTS.find(a => a.id === id);
+  // ---------------------------------------------------------------- experiencia de cada persona (se inyecta en sus instrucciones)
+  const PLAYBOOK = {
+    jarvis: { exp: "Lleva 8 años detectando tendencias de gaming y ha anticipado los picos de búsqueda de los grandes lanzamientos.",
+      sabe: [
+        "Ciclo de un lanzamiento: primeras 72 h = primeras impresiones, cómo empezar y secretos; semanas 1-2 = dinero, coches, armas y mapa; mes 1 en adelante = 100 %, récords, teorías y comparativas.",
+        "Busca el cruce entre mucha demanda (la gente lo busca o lo pregunta) y poca oferta buena en español.",
+        "Las noticias dan picos cortos: sirven para Shorts exprés. Los temas evergreen sostienen el canal meses.",
+        "Las preguntas que se repiten (cómo, dónde, cuál es el mejor) son temas de vídeo.",
+        "Un buen tema se puede explicar en una frase y promete algo concreto.",
+      ],
+      evita: ["Inventar filtraciones o fechas", "Temas genéricos como “GTA 6 es increíble”", "Temas que solo entiende un nicho muy pequeño"] },
+    almudena: { exp: "Ha dirigido canales de gaming de más de 10 millones de suscriptores y decide qué se publica y qué no.",
+      sabe: [
+        "El packaging va primero: si el título y la miniatura no dan ganas de pulsar, el vídeo no existe.",
+        "Una promesa es un beneficio concreto: descubrir, conseguir, evitar o entender algo.",
+        "Los éxitos se convierten en series (#1, #2…) para que la gente vea varios vídeos seguidos.",
+        "Reparto del calendario: 70 % formatos probados, 20 % variaciones y 10 % experimentos.",
+        "Mismo día y hora siempre; publicar 2-3 horas antes del pico de audiencia (tarde en España, mediodía en Latinoamérica).",
+        "Se pregunta siempre dos cosas: “¿lo pulsaría yo?” y “¿lo vería hasta el final?”.",
+      ],
+      evita: ["Elegir temas por gusto personal", "Prometer más de lo que el vídeo da", "Cambiar el horario de publicación"] },
+    torrente: { exp: "Ha escrito títulos de vídeos que suman más de 1.000 millones de visualizaciones.",
+      sabe: [
+        "Entre 40 y 60 caracteres se leen enteros en el móvil; la palabra clave va al principio.",
+        "Fórmulas que funcionan: número + resultado (“7 secretos…”), curiosidad concreta (“El lugar que solo aparece de noche”), reto (“Intenté… durante 24 horas”), comparación (“GTA 6 vs GTA 5: …”) y advertencia (“No hagas esto en GTA 6”).",
+        "Lo concreto gana a lo genérico, y cada título lleva una emoción clara.",
+        "El título y la miniatura se complementan: nunca dicen lo mismo.",
+        "En una prueba A/B los títulos tienen que ser realmente distintos, no matices del mismo.",
+      ],
+      evita: ["Todo en MAYÚSCULAS", "Emojis de relleno", "Clickbait que el vídeo no cumple", "Títulos de más de 70 caracteres"] },
+    nil: { exp: "Diseña miniaturas para creadores de gaming top; algunas han superado el 15 % de clics.",
+      sabe: [
+        "Como máximo 3 elementos: el protagonista, el contexto y el texto.",
+        "Se tiene que entender a 120 píxeles, que es como se ve en un móvil.",
+        "Mucho contraste y colores saturados; los tonos Vice City (rosa, naranja, turquesa) destacan sobre el fondo de YouTube.",
+        "Texto de 2-4 palabras, enorme, que añada intriga sin repetir el título.",
+        "Una tensión visual: algo oculto, una flecha, un círculo, un antes y después.",
+        "La esquina inferior derecha la tapa la duración del vídeo: ahí no va nada importante.",
+      ],
+      evita: ["Mucho texto", "Imágenes oscuras", "Logotipos, personajes o arte oficial de Rockstar"] },
+    chapo: { exp: "Guionista de canales de entretenimiento y gaming con retención media superior al 60 %.",
+      sabe: [
+        "Gancho de 0 a 5 segundos: confirma la promesa y abre un bucle (“y el último os va a sorprender”).",
+        "Estructura: gancho → contexto en 10 segundos → contenido de menos a más (lo segundo mejor al principio, lo mejor al final) → recompensa → recomendar otro vídeo.",
+        "Escribe para el oído: frases de 8 a 15 palabras, tuteo y verbos activos.",
+        "Cada bloque empieza con una mini promesa para volver a enganchar.",
+        "Cada frase tiene algo concreto que enseñar en pantalla.",
+        "El “suscríbete” va al final, nunca al principio.",
+        "Los vídeos largos duran 8 minutos o más (unas 1.300 palabras) para poder llevar anuncios a mitad de vídeo, pero sin relleno.",
+        "Nunca promete un tiempo (“en 10 segundos”) que luego no cumple.",
+      ],
+      evita: ["Saludos e intros largas", "“En este vídeo vamos a ver…”", "Relleno", "Gastar lo mejor al principio"] },
+    pablito: { exp: "Ha analizado más de 5.000 curvas de retención de YouTube.",
+      sabe: [
+        "Donde se va la gente: los primeros 30 segundos (el gancho no cumple), las transiciones lentas, las explicaciones largas y el final anunciado (“y para terminar…”).",
+        "Interrupción de patrón cada 20-40 segundos: cambio de plano, texto, zoom, sonido o pregunta.",
+        "Bucles abiertos: anunciar algo que llegará más tarde para que se queden.",
+        "En los Shorts nada está parado más de 3 segundos; en los vídeos largos, más de 6-8.",
+        "El final no se anuncia: se enlaza con el siguiente vídeo.",
+        "Lo que se dice y lo que se lee en pantalla tienen que contar lo mismo.",
+        "Un vídeo largo de 8 minutos o más permite anuncios a mitad de vídeo: mejora el ritmo sin bajar de ahí.",
+      ],
+      evita: ["Recortar un vídeo largo por debajo de 8 minutos", "Quitar información útil", "Cambiar el tema o la promesa"] },
+    nobita: { exp: "Especialista en normas de YouTube y derechos de autor en canales de gaming.",
+      sabe: [
+        "Rockstar suele permitir gameplay propio con comentario; las filtraciones y el material no publicado son de alto riesgo.",
+        "Content ID: la música oficial y los tráileres completos generan reclamaciones.",
+        "El contenido realista alterado o hecho con IA hay que declararlo al subirlo.",
+        "Los títulos y miniaturas que prometen lo que el vídeo no da van contra la política de spam y engaños.",
+        "Violencia gráfica en la miniatura o en los primeros segundos limita los anuncios.",
+        "Los spoilers de la historia se avisan al principio.",
+      ],
+      evita: ["Frenar por miedo cosas que están permitidas", "Dejar pasar rumores presentados como hechos"] },
+    cristiano: { exp: "Locutor de documentales y gaming con miles de horas grabadas.",
+      sabe: ["Máxima energía en el gancho", "Una pausa justo antes de cada revelación", "150-170 palabras por minuto en vídeos largos y 170-190 en Shorts", "Pronunciar bien los nombres propios del juego"],
+      evita: ["Sonar monótono", "Leer como un robot"] },
+    georgina: { exp: "Editora de canales de gaming top: corta rápido y nunca deja una imagen parada.",
+      sabe: ["Primer corte antes de los 2 segundos", "En los Shorts, subtítulos grandes en la zona segura: ni abajo ni a la derecha", "Una imagen de apoyo para cada frase", "Zooms y efectos de sonido como interrupciones de patrón", "Música sin derechos y baja, unos 20 dB por debajo de la voz", "El primer fotograma tiene que encajar con la miniatura"],
+      evita: ["Planos largos sin cambios", "Música que tape la voz"] },
+    victillor: { exp: "Ha creado Shorts que suman más de 500 millones de visualizaciones.",
+      sabe: [
+        "El primer segundo decide: se empieza en plena acción, sin presentarse.",
+        "Entre 20 y 45 segundos rinden mejor; si la última frase enlaza con la primera, el Short se ve en bucle.",
+        "Una sola idea por Short.",
+        "Los textos en pantalla van en la zona segura central.",
+        "Cada Short enlaza el vídeo largo con la función de vídeo relacionado.",
+        "Títulos de Short cortos y con curiosidad; los hashtags apenas pesan.",
+      ],
+      evita: ["Cortar trozos que no se entienden solos", "Cerrar con un “suscríbete” largo", "Revelar la sorpresa del vídeo largo"] },
+    guerrero: { exp: "Ha lanzado vídeos para canales de más de 20 millones de suscriptores.",
+      sabe: [
+        "Las 2 primeras líneas de la descripción se ven en las búsquedas: palabra clave y gancho.",
+        "Capítulos: empiezan en 0:00, al menos 3 y de 10 segundos o más cada uno; ayudan en las búsquedas.",
+        "Las etiquetas pesan poco; sirven para variantes y errores de escritura (gta vi, gta 6, gta seis).",
+        "Comentario fijado con una pregunta que abra debate.",
+        "Pantalla final: el vídeo con mejor retención o el siguiente de la serie.",
+        "Contestar comentarios en la primera hora ayuda a que el vídeo arranque.",
+        "Se programa la subida para 2-3 horas antes del pico de audiencia.",
+      ],
+      evita: ["Descripciones vacías", "Olvidar declarar el contenido hecho con IA", "Cambiar el título a los 5 minutos de publicar"] },
+    taison: { exp: "Analista de datos de redes de canales con miles de millones de visualizaciones al año.",
+      sabe: [
+        "El porcentaje de clics se compara con tus propios vídeos y por fuente de tráfico; entre el 2 y el 10 % es lo normal.",
+        "Duración media vista: más del 50 % en un vídeo largo es muy bueno; lo clave son los primeros 30 segundos.",
+        "Shorts: “vistos frente a deslizados” por encima del 70 % es buena señal.",
+        "Suscriptores por cada 1.000 visualizaciones muestran qué temas fidelizan.",
+        "Diagnóstico: pocos clics y buena retención = falla el packaging; muchos clics y poca retención = el vídeo no cumple la promesa.",
+        "Las preguntas que se repiten en los comentarios son el siguiente vídeo.",
+      ],
+      evita: ["Sacar conclusiones con un solo vídeo", "Mirar solo las visualizaciones"] },
+  };
+  AGENTS.forEach(a => Object.assign(a, PLAYBOOK[a.id]));
+  const expert = (...ids) => ids.map(id => {
+    const a = agent(id);
+    return `Experiencia de ${a.name}: ${a.exp}\nLo que ${a.name} sabe y aplica:\n${a.sabe.map(s => "- " + s).join("\n")}\nErrores que ${a.name} nunca comete:\n${a.evita.map(s => "- " + s).join("\n")}`;
+  }).join("\n\n");
+  const withExpert = (prompt, ...ids) => prompt.replace(/\n\nResponde solo con JSON/, "\n\n" + expert(...ids) + "\n\nResponde solo con JSON");
   const status = {}, bubble = {};
   AGENTS.forEach(a => { status[a.id] = "idle"; bubble[a.id] = ""; });
   let selected = "almudena";
@@ -352,7 +478,7 @@
   const MAXX = COLS * 6 - 1, MAXY = ROWS * 6 - 1;   // salas de 5 casillas + pasillos de 1
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let W = 0, H = 0, tw = 0, th = 0, ox = 0, oy = 0, hits = [], tags = [];
-  window.__vshDebug = () => ({ hits, tags, status: { ...status } });
+  window.__vshDebug = () => ({ hits, tags, status: { ...status }, packets: packets.length });
 
   function resize() {
     const w = canvas.clientWidth;
@@ -398,6 +524,133 @@
     ctx.closePath();
   }
 
+
+  // ---------------------------------------------------------------- objetos de cada sala
+  let now = 0;
+  const wallBack = (y0, xa, xb, za, zb, fill) => poly([iso(xa, y0 + 0.02, za), iso(xb, y0 + 0.02, za), iso(xb, y0 + 0.02, zb), iso(xa, y0 + 0.02, zb)], fill);
+  const wallLeft = (x0, ya, yb, za, zb, fill) => poly([iso(x0 + 0.02, ya, za), iso(x0 + 0.02, yb, za), iso(x0 + 0.02, yb, zb), iso(x0 + 0.02, ya, zb)], fill);
+  const line = (a, b, color, w = 1.5) => { ctx.strokeStyle = color; ctx.lineWidth = w; ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke(); };
+  function drawProp(r, x0, y0) {
+    const t = now;
+    // En la primera columna los objetos van en la pared; en las demás, en un panel de pie
+    // separado de la pared para que no los tape el cartel de la sala vecina.
+    const wx = r.col === 0 ? x0 : x0 + 0.9;
+    if (wx !== x0 && ["mando", "retencion", "escudo", "shorts", "escaparate", "neon", "voz"].includes(r.id)) box(wx - 0.14, y0 + 2.9, 0.14, 1.8, 1.08, "#2A2140");
+    switch (r.id) {
+      case "radar": {            // antena de radar con barrido
+        const c = iso(x0 + 0.02, y0 + 3.7, 0.65);
+        ctx.fillStyle = "#0E1A33"; ctx.beginPath(); ctx.ellipse(c[0], c[1], tw * 0.42, tw * 0.5, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = "rgba(51,225,214,0.5)"; ctx.lineWidth = 1;
+        [0.18, 0.32].forEach(k => { ctx.beginPath(); ctx.ellipse(c[0], c[1], tw * k * 1.3, tw * k * 1.55, 0, 0, Math.PI * 2); ctx.stroke(); });
+        const ang = reduceMotion ? 0.6 : t * 2.2;
+        line(c, [c[0] + Math.cos(ang) * tw * 0.4, c[1] + Math.sin(ang) * tw * 0.48], "#33E1D6", 2);
+        break;
+      }
+      case "mando": {            // pantalla con el calendario semanal
+        wallLeft(wx, y0 + 3.0, y0 + 4.6, 0.3, 1.0, "#0E1A33");
+        for (let i = 0; i < 7; i++)
+          wallLeft(wx, y0 + 3.08 + i * 0.21, y0 + 3.24 + i * 0.21, 0.42, 0.88, i === 4 ? "#FF4FA3" : "rgba(51,225,214,0.35)");
+        break;
+      }
+      case "escaparate": {       // panel con 3 títulos en neón
+        wallLeft(wx, y0 + 3.0, y0 + 4.6, 0.3, 1.0, "#1B1233");
+        [["#FF4FA3", 1.3], ["#FFB547", 1.0], ["#33E1D6", 1.15]].forEach(([col, len], i) =>
+          wallLeft(wx, y0 + 3.15, y0 + 3.15 + len, 0.82 - i * 0.2, 0.9 - i * 0.2, col));
+        break;
+      }
+      case "neon": {             // lienzo con degradado de neón
+        const g = ctx.createLinearGradient(...iso(wx, y0 + 3.0, 1.0), ...iso(wx, y0 + 4.6, 0.3));
+        g.addColorStop(0, "#FF4FA3"); g.addColorStop(1, "#33E1D6");
+        wallLeft(wx, y0 + 3.0, y0 + 4.6, 0.3, 1.0, g);
+        wallLeft(wx, y0 + 3.5, y0 + 4.1, 0.5, 0.75, "rgba(18,11,36,0.6)");
+        break;
+      }
+      case "guiones": {          // estantería con guiones
+        box(x0 + 0.15, y0 + 3.0, 0.45, 1.6, 1.2, "#3B2A5E");
+        ["#FFB547", "#FF4FA3", "#33E1D6"].forEach((col, i) => line(iso(x0 + 0.6, y0 + 3.1, 0.3 + i * 0.32), iso(x0 + 0.6, y0 + 4.5, 0.3 + i * 0.32), col, 3));
+        break;
+      }
+      case "retencion": {        // gráfico de la curva de retención
+        wallLeft(wx, y0 + 3.0, y0 + 4.6, 0.3, 1.0, "#E9E4FF");
+        const pts = [[0, 0.95], [0.12, 0.62], [0.35, 0.55], [0.6, 0.5], [0.85, 0.46], [1, 0.4]]
+          .map(([u, v]) => iso(wx + 0.03, y0 + 3.08 + u * 1.44, 0.34 + v * 0.62));
+        ctx.strokeStyle = "#FF4FA3"; ctx.lineWidth = 2; ctx.beginPath();
+        pts.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.stroke();
+        break;
+      }
+      case "escudo": {           // escudo en la pared
+        const W0 = wx + 0.03, top = iso(W0, y0 + 3.8, 1.05), l = iso(W0, y0 + 3.35, 0.95), rr = iso(W0, y0 + 4.25, 0.95), b = iso(W0, y0 + 3.8, 0.3);
+        poly([top, rr, [rr[0], rr[1] + tw * 0.2], b, [l[0], l[1] + tw * 0.2], l], "#33E1D6");
+        poly([iso(W0, y0 + 3.8, 0.92), iso(W0, y0 + 4.1, 0.85), iso(W0, y0 + 3.8, 0.42), iso(W0, y0 + 3.5, 0.85)], "#1B1233");
+        break;
+      }
+      case "voz": {              // micrófono y paneles acústicos
+        for (let i = 0; i < 2; i++) for (let j = 0; j < 2; j++)
+          wallLeft(wx, y0 + 3.0 + i * 0.75, y0 + 3.65 + i * 0.75, 0.3 + j * 0.38, 0.62 + j * 0.38, "#24334A");
+        const base = iso(x0 + 1.1, y0 + 4.0, 0), top = iso(x0 + 1.1, y0 + 4.0, 1.05);
+        line(base, top, "#A99DCB", 2);
+        ctx.fillStyle = status.cristiano === "waiting" ? "#FFB547" : "#F3EEFF";
+        ctx.beginPath(); ctx.ellipse(top[0], top[1], tw * 0.09, tw * 0.13, 0, 0, Math.PI * 2); ctx.fill();
+        break;
+      }
+      case "montaje": {          // pared de pantallas con línea de tiempo
+        [0, 1, 2].forEach(i => {
+          wallLeft(x0, y0 + 3.0 + i * 0.54, y0 + 3.48 + i * 0.54, 0.45, 0.85, "#0E1A33");
+          wallLeft(x0, y0 + 3.05 + i * 0.54, y0 + 3.05 + i * 0.54 + 0.12 + ((i * 7 + Math.floor(t * 2)) % 3) * 0.1, 0.5, 0.56, ["#FF4FA3", "#FFB547", "#33E1D6"][i]);
+        });
+        break;
+      }
+      case "shorts": {           // móviles en vertical
+        [0, 1, 2].forEach(i => {
+          const lit = reduceMotion ? i === 1 : Math.floor(t * 1.5) % 3 === i;
+          wallLeft(wx, y0 + 3.05 + i * 0.52, y0 + 3.4 + i * 0.52, 0.3, 1.0, lit ? "#FF4FA3" : "#2A1F52");
+        });
+        break;
+      }
+      case "torre": {            // antena de lanzamiento con luz
+        box(x0 + 0.85, y0 + 3.75, 0.18, 0.18, 2.1, "#5A4A80");
+        const tip = iso(x0 + 0.94, y0 + 3.84, 2.25);
+        ctx.fillStyle = reduceMotion || Math.floor(t * 2) % 2 ? "#FF6B6B" : "rgba(255,107,107,0.25)";
+        ctx.beginPath(); ctx.arc(tip[0], tip[1], tw * 0.08, 0, Math.PI * 2); ctx.fill();
+        break;
+      }
+      case "observatorio": {     // telescopio
+        const foot = [iso(x0 + 0.9, y0 + 3.6, 0), iso(x0 + 1.3, y0 + 4.0, 0), iso(x0 + 0.7, y0 + 4.1, 0)], head = iso(x0 + 1.0, y0 + 3.9, 0.85);
+        foot.forEach(f => line(f, head, "#A99DCB", 1.5));
+        line(iso(x0 + 0.75, y0 + 4.15, 0.75), iso(x0 + 1.4, y0 + 3.5, 1.35), "#F3EEFF", tw * 0.12);
+        [[3.2, 0.9], [3.8, 0.55], [4.4, 0.8]].forEach(([yy, zz]) => { const st = iso(x0 + 0.03, y0 + yy, zz); ctx.fillStyle = "#FFE14D"; ctx.fillRect(st[0] - 1.5, st[1] - 1.5, 3, 3); });
+        break;
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------- el trabajo viaja de una mesa a la siguiente
+  let packets = [];
+  function agentPoint(id) {
+    const a = agent(id), r = roomById[a.room];
+    return iso(r.col * 6 + a.spot[0], r.row * 6 + a.spot[1], 1.3);
+  }
+  function sendPacket(from, to) {
+    if (reduceMotion || !from || !to || from === to) return;
+    packets.push({ from, to, t0: performance.now() });
+  }
+  function drawPackets() {
+    const ms = performance.now();
+    packets = packets.filter(pk => ms - pk.t0 < 1300);
+    for (const pk of packets) {
+      const k = (ms - pk.t0) / 1300, e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+      const [ax, ay] = agentPoint(pk.from), [bx, by] = agentPoint(pk.to);
+      const x = ax + (bx - ax) * e, y = ay + (by - ay) * e - Math.sin(Math.PI * e) * tw * 2.2;
+      ctx.save();
+      ctx.shadowColor = "#FFB547"; ctx.shadowBlur = 14;
+      ctx.fillStyle = "#FFF4E0";
+      roundRect(x - tw * 0.22, y - tw * 0.15, tw * 0.44, tw * 0.3, 3); ctx.fill();
+      ctx.restore();
+      line([x - tw * 0.22, y - tw * 0.15], [x, y + tw * 0.02], "#FFB547", 1);
+      line([x + tw * 0.22, y - tw * 0.15], [x, y + tw * 0.02], "#FFB547", 1);
+    }
+  }
+
   function drawRoom(r) {
     const x0 = r.col * 6, y0 = r.row * 6, x1 = x0 + 5, y1 = y0 + 5;
     poly([iso(x0, y0), iso(x1, y0), iso(x1, y1), iso(x0, y1)], r.floor);
@@ -422,6 +675,7 @@
     ctx.fillStyle = "#2FA36B";
     const pl = iso(x1 - 0.55, y1 - 0.55, 0.75);
     ctx.beginPath(); ctx.arc(pl[0], pl[1], tw * 0.22, 0, Math.PI * 2); ctx.fill();
+    drawProp(r, x0, y0);
   }
 
   function drawRoomLabel(r) {
@@ -554,6 +808,7 @@
 
   function frame(ms) {
     const t = ms / 1000;
+    now = t;
     ctx.clearRect(0, 0, W, H);
     hits = []; tags = []; labels = [];
     ROOMS.slice().sort((a, b) => (a.col + a.row) - (b.col + b.row)).forEach(drawRoom);
@@ -564,6 +819,7 @@
       })
       .forEach(([a, i]) => drawAgent(a, i, t));
     ROOMS.forEach(drawRoomLabel);
+    drawPackets();
     drawLabels(t);
     if (!reduceMotion) requestAnimationFrame(frame);
   }
@@ -624,7 +880,7 @@
   const REGLAS = "Reglas del equipo: 1) lo que prometen el título y la miniatura se cumple en el vídeo; 2) gancho en los 3 primeros segundos; 3) nada inventado, los rumores se dicen como rumores; 4) el canal no es oficial y GTA VI es de Rockstar Games: no reproducir tráileres, música ni diálogos oficiales; 5) contenido apto para anuncios de YouTube.";
   const hoy = () => new Date().toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
   const SPEC = {
-    week: { label: "vídeo largo horizontal 16:9 de 8 a 12 minutos", scenes: 10, minScenes: 7, words: [1000, 1900] },
+    week: { label: "vídeo largo horizontal 16:9 de 8 a 12 minutos (8 como mínimo, para poder poner anuncios a mitad de vídeo)", scenes: 10, minScenes: 7, words: [1200, 1900] },
     express: { label: "YouTube Short vertical 9:16 de unos 45 segundos sobre una noticia o novedad", scenes: 6, minScenes: 4, words: [70, 160] },
   };
   let insights = null;   // conclusiones de Taison
@@ -665,7 +921,7 @@
         ...(run.mode === "week" ? [qc(d.shorts_previstos.length >= 3, `${d.shorts_previstos.length} Shorts previstos`)] : []),
         qc(d.dia_hora, "Día y hora"),
       ] },
-    { key: "titles", who: "torrente", title: "Títulos", bubble: "Afinando títulos", modes: ["week", "express"],
+    { key: "titles", tier: "complex", who: "torrente", title: "Títulos", bubble: "Afinando títulos", modes: ["week", "express"],
       prompt: run => `${CANAL}\n${REGLAS}${insightTxt()}\n\nEres Torrente, especialista en títulos (El Escaparate). Plan de Almudena:\n${JSON.stringify(run.stages.plan)}\n\nEscribe 3 títulos MUY distintos entre sí (por ejemplo: uno de curiosidad, uno de lista o número, uno de reto o resultado) para probarlos en YouTube. Máximo 70 caracteres, palabra clave ("GTA 6") al principio, sin mayúsculas exageradas ni mentiras. Ordénalos del que crees mejor al peor.\n\nResponde solo con JSON:\n{"promesa": "la promesa en una frase", "titulos": [{"titulo": "...", "por_que": "1 frase"}]}`,
       norm: normTitles,
       check: d => [
@@ -683,7 +939,7 @@
         qc(d.miniaturas.every(m => words(m.texto) <= 4), "4 palabras o menos"),
         qc(d.miniaturas.every(m => !run.stages.titles?.titulos?.some(t => t.titulo.toLowerCase().includes(m.texto.toLowerCase()))), "No repite el título"),
       ] },
-    { key: "script", who: "chapo", title: "Guion", bubble: "Escribiendo el guion", modes: ["week", "express"],
+    { key: "script", tier: "complex", who: "chapo", title: "Guion", bubble: "Escribiendo el guion", modes: ["week", "express"],
       prompt: run => {
         const sp = SPEC[run.mode];
         return `${CANAL}\n${REGLAS}\n\nEres El Chapo, guionista (La Fábrica de Guiones). Plan:\n${JSON.stringify(run.stages.plan)}\nTítulos (el primero es el principal):\n${JSON.stringify(run.stages.titles)}\n${run.stages.thumbs ? `Miniaturas:\n${JSON.stringify(run.stages.thumbs)}\n` : ""}\nEscribe el guion de un ${sp.label} que cumpla EXACTAMENTE la promesa del título y la miniatura. Exactamente ${sp.scenes} escenas y entre ${sp.words[0]} y ${sp.words[1]} palabras de narración en total. La escena 1 es el gancho: en los 3 primeros segundos confirma la promesa y crea curiosidad. Frases cortas, para decir en voz alta. La última escena pide suscribirse${run.mode === "week" ? " y recomienda otro vídeo del canal" : ""}.\nPara cada escena: "narracion" (texto exacto de la voz), "texto_pantalla" (5 palabras como máximo, en mayúsculas), "visual" (qué gameplay mostrar) y "prompt_ia" (en inglés, para un generador de vídeo IA: escena ORIGINAL con estética de Florida tropical y neón, sin personajes, logotipos ni marcas de Rockstar).\n\nResponde solo con JSON:\n{"titulo": "...", "gancho": "...", "escenas": [{"narracion": "...", "texto_pantalla": "...", "visual": "...", "prompt_ia": "..."}], "cta": "...", "fuentes": "qué es dato comprobado y qué es rumor"}`;
@@ -701,23 +957,29 @@
           qc(/suscr/i.test((last?.narracion || "") + " " + d.cta), "Pide suscribirse"),
         ];
       } },
-    { key: "retention", who: "pablito", title: "Retención", bubble: "Buscando dónde se aburre la gente", modes: ["week", "express"],
-      prompt: run => `${CANAL}\n${REGLAS}\n\nEres Pablito, experto en retención (Laboratorio de Retención). Título principal: "${run.stages.titles?.titulos?.[0]?.titulo || ""}". Promesa: "${run.stages.plan?.promesa || ""}".\nGuion de El Chapo (escenas numeradas desde 1):\n${JSON.stringify(run.stages.script.escenas.map((e, i) => ({ escena: i + 1, narracion: e.narracion })))}\n\nRevisa el guion pensando en dónde se iría la gente. Pon una nota de retención de 1 a 10. Reescribe el gancho si se puede mejorar. Propón como máximo 4 cambios concretos: para cada uno indica el número de escena y el texto NUEVO completo de su narración (misma longitud aproximada). Busca: gancho que tarda, partes lentas, falta de sorpresas, la mejor parte gastada demasiado pronto, final flojo.\n\nResponde solo con JSON:\n{"nota": 1-10, "gancho_mejorado": "...", "cambios": [{"escena": 1, "problema": "...", "nuevo_texto": "..."}], "consejo_montaje": "1 frase para la editora"}`,
+    { key: "retention", tier: "complex", who: "pablito", title: "Retención", bubble: "Buscando dónde se aburre la gente", modes: ["week", "express"],
+      prompt: run => `${CANAL}\n${REGLAS}\n\nEres Pablito, experto en retención (Laboratorio de Retención). Título principal: "${run.stages.titles?.titulos?.[0]?.titulo || ""}". Promesa: "${run.stages.plan?.promesa || ""}".\nGuion de El Chapo (escenas numeradas desde 1):\n${JSON.stringify(run.stages.script.escenas.map((e, i) => ({ escena: i + 1, narracion: e.narracion })))}\n\nRevisa el guion pensando en dónde se iría la gente. Pon una nota de retención de 1 a 10. Reescribe el gancho si se puede mejorar. Propón como máximo 4 cambios concretos: para cada uno indica el número de escena y el texto NUEVO completo de su narración (misma longitud aproximada); si cambia la idea de la escena, da también su nuevo texto en pantalla. Si mejoras el gancho, aplícalo también como cambio de la escena 1 (es la que se graba).${run.mode === "week" ? ` El guion final no puede bajar de ${SPEC.week.words[0]} palabras (8 minutos): si acortas una escena, compénsalo en otra o reescribe sin recortar.` : ""} Busca: gancho que tarda, partes lentas, falta de sorpresas, la mejor parte gastada demasiado pronto, final flojo.\n\nResponde solo con JSON:\n{"nota": 1-10, "gancho_mejorado": "...", "cambios": [{"escena": 1, "problema": "...", "nuevo_texto": "...", "nuevo_texto_pantalla": "opcional, 5 palabras como máximo"}], "consejo_montaje": "1 frase para la editora"}`,
       norm: (d, run) => {
         const base = run.stages.script;
-        const cambios = asArr(d.cambios).map(asObj).map(c => ({ escena: parseInt(c.escena, 10), problema: S(c.problema), nuevo_texto: S(c.nuevo_texto) }))
+        const cambios = asArr(d.cambios).map(asObj).map(c => ({ escena: parseInt(c.escena, 10), problema: S(c.problema), nuevo_texto: S(c.nuevo_texto), nuevo_texto_pantalla: S(c.nuevo_texto_pantalla) }))
           .filter(c => c.escena >= 1 && c.escena <= base.escenas.length && c.nuevo_texto);
         const escenas = base.escenas.map((e, i) => {
           const c = cambios.find(c => c.escena === i + 1);
-          return c ? { ...e, narracion: c.nuevo_texto, cambiada: true } : { ...e };
+          return c ? { ...e, narracion: c.nuevo_texto, texto_pantalla: c.nuevo_texto_pantalla || e.texto_pantalla, cambiada: true } : { ...e };
         });
         const gancho = S(d.gancho_mejorado) || base.gancho;
         return { nota: num(d.nota), gancho_mejorado: S(d.gancho_mejorado), cambios, consejo_montaje: S(d.consejo_montaje), guion_final: { ...base, gancho, escenas } };
       },
-      check: d => [
-        qc(d.nota !== null && d.nota >= 1 && d.nota <= 10, d.nota !== null ? `Nota ${d.nota}/10` : "Sin nota", true),
-        qc(d.cambios.length > 0 || d.nota >= 9, `${d.cambios.length} mejoras aplicadas`),
-      ] },
+      check: (d, run) => {
+        const total = d.guion_final.escenas.reduce((n, e) => n + words(e.narracion), 0), min = SPEC[run.mode].words[0];
+        return [
+          qc(d.nota !== null && d.nota >= 1 && d.nota <= 10, d.nota !== null ? `Nota ${d.nota}/10` : "Sin nota", true),
+          qc(d.cambios.length > 0 || d.nota >= 9, `${d.cambios.length} mejoras aplicadas`),
+          qc(!d.gancho_mejorado || d.cambios.some(c => c.escena === 1), "Gancho aplicado en la escena 1"),
+          qc(d.guion_final.escenas.every(e => words(e.texto_pantalla) <= 5), "Textos en pantalla cortos"),
+          qc(total >= min, run.mode === "week" ? `Duración final ≈${mmss(total / 2.5)}${total < min ? " (menos de 8 min: sin anuncios a mitad)" : ""}` : `Duración final ≈${mmss(total / 2.5)}`),
+        ];
+      } },
     { key: "compliance", who: "nobita", title: "Revisión de normas", bubble: "Revisando normas", modes: ["week", "express"],
       prompt: run => `${REGLAS}\n\nEres Nobita, guardián de normas (El Escudo) de un canal de YouTube sobre GTA 6. Revisa antes de publicar:\n1) Derechos: comentar y analizar gameplay propio está permitido; no subir tráileres ni música oficial completos; no hacerse pasar por Rockstar.\n2) Normas de YouTube: el contenido realista hecho con IA hay que declararlo; nada de títulos o miniaturas engañosos (que prometan algo que el vídeo no da); apto para anuncios.\n3) Veracidad: rumores presentados como hechos.\n\nTítulos:\n${JSON.stringify(run.stages.titles)}\n${run.stages.thumbs ? `Miniaturas:\n${JSON.stringify(run.stages.thumbs)}\n` : ""}Guion final:\n${JSON.stringify(finalScript(run))}\n\nResponde solo con JSON:\n{"aprobado": true, "declarar_ia": true, "avisos": [{"nivel": "bloquea" | "mejora", "tema": "...", "detalle": "...", "arreglo": "..."}]}\n"aprobado" es false solo si hay algún aviso de nivel "bloquea". Máximo 4 avisos.`,
       norm: d => {
@@ -763,9 +1025,41 @@
         ...(run.mode === "week" ? [qc(d.capitulos.length >= 3 && /^0?0:00$/.test(d.capitulos[0]?.tiempo), "Capítulos desde 0:00")] : [qc(d.hashtags.some(t => /^#shorts$/i.test(t)), "#Shorts")]),
         qc(d.comentario_fijado.includes("?"), "Comentario fijado con pregunta"),
       ] },
+    { key: "greenlight", tier: "complex", who: "almudena", title: "Luz verde", bubble: "Revisando todo el paquete", modes: ["week", "express"],
+      prompt: run => {
+        const sc = finalScript(run), week = run.mode === "week";
+        const resumen = { gancho: sc.gancho, escenas: sc.escenas.map(e => ({ pantalla: e.texto_pantalla, inicio: e.narracion.split(/\s+/).slice(0, 30).join(" ") })) };
+        return `${CANAL}\n${REGLAS}${insightTxt()}\n\nEres Almudena, productora ejecutiva (La Sala de Mando). Antes de publicar revisas el paquete completo con el criterio de quien ha llevado canales a decenas de millones de suscriptores. Eres exigente pero justa: no pides rehacer por detalles.\n\nPlan:\n${JSON.stringify(run.stages.plan)}\nTítulos:\n${JSON.stringify(run.stages.titles)}\n${week ? `Miniaturas (A, B, C):\n${JSON.stringify(run.stages.thumbs)}\n` : ""}Guion final (resumen):\n${JSON.stringify(resumen)}\nNota de retención de Pablito: ${run.stages.retention?.nota ?? "?"}/10\n${week ? `Shorts:\n${JSON.stringify(run.stages.shorts.shorts.map(x => ({ titulo: x.titulo, gancho: x.gancho })))}\n` : ""}Ficha de publicación:\n${JSON.stringify({ descripcion: run.stages.launch.descripcion, dia_hora: run.stages.launch.dia_hora, comentario_fijado: run.stages.launch.comentario_fijado })}\n\nPuntúa de 1 a 10: "clic" (¿lo pulsaría alguien que no te conoce?), "retencion" (¿lo vería hasta el final?), ${week ? '"shorts" (¿traerán suscriptores?), ' : ""}"publicacion" (¿está todo listo?). Elige el título final${week ? " y la miniatura final (A, B o C)" : ""} con el que se sube; ${week ? "los demás quedan para la prueba A/B" : "los demás quedan de reserva"}. Da luz verde si todas las notas son 7 o más. Si no, indica en "rehacer_desde" el puesto desde el que hay que rehacer: "titles" (Torrente)${week ? ', "thumbs" (Nil)' : ""}, "script" (El Chapo), "retention" (Pablito)${week ? ', "shorts" (Victillor)' : ""} o "launch" (Guerrero), y explica qué cambiar en "motivo".\n\nResponde solo con JSON:\n{"notas": {"clic": 8, "retencion": 8${week ? ', "shorts": 8' : ""}, "publicacion": 8}, "luz_verde": true, "rehacer_desde": "", "motivo": "...", "titulo_final": "...", ${week ? '"miniatura_final": "A", ' : ""}"consejo": "1 frase para el día de publicación"}`;
+      },
+      norm: (d, run) => {
+        const notas = Object.fromEntries(Object.entries(asObj(d.notas)).map(([k, v]) => [k, num(v)]).filter(([, v]) => v !== null));
+        const yes = v => v === true || S(v).toLowerCase() === "true", no = v => v === false || S(v).toLowerCase() === "false";
+        const allowed = stepsFor(run.mode).map(p => p.key).filter(k => ["titles", "thumbs", "script", "retention", "shorts", "launch"].includes(k));
+        const titulos = run.stages.titles?.titulos?.map(t => t.titulo) || [];
+        const tf = S(d.titulo_final);
+        const letter = S(d.miniatura_final).toUpperCase().slice(0, 1);
+        return {
+          notas, luz_verde: yes(d.luz_verde) ? true : no(d.luz_verde) ? false : null,
+          rehacer_desde: allowed.includes(S(d.rehacer_desde)) ? S(d.rehacer_desde) : "",
+          motivo: S(d.motivo), consejo: S(d.consejo),
+          titulo_final: titulos.includes(tf) ? tf : (tf && tf.length <= 100 ? tf : titulos[0] || ""),
+          miniatura_final: ["A", "B", "C"].slice(0, run.stages.thumbs?.miniaturas?.length || 0).includes(letter) ? letter : (run.stages.thumbs ? "A" : ""),
+        };
+      },
+      check: d => {
+        const vals = Object.values(d.notas);
+        return [
+          qc(d.luz_verde !== null, d.luz_verde === null ? "Sin decisión" : d.luz_verde ? "Luz verde" : "Pide rehacer", true),
+          qc(vals.length >= 3, `${vals.length} notas`),
+          qc(d.titulo_final, "Título final elegido"),
+        ];
+      },
+      gate: true },
   ];
   function qc(ok, text, crit = false) { return { ok: !!ok, text, crit }; }
   const stepsFor = mode => PASOS.filter(p => p.modes.includes(mode));
+  const agentForStep = key => agent(PASOS.find(p => p.key === key)?.who);
+  const greenOk = run => !!(run?.stages?.greenlight && (run.stages.greenlight.luz_verde || run.override));
 
   const FIX_PROMPT = run => `${CANAL}\n${REGLAS}\n\nSois El Chapo (guionista) y Torrente (títulos). Nobita, de El Escudo, ha frenado el vídeo con estos avisos:\n${JSON.stringify(run.stages.compliance.avisos)}\n\nTítulos actuales:\n${JSON.stringify(run.stages.titles)}\n\nGuion actual:\n${JSON.stringify(finalScript(run))}\n\nCorregid TODO lo que piden los avisos de nivel "bloquea" (y los de "mejora" si es fácil) sin cambiar el tema del vídeo. Mantened exactamente ${SPEC[run.mode].scenes} escenas.\n\nResponde solo con JSON:\n{"titulos": {"promesa": "...", "titulos": [{"titulo": "...", "por_que": "..."}]}, "guion": {mismo formato que el guion actual}}`;
   const OBS_PROMPT = data => `${CANAL}\n\nEres Taison, analista y responsable de comunidad (El Observatorio). Estos son los datos que el productor ha copiado de YouTube Studio:\n"""\n${data}\n"""\n\nAnalízalos como un experto en crecimiento de YouTube: porcentaje de clics (bueno en gaming: más de 6 %), retención (duración media vista frente a la duración del vídeo), suscriptores por cada 1.000 visualizaciones, y lo que piden los comentarios. Si faltan datos, dilo y trabaja con lo que hay. No inventes números.\n\nResponde solo con JSON:\n{"resumen": "2 frases", "repetir": ["..."], "evitar": ["..."], "ideas_de_comentarios": ["..."], "siguiente_paso": "1 frase"}`;
@@ -788,7 +1082,9 @@
       if (live === "fix") ["chapo", "torrente"].forEach(id => { status[id] = "working"; bubble[id] = "Corrigiendo"; });
       const c = run.stages.compliance;
       if (!live && c && !c.aprobado && !run.stopAt) status.nobita = "error";
-      if (!live && !run.stopAt && stepsFor(run.mode).every(p => run.stages[p.key]) && c?.aprobado) {
+      const g = run.stages.greenlight;
+      if (!live && g && !g.luz_verde && !run.override && !run.stopAt) { status.almudena = "error"; }
+      if (!live && !run.stopAt && stepsFor(run.mode).every(p => run.stages[p.key]) && c?.aprobado && greenOk(run)) {
         ["cristiano", "georgina"].forEach(id => { status[id] = "waiting"; });
         bubble.cristiano = W < 640 ? "Te espero en el chat" : "Pégame el encargo en el chat";
       }
@@ -835,7 +1131,14 @@
         h("dt", {}, "Recibe"), h("dd", {}, a.recibe),
         h("dt", {}, "Entrega"), h("dd", {}, a.entrega),
         h("dt", {}, "Se lo pasa a"), h("dd", {}, a.pasaA),
-        h("dt", {}, "Comprueba"), h("dd", {}, h("ul", {}, a.comprueba.map(c => h("li", {}, c))))));
+        h("dt", {}, "Comprueba"), h("dd", {}, h("ul", {}, a.comprueba.map(c => h("li", {}, c))))),
+      h("details", { class: "know", open: true },
+        h("summary", {}, "Experiencia"),
+        h("p", { class: "note" }, a.exp),
+        h("div", { class: "k" }, "Lo que sabe y aplica"),
+        h("ul", {}, a.sabe.map(x => h("li", {}, x))),
+        h("div", { class: "k" }, "Errores que nunca comete"),
+        h("ul", { class: "avoid" }, a.evita.map(x => h("li", {}, x)))));
   }
 
   // ================================================================ 7. RESULTADOS DE CADA PUESTO
@@ -866,7 +1169,9 @@
     retention: d => h("div", { class: "kv" },
       h("div", { class: "score" }, d.nota ?? "—", h("small", {}, " / 10 de retención")),
       d.gancho_mejorado ? h("div", {}, h("div", { class: "k" }, "Gancho mejorado"), h("div", { class: "v" }, d.gancho_mejorado)) : null,
-      d.cambios.map(c => h("div", { class: "issue good" }, h("b", {}, `Escena ${c.escena}: `), c.problema, h("div", { class: "note" }, "Nuevo texto: " + c.nuevo_texto))),
+      d.cambios.map(c => h("div", { class: "issue good" }, h("b", {}, `Escena ${c.escena}: `), c.problema,
+        c.nuevo_texto_pantalla ? h("div", { class: "note" }, "Nuevo texto en pantalla: " + c.nuevo_texto_pantalla) : null,
+        h("div", { class: "note" }, "Nueva narración: " + c.nuevo_texto))),
       d.consejo_montaje ? h("p", { class: "note" }, "Para Georgina: " + d.consejo_montaje) : null,
       h("details", {}, h("summary", { class: "note" }, "Ver guion final con las mejoras"), scriptView(d.guion_final, true))),
     compliance: d => h("div", { class: "kv" },
@@ -882,6 +1187,14 @@
         h("p", {}, s.narracion),
         s.textos_pantalla.length ? h("p", { class: "meta" }, "En pantalla: " + s.textos_pantalla.join(" · ")) : null,
         s.cierre ? h("p", { class: "meta" }, "Cierre: " + s.cierre) : null)))),
+    greenlight: d => h("div", { class: "kv" },
+      h("div", { class: "scores" }, Object.entries(d.notas).map(([k, v]) => h("div", { class: "scorebox" + (v < 7 ? " low" : "") },
+        h("div", { class: "score" }, v, h("small", {}, "/10")), h("div", { class: "k" }, { clic: "Clic", retencion: "Retención", shorts: "Shorts", publicacion: "Publicación" }[k] || k)))),
+      h("div", { class: "verdict " + (d.luz_verde ? "ok" : "no") }, d.luz_verde ? "Luz verde: se publica" : `Rehacer desde ${agentForStep(d.rehacer_desde)?.name || "el equipo"}`),
+      d.motivo ? h("p", {}, d.motivo) : null,
+      d.titulo_final ? h("div", {}, h("div", { class: "k" }, "Título con el que se sube"), h("div", { class: "v" }, d.titulo_final)) : null,
+      d.miniatura_final ? h("div", {}, h("div", { class: "k" }, "Miniatura con la que se sube"), h("div", { class: "v" }, `Opción ${d.miniatura_final}`)) : null,
+      d.consejo ? h("p", { class: "note" }, "Para el día de publicación: " + d.consejo) : null),
     launch: d => {
       const desc = launchDescription(d);
       return h("div", { class: "kv" },
@@ -922,8 +1235,10 @@
       + `- Cristiano (voz): pon la voz en off${week ? " del vídeo largo y de los Shorts" : ""}.\n`
       + `- Georgina (montaje): ${week ? "monta el vídeo largo en horizontal 16:9 y los Shorts en vertical 9:16" : "monta el Short en vertical 9:16"}, con textos en pantalla y subtítulos. ${run.stages.retention?.consejo_montaje || ""}\n`
       + `- Haz ${week ? "las miniaturas" : "la portada"} y mándamelo todo aquí.\n\n`
-      + `TÍTULO PRINCIPAL: ${t.titulos[0]?.titulo || s.titulo}\n`
-      + (t.titulos.length > 1 ? `TÍTULOS PARA PROBAR: ${t.titulos.slice(1).map(x => x.titulo).join(" | ")}\n` : "")
+      + `TÍTULO PRINCIPAL: ${run.stages.greenlight?.titulo_final || t.titulos[0]?.titulo || s.titulo}\n`
+      + (run.stages.greenlight?.miniatura_final ? `MINIATURA PRINCIPAL: opción ${run.stages.greenlight.miniatura_final}\n` : "")
+      + (run.stages.greenlight?.consejo ? `CONSEJO DE ALMUDENA: ${run.stages.greenlight.consejo}\n` : "")
+      + (t.titulos.length > 1 ? `TÍTULOS PARA PROBAR: ${t.titulos.map(x => x.titulo).filter(x => x !== (run.stages.greenlight?.titulo_final || t.titulos[0]?.titulo)).join(" | ")}\n` : "")
       + (m ? `MINIATURAS: ${m.miniaturas.map((x, i) => `${String.fromCharCode(65 + i)}) "${x.texto}" color ${x.color} — ${x.composicion}`).join(" | ")}\n` : "")
       + `CONTENIDO CON IA: ${c.declarar_ia ? "sí, declararlo" : "no"}\nPUBLICAR: ${l.dia_hora}\n\n`
       + `GUION ${week ? "DEL VÍDEO LARGO" : "DEL SHORT"}\n${scriptText(s)}\n`
@@ -944,7 +1259,7 @@
     else if (!stopped) body = h("p", { class: "note" }, "Pendiente");
     return h("section", { class: "stage" + (isLive ? " live" : stopped ? " failed" : data ? "" : " pending"), "data-step": p.key },
       h("div", { class: "stage-top" },
-        h("h3", {}, `${r.n} · ${p.title}`),
+        h("h3", {}, `${p.key === "greenlight" ? "Final" : r.n} · ${p.title}`),
         h("span", { class: "by" }, "por ", h("b", {}, a.name), ` · ${r.name}`),
         run?.revisions && (p.key === "script" || p.key === "titles") && data ? h("span", { class: "chip" }, `corregido ×${run.revisions}`) : null),
       checks.length && !isLive ? h("div", { class: "qc", "aria-label": "Control de calidad" },
@@ -953,6 +1268,20 @@
         h("p", { class: "note warn" }, run.stopReason || "Este puesto se paró."),
         h("div", { class: "actions" }, h("button", { class: "ghost strong", type: "button", onclick: () => runFrom(idx), disabled: !sample || busy }, `Seguir desde ${a.name}`))) : null,
       body);
+  }
+
+  function redoBox(g) {
+    const steps = stepsFor(run.mode);
+    const idx = steps.findIndex(p => p.key === g.rehacer_desde);
+    const who = agentForStep(g.rehacer_desde);
+    const tooMany = (run.redos || 0) >= 2;
+    return h("section", { class: "stage failed", "data-step": "redo-box" },
+      h("div", { class: "stage-top" }, h("h3", {}, "Almudena no da luz verde todavía")),
+      h("p", { class: "note" }, idx >= 0 ? `Propone rehacer desde ${who.name} (${roomById[who.room].name}) y todo lo que viene después.` : "No ha dicho desde dónde rehacer."),
+      tooMany ? h("p", { class: "note warn" }, "Ya se ha rehecho 2 veces. Puedes seguir igualmente o probar con otro tema.") : null,
+      h("div", { class: "actions" },
+        idx >= 0 ? h("button", { class: "ghost strong", type: "button", disabled: !sample || busy || tooMany, onclick: () => { run.redos = (run.redos || 0) + 1; runFrom(idx); } }, `Rehacer desde ${who.name}`) : null,
+        h("button", { class: "ghost", type: "button", disabled: busy, onclick: () => { run.override = true; save(); syncStatus(); renderResults(); } }, "Seguir igualmente")));
   }
 
   function fixBox() {
@@ -969,15 +1298,18 @@
     const kids = [h("div", { class: "section-head" },
       h("h2", {}, run?.example ? "Ejemplo de encargo" : "Tu encargo"),
       run ? h("span", { class: "chip" }, run.example ? "ejemplo" : `${run.mode === "week" ? "vídeo de la semana" : "short exprés"}${run.topic ? " · " + run.topic : ""}`) : null)];
-    if (run?.example) kids.push(h("p", { class: "note" }, "Así queda un encargo terminado (resumido). Pulsa “Encargar” y el equipo hará el tuyo."));
+    if (run?.example) kids.push(h("p", { class: "note" }, "Este es un encargo real completo, hecho y revisado por el equipo. Pulsa “Encargar” y el equipo hará el tuyo."));
     const c = run?.stages?.compliance;
     const blocked = c && !live && !run.stopAt && !c.aprobado;
+    const g = run?.stages?.greenlight;
+    const redo = g && !live && !run.stopAt && !g.luz_verde && !run.override;
     steps.forEach((p, i) => {
       kids.push(stageCard(p, i));
       if (p.key === "compliance" && blocked) kids.push(fixBox());
+      if (p.key === "greenlight" && redo) kids.push(redoBox(g));
     });
     const allDone = run && steps.every(p => run.stages[p.key]);
-    if (c && !live && !run.stopAt && c.aprobado && allDone) {
+    if (c && !live && !run.stopAt && c.aprobado && allDone && greenOk(run)) {
       kids.push(h("section", { class: "stage handoff", "data-step": "handoff" },
           h("div", { class: "stage-top" }, h("h3", {}, "8 · 9 · Voz y montaje"), h("span", { class: "by" }, "por ", h("b", {}, "Cristiano y Georgina"))),
           h("ol", { class: "steps" },
@@ -1016,8 +1348,9 @@
     goBtn.textContent = b ? "El equipo está trabajando…" : sample ? "Encargar" : "No disponible aquí";
     obsBtn.disabled = b || !sample;
   }
-  async function ask(prompt) {
-    const raw = await sample.json(prompt, { signal: ctl.signal, modelTier: "default", cache: false });
+  // Los puestos creativos clave usan el modelo más capaz; el resto, el equilibrado.
+  async function ask(prompt, tier = "default") {
+    const raw = await sample.json(prompt, { signal: ctl.signal, modelTier: tier, cache: false });
     if (!raw || typeof raw !== "object" || Array.isArray(raw)) throw { code: "invalid_json" };
     return raw;
   }
@@ -1030,19 +1363,21 @@
     const steps = stepsFor(run.mode);
     ctl = new AbortController();
     setBusy(true);
-    run.stopAt = null; run.stopReason = "";
+    run.stopAt = null; run.stopReason = ""; run.override = false;
     for (const p of steps.slice(start)) { delete run.stages[p.key]; delete run.checks[p.key]; }
     let i = start;
     try {
       for (; i < steps.length; i++) {
         const p = steps[i];
         live = p.key; syncStatus(); renderResults();
-        const data = p.norm(await ask(p.prompt(run)), run);
+        const data = p.norm(await ask(withExpert(p.prompt(run), p.who), p.tier), run);
         const checks = p.check(data, run);
         run.stages[p.key] = data; run.checks[p.key] = checks;
         if (checks.some(c => c.crit && !c.ok)) throw { code: "quality" };
         live = null; save(); syncStatus(); renderResults();
-        if (p.gate && !data.aprobado) break;   // Nobita frena: no se sigue hasta corregir
+        const next = steps[i + 1]?.who || (p.gate && !(data.aprobado ?? data.luz_verde) ? null : "cristiano");
+        if (p.gate && !(data.aprobado ?? data.luz_verde)) break;   // Nobita o Almudena frenan: no se sigue
+        sendPacket(p.who, next);
       }
     } catch (e) {
       const code = e?.code || "upstream_error";
@@ -1061,7 +1396,7 @@
     live = "fix"; syncStatus(); renderResults();
     const steps = stepsFor(run.mode);
     try {
-      const raw = await ask(FIX_PROMPT(run));
+      const raw = await ask(withExpert(FIX_PROMPT(run), "chapo", "torrente"), "complex");
       const t = normTitles(asObj(raw.titulos)), s = normScript(asObj(raw.guion));
       const ct = steps.find(p => p.key === "titles").check(t, run), cs = steps.find(p => p.key === "script").check(s, run);
       if (ct.concat(cs).some(c => c.crit && !c.ok)) throw { code: "quality" };
@@ -1107,7 +1442,7 @@
     ctl = new AbortController();
     setBusy(true); live = "obs"; syncStatus();
     try {
-      const raw = await ask(OBS_PROMPT(data));
+      const raw = await ask(withExpert(OBS_PROMPT(data), "taison"));
       const d = { resumen: S(raw.resumen), repetir: asArr(raw.repetir).map(S).filter(Boolean), evitar: asArr(raw.evitar).map(S).filter(Boolean), ideas_de_comentarios: asArr(raw.ideas_de_comentarios).map(S).filter(Boolean), siguiente_paso: S(raw.siguiente_paso) };
       if (!d.resumen) throw { code: "quality" };
       insights = d;
@@ -1122,22 +1457,11 @@
   };
 
   // ================================================================ 9. EJEMPLO Y ARRANQUE
+  // Ejemplo: un encargo real completo (guía de las 6 zonas de Leonida), revisado paso a paso.
+  const EXAMPLE_RAW = {"trends": {"resumen": "A días del lanzamiento, lo que más se busca es saber qué hacer primero y qué hay en el mapa; las noticias concretas hay que verificarlas.", "temas": [{"tema": "Qué hacer en las primeras horas de GTA 6", "por_que": "Todo el mundo va a empezar a la vez y busca una guía de inicio.", "fiabilidad": "evergreen", "potencial": 10}, {"tema": "Las zonas del mapa de Leonida explicadas", "por_que": "Rockstar ha mostrado seis zonas y la gente quiere saber qué hay en cada una.", "fiabilidad": "evergreen", "potencial": 9}, {"tema": "Secretos y easter eggs de los tráileres", "por_que": "Las listas de secretos retienen hasta el final y se comparten mucho.", "fiabilidad": "evergreen", "potencial": 9}, {"tema": "Cómo ganar dinero rápido al empezar", "por_que": "Es la pregunta número uno en cada GTA durante las primeras semanas.", "fiabilidad": "evergreen", "potencial": 8}, {"tema": "Coches más rápidos y dónde encontrarlos", "por_que": "Tema muy visual y fácil de enseñar con gameplay propio.", "fiabilidad": "evergreen", "potencial": 8}, {"tema": "Lucia y Jason: lo que sabemos de su historia", "por_que": "Los protagonistas generan teorías y debate en comentarios.", "fiabilidad": "probable", "potencial": 7}, {"tema": "GTA 6 frente a GTA 5: lo que cambia", "por_que": "Comparativa clásica que atrae a jugadores veteranos.", "fiabilidad": "evergreen", "potencial": 7}, {"tema": "Cómo rinde en cada consola", "por_que": "Mucha gente decide cómo jugar según estos datos.", "fiabilidad": "verificar", "potencial": 6}, {"tema": "GTA 6 Online: qué se sabe", "por_que": "Interés enorme, pero casi todo son rumores hasta que Rockstar lo confirme.", "fiabilidad": "verificar", "potencial": 6}, {"tema": "Precio y ediciones del juego", "por_que": "Búsqueda puntual alrededor del lanzamiento.", "fiabilidad": "verificar", "potencial": 5}]}, "plan": {"tema": "Las 6 zonas de Leonida y qué explorar primero", "angulo": "Guía para el primer día: qué hay en cada zona y en qué orden explorarlas, separando lo confirmado por Rockstar de lo que es suposición.", "promesa": "Sabrás qué hay en cada una de las 6 zonas de Leonida y qué explorar primero para no perderte nada.", "publico": "Jugadores que van a empezar GTA 6 en los primeros días y no quieren perderse nada", "shorts_previstos": ["La zona que casi nadie está mirando", "Vice City cambia por completo de noche", "Muévete por los Cayos en barco", "La zona con más pinta de esconder la historia"], "dia_hora": "Viernes a las 18:00 en España (11:00 en México, 13:00 en Argentina)", "razon": "Es el tema evergreen con más búsquedas justo al empezar y abre una serie: una zona por vídeo."}, "titles": {"promesa": "Qué hay en cada zona de Leonida y por dónde empezar", "titulos": [{"titulo": "GTA 6: las 6 zonas de Leonida que tienes que conocer", "por_que": "Número + claridad: funciona en búsquedas."}, {"titulo": "GTA 6: qué explorar primero en Leonida (guía del día 1)", "por_que": "Beneficio inmediato para quien va a empezar."}, {"titulo": "GTA 6: la zona del mapa que casi nadie está mirando", "por_que": "Curiosidad concreta que cumple el final del vídeo."}]}, "thumbs": {"miniaturas": [{"texto": "6 MUNDOS", "composicion": "Mapa de Leonida partido en seis zonas de colores saturados, texto enorme arriba a la izquierda", "prompt_imagen": "Bold stylized map of an original tropical state divided into six saturated neon regions, high contrast, no text", "color": "#FFE14D"}, {"texto": "EMPIEZA AQUÍ", "composicion": "Mapa oscuro con una flecha rosa gigante señalando una zona iluminada; texto a la izquierda", "prompt_imagen": "Dark map with a single glowing coastal region and a huge pink arrow pointing at it, cinematic lighting, no text", "color": "#FF4FA3"}, {"texto": "NADIE MIRA AQUÍ", "composicion": "Montaña con bosque al amanecer y un círculo rojo sobre un punto escondido entre los árboles", "prompt_imagen": "Sunrise over a forested mountain with mist, a small mysterious structure hidden among trees, high contrast, no text", "color": "#33E1D6"}]}, "script": {"titulo": "Las 6 zonas de Leonida y qué explorar primero", "gancho": "Leonida no es un mapa: son seis mundos distintos, y si empiezas sin conocerlos te vas a perder la mitad de GTA 6.", "escenas": [{"narracion": "Leonida no es un mapa: son seis mundos distintos, y si empiezas a jugar sin conocerlos te vas a perder la mitad de GTA 6. Hoy te enseño las seis zonas que Rockstar ha mostrado de forma oficial, qué se ha visto en cada una y qué tienes que buscar primero en cuanto tengas el mando en la mano. Y quédate hasta el final, porque la última zona es la que menos gente está mirando y, para mí, la que más sorpresas puede esconder. Todo lo que vas a oír sale de la web oficial y de los tráileres; cuando algo sea una suposición mía, te lo diré claramente. Así no te comes ningún bulo. Vamos con la primera, la que todos conocemos… o eso creemos.", "texto_pantalla": "6 ZONAS, 6 MUNDOS", "visual": "Plano aéreo general del mapa de Leonida, de la costa al interior", "prompt_ia": "Cinematic aerial establishing shot over an original tropical state at golden hour, neon city on the coast, wetlands and mountains in the distance, 4k"}, {"narracion": "Primero, el contexto en diez segundos. Leonida es el estado ficticio de GTA 6, inspirado en Florida, y sus protagonistas son Lucia Caminos y Jason Duval. Rockstar ha dividido el mapa en seis zonas con personalidad propia: Vice City, los Cayos de Leonida, Grassrivers, Port Gellhorn, Ambrosia y el Parque Nacional del Monte Kalaga. Cada una tiene un paisaje, un tipo de gente y, casi seguro, un tipo de misión diferente. Eso es importante, porque en GTA cada zona cambia cómo juegas: los vehículos que encuentras, los negocios que puedes hacer y hasta la música que suena en la radio del coche. Así que no te las voy a enseñar en orden geográfico, sino de la que más vas a visitar a la que más te puede sorprender.", "texto_pantalla": "EL MAPA EN 10 SEGUNDOS", "visual": "Mapa dividido en seis colores, uno por zona", "prompt_ia": "Stylized animated map of an original fictional tropical state split into six glowing colored regions, neon outlines, top-down view"}, {"narracion": "Zona uno: Vice City. Es la gran ciudad del juego y el sitio donde vas a pasar más horas. En los tráileres se ven playas llenas de gente, edificios de colores, discotecas, coches de lujo y mucho neón por la noche. Rockstar la presenta como la capital del sol y la diversión, y eso se nota en cada plano. Lo primero que yo buscaría es la vida nocturna: en GTA las ciudades cambian muchísimo cuando se pone el sol, y en el segundo tráiler hay escenas de fiesta que dan pistas de actividades. Lo segundo, el paseo marítimo, porque es donde más gente aparece en los vídeos oficiales. Y un consejo: no te quedes solo en el centro. Las afueras suelen tener los mejores secretos.", "texto_pantalla": "1. VICE CITY", "visual": "Paseo marítimo de día y la misma calle de noche con neón", "prompt_ia": "Slow dolly along an original art deco beachfront boulevard transitioning from sunny day to neon night, palm trees, no people faces"}, {"narracion": "Zona dos: los Cayos de Leonida. Es una cadena de islas al sur, inspirada claramente en los Cayos de Florida. En las imágenes oficiales se ven aguas turquesas, puentes larguísimos entre islas, barcos y pueblos pequeños junto al mar. Aquí el protagonista no es el coche, es el agua. Así que lo primero que haría en esta zona es conseguir cualquier barco y recorrer la costa, porque en los GTA anteriores los mejores escondites estaban en sitios a los que solo se llega navegando. Ojo: esto último es una suposición basada en otros juegos de Rockstar, no algo confirmado para GTA 6. Lo que sí está confirmado es el ambiente: tranquilo de día, y bastante menos tranquilo cuando cae la noche, según se ve en los tráileres.", "texto_pantalla": "2. CAYOS DE LEONIDA", "visual": "Puente largo entre islas y una lancha recorriendo la costa", "prompt_ia": "Drone shot following a speedboat along turquoise water past a long bridge connecting small tropical islands, sunset"}, {"narracion": "Zona tres: Grassrivers. Son humedales enormes, inspirados en los Everglades, y en los tráileres aparecen pantanos, hierba alta, aerodeslizadores y, sí, caimanes. Es la zona más salvaje cerca de la ciudad, y por eso puede ser la más peligrosa. Si vas a explorarla, hazlo con calma y con un vehículo que flote, porque a pie cada charca puede ser una sorpresa. Lo que más me interesa de Grassrivers es el contraste: a pocos minutos del neón de Vice City tienes un lugar donde casi no hay nadie. En los GTA, esos lugares vacíos suelen esconder misiones secundarias, encuentros raros y objetos coleccionables. No está confirmado qué habrá aquí exactamente, pero si yo fuera tú, sería una de mis primeras excursiones.", "texto_pantalla": "3. GRASSRIVERS", "visual": "Aerodeslizador cruzando el pantano entre hierba alta", "prompt_ia": "Low angle shot of an airboat gliding through tall sawgrass in a misty swamp at dawn, an alligator's eyes breaking the water surface"}, {"narracion": "Zona cuatro: Port Gellhorn. Rockstar la describe como un puerto olvidado, y en las imágenes se ve un pueblo costero venido a menos: carteles viejos, moteles, calles vacías y un ambiente mucho más duro que el de Vice City. Esta zona me parece clave para la historia, porque los lugares así suelen ser donde los personajes de GTA empiezan desde abajo o se esconden cuando las cosas se complican. Fíjate en los moteles y en los negocios pequeños, porque en los tráileres aparecen varias veces. Y un detalle que casi nadie comenta: que una zona tenga tanto protagonismo en el material oficial, siendo tan poco glamurosa, suele significar que tiene peso en la trama. Eso es una deducción mía, no un dato confirmado.", "texto_pantalla": "4. PORT GELLHORN", "visual": "Calle de un pueblo portuario con motel y carteles viejos", "prompt_ia": "Moody tracking shot down an empty run-down harbor town street with a flickering roadside motel sign and rusty cranes, overcast"}, {"narracion": "Zona cinco: Ambrosia. Es la zona del interior, más industrial y agrícola, con fábricas, campos y carreteras largas. Según la web oficial, aquí la economía gira alrededor de la industria, y eso cambia el tipo de gente y de vehículos que vas a ver: más camiones, más trabajadores y menos turistas. Para el jugador, Ambrosia puede ser el sitio perfecto para persecuciones largas por carretera y para descubrir negocios que no tienen nada que ver con la playa. Mi consejo es que la recorras de día, con calma, mirando cada nave y cada granja, porque en mapas tan grandes los detalles del interior son los que más tarda la comunidad en encontrar. Y quien sabe dónde mirar, los encuentra antes que nadie.", "texto_pantalla": "5. AMBROSIA", "visual": "Carretera larga entre campos y naves industriales", "prompt_ia": "Wide shot of a long straight highway through farmland toward a smoky industrial refinery, heat haze, trucks passing"}, {"narracion": "Zona seis, y la que te dije que guardaba para el final: el Parque Nacional del Monte Kalaga. Es la parte más salvaje de todo el mapa: bosques, montaña, ríos y rutas por la naturaleza. Apenas aparece en los tráileres, y justo por eso es la zona que menos gente está mirando. En los juegos de Rockstar, las zonas de naturaleza suelen tener actividades propias, como caza, pesca o rutas, y sitios con vistas espectaculares. Que lo tenga GTA 6 está por confirmar, así que tómatelo como algo a comprobar cuando juguemos. Pero piensa en esto: si Rockstar le ha dado nombre de parque nacional, es porque quiere que lo explores. Y en los GTA, donde menos gente mira es donde más secretos aparecen.", "texto_pantalla": "6. MONTE KALAGA", "visual": "Bosque y montaña al amanecer, sendero entre árboles", "prompt_ia": "Sunrise crane shot rising over a dense green forest toward a mountain peak, river below, mist, cinematic"}, {"narracion": "Entonces, ¿por dónde empiezo? Mi plan para las primeras horas es este. Primero, sigue la historia hasta que el juego te deje moverte con libertad, sin desviarte demasiado. Segundo, da una vuelta por Vice City de día y de noche, para ver cómo cambia. Tercero, consigue un barco y baja a los Cayos. Cuarto, haz una excursión a Grassrivers y a Kalaga, que son las zonas con más pinta de esconder cosas. Y quinto, apunta todo lo raro que veas: un edificio cerrado, un personaje extraño, un ruido en mitad del pantano. En los primeros días, la comunidad va a descubrir secretos a toda velocidad, y tú puedes ser de los primeros si sabes dónde mirar.", "texto_pantalla": "TU PLAN DE INICIO", "visual": "Lista de 5 pasos sobre gameplay variado", "prompt_ia": "Fast montage-style shot of a car speeding from neon city streets to a coastal bridge to a swamp road, motion blur"}, {"narracion": "Y ahora te toca a ti: dime en los comentarios cuál de las seis zonas vas a explorar primero y qué crees que esconde. Las respuestas más repetidas serán los próximos vídeos del canal. Si te ha servido esta guía, suscríbete y activa la campana, porque en cuanto salga el juego vamos a recorrer Leonida zona por zona, buscando secretos, coches escondidos y todo lo que la gente no ve a la primera. Y si quieres seguir ahora mismo, tienes en pantalla el siguiente vídeo, donde repasamos todo lo que se sabe de Lucia y Jason. Recuerda: este es un canal de fans, no oficial de Rockstar. Nos vemos en Leonida.", "texto_pantalla": "¿CUÁL EXPLORAS PRIMERO?", "visual": "Mapa con las seis zonas y una pregunta en pantalla", "prompt_ia": "Slow pull-back from a glowing neon map of six regions on a table to reveal a night skyline through a window"}], "cta": "Suscríbete y dime en comentarios qué zona exploras primero; siguiente vídeo: Lucia y Jason.", "fuentes": "Confirmado (web oficial y tráileres): nombre y número de zonas, ambientación de cada una, protagonistas. Suposiciones marcadas en voz: barcos y escondites en los Cayos, peso en la trama de Port Gellhorn, actividades de caza o pesca en Kalaga."}, "retention": {"nota": 7, "gancho_mejorado": "Leonida no es un mapa: son seis mundos distintos, y la última zona es la que casi nadie está mirando.", "cambios": [{"escena": 1, "problema": "El gancho promete seis zonas pero el bucle abierto (“la última zona”) llega tarde; se adelanta a la primera frase.", "nuevo_texto": "Leonida no es un mapa: son seis mundos distintos, y la última zona es la que casi nadie está mirando. Si empiezas a jugar sin conocerlas, te vas a perder la mitad de GTA 6. Hoy te enseño las seis zonas que Rockstar ha mostrado de forma oficial, qué se ha visto en cada una y qué tienes que buscar primero en cuanto tengas el mando en la mano. Esa última zona, para mí, es la que más sorpresas puede esconder, así que no te la saltes. Todo lo que vas a oír sale de la web oficial y de los tráileres; cuando algo sea una suposición mía, te lo diré claramente. Así no te comes ningún bulo. Vamos con la primera, la que todos conocemos… o eso creemos."}, {"escena": 2, "problema": "Promete “el contexto en diez segundos” y dura unos 50: quien lo note se va. Se quita la promesa de tiempo y se añade un bucle abierto hacia la zona cuatro.", "nuevo_texto": "Antes de entrar, lo básico, rápido. Leonida es el estado ficticio de GTA 6, inspirado en Florida, y sus protagonistas son Lucia Caminos y Jason Duval. El mapa tiene seis zonas con personalidad propia: Vice City, los Cayos de Leonida, Grassrivers, Port Gellhorn, Ambrosia y el Parque Nacional del Monte Kalaga. Y no son solo paisajes: cada zona cambia cómo juegas, desde los vehículos que encuentras hasta los negocios que puedes montar o la música que suena en la radio. Te las voy a enseñar de la que más vas a visitar a la que más te puede sorprender. Y atento a la cuarta, porque tiene una pista sobre la historia que casi nadie ha visto. Empezamos.", "nuevo_texto_pantalla": "LO BÁSICO, RÁPIDO"}, {"escena": 7, "problema": "Ambrosia llega en mitad del vídeo sin nada nuevo que enganche; la sexta zona queda lejos.", "nuevo_texto": "Zona cinco, y aquí cambia todo: Ambrosia. Se acabaron la playa y el neón. Es el interior industrial y agrícola de Leonida, con fábricas, campos y carreteras larguísimas. Según la web oficial, aquí manda la industria, y eso se nota en todo: más camiones, más trabajadores y casi ningún turista. ¿Y eso qué significa para ti como jugador? Persecuciones largas por carretera, rutas con vehículos pesados y negocios que no tienen nada que ver con la playa. Mi consejo es recorrerla de día, con calma, mirando cada nave y cada granja, porque los detalles del interior son los que más tarda la comunidad en encontrar. Y quien sabe dónde mirar, los encuentra antes que nadie."}], "consejo_montaje": "Cambia de plano en cada frase durante el primer minuto y pon el número de zona grande al empezar cada bloque."}, "compliance": {"aprobado": true, "declarar_ia": true, "avisos": [{"nivel": "mejora", "tema": "Veracidad", "detalle": "Las descripciones de Ambrosia y Kalaga dependen de la web oficial; si algo cambia en el juego final, hay que corregirlo.", "arreglo": "Revisa esas dos zonas jugando antes de publicar o añade “según la web oficial” en pantalla."}, {"nivel": "mejora", "tema": "Contenido con IA", "detalle": "Si se usan los clips generados con IA de los prompts, son realistas.", "arreglo": "Marca “Contenido alterado o sintético: Sí” al subir el vídeo."}]}, "shorts": {"shorts": [{"titulo": "La zona de GTA 6 que nadie está mirando", "gancho": "Todo el mundo habla de Vice City, y se está olvidando de esto.", "narracion": "Todo el mundo habla de Vice City, y se está olvidando de esto. En el mapa de GTA 6 hay una zona que apenas sale en los tráileres, con bosques, montaña y ríos. Rockstar le ha dado nombre de parque nacional, y eso no se hace por casualidad. Si quieres saber cuál es y por qué creo que esconde más secretos que ninguna otra, te lo cuento con todo detalle en el vídeo completo del canal.", "textos_pantalla": ["NADIE MIRA AQUÍ", "NOMBRE DE PARQUE NACIONAL"], "cierre": "La zona y sus secretos, en el vídeo completo."}, {"titulo": "Vice City cambia por completo de noche", "gancho": "Esta calle de día parece tranquila. Ahora mírala de noche.", "narracion": "Esta calle de día parece tranquila. Ahora mírala de noche. En los tráileres de GTA 6, Vice City se transforma cuando se pone el sol: neón, discotecas y fiestas que dan pistas de actividades. Mi consejo para tus primeras horas es que recorras la ciudad dos veces, una de día y otra de noche, porque no parecen el mismo sitio. En el vídeo completo te enseño qué buscar en las otras cinco zonas del mapa.", "textos_pantalla": ["DE DÍA", "DE NOCHE"], "cierre": "Las otras 5 zonas, en el vídeo completo."}, {"titulo": "En GTA 6 consigue un barco cuanto antes", "gancho": "En esta zona de GTA 6 el coche no te va a servir.", "narracion": "En esta zona de GTA 6 el coche no te va a servir. Los Cayos de Leonida son una cadena de islas con puentes larguísimos y aguas turquesas, y aquí el protagonista es el agua. En otros juegos de Rockstar los mejores escondites estaban en sitios a los que solo se llega navegando; en GTA 6 está por confirmar, pero yo no me la jugaría. Tienes mi plan de inicio completo en el vídeo largo del canal.", "textos_pantalla": ["CONSIGUE UN BARCO", "POR CONFIRMAR"], "cierre": "Mi plan de inicio, en el vídeo completo."}, {"titulo": "La zona de GTA 6 con más pinta de historia", "gancho": "Esta es la zona menos bonita de GTA 6, y puede que la más importante.", "narracion": "Esta es la zona menos bonita de GTA 6, y puede que la más importante. Port Gellhorn es un puerto olvidado: moteles, carteles viejos y calles vacías. Aun así, aparece una y otra vez en el material oficial. Y cuando Rockstar enseña tanto un sitio tan poco glamuroso, suele ser porque pesa en la historia. Es una teoría mía, no un dato confirmado, y te explico por qué en el vídeo completo.", "textos_pantalla": ["LA MENOS BONITA", "TEORÍA"], "cierre": "La teoría completa, en el vídeo completo."}]}, "launch": {"descripcion": "GTA 6: las 6 zonas de Leonida explicadas y qué explorar primero el día 1.\nVice City, los Cayos, Grassrivers, Port Gellhorn, Ambrosia y el Monte Kalaga: lo confirmado por Rockstar y lo que es suposición, separado.\nSerie “Leonida zona por zona”: suscríbete para no perderte ninguna.\nContenido no oficial hecho por fans. GTA VI es una marca de Rockstar Games.", "etiquetas": ["gta 6", "gta vi", "gta 6 mapa", "gta 6 leonida", "leonida", "vice city", "gta 6 vice city", "cayos de leonida", "grassrivers", "port gellhorn", "ambrosia gta 6", "monte kalaga", "gta 6 guia", "gta 6 que hacer primero", "gta seis", "gta 6 español"], "hashtags": ["#GTA6", "#GTAVI", "#Leonida", "#ViceCity"], "capitulos": [{"tiempo": "0:00", "titulo": "Seis mundos"}, {"tiempo": "0:51", "titulo": "Lo básico de Leonida"}, {"tiempo": "1:38", "titulo": "Vice City"}, {"tiempo": "2:28", "titulo": "Cayos de Leonida"}, {"tiempo": "3:19", "titulo": "Grassrivers"}, {"tiempo": "4:07", "titulo": "Port Gellhorn"}, {"tiempo": "4:56", "titulo": "Ambrosia"}, {"tiempo": "5:42", "titulo": "Monte Kalaga"}, {"tiempo": "6:32", "titulo": "Tu plan para empezar"}, {"tiempo": "7:18", "titulo": "¿Cuál exploras primero?"}], "comentario_fijado": "¿Cuál de las 6 zonas vas a explorar primero? La más votada tendrá su propio vídeo 👇", "dia_hora": "Viernes a las 18:00 en España (11:00 en México, 13:00 en Argentina)", "pantalla_final": "Siguiente vídeo de la serie: todo lo que se sabe de Lucia y Jason", "lista": "GTA 6: Leonida zona por zona"}, "greenlight": {"notas": {"clic": 8, "retencion": 8, "shorts": 8, "publicacion": 9}, "luz_verde": true, "rehacer_desde": "", "motivo": "Promesa clara y útil justo al empezar el juego, título y miniatura alineados, y Pablito ha arreglado el bache del minuto 1.", "titulo_final": "GTA 6: qué explorar primero en Leonida (guía del día 1)", "miniatura_final": "B", "consejo": "Fija el comentario de la zona favorita y contesta todo lo que puedas en la primera hora: esas respuestas deciden el siguiente vídeo."}};
   const EXAMPLE = (() => {
-    const r = { example: true, mode: "week", topic: "", createdAt: 0, revisions: 0, checks: {}, stopAt: null, stages: {} };
-    const P = Object.fromEntries(PASOS.map(p => [p.key, p]));
-    r.stages.trends = P.trends.norm({ resumen: "Ejemplo resumido de un encargo.", temas: [
-      { tema: "Secretos de Vice City que casi nadie ha visto", por_que: "Las listas de secretos retienen hasta el final.", fiabilidad: "evergreen", potencial: 9 },
-      { tema: "Cómo ganar dinero rápido al empezar", por_que: "Búsqueda constante de jugadores nuevos.", fiabilidad: "evergreen", potencial: 8 }] });
-    r.stages.plan = P.plan.norm({ tema: "Secretos de Vice City", angulo: "Ubicaciones exactas comprobadas jugando", promesa: "Descubrirás 7 lugares ocultos y cómo llegar a cada uno.", shorts_previstos: ["El secreto que solo sale de noche", "El coche escondido del puerto", "El easter egg del faro"], dia_hora: "Viernes a las 18:00 (España)" });
-    r.stages.titles = normTitles({ promesa: "7 lugares ocultos y cómo llegar", titulos: [{ titulo: "GTA 6: 7 secretos de Vice City que casi nadie ha encontrado" }, { titulo: "GTA 6: el lugar que solo aparece de noche" }] });
-    r.stages.thumbs = P.thumbs.norm({ miniaturas: [{ texto: "Solo de noche", color: "#FFE14D" }, { texto: "Nadie lo vio", color: "#33E1D6" }, { texto: "Sitio oculto", color: "#FF4FA3" }] });
-    r.stages.script = normScript({ titulo: "7 secretos de Vice City", gancho: "Este sitio de Vice City solo aparece de noche.", cta: "Suscríbete", escenas: [
-      { narracion: "Este sitio de Vice City solo aparece de noche. Y es el menos raro de los siete que te voy a enseñar.", texto_pantalla: "SOLO DE NOCHE", visual: "La ciudad al anochecer", prompt_ia: "Aerial shot of a neon tropical city at dusk" },
-      { narracion: "Si te ha gustado, suscríbete: el viernes que viene, los coches ocultos.", texto_pantalla: "SUSCRÍBETE", visual: "Muelle de noche", prompt_ia: "Pier at night with neon reflections" }] });
-    r.stages.retention = P.retention.norm({ nota: 8, gancho_mejorado: "", cambios: [{ escena: 1, problema: "El gancho no dice cuántos secretos hay.", nuevo_texto: "Este sitio de Vice City solo aparece de noche. Y es el menos raro de los 7 que vas a ver hoy." }], consejo_montaje: "Corta rápido en los 10 primeros segundos." }, r);
-    r.stages.compliance = P.compliance.norm({ aprobado: true, declarar_ia: true, avisos: [{ nivel: "mejora", tema: "Veracidad", detalle: "Comprueba cada ubicación jugando antes de publicar." }] });
-    r.stages.shorts = P.shorts.norm({ shorts: [{ titulo: "El sitio que solo sale de noche", gancho: "Este lugar no existe de día.", narracion: "Este lugar no existe de día. Ven a las tres de la mañana al faro y mira lo que pasa. Tienes los otros seis en el vídeo completo del canal.", cierre: "Los otros 6, en el vídeo completo." }] });
-    r.stages.launch = P.launch.norm({ descripcion: "Los 7 secretos de Vice City en GTA 6.\nContenido no oficial hecho por fans. GTA VI es una marca de Rockstar Games.", etiquetas: ["gta 6", "gta vi", "vice city", "secretos gta 6"], hashtags: ["#GTA6"], capitulos: [{ tiempo: "0:00", titulo: "Solo de noche" }], comentario_fijado: "¿Cuál de los 7 no conocías?", dia_hora: "Viernes 18:00 (España)" });
+    const r = { example: true, mode: "week", topic: "qué explorar primero en Leonida", createdAt: 0, revisions: 0, checks: {}, stopAt: null, stages: {} };
+    for (const p of stepsFor("week")) { r.stages[p.key] = p.norm(EXAMPLE_RAW[p.key], r); r.checks[p.key] = p.check(r.stages[p.key], r); }
     return r;
   })();
 
@@ -1145,7 +1469,7 @@
   if (!run.example && !run.stopAt) {
     const steps = stepsFor(run.mode);
     const missing = steps.findIndex(p => !run.stages[p.key]);
-    const blocked = run.stages.compliance && !run.stages.compliance.aprobado;
+    const blocked = (run.stages.compliance && !run.stages.compliance.aprobado) || (run.stages.greenlight && !run.stages.greenlight.luz_verde);
     if (missing >= 0 && !blocked) { run.stopAt = steps[missing].key; run.stopReason = "Este encargo se quedó a medias."; }
   }
   syncStatus();

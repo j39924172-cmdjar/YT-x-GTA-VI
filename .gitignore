@@ -7,3 +7,4 @@ assets/ai_clips/*
 !assets/**/.gitkeep
 client_secret*.json
 token*.json
+oficina/pruebas_reales/captura.png
