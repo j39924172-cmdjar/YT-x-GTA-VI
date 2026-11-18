@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
 <style>
-  /* Layout: oficina isométrica arriba (el equipo), debajo panel de encargo + resultados por departamento */
+  /* Layout: oficina isométrica → organigrama 3x3 (mismo orden que las salas) → encargo + ficha del puesto | resultados por paso */
   :root {
     color-scheme: dark;
     --night: #120B24;
@@ -22,79 +22,72 @@
     --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
   }
   * { box-sizing: border-box; }
-  body {
-    background: var(--night);
-    color: var(--ink);
-    font-family: var(--font-body);
-    font-size: 15px;
-    line-height: 1.5;
-  }
+  body { background: var(--night); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.5; }
   .wrap {
-    max-width: 1180px;
-    margin: 0 auto;
+    max-width: 1180px; margin: 0 auto;
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
     padding-block: 20px 48px;
-    display: grid;
-    gap: 18px;
+    display: grid; gap: 18px;
   }
   header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px; }
-  .brand h1 {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(28px, 5vw, 44px);
-    line-height: 1;
-    margin: 0;
-    letter-spacing: -0.02em;
-    text-wrap: balance;
-  }
+  .brand h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(28px, 5vw, 44px); line-height: 1; margin: 0; letter-spacing: -0.02em; }
   .brand h1 span { color: var(--pink); }
   .brand p { margin: 6px 0 0; color: var(--muted); }
   .team-pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 12px; border-radius: 999px;
-    background: var(--panel); border: 1px solid var(--line);
-    font-family: var(--font-mono); font-size: 12px; color: var(--muted);
+    display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px;
+    background: var(--panel); border: 1px solid var(--line); font-family: var(--font-mono); font-size: 12px; color: var(--muted);
   }
-  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); flex: none; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); flex: none; display: inline-block; }
   .dot.working { background: var(--pink); box-shadow: 0 0 8px var(--pink); }
   .dot.done { background: var(--cyan); }
   .dot.waiting { background: var(--sun); }
   .dot.error { background: var(--red); }
 
   .office {
-    position: relative;
-    border-radius: 18px;
-    overflow: hidden;
-    background:
-      radial-gradient(120% 80% at 50% 0%, #2B1650 0%, transparent 60%),
-      linear-gradient(180deg, #170E2F, var(--night));
-    border: 1px solid var(--line);
+    position: relative; border-radius: 18px; overflow: hidden; border: 1px solid var(--line);
+    background: radial-gradient(120% 80% at 50% 0%, #2B1650 0%, transparent 60%), linear-gradient(180deg, #170E2F, var(--night));
   }
   #office { display: block; width: 100%; touch-action: manipulation; cursor: pointer; }
-  .office-hint {
-    position: absolute; left: 14px; bottom: 10px;
-    font-size: 12px; color: var(--muted);
-    background: rgba(18, 11, 36, 0.75); padding: 4px 10px; border-radius: 999px;
+  .office-hint, .legend {
+    position: absolute; bottom: 10px; font-size: 11px; color: var(--muted);
+    background: rgba(18, 11, 36, 0.78); padding: 4px 10px; border-radius: 999px;
   }
-  .legend {
-    position: absolute; right: 12px; bottom: 10px;
-    display: flex; gap: 10px; flex-wrap: wrap; justify-content: end;
-    font-size: 11px; color: var(--muted);
-    background: rgba(18, 11, 36, 0.75); padding: 4px 10px; border-radius: 999px;
-  }
+  .office-hint { left: 12px; }
+  .legend { right: 12px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: end; }
   .legend span { display: inline-flex; align-items: center; gap: 5px; }
 
-  .grid { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 18px; align-items: start; }
+  .section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .section-head h2 { font-family: var(--font-display); font-weight: 800; font-size: 22px; margin: 0; letter-spacing: -0.01em; }
+  .section-head p { margin: 0; color: var(--muted); font-size: 13px; }
+
+  .org { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  @media (max-width: 820px) { .org { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 480px) { .org { grid-template-columns: minmax(0, 1fr); } }
+  .post {
+    text-align: left; display: grid; gap: 6px; align-content: start;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px;
+    color: var(--ink); font: inherit; cursor: pointer; min-width: 0;
+  }
+  .post[aria-current="true"] { border-color: var(--pink); }
+  .post .top { display: flex; align-items: center; gap: 8px; }
+  .post .num {
+    width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; flex: none;
+    background: var(--panel-2); border: 1px solid var(--line);
+    font-family: var(--font-mono); font-size: 12px; color: var(--pink);
+  }
+  .post .room { font-family: var(--font-display); font-weight: 800; font-size: 16px; }
+  .post .people { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 10px; }
+  .post .people span { display: inline-flex; align-items: center; gap: 5px; }
+  .post .out { font-size: 12.5px; color: var(--ink); opacity: 0.85; }
+  .post .out b { color: var(--sun); font-weight: 600; }
+  .post .mode { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+
+  .grid { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 18px; align-items: start; }
   @media (max-width: 820px) { .grid { grid-template-columns: minmax(0, 1fr); } .legend { display: none; } }
 
-  .panel {
-    background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
-    padding: 18px; display: grid; gap: 14px; min-width: 0;
-  }
-  .panel h2, .stage h3 {
-    font-family: var(--font-display); font-weight: 800; margin: 0; letter-spacing: -0.01em;
-  }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 18px; display: grid; gap: 14px; min-width: 0; }
+  .panel h2, .stage h3 { font-family: var(--font-display); font-weight: 800; margin: 0; letter-spacing: -0.01em; }
   .panel h2 { font-size: 20px; }
   label.field { display: grid; gap: 6px; font-size: 13px; color: var(--muted); }
   .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
@@ -110,44 +103,48 @@
   }
   .go {
     padding: 14px; border-radius: 12px; border: 0; cursor: pointer;
-    background: linear-gradient(90deg, var(--pink), #FF7A59);
-    color: #1A0716; font: 800 17px var(--font-display); letter-spacing: 0.01em;
+    background: linear-gradient(90deg, var(--pink), #FF7A59); color: #1A0716; font: 800 17px var(--font-display);
   }
   .go:disabled { opacity: 0.45; cursor: default; }
   .ghost {
     padding: 9px 12px; border-radius: 10px; border: 1px solid var(--line); background: transparent;
-    color: var(--ink); font: 600 13px var(--font-body); cursor: pointer;
+    color: var(--ink); font: 600 13px var(--font-body); cursor: pointer; white-space: nowrap;
   }
+  .ghost.strong { border-color: var(--sun); color: var(--sun); }
+  .ghost:disabled { opacity: 0.45; cursor: default; }
   button:focus-visible, input:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
   .note { font-size: 13px; color: var(--muted); margin: 0; }
   .note.warn { color: var(--sun); }
 
-  .agent-card { border-top: 1px solid var(--line); padding-top: 14px; display: grid; gap: 6px; }
-  .agent-card .who { display: flex; align-items: center; gap: 10px; }
+  .card { border-top: 1px solid var(--line); padding-top: 14px; display: grid; gap: 10px; }
+  .card .who { display: flex; align-items: center; gap: 10px; }
   .avatar { width: 34px; height: 34px; border-radius: 50%; flex: none; border: 2px solid var(--line); }
-  .agent-card strong { font-size: 15px; }
-  .agent-card .role { font-size: 12px; color: var(--muted); }
+  .card strong { font-size: 15px; }
+  .card .role { font-size: 12px; color: var(--muted); }
+  .facts { display: grid; gap: 8px; margin: 0; }
+  .facts dt { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); }
+  .facts dd { margin: 0; font-size: 14px; }
+  .facts ul { margin: 0; padding-left: 18px; }
   .chip {
     display: inline-flex; align-items: center; gap: 6px; padding: 2px 9px; border-radius: 999px;
-    font-size: 11px; font-family: var(--font-mono); border: 1px solid var(--line); color: var(--muted);
-    white-space: nowrap;
+    font-size: 11px; font-family: var(--font-mono); border: 1px solid var(--line); color: var(--muted); white-space: nowrap;
   }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 
   .results { display: grid; gap: 14px; min-width: 0; }
-  .results-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
-  .results-head h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; margin: 0; }
-  .stage {
-    background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
-    padding: 16px 18px; display: grid; gap: 10px; min-width: 0;
-  }
+  .stage { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; display: grid; gap: 10px; min-width: 0; }
   .stage-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .stage h3 { font-size: 17px; }
   .stage .by { font-size: 12px; color: var(--muted); }
   .stage .by b { color: var(--ink); font-weight: 600; }
   .stage.pending { opacity: 0.55; }
   .stage.live { border-color: var(--pink); }
+  .stage.failed { border-color: var(--red); }
   .thinking { font-family: var(--font-mono); font-size: 13px; color: var(--pink); }
+  .qc { display: flex; flex-wrap: wrap; gap: 6px; }
+  .qc .chip.ok { color: var(--cyan); border-color: #1F5F5B; }
+  .qc .chip.warn { color: var(--sun); border-color: #6B4A1C; }
+  .qc .chip.bad { color: var(--red); border-color: #6B2A2A; }
   .list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
   .list li { display: grid; gap: 2px; padding: 8px 10px; border-radius: 10px; background: var(--panel-2); min-width: 0; }
   .list li .t { font-weight: 600; }
@@ -155,28 +152,24 @@
   .rel-evergreen { color: var(--cyan); border-color: #1F5F5B; }
   .rel-probable { color: var(--sun); border-color: #6B4A1C; }
   .rel-verificar { color: var(--red); border-color: #6B2A2A; }
-  .chosen { border: 1px solid var(--pink); }
+  .chosen { outline: 1px solid var(--pink); }
   .scenes { display: grid; gap: 8px; }
   .scene { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; padding: 10px; border-radius: 10px; background: var(--panel-2); }
-  .scene .n {
-    font-family: var(--font-mono); font-size: 12px; color: var(--pink);
-    border: 1px solid var(--line); border-radius: 8px; height: 30px; display: grid; place-items: center;
-  }
+  .scene .n { font-family: var(--font-mono); font-size: 12px; color: var(--pink); border: 1px solid var(--line); border-radius: 8px; height: 30px; display: grid; place-items: center; }
   .scene p { margin: 0; }
   .scene .ost { font-family: var(--font-display); font-weight: 800; color: var(--sun); font-size: 14px; letter-spacing: 0.02em; }
   .scene .meta { font-size: 12px; color: var(--muted); }
-  .scene code { font-family: var(--font-mono); font-size: 11.5px; color: var(--cyan); word-break: break-word; }
-  .kv { display: grid; gap: 4px; }
-  .kv .k { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+  code { font-family: var(--font-mono); font-size: 11.5px; color: var(--cyan); word-break: break-word; }
+  .kv { display: grid; gap: 6px; min-width: 0; }
+  .kv .k { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); }
   .kv .v { white-space: pre-wrap; word-break: break-word; }
   .copyrow { display: flex; gap: 8px; align-items: start; justify-content: space-between; }
   .copyrow > div { min-width: 0; flex: 1; }
   .thumb-mock {
-    aspect-ratio: 16 / 9; max-width: 100%; border-radius: 12px; display: grid; place-items: end center;
-    padding: 6%; background: linear-gradient(160deg, #2B1650, #FF4FA3 120%);
-    font-family: var(--font-display); font-weight: 800; text-align: center;
-    font-size: clamp(22px, 4vw, 38px); line-height: 1; text-transform: uppercase;
-    -webkit-text-stroke: 1.5px #120B24; paint-order: stroke fill;
+    aspect-ratio: 16 / 9; max-width: 100%; border-radius: 12px; display: grid; place-items: end center; padding: 6%;
+    background: linear-gradient(160deg, #2B1650, #FF4FA3 120%);
+    font-family: var(--font-display); font-weight: 800; text-align: center; font-size: clamp(22px, 4vw, 38px);
+    line-height: 1; text-transform: uppercase; -webkit-text-stroke: 1.5px #120B24; paint-order: stroke fill;
   }
   .issue { padding: 8px 10px 8px 12px; border-radius: 10px; background: var(--panel-2); border-left: 3px solid var(--sun); font-size: 14px; }
   .issue.block { border-left-color: var(--red); }
@@ -185,6 +178,7 @@
   .verdict.no { color: var(--red); }
   .handoff { border-color: var(--sun); }
   .handoff ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 
@@ -192,39 +186,45 @@
   <header>
     <div class="brand">
       <h1>Vice Studio <span>HQ</span></h1>
-      <p>Tu equipo de IA para el canal de GTA 6. Toca a cualquiera para ver qué hace.</p>
+      <p>Tu equipo de IA para el canal de GTA 6, ordenado por puestos del 1 al 9.</p>
     </div>
-    <div class="team-pill" id="teamPill"><span class="dot" id="teamDot"></span><span id="teamText">Equipo en la oficina</span></div>
+    <div class="team-pill"><span class="dot" id="teamDot"></span><span id="teamText">Equipo en la oficina</span></div>
   </header>
 
   <section class="office" aria-label="Oficina virtual del equipo">
-    <canvas id="office" role="img" aria-label="Oficina isométrica con 11 miembros del equipo en 9 departamentos"></canvas>
+    <canvas id="office" role="img" aria-label="Oficina isométrica con 9 salas numeradas y 11 personas"></canvas>
     <div class="office-hint">Toca a una persona</div>
     <div class="legend">
       <span><i class="dot"></i>Libre</span>
       <span><i class="dot working"></i>Trabajando</span>
       <span><i class="dot done"></i>Hecho</span>
       <span><i class="dot waiting"></i>Te espera en el chat</span>
+      <span><i class="dot error"></i>Hay que revisar</span>
     </div>
+  </section>
+
+  <section class="kv" aria-labelledby="orgTitle">
+    <div class="section-head">
+      <h2 id="orgTitle">Organigrama</h2>
+      <p>Cada puesto recibe el trabajo del anterior y se lo pasa al siguiente.</p>
+    </div>
+    <div class="org" id="org"></div>
   </section>
 
   <section class="grid">
     <aside class="panel">
       <h2>Encargar un vídeo</h2>
-      <div class="field">
-        <div class="seg" role="group" aria-label="Formato">
-          <button type="button" id="fmtShort" aria-pressed="true">Short<small>vertical · 50 s</small></button>
-          <button type="button" id="fmtLong" aria-pressed="false">Vídeo largo<small>horizontal · 8 min</small></button>
-        </div>
+      <div class="seg" role="group" aria-label="Formato">
+        <button type="button" id="fmtShort" aria-pressed="true">Short<small>vertical · 50 s · 6 escenas</small></button>
+        <button type="button" id="fmtLong" aria-pressed="false">Vídeo largo<small>horizontal · 8 min · 10 escenas</small></button>
       </div>
       <label class="field" for="topic">Tema (opcional)
-        <input type="text" id="topic" placeholder="Ej.: secretos de Vice City" autocomplete="off">
+        <input type="text" id="topic" placeholder="Ej.: secretos de Vice City" autocomplete="off" maxlength="200">
       </label>
       <button class="go" id="goBtn" type="button" disabled>Conectando con el equipo…</button>
       <button class="ghost" id="stopBtn" type="button" hidden>Parar</button>
       <p class="note" id="capNote">El equipo trabaja con tu cuenta de Claude. La primera vez te pedirá permiso.</p>
-
-      <div class="agent-card" id="agentCard"></div>
+      <div class="card" id="agentCard"></div>
     </aside>
 
     <main class="results" id="results" aria-live="polite"></main>
@@ -233,68 +233,96 @@
 
 <script>
 (() => {
-  // ---------------------------------------------------------------- datos
+  // ================================================================ 1. PUESTOS (fuente única de verdad)
+  // Cada sala es un puesto numerado; dentro trabajan una o dos personas.
   const ROOMS = [
-    { id: "scout", name: "Investigación", col: 0, row: 0, floor: "#2A1F52" },
-    { id: "strat", name: "Estrategia", col: 1, row: 0, floor: "#22305A" },
-    { id: "guion", name: "Guion y arte", col: 2, row: 0, floor: "#3A1F4D" },
-    { id: "voz", name: "Estudio de voz", col: 0, row: 1, floor: "#1E3A4F" },
-    { id: "edit", name: "Sala de edición", col: 1, row: 1, floor: "#2E2350" },
-    { id: "thumb", name: "Miniaturas y SEO", col: 2, row: 1, floor: "#3F2245" },
-    { id: "legal", name: "Cumplimiento", col: 0, row: 2, floor: "#23344A" },
-    { id: "pub", name: "Publicación", col: 1, row: 2, floor: "#3A2640" },
-    { id: "data", name: "Analítica", col: 2, row: 2, floor: "#24294F" },
+    { n: 1, id: "scout", name: "Investigación", col: 0, row: 0, floor: "#2A1F52", mode: "auto" },
+    { n: 2, id: "strat", name: "Estrategia", col: 1, row: 0, floor: "#22305A", mode: "auto" },
+    { n: 3, id: "guion", name: "Guion y arte", col: 2, row: 0, floor: "#3A1F4D", mode: "auto" },
+    { n: 4, id: "thumb", name: "Miniaturas y SEO", col: 0, row: 1, floor: "#3F2245", mode: "auto" },
+    { n: 5, id: "legal", name: "Cumplimiento", col: 1, row: 1, floor: "#23344A", mode: "auto" },
+    { n: 6, id: "voz", name: "Estudio de voz", col: 2, row: 1, floor: "#1E3A4F", mode: "chat" },
+    { n: 7, id: "edit", name: "Sala de edición", col: 0, row: 2, floor: "#2E2350", mode: "chat" },
+    { n: 8, id: "pub", name: "Publicación", col: 1, row: 2, floor: "#3A2640", mode: "tú" },
+    { n: 9, id: "data", name: "Analítica", col: 2, row: 2, floor: "#24294F", mode: "pronto" },
   ];
+  const MODE_TXT = { auto: "Trabaja en la oficina", chat: "Lo hace Claude en el chat", "tú": "Lo haces tú (por ahora)", pronto: "Próximamente" };
+
   const AGENTS = [
     { id: "valeria", name: "Valeria Ríos", role: "Scout de tendencias", room: "scout", spot: [2.5, 2.6], shirt: "#FF4FA3", hair: "#3B2416", skin: "#D9A07B", tool: "Claude",
-      job: "Detecta de qué se habla sobre GTA 6 y qué temas funcionan siempre." },
+      mision: "Detectar los temas de GTA 6 con más interés y los que funcionan siempre.",
+      recibe: "Tu tema (si pones uno).", entrega: "6 tendencias, cada una con su fiabilidad.", pasaA: "Tomás",
+      comprueba: ["Al menos 3 tendencias", "Cada una marcada como evergreen, probable o verificar", "Nada de noticias inventadas"] },
     { id: "tomas", name: "Tomás Herrera", role: "Estratega de contenido", room: "strat", spot: [2.5, 2.6], shirt: "#33E1D6", hair: "#141018", skin: "#B57A55", tool: "Claude",
-      job: "Propone ideas y elige la que más puede crecer sin engañar al público." },
+      mision: "Convertir las tendencias en ideas de vídeo y elegir la que más puede crecer.",
+      recibe: "Las tendencias de Valeria.", entrega: "4 ideas y la elegida, con su gancho.", pasaA: "Irene y Bruno",
+      comprueba: ["Al menos 1 idea con título", "Una idea elegida", "Gancho corto (20 palabras como máximo)"] },
     { id: "irene", name: "Irene Solís", role: "Guionista", room: "guion", spot: [1.2, 3.7], shirt: "#FFB547", hair: "#6B2E1E", skin: "#E8B48F", tool: "Claude",
-      job: "Escribe el guion escena a escena, con gancho en los 3 primeros segundos." },
+      mision: "Escribir el texto exacto que se dice en cada escena.",
+      recibe: "La idea elegida por Tomás.", entrega: "Guion por escenas con textos en pantalla.", pasaA: "Carla y Pablo",
+      comprueba: ["6 escenas (Short) o 10 (vídeo largo)", "Duración de la narración adecuada", "Textos en pantalla de 5 palabras como máximo", "La última escena pide suscribirse"] },
     { id: "bruno", name: "Bruno Castillo", role: "Director de arte", room: "guion", spot: [3.9, 1.7], shirt: "#8F7BFF", hair: "#1C1414", skin: "#C98E68", tool: "Claude",
-      job: "Prepara los prompts para generar clips de vídeo con IA en Higgsfield." },
-    { id: "mateo", name: "Mateo León", role: "Locutor", room: "voz", spot: [2.5, 2.6], shirt: "#FF7A59", hair: "#2A1B12", skin: "#A86B48", tool: "Higgsfield",
-      job: "Pone la voz en off. Lo activa Claude en el chat con tus créditos de Higgsfield." },
-    { id: "julia", name: "Julia Pardo", role: "Editora de vídeo", room: "edit", spot: [2.5, 2.6], shirt: "#33E1D6", hair: "#5A3A1A", skin: "#EDC09B", tool: "ffmpeg",
-      job: "Monta imágenes, voz, textos, subtítulos y música. Lo activa Claude en el chat." },
-    { id: "pablo", name: "Pablo Medina", role: "Diseñador de miniaturas", room: "thumb", spot: [1.2, 3.7], shirt: "#FF4FA3", hair: "#0F0B10", skin: "#D49A72", tool: "Claude",
-      job: "Decide el texto y la imagen de la miniatura para que llame la atención." },
-    { id: "carla", name: "Carla Vega", role: "Especialista SEO", room: "thumb", spot: [3.9, 1.7], shirt: "#FFB547", hair: "#7A4A26", skin: "#E3AD86", tool: "Claude",
-      job: "Escribe título, descripción, etiquetas y hashtags para que te encuentren." },
+      mision: "Decidir qué se ve en cada escena y escribir los prompts para clips de IA.",
+      recibe: "La idea elegida por Tomás.", entrega: "Un prompt de vídeo IA por escena.", pasaA: "Julia (edición)",
+      comprueba: ["Cada escena tiene su prompt", "Escenas originales, sin personajes ni logos de Rockstar"] },
+    { id: "carla", name: "Carla Vega", role: "Especialista SEO", room: "thumb", spot: [1.2, 3.7], shirt: "#FFB547", hair: "#7A4A26", skin: "#E3AD86", tool: "Claude",
+      mision: "Que el vídeo aparezca en las búsquedas y den ganas de pulsarlo.",
+      recibe: "El guion de Irene.", entrega: "Título, descripción, etiquetas y hashtags.", pasaA: "Andrés",
+      comprueba: ["Título de 70 caracteres como máximo", "Aviso de contenido no oficial en la descripción", "Al menos 10 etiquetas", "#Shorts en los Shorts"] },
+    { id: "pablo", name: "Pablo Medina", role: "Diseñador de miniaturas", room: "thumb", spot: [3.9, 1.7], shirt: "#FF4FA3", hair: "#0F0B10", skin: "#D49A72", tool: "Claude",
+      mision: "Diseñar la portada del vídeo.",
+      recibe: "El guion de Irene.", entrega: "Texto de la miniatura, color e imagen de fondo.", pasaA: "Andrés",
+      comprueba: ["Texto de 4 palabras como máximo", "Color válido", "Fondo original"] },
     { id: "andres", name: "Andrés Molina", role: "Cumplimiento", room: "legal", spot: [2.5, 2.6], shirt: "#8F7BFF", hair: "#2E2E2E", skin: "#BF8460", tool: "Claude",
-      job: "Revisa derechos de Rockstar, normas de YouTube y que los rumores no parezcan hechos." },
+      mision: "Frenar el vídeo si puede darte problemas con YouTube o con Rockstar.",
+      recibe: "Guion, título, descripción y miniatura.", entrega: "Aprobado o lista de cambios.", pasaA: "Mateo (o Irene y Carla si hay que corregir)",
+      comprueba: ["Derechos de Rockstar", "Normas de YouTube (contenido con IA, títulos engañosos)", "Rumores presentados como hechos"] },
+    { id: "mateo", name: "Mateo León", role: "Locutor", room: "voz", spot: [2.5, 2.6], shirt: "#FF7A59", hair: "#2A1B12", skin: "#A86B48", tool: "Higgsfield",
+      mision: "Poner la voz en off al guion aprobado.",
+      recibe: "El encargo que pegas en el chat.", entrega: "Audio de la voz por escenas.", pasaA: "Julia",
+      comprueba: ["Voz en español clara", "Coste en créditos avisado antes"] },
+    { id: "julia", name: "Julia Pardo", role: "Editora de vídeo", room: "edit", spot: [2.5, 2.6], shirt: "#33E1D6", hair: "#5A3A1A", skin: "#EDC09B", tool: "ffmpeg",
+      mision: "Montar imágenes, voz, textos, subtítulos y música.",
+      recibe: "La voz de Mateo y los prompts de Bruno.", entrega: "El vídeo final y la miniatura.", pasaA: "Lola",
+      comprueba: ["Formato correcto (9:16 o 16:9)", "Subtítulos legibles", "Sin cortes de audio"] },
     { id: "lola", name: "Lola Fuentes", role: "Publicación", room: "pub", spot: [2.5, 2.6], shirt: "#FF7A59", hair: "#3E1F14", skin: "#DDA582", tool: "YouTube",
-      job: "Prepara la subida. Por ahora el vídeo lo subes tú con la app de YouTube." },
+      mision: "Subir el vídeo con todo bien puesto.",
+      recibe: "Vídeo de Julia y textos de Carla.", entrega: "Vídeo publicado en tu canal.", pasaA: "Gael",
+      comprueba: ["Marcar contenido con IA si toca", "Título, descripción y miniatura puestos"] },
     { id: "gael", name: "Gael Ortiz", role: "Analista", room: "data", spot: [2.5, 2.6], shirt: "#33E1D6", hair: "#1A1210", skin: "#B07250", tool: "YouTube",
-      job: "Mide qué vídeos funcionan para mejorar las siguientes ideas. Aún sin datos del canal." },
+      mision: "Medir qué vídeos funcionan para mejorar las siguientes ideas.",
+      recibe: "Las estadísticas del canal.", entrega: "Qué temas repetir y cuáles evitar.", pasaA: "Valeria y Tomás",
+      comprueba: ["Visitas, retención y suscriptores por vídeo"] },
   ];
   const roomById = Object.fromEntries(ROOMS.map(r => [r.id, r]));
-  const status = {};   // id -> idle | working | done | waiting | error
-  const bubble = {};   // id -> texto del bocadillo
-  AGENTS.forEach(a => { status[a.id] = "idle"; });
+  const agent = id => AGENTS.find(a => a.id === id);
+  const status = {}, bubble = {};
+  AGENTS.forEach(a => { status[a.id] = "idle"; bubble[a.id] = ""; });
   let selected = "valeria";
+  const STATUS_TXT = { idle: "Libre", working: "Trabajando", done: "Hecho", waiting: "Te espera en el chat", error: "Hay que revisar" };
 
-  // ---------------------------------------------------------------- oficina (canvas isométrico)
+  // ================================================================ 2. OFICINA (canvas isométrico)
   const canvas = document.getElementById("office");
   const ctx = canvas.getContext("2d");
   const N = 17;            // 3 salas de 5 casillas + 2 pasillos
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let W = 0, H = 0, tw = 0, th = 0, ox = 0, oy = 0, hits = [];
+  let W = 0, H = 0, tw = 0, th = 0, ox = 0, oy = 0, hits = [], tags = [];
+  window.__vshDebug = () => ({ hits, tags, status: { ...status } });
 
   function resize() {
     const w = canvas.clientWidth;
     tw = w / 17.6;
     th = tw / 2;
     W = w;
-    H = Math.round(N * th + tw * 2.6);
+    const extra = w < 640 ? 34 : 0;  // en móvil hay menos sitio: más margen arriba para etiquetas
+    H = Math.round(N * th + tw * 2.6 + extra);
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.style.height = H + "px";
     canvas.width = Math.round(W * dpr);
     canvas.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ox = W / 2;
-    oy = tw * 2.1;
+    oy = tw * 2.1 + extra;
   }
   const iso = (x, y, z = 0) => [ox + (x - y) * tw / 2, oy + (x + y) * th / 2 - z * tw * 0.5];
 
@@ -352,11 +380,10 @@
   }
 
   function drawRoomLabel(r) {
-    if (W < 640) return;
     const [lx, ly] = iso(r.col * 6 + 4.4, r.row * 6 + 4.4);
     const fs = Math.max(9, Math.min(12, tw * 0.24));
     ctx.font = `600 ${fs}px Inter, system-ui, sans-serif`;
-    const text = r.name.toUpperCase();
+    const text = W < 640 ? String(r.n) : `${r.n} · ${r.name.toUpperCase()}`;
     const w = ctx.measureText(text).width + fs * 1.4, hh = fs * 1.8;
     ctx.fillStyle = "rgba(14,9,30,0.62)";
     roundRect(lx - w / 2, ly - hh / 2, w, hh, 6); ctx.fill();
@@ -411,46 +438,79 @@
     ctx.fillStyle = a.hair;
     ctx.beginPath(); ctx.arc(px, hy - hr * 0.15, hr * 1.02, Math.PI * 1.02, Math.PI * 1.98); ctx.fill();
 
-    // etiqueta con nombre
-    const short = W < 640;
-    const label = short ? a.name.split(" ")[0] : a.name;
-    const fs = Math.max(10, Math.min(14, u * 0.34));
-    ctx.font = `600 ${fs}px Inter, system-ui, sans-serif`;
-    const tw2 = ctx.measureText(label).width;
-    const pad = fs * 0.6, lh = fs * 1.75, dotR = fs * 0.28;
-    const lift = 0;
-    const lw = tw2 + pad * 2 + dotR * 2 + fs * 0.45;
-    const lx = px - lw / 2, ly = hy - hr - lh - fs * 0.4 - lift;
-    ctx.fillStyle = "rgba(14,9,30,0.86)";
-    roundRect(lx, ly, lw, lh, lh / 2); ctx.fill();
-    ctx.strokeStyle = "rgba(255,255,255,0.12)"; ctx.lineWidth = 1; ctx.stroke();
-    ctx.fillStyle = { idle: "#A99DCB", working: "#FF4FA3", done: "#33E1D6", waiting: "#FFB547", error: "#FF6B6B" }[st];
-    ctx.beginPath(); ctx.arc(lx + pad + dotR, ly + lh / 2, dotR, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = "#F3EEFF"; ctx.textAlign = "left"; ctx.textBaseline = "middle";
-    ctx.fillText(label, lx + pad + dotR * 2 + fs * 0.45, ly + lh / 2 + 0.5);
-
-    // bocadillo
-    if (bubble[a.id] && (st === "working" || st === "waiting")) {
-      const text = bubble[a.id] + (st === "working" && !reduceMotion ? ".".repeat(1 + Math.floor(t * 2.5) % 3) : "");
-      const bf = Math.max(10, fs * 0.92);
-      ctx.font = `500 ${bf}px Inter, system-ui, sans-serif`;
-      const bwid = Math.min(ctx.measureText(text).width + bf * 1.4, W * 0.45);
-      const bx = Math.max(6, Math.min(W - bwid - 6, px - bwid / 2)), bhh = bf * 1.9, byy = ly - bhh - 7;
-      ctx.fillStyle = st === "working" ? "#FFF3FA" : "#FFF4E0";
-      roundRect(bx, byy, bwid, bhh, 8); ctx.fill();
-      ctx.beginPath(); ctx.moveTo(px - 5, byy + bhh); ctx.lineTo(px + 5, byy + bhh); ctx.lineTo(px, byy + bhh + 6); ctx.fill();
-      ctx.fillStyle = "#1A0716"; ctx.textAlign = "center";
-      ctx.save(); roundRect(bx, byy, bwid, bhh, 8); ctx.clip();
-      ctx.fillText(text, bx + bwid / 2, byy + bhh / 2 + 0.5);
-      ctx.restore();
-    }
+    labels.push({ a, st, px, top: hy - hr - u * 0.12, i });
     hits.push({ id: a.id, x: px, y: hy, r: Math.max(u * 0.7, 22) });
+  }
+
+  // Etiquetas y bocadillos: se colocan después de dibujar a todos y se apilan si chocan.
+  let labels = [];
+  function drawLabels(t) {
+    const short = W < 640;
+    const fs = Math.max(10, Math.min(14, tw * 0.34));
+    const blocks = labels.map(L => {
+      const name = short ? L.a.name.split(" ")[0] : L.a.name;
+      ctx.font = `600 ${fs}px Inter, system-ui, sans-serif`;
+      const pad = fs * 0.6, lh = fs * 1.75, dotR = fs * 0.28;
+      const lw = ctx.measureText(name).width + pad * 2 + dotR * 2 + fs * 0.45;
+      let bub = null;
+      if (bubble[L.a.id] && (L.st === "working" || L.st === "waiting")) {
+        const text = bubble[L.a.id] + (L.st === "working" && !reduceMotion ? ".".repeat(1 + Math.floor(t * 2.5) % 3) : "");
+        const bf = Math.max(10, fs * 0.92);
+        ctx.font = `500 ${bf}px Inter, system-ui, sans-serif`;
+        const full = ctx.measureText(bubble[L.a.id] + "...").width + bf * 1.4;
+        bub = { text, bf, w: Math.min(full, W * 0.46), h: bf * 1.9 };
+      }
+      const hgt = lh + (bub ? bub.h + 8 : 0);
+      const w = Math.max(lw, bub ? bub.w : 0);
+      const x = Math.max(4, Math.min(W - w - 4, L.px - w / 2));
+      return { ...L, name, fs, pad, lh, dotR, lw, bub, w, h: hgt, x, y: L.top - hgt, y0: L.top - hgt };
+    });
+    // de arriba abajo: si choca con una ya colocada, sube por encima
+    blocks.sort((p, q) => p.y0 - q.y0);
+    const placed = [];
+    for (const B of blocks) {
+      for (let k = 0; k < 12; k++) {
+        const hit = placed.find(P => B.x < P.x + P.w + 3 && P.x < B.x + B.w + 3 && B.y < P.y + P.h + 3 && P.y < B.y + B.h + 3);
+        if (!hit) break;
+        B.y = hit.y - B.h - 4;
+      }
+      placed.push(B);
+    }
+    for (const B of placed) {
+      const tagY = B.y + B.h - B.lh, tagX = Math.max(4, Math.min(W - B.lw - 4, B.px - B.lw / 2));
+      if (B.y < B.y0 - 1) {  // desplazada: línea guía hasta la persona
+        ctx.strokeStyle = "rgba(243,238,255,0.35)"; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(B.px, tagY + B.lh); ctx.lineTo(B.px, B.top); ctx.stroke();
+      }
+      ctx.fillStyle = "rgba(14,9,30,0.88)";
+      roundRect(tagX, tagY, B.lw, B.lh, B.lh / 2); ctx.fill();
+      ctx.strokeStyle = "rgba(255,255,255,0.12)"; ctx.lineWidth = 1; ctx.stroke();
+      tags.push({ id: B.a.id, x: tagX, y: tagY, w: B.lw, h: B.lh });
+      ctx.fillStyle = { idle: "#A99DCB", working: "#FF4FA3", done: "#33E1D6", waiting: "#FFB547", error: "#FF6B6B" }[B.st];
+      ctx.beginPath(); ctx.arc(tagX + B.pad + B.dotR, tagY + B.lh / 2, B.dotR, 0, Math.PI * 2); ctx.fill();
+      ctx.font = `600 ${B.fs}px Inter, system-ui, sans-serif`;
+      ctx.fillStyle = "#F3EEFF"; ctx.textAlign = "left"; ctx.textBaseline = "middle";
+      ctx.fillText(B.name, tagX + B.pad + B.dotR * 2 + B.fs * 0.45, tagY + B.lh / 2 + 0.5);
+      if (B.bub) {
+        const bx = Math.max(4, Math.min(W - B.bub.w - 4, B.px - B.bub.w / 2)), by = B.y;
+        ctx.fillStyle = B.st === "working" ? "#FFF3FA" : "#FFF4E0";
+        roundRect(bx, by, B.bub.w, B.bub.h, 8); ctx.fill();
+        const tx = Math.max(bx + 8, Math.min(bx + B.bub.w - 8, B.px));
+        ctx.beginPath(); ctx.moveTo(tx - 5, by + B.bub.h); ctx.lineTo(tx + 5, by + B.bub.h); ctx.lineTo(tx, by + B.bub.h + 6); ctx.fill();
+        ctx.font = `500 ${B.bub.bf}px Inter, system-ui, sans-serif`;
+        ctx.fillStyle = "#1A0716"; ctx.textAlign = "center";
+        ctx.save(); roundRect(bx, by, B.bub.w, B.bub.h, 8); ctx.clip();
+        ctx.fillText(B.bub.text, bx + B.bub.w / 2, by + B.bub.h / 2 + 0.5);
+        ctx.restore();
+        tags.push({ id: B.a.id + ":bubble", x: bx, y: by, w: B.bub.w, h: B.bub.h });
+      }
+    }
   }
 
   function frame(ms) {
     const t = ms / 1000;
     ctx.clearRect(0, 0, W, H);
-    hits = [];
+    hits = []; tags = []; labels = [];
     ROOMS.slice().sort((a, b) => (a.col + a.row) - (b.col + b.row)).forEach(drawRoom);
     AGENTS.map((a, i) => [a, i])
       .sort(([a], [b]) => {
@@ -459,6 +519,7 @@
       })
       .forEach(([a, i]) => drawAgent(a, i, t));
     ROOMS.forEach(drawRoomLabel);
+    drawLabels(t);
     if (!reduceMotion) requestAnimationFrame(frame);
   }
   function redraw() { if (reduceMotion) frame(0); }
@@ -471,13 +532,13 @@
       const d = Math.hypot(h.x - x, h.y - y);
       if (d < h.r && d < bd) { best = h; bd = d; }
     }
-    if (best) { selected = best.id; renderAgentCard(); redraw(); }
+    if (best) { selected = best.id; refresh(); }
   });
   new ResizeObserver(() => { resize(); redraw(); }).observe(canvas);
   resize();
   requestAnimationFrame(frame);
 
-  // ---------------------------------------------------------------- ayudas DOM
+  // ================================================================ 3. AYUDAS
   function h(tag, attrs, ...kids) {
     const el = document.createElement(tag);
     for (const [k, v] of Object.entries(attrs || {})) {
@@ -486,13 +547,13 @@
       else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
       else el.setAttribute(k, v);
     }
-    for (const kid of kids.flat()) if (kid != null && kid !== false) el.append(kid instanceof Node ? kid : String(kid));
+    for (const kid of kids.flat(3)) if (kid != null && kid !== false) el.append(kid instanceof Node ? kid : String(kid));
     return el;
   }
-  const S = v => (v == null ? "" : String(v));
-  const arr = v => (Array.isArray(v) ? v : []);
-  const agent = id => AGENTS.find(a => a.id === id);
-  const STATUS_TXT = { idle: "Libre", working: "Trabajando", done: "Hecho", waiting: "Te espera en el chat", error: "Con un problema" };
+  const S = v => (v == null ? "" : typeof v === "object" ? "" : String(v).trim());
+  const asArr = v => Array.isArray(v) ? v : (typeof v === "string" && v.trim() ? v.split(/\n|,\s*/).map(s => s.trim()).filter(Boolean) : []);
+  const asObj = v => (v && typeof v === "object" && !Array.isArray(v) ? v : {});
+  const words = t => S(t).split(/\s+/).filter(Boolean).length;
 
   function copyBtn(getText, label = "Copiar") {
     const b = h("button", { class: "ghost", type: "button" }, label);
@@ -500,9 +561,10 @@
       const text = getText();
       try { await navigator.clipboard.writeText(text); b.textContent = "Copiado ✓"; }
       catch {
-        const ta = h("textarea", { style: "position:fixed;opacity:0" }); ta.value = text;
-        document.body.append(ta); ta.select();
-        try { document.execCommand("copy"); b.textContent = "Copiado ✓"; } catch { b.textContent = "Mantén pulsado y copia"; }
+        const ta = h("textarea", { style: "position:fixed;top:0;left:0;opacity:0" });
+        ta.value = text; document.body.append(ta); ta.select();
+        let ok = false; try { ok = document.execCommand("copy"); } catch {}
+        b.textContent = ok ? "Copiado ✓" : "No se pudo copiar";
         ta.remove();
       }
       setTimeout(() => { b.textContent = label; }, 1800);
@@ -510,269 +572,429 @@
     return b;
   }
 
-  function renderAgentCard() {
-    const a = agent(selected);
-    const card = document.getElementById("agentCard");
-    card.replaceChildren(
-      h("div", { class: "who" },
-        h("span", { class: "avatar", style: `background:${a.shirt}` }),
-        h("div", {}, h("strong", {}, a.name), h("div", { class: "role" }, `${a.role} · ${roomById[a.room].name}`))),
-      h("p", { class: "note" }, a.job),
-      h("div", { class: "chips" },
-        h("span", { class: "chip" }, h("i", { class: `dot ${status[a.id]}` }), STATUS_TXT[status[a.id]]),
-        h("span", { class: "chip" }, `Usa: ${a.tool}`)),
-    );
+  // ================================================================ 4. PASOS AUTOMÁTICOS (puestos 1-5)
+  const CANAL = "Canal de YouTube en español sobre GTA 6 (Grand Theft Auto VI, juego de Rockstar Games). Audiencia: jugadores hispanohablantes de 16 a 34 años. Tono: enérgico y cercano, con datos, sin clickbait engañoso.";
+  const REGLAS = "Reglas: el canal no es oficial y GTA VI es de Rockstar Games; no inventes datos y marca los rumores como rumores; el título y la miniatura deben cumplirse en el vídeo; no reproduzcas tráileres, música ni diálogos oficiales; contenido apto para anuncios de YouTube.";
+  const hoy = () => new Date().toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
+  const SPEC = {
+    short: { label: "YouTube Short vertical 9:16 de unos 50 segundos", scenes: 6, minScenes: 4, words: [80, 170] },
+    long: { label: "vídeo largo horizontal 16:9 de unos 8 minutos", scenes: 10, minScenes: 6, words: [650, 1400] },
+  };
+  const chosenIdea = run => {
+    const d = run.stages.idea || {};
+    return d.ideas?.[d.elegida] || d.ideas?.[0] || {};
+  };
+
+  const norm = {
+    trends: d => ({
+      resumen: S(d.resumen),
+      tendencias: asArr(d.tendencias).map(t => typeof t === "string" ? { tema: t } : asObj(t))
+        .map(t => ({ tema: S(t.tema), por_que: S(t.por_que), fiabilidad: S(t.fiabilidad).toLowerCase() }))
+        .filter(t => t.tema),
+    }),
+    idea: d => {
+      const ideas = asArr(d.ideas).map(i => typeof i === "string" ? { titulo: i } : asObj(i))
+        .map(i => ({ titulo: S(i.titulo), angulo: S(i.angulo), gancho: S(i.gancho), pilar: S(i.pilar) }))
+        .filter(i => i.titulo);
+      let e = parseInt(d.elegida, 10);
+      if (!(e >= 0 && e < ideas.length)) e = 0;
+      return { ideas, elegida: e, razon: S(d.razon) };
+    },
+    script: d => ({
+      titulo: S(d.titulo), gancho: S(d.gancho), cta: S(d.cta), fuentes: S(d.fuentes),
+      escenas: asArr(d.escenas).map(asObj)
+        .map(e => ({ narracion: S(e.narracion), texto_pantalla: S(e.texto_pantalla), visual: S(e.visual), prompt_ia: S(e.prompt_ia) }))
+        .filter(e => e.narracion),
+    }),
+    seo: d => {
+      const m = asObj(d.miniatura);
+      return {
+        titulo: S(d.titulo), descripcion: S(d.descripcion),
+        etiquetas: asArr(d.etiquetas).map(S).filter(Boolean),
+        hashtags: asArr(d.hashtags).map(S).filter(Boolean).map(t => t.startsWith("#") ? t : "#" + t),
+        miniatura: { texto: S(m.texto), prompt_imagen: S(m.prompt_imagen), color: S(m.color) },
+      };
+    },
+    compliance: d => {
+      const yes = v => v === true || S(v).toLowerCase() === "true";
+      const no = v => v === false || S(v).toLowerCase() === "false";
+      return {
+        aprobado: yes(d.aprobado) ? true : no(d.aprobado) ? false : null,
+        declarar_ia: yes(d.declarar_ia),
+        avisos: asArr(d.avisos).map(i => typeof i === "string" ? { detalle: i } : asObj(i))
+          .map(i => ({ nivel: S(i.nivel).toLowerCase() === "bloquea" ? "bloquea" : "mejora", tema: S(i.tema), detalle: S(i.detalle), arreglo: S(i.arreglo) }))
+          .filter(i => i.detalle || i.tema),
+      };
+    },
+  };
+
+  // Control de calidad: crit = si falla, el paso se repite; si no, solo avisa.
+  const qc = (ok, text, crit = false) => ({ ok: !!ok, text, crit });
+  const check = {
+    trends: d => [
+      qc(d.tendencias.length >= 3, `${d.tendencias.length} tendencias`, true),
+      qc(d.tendencias.every(t => ["evergreen", "probable", "verificar"].includes(t.fiabilidad)), "Fiabilidad marcada"),
+    ],
+    idea: d => [
+      qc(d.ideas.length >= 1, `${d.ideas.length} ideas`, true),
+      qc(words(d.ideas[d.elegida]?.gancho) > 0 && words(d.ideas[d.elegida]?.gancho) <= 20, "Gancho corto"),
+    ],
+    script: (d, run) => {
+      const sp = SPEC[run.format];
+      const total = d.escenas.reduce((n, e) => n + words(e.narracion), 0);
+      const last = d.escenas[d.escenas.length - 1];
+      return [
+        qc(d.escenas.length >= sp.minScenes, `${d.escenas.length}/${sp.scenes} escenas`, true),
+        qc(total >= sp.words[0] && total <= sp.words[1], `${total} palabras (${sp.words[0]}-${sp.words[1]})`),
+        qc(d.escenas.every(e => words(e.texto_pantalla) <= 5 && e.texto_pantalla), "Textos en pantalla cortos"),
+        qc(d.escenas.every(e => e.prompt_ia), "Prompt de IA en cada escena"),
+        qc(/suscr/i.test((last?.narracion || "") + " " + d.cta), "Pide suscribirse"),
+      ];
+    },
+    seo: (d, run) => [
+      qc(d.titulo, "Título", true),
+      qc(d.titulo.length <= 70, `Título ${d.titulo.length}/70`),
+      qc(/no oficial/i.test(d.descripcion), "Aviso no oficial"),
+      qc(d.etiquetas.length >= 10, `${d.etiquetas.length} etiquetas`),
+      ...(run.format === "short" ? [qc(d.hashtags.some(t => /^#shorts$/i.test(t)), "#Shorts")] : []),
+      qc(d.miniatura.texto && words(d.miniatura.texto) <= 4, "Miniatura de 4 palabras o menos"),
+    ],
+    compliance: d => [
+      qc(d.aprobado !== null, d.aprobado === null ? "Sin veredicto" : d.aprobado ? "Aprobado" : "Pide cambios", true),
+    ],
+  };
+
+  const prompts = {
+    trends: run => `${CANAL}\n${REGLAS}\n\nEres Valeria, scout de tendencias del canal. Hoy es ${hoy()}. No tienes acceso a internet: basa la lista en lo que sabes de GTA 6 y en temas que siempre funcionan en gaming (secretos, guías, dinero, coches, comparativas, teorías). No inventes noticias concretas.${run.topic ? `\nEl productor quiere hablar de: "${run.topic}". Incluye ese tema y variantes de él.` : ""}\n\nResponde solo con JSON:\n{"resumen": "1 frase", "tendencias": [{"tema": "...", "por_que": "1 frase", "fiabilidad": "evergreen" | "probable" | "verificar"}]}\nExactamente 6 tendencias. "evergreen" = funciona siempre, "probable" = encaja con la actualidad, "verificar" = depende de noticias que hay que comprobar.`,
+    idea: run => `${CANAL}\n${REGLAS}\n\nEres Tomás, estratega de contenido. Formato: ${SPEC[run.format].label}.${run.topic ? ` El productor ha pedido: "${run.topic}".` : ""}\nTendencias de Valeria:\n${JSON.stringify(run.stages.trends)}\n\nPropón 4 ideas distintas y elige la que más visitas puede conseguir sin engañar. El gancho es la primera frase del vídeo: 20 palabras como máximo. Responde solo con JSON:\n{"ideas": [{"titulo": "...", "angulo": "qué la hace única", "gancho": "...", "pilar": "secretos | guías | noticias | teorías | comparativas"}], "elegida": 0, "razon": "1 frase"}\n"elegida" es la posición (empezando en 0) de la idea elegida.`,
+    script: run => {
+      const sp = SPEC[run.format];
+      return `${CANAL}\n${REGLAS}\n\nSois Irene (guionista) y Bruno (director de arte). Escribid el guion de esta idea:\n${JSON.stringify(chosenIdea(run))}\n\nFormato: ${sp.label}. Exactamente ${sp.scenes} escenas y entre ${sp.words[0]} y ${sp.words[1]} palabras de narración en total. Frases cortas, ritmo alto, gancho en los 3 primeros segundos, un giro cada 15-20 segundos. La última escena pide suscribirse.\nPara cada escena: "narracion" (texto exacto de la voz), "texto_pantalla" (5 palabras como máximo, en mayúsculas), "visual" (qué gameplay mostrar) y "prompt_ia" (en inglés, para un generador de vídeo IA: escena ORIGINAL con estética de Florida tropical y neón, sin personajes, logotipos ni marcas de Rockstar).\n\nResponde solo con JSON:\n{"titulo": "...", "gancho": "...", "escenas": [{"narracion": "...", "texto_pantalla": "...", "visual": "...", "prompt_ia": "..."}], "cta": "...", "fuentes": "qué es dato comprobado y qué es rumor"}`;
+    },
+    seo: run => `${CANAL}\n${REGLAS}\n\nSois Carla (SEO) y Pablo (miniaturas). Guion final:\n${JSON.stringify(run.stages.script)}\n\nFormato: ${SPEC[run.format].label}. Escribid:\n- título de 70 caracteres como máximo, con la palabra clave al principio;\n- descripción de 3 a 5 líneas que empiece con la palabra clave e incluya la frase "Contenido no oficial hecho por fans. GTA VI es una marca de Rockstar Games.";\n- entre 15 y 20 etiquetas;\n- de 3 a 5 hashtags${run.format === "short" ? " (uno de ellos #Shorts)" : ""};\n- la miniatura: texto de 2 a 4 palabras, prompt en inglés para la imagen de fondo (original, sin personajes ni logos de Rockstar) y un color de texto en hexadecimal.\n\nResponde solo con JSON:\n{"titulo": "...", "descripcion": "...", "etiquetas": ["..."], "hashtags": ["#..."], "miniatura": {"texto": "...", "prompt_imagen": "...", "color": "#RRGGBB"}}`,
+    compliance: run => `${REGLAS}\n\nEres Andrés, responsable de cumplimiento de un canal de YouTube sobre GTA 6. Revisa antes de publicar:\n1) Derechos: comentar y analizar gameplay propio está permitido; no subir tráileres ni música oficial completos; no hacerse pasar por Rockstar.\n2) Normas de YouTube: el contenido realista hecho con IA hay que declararlo; nada de títulos o miniaturas engañosos; apto para anuncios.\n3) Veracidad: rumores presentados como hechos.\n\nGuion:\n${JSON.stringify(run.stages.script)}\n\nMetadatos:\n${JSON.stringify(run.stages.seo)}\n\nResponde solo con JSON:\n{"aprobado": true, "declarar_ia": true, "avisos": [{"nivel": "bloquea" | "mejora", "tema": "...", "detalle": "...", "arreglo": "..."}]}\n"aprobado" es false solo si hay algún aviso de nivel "bloquea". Máximo 4 avisos.`,
+    fix: run => `${CANAL}\n${REGLAS}\n\nSois Irene (guionista) y Carla (SEO). Andrés, de cumplimiento, ha frenado el vídeo con estos avisos:\n${JSON.stringify(run.stages.compliance.avisos)}\n\nGuion actual:\n${JSON.stringify(run.stages.script)}\n\nMetadatos actuales:\n${JSON.stringify(run.stages.seo)}\n\nCorregid TODO lo que piden los avisos de nivel "bloquea" (y los de "mejora" si es fácil) sin cambiar el tema del vídeo. Mantened exactamente ${SPEC[run.format].scenes} escenas y la misma estructura.\n\nResponde solo con JSON:\n{"guion": {mismo formato que el guion actual}, "seo": {mismo formato que los metadatos actuales}}`,
+  };
+
+  const PASOS = [
+    { key: "trends", room: "scout", who: ["valeria"], title: "Tendencias", bubble: "Buscando tendencias" },
+    { key: "idea", room: "strat", who: ["tomas"], title: "Idea elegida", bubble: "Eligiendo la mejor idea" },
+    { key: "script", room: "guion", who: ["irene", "bruno"], title: "Guion y prompts visuales", bubble: "Escribiendo el guion" },
+    { key: "seo", room: "thumb", who: ["carla", "pablo"], title: "Título, descripción y miniatura", bubble: "Preparando título y portada" },
+    { key: "compliance", room: "legal", who: ["andres"], title: "Revisión de normas", bubble: "Revisando normas" },
+  ];
+
+  // ================================================================ 5. ESTADO DEL ENCARGO
+  let run = null, live = null, sample = null, ctl = null, busy = false, fmt = "short";
+  const KEY = "vice-studio-hq:last";
+  const save = () => { try { if (run && !run.example) localStorage.setItem(KEY, JSON.stringify(run)); } catch {} };
+  const load = () => { try { const v = JSON.parse(localStorage.getItem(KEY) || "null"); return v && v.stages && SPEC[v.format] ? v : null; } catch { return null; } };
+
+  function syncStatus() {
+    AGENTS.forEach(a => { status[a.id] = "idle"; bubble[a.id] = ""; });
+    if (!run || run.example) return refresh();
+    for (const p of PASOS) {
+      if (live === p.key) p.who.forEach(id => { status[id] = "working"; bubble[id] = live === "fix" ? "" : p.bubble; });
+      else if (run.stopAt === p.key) p.who.forEach(id => { status[id] = "error"; });
+      else if (run.stages[p.key]) p.who.forEach(id => { status[id] = "done"; });
+    }
+    if (live === "fix") ["irene", "carla"].forEach(id => { status[id] = "working"; bubble[id] = "Corrigiendo"; });
+    const c = run.stages.compliance;
+    if (!live && c && !run.stopAt) {
+      if (c.aprobado) {
+        ["mateo", "julia", "lola"].forEach(id => { status[id] = "waiting"; });
+        bubble.mateo = W < 640 ? "Te espero en el chat" : "Pégame el encargo en el chat";  // solo habla el siguiente
+      }
+      else { status.andres = "error"; bubble.andres = ""; }
+    }
+    refresh();
   }
+  function refresh() { renderAgentCard(); renderOrg(); updateTeamPill(); redraw(); }
 
   function updateTeamPill() {
     const working = AGENTS.filter(a => status[a.id] === "working");
     const dot = document.getElementById("teamDot"), txt = document.getElementById("teamText");
     if (working.length) { dot.className = "dot working"; txt.textContent = `${working.map(a => a.name.split(" ")[0]).join(" y ")} trabajando`; }
-    else if (AGENTS.some(a => status[a.id] === "waiting")) { dot.className = "dot waiting"; txt.textContent = "Guion listo · falta voz y montaje"; }
+    else if (AGENTS.some(a => status[a.id] === "error")) { dot.className = "dot error"; txt.textContent = "Hay un paso que revisar"; }
+    else if (AGENTS.some(a => status[a.id] === "waiting")) { dot.className = "dot waiting"; txt.textContent = "Guion aprobado · falta voz y montaje"; }
     else { dot.className = "dot"; txt.textContent = "Equipo en la oficina"; }
   }
-  function setStatus(ids, st, text) {
-    for (const id of [].concat(ids)) { status[id] = st; bubble[id] = text || ""; }
-    renderAgentCard(); updateTeamPill(); redraw();
+
+  // ================================================================ 6. ORGANIGRAMA Y FICHA DEL PUESTO
+  function renderOrg() {
+    const org = document.getElementById("org");
+    org.replaceChildren(...ROOMS.map(r => {
+      const people = AGENTS.filter(a => a.room === r.id);
+      return h("button", { class: "post", type: "button", "aria-current": String(people.some(a => a.id === selected)), onclick: () => { selected = people[0].id; refresh(); document.getElementById("agentCard").scrollIntoView({ behavior: "smooth", block: "nearest" }); } },
+        h("div", { class: "top" }, h("span", { class: "num" }, r.n), h("span", { class: "room" }, r.name)),
+        h("div", { class: "people" }, people.map(a => h("span", {}, h("i", { class: `dot ${status[a.id]}` }), a.name))),
+        h("div", { class: "out" }, h("b", {}, "Entrega: "), people.map(a => a.entrega).join(" ")),
+        h("div", { class: "mode" }, MODE_TXT[r.mode]));
+    }));
   }
 
-  // ---------------------------------------------------------------- resultados
-  const STAGES = [
-    { key: "trends", title: "Tendencias", who: ["valeria"] },
-    { key: "idea", title: "Idea elegida", who: ["tomas"] },
-    { key: "script", title: "Guion y prompts visuales", who: ["irene", "bruno"] },
-    { key: "seo", title: "Título, descripción y miniatura", who: ["carla", "pablo"] },
-    { key: "compliance", title: "Revisión de normas", who: ["andres"] },
-  ];
-  let run = null;       // producción mostrada
-  let liveKey = null;   // etapa en curso
-
-  function stageShell(st, body) {
-    const names = st.who.map(id => agent(id).name).join(" y ");
-    const state = run?.stages?.[st.key] ? "" : liveKey === st.key ? " live" : " pending";
-    return h("section", { class: "stage" + state },
-      h("div", { class: "stage-top" }, h("h3", {}, st.title), h("span", { class: "by" }, "por ", h("b", {}, names))),
-      body);
+  function renderAgentCard() {
+    const a = agent(selected), r = roomById[a.room];
+    const mates = AGENTS.filter(b => b.room === a.room && b.id !== a.id);
+    document.getElementById("agentCard").replaceChildren(
+      h("div", { class: "who" },
+        h("span", { class: "avatar", style: `background:${a.shirt}` }),
+        h("div", {}, h("strong", {}, a.name), h("div", { class: "role" }, `${a.role} · Puesto ${r.n}: ${r.name}`))),
+      h("div", { class: "chips" },
+        h("span", { class: "chip" }, h("i", { class: `dot ${status[a.id]}` }), STATUS_TXT[status[a.id]]),
+        h("span", { class: "chip" }, `Usa ${a.tool}`),
+        h("span", { class: "chip" }, MODE_TXT[r.mode])),
+      h("dl", { class: "facts" },
+        h("dt", {}, "Misión"), h("dd", {}, a.mision),
+        h("dt", {}, "Recibe"), h("dd", {}, a.recibe),
+        h("dt", {}, "Entrega"), h("dd", {}, a.entrega),
+        h("dt", {}, "Se lo pasa a"), h("dd", {}, a.pasaA),
+        h("dt", {}, "Comprueba"), h("dd", {}, h("ul", {}, a.comprueba.map(c => h("li", {}, c))))),
+      mates.length ? h("p", { class: "note" }, `Comparte sala con ${mates.map(m => m.name).join(", ")}.`) : null);
   }
 
+  // ================================================================ 7. RESULTADOS
   function renderTrends(d) {
     return h("div", { class: "kv" },
-      d.resumen ? h("p", { class: "note" }, S(d.resumen)) : null,
-      h("ul", { class: "list" }, arr(d.tendencias).map(t =>
+      d.resumen ? h("p", { class: "note" }, d.resumen) : null,
+      h("ul", { class: "list" }, d.tendencias.map(t =>
         h("li", {},
-          h("div", { class: "copyrow" }, h("span", { class: "t" }, S(t.tema)),
-            h("span", { class: `chip rel-${S(t.fiabilidad)}` }, S(t.fiabilidad) || "?")),
-          h("span", { class: "d" }, S(t.por_que))))));
+          h("div", { class: "copyrow" }, h("span", { class: "t" }, t.tema), h("span", { class: `chip rel-${t.fiabilidad}` }, t.fiabilidad || "sin marcar")),
+          t.por_que ? h("span", { class: "d" }, t.por_que) : null))));
   }
   function renderIdea(d) {
-    const ideas = arr(d.ideas), idx = Number(d.elegida) || 0;
     return h("div", { class: "kv" },
-      h("ul", { class: "list" }, ideas.map((i, n) =>
-        h("li", { class: n === idx ? "chosen" : "" },
-          h("div", { class: "copyrow" }, h("span", { class: "t" }, S(i.titulo)), n === idx ? h("span", { class: "chip rel-evergreen" }, "elegida") : null),
-          h("span", { class: "d" }, `${S(i.angulo)} · Gancho: “${S(i.gancho)}”`)))),
-      d.razon ? h("p", { class: "note" }, "Por qué: " + S(d.razon)) : null);
+      h("ul", { class: "list" }, d.ideas.map((i, n) =>
+        h("li", { class: n === d.elegida ? "chosen" : "" },
+          h("div", { class: "copyrow" }, h("span", { class: "t" }, i.titulo), n === d.elegida ? h("span", { class: "chip rel-evergreen" }, "elegida") : null),
+          h("span", { class: "d" }, [i.angulo, i.gancho && `Gancho: “${i.gancho}”`].filter(Boolean).join(" · "))))),
+      d.razon ? h("p", { class: "note" }, "Por qué: " + d.razon) : null);
   }
   function renderScript(d) {
     return h("div", { class: "kv" },
       h("div", { class: "copyrow" },
-        h("div", {}, h("div", { class: "k" }, "Gancho"), h("div", { class: "v" }, S(d.gancho))),
+        h("div", {}, h("div", { class: "k" }, "Gancho"), h("div", { class: "v" }, d.gancho || "—")),
         copyBtn(() => scriptText(d), "Copiar guion")),
-      h("div", { class: "scenes" }, arr(d.escenas).map((e, n) =>
+      h("div", { class: "scenes" }, d.escenas.map((e, n) =>
         h("div", { class: "scene" },
           h("span", { class: "n" }, String(n + 1).padStart(2, "0")),
           h("div", { class: "kv" },
-            h("p", { class: "ost" }, S(e.texto_pantalla)),
-            h("p", {}, S(e.narracion)),
-            h("p", { class: "meta" }, "Se ve: " + S(e.visual)),
-            e.prompt_ia ? h("code", {}, S(e.prompt_ia)) : null)))),
-      d.cta ? h("p", { class: "note" }, "Llamada a la acción: " + S(d.cta)) : null,
-      d.fuentes ? h("p", { class: "note" }, "Datos: " + S(d.fuentes)) : null);
+            e.texto_pantalla ? h("p", { class: "ost" }, e.texto_pantalla) : null,
+            h("p", {}, e.narracion),
+            e.visual ? h("p", { class: "meta" }, "Se ve: " + e.visual) : null,
+            e.prompt_ia ? h("code", {}, e.prompt_ia) : null)))),
+      d.cta ? h("p", { class: "note" }, "Cierre: " + d.cta) : null,
+      d.fuentes ? h("p", { class: "note" }, "Datos: " + d.fuentes) : null);
   }
   function renderSeo(d) {
-    const m = d.miniatura || {};
-    const tags = arr(d.etiquetas).map(S).join(", ");
-    const desc = S(d.descripcion) + (arr(d.hashtags).length ? "\n\n" + arr(d.hashtags).map(S).join(" ") : "");
+    const desc = d.descripcion + (d.hashtags.length ? "\n\n" + d.hashtags.join(" ") : "");
+    const tags = d.etiquetas.join(", ");
+    const color = /^#[0-9a-f]{6}$/i.test(d.miniatura.color) ? d.miniatura.color : "#FFE14D";
     return h("div", { class: "kv" },
-      h("div", { class: "thumb-mock", style: `color:${/^#[0-9a-f]{6}$/i.test(S(m.color)) ? m.color : "#FFE14D"}` }, S(m.texto) || "GTA 6"),
-      m.prompt_imagen ? h("p", { class: "note" }, "Fondo para generar con IA: ", h("code", {}, S(m.prompt_imagen))) : null,
-      h("div", { class: "copyrow" }, h("div", {}, h("div", { class: "k" }, "Título"), h("div", { class: "v" }, S(d.titulo))), copyBtn(() => S(d.titulo))),
+      h("div", { class: "thumb-mock", style: `color:${color}` }, d.miniatura.texto || "GTA 6"),
+      d.miniatura.prompt_imagen ? h("p", { class: "note" }, "Fondo para generar con IA: ", h("code", {}, d.miniatura.prompt_imagen)) : null,
+      h("div", { class: "copyrow" }, h("div", {}, h("div", { class: "k" }, "Título"), h("div", { class: "v" }, d.titulo)), copyBtn(() => d.titulo)),
       h("div", { class: "copyrow" }, h("div", {}, h("div", { class: "k" }, "Descripción"), h("div", { class: "v" }, desc)), copyBtn(() => desc)),
-      h("div", { class: "copyrow" }, h("div", {}, h("div", { class: "k" }, "Etiquetas"), h("div", { class: "v" }, tags)), copyBtn(() => tags)));
+      h("div", { class: "copyrow" }, h("div", {}, h("div", { class: "k" }, "Etiquetas"), h("div", { class: "v" }, tags || "—")), copyBtn(() => tags)));
   }
   function renderCompliance(d) {
-    const ok = d.aprobado === true;
     return h("div", { class: "kv" },
-      h("div", { class: "verdict " + (ok ? "ok" : "no") }, ok ? "Aprobado para publicar" : "Necesita cambios antes de publicar"),
+      h("div", { class: "verdict " + (d.aprobado ? "ok" : "no") }, d.aprobado ? "Aprobado para publicar" : "Necesita cambios antes de publicar"),
       d.declarar_ia ? h("p", { class: "note warn" }, "Al subirlo marca en YouTube: “Contenido alterado o sintético: Sí”.") : null,
-      arr(d.avisos).length
-        ? arr(d.avisos).map(i => h("div", { class: "issue" + (S(i.nivel) === "bloquea" ? " block" : "") },
-            h("b", {}, S(i.tema) + ": "), S(i.detalle), i.arreglo ? h("div", { class: "note" }, "Arreglo: " + S(i.arreglo)) : null))
+      d.avisos.length
+        ? d.avisos.map(i => h("div", { class: "issue" + (i.nivel === "bloquea" ? " block" : "") },
+            h("b", {}, (i.nivel === "bloquea" ? "Bloquea" : "Mejora") + (i.tema ? ` · ${i.tema}` : "") + ": "), i.detalle,
+            i.arreglo ? h("div", { class: "note" }, "Arreglo: " + i.arreglo) : null))
         : h("p", { class: "note" }, "Sin avisos."));
   }
   const RENDER = { trends: renderTrends, idea: renderIdea, script: renderScript, seo: renderSeo, compliance: renderCompliance };
 
-  function scriptText(d) {
-    return `${S(d.titulo)}\n\nGancho: ${S(d.gancho)}\n\n` + arr(d.escenas).map((e, n) =>
-      `Escena ${n + 1} — ${S(e.texto_pantalla)}\nVoz: ${S(e.narracion)}\nSe ve: ${S(e.visual)}\nPrompt IA: ${S(e.prompt_ia)}`).join("\n\n")
-      + `\n\nCierre: ${S(d.cta)}`;
-  }
-  function handoffText() {
-    const s = run.stages.script || {}, seo = run.stages.seo || {};
+  const scriptText = d => `${d.titulo}\n\nGancho: ${d.gancho}\n\n` + d.escenas.map((e, n) =>
+    `Escena ${n + 1} — ${e.texto_pantalla}\nVoz: ${e.narracion}\nSe ve: ${e.visual}\nPrompt IA: ${e.prompt_ia}`).join("\n\n") + `\n\nCierre: ${d.cta}`;
+  const handoffText = () => {
+    const s = run.stages.script, seo = run.stages.seo, c = run.stages.compliance;
     return `Claude, monta este vídeo para mi canal de GTA 6: pon la voz en off con Higgsfield (dime antes cuántos créditos gasta), móntalo en formato ${run.format === "long" ? "horizontal 16:9" : "vertical 9:16 (Short)"} con textos y subtítulos, haz la miniatura y mándamelo aquí.\n\n`
-      + `TÍTULO: ${S(seo.titulo || s.titulo)}\nMINIATURA: ${S(seo.miniatura?.texto)}\n\nGUION\n` + scriptText(s);
+      + `TÍTULO: ${seo.titulo}\nMINIATURA: ${seo.miniatura.texto} (color ${seo.miniatura.color || "#FFE14D"})\nCONTENIDO CON IA: ${c.declarar_ia ? "sí, declararlo" : "no"}\n\nGUION\n` + scriptText(s);
+  };
+
+  function stageCard(p, i) {
+    const data = run?.stages?.[p.key];
+    const checks = run?.checks?.[p.key] || [];
+    const isLive = live === p.key || (live === "fix" && (p.key === "script" || p.key === "seo"));
+    const stopped = run?.stopAt === p.key;
+    const cls = "stage" + (isLive ? " live" : stopped ? " failed" : data ? "" : " pending");
+    const names = p.who.map(id => agent(id).name).join(" y ");
+    let body;
+    if (isLive) body = h("div", { class: "thinking" }, live === "fix" ? "Corrigiendo lo que pidió Andrés…" : "Trabajando en ello… puede tardar hasta un minuto.");
+    else if (data) body = RENDER[p.key](data);
+    else if (stopped) body = null;
+    else body = h("p", { class: "note" }, "Pendiente");
+    return h("section", { class: cls, "data-step": p.key },
+      h("div", { class: "stage-top" },
+        h("h3", {}, `${roomById[p.room].n} · ${p.title}`),
+        h("span", { class: "by" }, "por ", h("b", {}, names)),
+        run?.revisions && (p.key === "script" || p.key === "seo") && data ? h("span", { class: "chip" }, `corregido ×${run.revisions}`) : null),
+      checks.length && !isLive ? h("div", { class: "qc", "aria-label": "Control de calidad" },
+        checks.map(c => h("span", { class: "chip " + (c.ok ? "ok" : c.crit ? "bad" : "warn") }, (c.ok ? "✓ " : c.crit ? "✗ " : "! ") + c.text))) : null,
+      stopped ? h("div", { class: "kv" },
+        h("p", { class: "note warn" }, run.stopReason || "Este paso se paró."),
+        h("div", { class: "actions" }, h("button", { class: "ghost strong", type: "button", onclick: () => runFrom(i), disabled: !sample || busy }, `Seguir desde el paso ${roomById[p.room].n}`))) : null,
+      body);
   }
 
   function renderResults() {
     const root = document.getElementById("results");
-    const kids = [];
-    kids.push(h("div", { class: "results-head" },
-      h("h2", {}, run?.example ? "Ejemplo de producción" : "Producción actual"),
-      run ? h("span", { class: "chip" }, run.example ? "ejemplo" : `${run.format === "long" ? "vídeo largo" : "short"} · ${new Date(run.createdAt).toLocaleString("es-ES", { dateStyle: "short", timeStyle: "short" })}`) : null));
+    const kids = [h("div", { class: "section-head" },
+      h("h2", {}, run?.example ? "Ejemplo de producción" : "Tu producción"),
+      run ? h("span", { class: "chip" }, run.example ? "ejemplo" : `${run.format === "long" ? "vídeo largo" : "short"}${run.topic ? " · " + run.topic : ""}`) : null)];
     if (run?.example) kids.push(h("p", { class: "note" }, "Así queda un encargo terminado. Pulsa “Encargar vídeo” y tu equipo hará uno nuevo."));
-    for (const st of STAGES) {
-      const data = run?.stages?.[st.key];
-      let body;
-      if (data) body = RENDER[st.key](data);
-      else if (liveKey === st.key) body = h("div", { class: "thinking" }, "Trabajando en ello… puede tardar hasta un minuto.");
-      else body = h("p", { class: "note" }, "Pendiente");
-      kids.push(stageShell(st, body));
-    }
-    if (run?.stages?.compliance) {
-      kids.push(h("section", { class: "stage handoff" },
-        h("div", { class: "stage-top" }, h("h3", {}, "Último paso: voz y montaje"), h("span", { class: "by" }, "por ", h("b", {}, "Mateo, Julia y Lola"))),
-        h("ol", {},
-          h("li", {}, "Pulsa “Copiar encargo”."),
-          h("li", {}, "Vuelve al chat con Claude y pégalo."),
-          h("li", {}, "Claude pone la voz, monta el vídeo y te lo manda."),
-          h("li", {}, "Lo subes con la app de YouTube, copiando título y descripción de aquí.")),
-        h("div", {}, copyBtn(handoffText, "Copiar encargo"))));
+    PASOS.forEach((p, i) => kids.push(stageCard(p, i)));
+    const c = run?.stages?.compliance;
+    if (c && !live && !run.stopAt) {
+      if (c.aprobado) {
+        kids.push(h("section", { class: "stage handoff", "data-step": "handoff" },
+          h("div", { class: "stage-top" }, h("h3", {}, "6 · 7 · 8 · Voz, montaje y subida"), h("span", { class: "by" }, "por ", h("b", {}, "Mateo, Julia y Lola"))),
+          h("ol", {},
+            h("li", {}, "Pulsa “Copiar encargo”."),
+            h("li", {}, "Vuelve al chat con Claude y pégalo."),
+            h("li", {}, "Claude pone la voz (Mateo), monta el vídeo (Julia) y te lo manda."),
+            h("li", {}, "Lo subes con la app de YouTube copiando título y descripción de aquí (Lola).")),
+          run.example ? h("p", { class: "note" }, "Disponible cuando hagas tu propio encargo.") : h("div", { class: "actions" }, copyBtn(handoffText, "Copiar encargo"))));
+      } else {
+        kids.push(h("section", { class: "stage failed", "data-step": "fix-box" },
+          h("div", { class: "stage-top" }, h("h3", {}, "Andrés ha frenado el vídeo")),
+          h("p", { class: "note" }, "Irene y Carla pueden corregir el guion y los textos con sus avisos. Después Andrés lo revisa otra vez."),
+          (run.revisions || 0) >= 2 ? h("p", { class: "note warn" }, "Ya se ha corregido 2 veces. Si sigue frenado, prueba con otro tema.") : null,
+          h("div", { class: "actions" }, h("button", { class: "ghost strong", type: "button", onclick: runFix, disabled: !sample || busy || (run.revisions || 0) >= 2 }, "Pedir correcciones"))));
+      }
     }
     root.replaceChildren(...kids);
   }
 
-  // ---------------------------------------------------------------- equipo trabajando (Claude)
-  const CANAL = "Canal de YouTube en español sobre GTA 6 (Grand Theft Auto VI, juego de Rockstar Games). Audiencia: jugadores hispanohablantes de 16 a 34 años. Tono: enérgico y cercano, con datos, sin clickbait engañoso.";
-  const REGLAS = "Reglas: el canal no es oficial y GTA VI es de Rockstar Games; no inventes datos y marca los rumores como rumores; el título y la miniatura deben cumplirse en el vídeo; no reproduzcas tráileres, música ni diálogos oficiales; contenido apto para anuncios de YouTube.";
-  const hoy = () => new Date().toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
-
-  const P = {
-    trends: (topic) => `${CANAL}\n${REGLAS}\n\nEres Valeria, scout de tendencias del canal. Hoy es ${hoy()}. No tienes acceso a internet: basa la lista en lo que sabes de GTA 6 y en temas que siempre funcionan en gaming (secretos, guías, dinero, coches, comparativas, teorías). No inventes noticias concretas.${topic ? `\nEl productor quiere hablar de: "${topic}". Incluye ese tema y variantes de él.` : ""}\n\nResponde solo con JSON:\n{"resumen": "1 frase", "tendencias": [{"tema": "...", "por_que": "1 frase", "fiabilidad": "evergreen" | "probable" | "verificar"}]}\nExactamente 6 tendencias. "evergreen" = funciona siempre, "probable" = encaja con la actualidad, "verificar" = depende de noticias que hay que comprobar.`,
-    idea: (fmt, trends, topic) => `${CANAL}\n${REGLAS}\n\nEres Tomás, estratega de contenido. Formato: ${fmt === "long" ? "vídeo largo horizontal de unos 8 minutos" : "YouTube Short vertical de unos 50 segundos"}.${topic ? ` El productor ha pedido: "${topic}".` : ""}\nTendencias del scout:\n${JSON.stringify(trends)}\n\nPropón 4 ideas distintas y elige la que más visitas puede conseguir sin engañar. Responde solo con JSON:\n{"ideas": [{"titulo": "...", "angulo": "qué la hace única", "gancho": "primera frase del vídeo", "pilar": "secretos | guías | noticias | teorías | comparativas"}], "elegida": 0, "razon": "1 frase"}`,
-    script: (fmt, idea) => `${CANAL}\n${REGLAS}\n\nSois Irene (guionista) y Bruno (director de arte). Escribid el guion de esta idea:\n${JSON.stringify(idea)}\n\nFormato: ${fmt === "long" ? "vídeo largo 16:9, 10 escenas, unas 1000 palabras de narración en total" : "Short 9:16, 6 escenas, unas 120 palabras de narración en total"}. Frases cortas, ritmo alto, gancho en los 3 primeros segundos, un giro cada 15-20 segundos, la última escena con llamada a suscribirse.\nPara cada escena: "narracion" (texto exacto de la voz), "texto_pantalla" (máx. 5 palabras, en mayúsculas), "visual" (qué gameplay mostrar) y "prompt_ia" (en inglés, para un generador de vídeo IA: escena ORIGINAL con estética Florida tropical y neón, sin personajes, logotipos ni marcas de Rockstar).\n\nResponde solo con JSON:\n{"titulo": "...", "gancho": "...", "escenas": [{"narracion": "...", "texto_pantalla": "...", "visual": "...", "prompt_ia": "..."}], "cta": "...", "fuentes": "qué es dato comprobado y qué es rumor"}`,
-    seo: (fmt, script) => `${CANAL}\n${REGLAS}\n\nSois Carla (SEO) y Pablo (miniaturas). Guion final:\n${JSON.stringify(script)}\n\nFormato: ${fmt === "long" ? "vídeo largo" : "Short"}. Escribid: título de máximo 70 caracteres con la palabra clave al principio; descripción de 3-5 líneas que empiece con la palabra clave e incluya "Contenido no oficial hecho por fans. GTA VI es una marca de Rockstar Games."; 15-20 etiquetas; 3-5 hashtags${fmt === "long" ? "" : " (incluye #Shorts)"}; y la miniatura: texto de 2-4 palabras, prompt en inglés para la imagen de fondo (original, sin personajes ni logos de Rockstar) y un color de texto en hexadecimal.\n\nResponde solo con JSON:\n{"titulo": "...", "descripcion": "...", "etiquetas": ["..."], "hashtags": ["#..."], "miniatura": {"texto": "...", "prompt_imagen": "...", "color": "#RRGGBB"}}`,
-    compliance: (script, seo) => `${REGLAS}\n\nEres Andrés, responsable de cumplimiento de un canal de YouTube sobre GTA 6. Revisa antes de publicar:\n1) Derechos: comentar y analizar gameplay propio está permitido; no subir tráileres ni música oficial completos; no hacerse pasar por Rockstar.\n2) Normas de YouTube: el contenido realista hecho con IA hay que declararlo; nada de metadatos engañosos; apto para anuncios.\n3) Veracidad: rumores presentados como hechos.\n\nGuion:\n${JSON.stringify(script)}\n\nMetadatos:\n${JSON.stringify(seo)}\n\nResponde solo con JSON:\n{"aprobado": true, "declarar_ia": true, "avisos": [{"nivel": "bloquea" | "mejora", "tema": "...", "detalle": "...", "arreglo": "..."}]}\n"aprobado" es false solo si hay algún aviso de nivel "bloquea". Máximo 4 avisos.`,
-  };
-
+  // ================================================================ 8. EJECUTAR LOS PASOS
   const ERR = {
-    not_granted: "No se ha dado permiso para usar Claude. Recarga la página y pulsa “Permitir”.",
+    not_granted: "No has dado permiso para usar Claude. Recarga la página y pulsa “Permitir”.",
     sampling_disabled: "Claude no está disponible en esta cuenta.",
     rate_limited: "Has llegado al límite de uso por ahora. Prueba otra vez en un rato.",
     session_expired: "Tu sesión ha caducado. Vuelve a iniciar sesión en Claude.",
-    invalid_json: "La respuesta llegó incompleta. Pulsa “Encargar vídeo” para repetir.",
+    invalid_json: "La respuesta llegó incompleta.",
     refused: "Claude no quiso hacer esta parte. Prueba con otro tema.",
+    quality: "El resultado no pasó el control de calidad.",
+    cancelled: "Has parado el encargo.",
   };
 
-  let sample = null, ctl = null, busy = false, fmt = "short";
   const goBtn = document.getElementById("goBtn"), stopBtn = document.getElementById("stopBtn"), capNote = document.getElementById("capNote");
   const fmtShort = document.getElementById("fmtShort"), fmtLong = document.getElementById("fmtLong");
   function setFmt(f) { fmt = f; fmtShort.setAttribute("aria-pressed", String(f === "short")); fmtLong.setAttribute("aria-pressed", String(f === "long")); }
   fmtShort.onclick = () => setFmt("short");
   fmtLong.onclick = () => setFmt("long");
 
-  async function step(key, who, bubbleText, prompt) {
-    liveKey = key;
-    setStatus(who, "working", bubbleText);
-    renderResults();
-    const data = await sample.json(prompt, { signal: ctl.signal, modelTier: "default", cache: false });
-    if (!data || typeof data !== "object") throw { code: "invalid_json" };
-    run.stages[key] = data;
-    setStatus(who, "done", "");
-    save();
-    renderResults();
-    return data;
+  function setBusy(b) {
+    busy = b;
+    stopBtn.hidden = !b;
+    goBtn.disabled = b || !sample;
+    goBtn.textContent = b ? "El equipo está trabajando…" : sample ? "Encargar vídeo" : "No disponible aquí";
+  }
+  async function ask(prompt) {
+    const raw = await sample.json(prompt, { signal: ctl.signal, modelTier: "default", cache: false });
+    if (!raw || typeof raw !== "object" || Array.isArray(raw)) throw { code: "invalid_json" };
+    return raw;
+  }
+  function fail(e, key) {
+    const code = e?.code || "upstream_error";
+    run.stopAt = key;
+    run.stopReason = (ERR[code] || "Algo falló al hablar con Claude.") + (code === "cancelled" ? "" : " Puedes seguir desde aquí.");
+    if (code === "not_granted" || code === "sampling_disabled") { sample = null; capNote.textContent = ERR[code]; capNote.className = "note warn"; }
   }
 
-  async function produce() {
-    if (!sample || busy) return;
-    busy = true;
+  async function runFrom(start) {
+    if (!sample || busy || !run || run.example) return;
     ctl = new AbortController();
-    goBtn.disabled = true; goBtn.textContent = "El equipo está trabajando…";
-    stopBtn.hidden = false;
-    AGENTS.forEach(a => { status[a.id] = "idle"; bubble[a.id] = ""; });
-    const topic = document.getElementById("topic").value.trim().slice(0, 200);
-    run = { format: fmt, topic, createdAt: Date.now(), stages: {} };
-    renderResults();
+    setBusy(true);
+    run.stopAt = null; run.stopReason = "";
+    for (const p of PASOS.slice(start)) { delete run.stages[p.key]; delete run.checks[p.key]; }
+    let i = start;
     try {
-      const trends = await step("trends", "valeria", "Buscando tendencias", P.trends(topic));
-      const ideaSlate = await step("idea", "tomas", "Eligiendo la mejor idea", P.idea(fmt, trends, topic));
-      const chosen = arr(ideaSlate.ideas)[Number(ideaSlate.elegida) || 0] || arr(ideaSlate.ideas)[0] || {};
-      const script = await step("script", ["irene", "bruno"], "Escribiendo el guion", P.script(fmt, chosen));
-      const seo = await step("seo", ["carla", "pablo"], "Preparando título y miniatura", P.seo(fmt, script));
-      await step("compliance", "andres", "Revisando normas", P.compliance(script, seo));
-      liveKey = null;
-      setStatus(["mateo", "julia", "lola"], "waiting", "Te espero en el chat");
-      selected = "mateo"; renderAgentCard();
-      renderResults();
-    } catch (e) {
-      const code = e?.code || "upstream_error";
-      const who = AGENTS.filter(a => status[a.id] === "working").map(a => a.id);
-      liveKey = null;
-      if (code === "cancelled") { setStatus(who, "idle", ""); capNote.textContent = "Encargo parado."; capNote.className = "note"; }
-      else {
-        setStatus(who, "error", "");
-        capNote.textContent = ERR[code] || "Algo falló al hablar con Claude. Pulsa “Encargar vídeo” para intentarlo otra vez.";
-        capNote.className = "note warn";
-        if (code === "not_granted" || code === "sampling_disabled") { sample = null; }
+      for (; i < PASOS.length; i++) {
+        const p = PASOS[i];
+        live = p.key; syncStatus(); renderResults();
+        const data = norm[p.key](await ask(prompts[p.key](run)));
+        const checks = check[p.key](data, run);
+        run.stages[p.key] = data; run.checks[p.key] = checks;
+        if (checks.some(c => c.crit && !c.ok)) throw { code: "quality" };
+        live = null; save(); syncStatus(); renderResults();
       }
-      renderResults();
+    } catch (e) {
+      fail(e, PASOS[i].key);
     } finally {
-      busy = false;
-      stopBtn.hidden = true;
-      goBtn.disabled = !sample;
-      goBtn.textContent = sample ? "Encargar vídeo" : "No disponible";
+      live = null; save(); setBusy(false); syncStatus(); renderResults();
     }
   }
-  goBtn.onclick = produce;
+
+  async function runFix() {
+    if (!sample || busy || !run?.stages?.compliance) return;
+    ctl = new AbortController();
+    setBusy(true);
+    live = "fix"; syncStatus(); renderResults();
+    const ci = PASOS.findIndex(p => p.key === "compliance");
+    try {
+      const raw = await ask(prompts.fix(run));
+      const s = norm.script(asObj(raw.guion)), seo = norm.seo(asObj(raw.seo));
+      const cs = check.script(s, run), cseo = check.seo(seo, run);
+      if (cs.concat(cseo).some(c => c.crit && !c.ok)) throw { code: "quality" };
+      run.stages.script = s; run.checks.script = cs;
+      run.stages.seo = seo; run.checks.seo = cseo;
+      run.revisions = (run.revisions || 0) + 1;
+      live = null; save(); setBusy(false);
+      await runFrom(ci);
+    } catch (e) {
+      live = null;
+      capNote.textContent = (ERR[e?.code] || "Algo falló al corregir.") + " Puedes pulsar “Pedir correcciones” otra vez.";
+      capNote.className = "note warn";
+      setBusy(false); syncStatus(); renderResults();
+    }
+  }
+
+  goBtn.onclick = () => {
+    if (!sample || busy) return;
+    const topic = document.getElementById("topic").value.trim().slice(0, 200);
+    run = { format: fmt, topic, createdAt: Date.now(), stages: {}, checks: {}, revisions: 0 };
+    capNote.textContent = "El equipo trabaja con tu cuenta de Claude."; capNote.className = "note";
+    runFrom(0);
+  };
   stopBtn.onclick = () => ctl?.abort();
 
-  // ---------------------------------------------------------------- guardar la última producción en este dispositivo
-  const KEY = "vice-studio-hq:last";
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(run)); } catch {} }
-  function load() { try { const v = JSON.parse(localStorage.getItem(KEY) || "null"); return v && v.stages ? v : null; } catch { return null; } }
-
+  // ================================================================ 9. EJEMPLO Y ARRANQUE
   const EXAMPLE = {
-    example: true, format: "short", createdAt: Date.now(), stages: {
-      trends: { resumen: "Ejemplo: lo que suele funcionar en canales de GTA 6.", tendencias: [
+    example: true, format: "short", topic: "", createdAt: 0, revisions: 0, checks: {}, stages: {
+      trends: norm.trends({ resumen: "Ejemplo: lo que suele funcionar en canales de GTA 6.", tendencias: [
         { tema: "Secretos y easter eggs de Vice City", por_que: "Las listas de secretos retienen hasta el final.", fiabilidad: "evergreen" },
         { tema: "Cómo ganar dinero rápido al empezar", por_que: "Búsqueda constante de jugadores nuevos.", fiabilidad: "evergreen" },
-        { tema: "Coches más rápidos y dónde encontrarlos", por_que: "Tema visual y fácil de enseñar con gameplay.", fiabilidad: "probable" },
-      ] },
-      idea: { ideas: [{ titulo: "5 secretos de Vice City que casi nadie ha visto", angulo: "Ubicaciones exactas, enseñadas en 50 segundos", gancho: "Este sitio de Vice City solo aparece de noche.", pilar: "secretos" }], elegida: 0, razon: "Gancho fuerte y formato lista que retiene." },
-      script: { titulo: "5 secretos de Vice City", gancho: "Este sitio de Vice City solo aparece de noche.", escenas: [
-        { narracion: "Este sitio de Vice City solo aparece de noche. Y no es el único secreto.", texto_pantalla: "SOLO DE NOCHE", visual: "Plano de la ciudad al anochecer", prompt_ia: "Cinematic aerial shot of a neon tropical city at dusk, palm trees, ocean, 4k" },
-        { narracion: "Suscríbete y dime en comentarios cuál no conocías.", texto_pantalla: "¿CUÁL NO SABÍAS?", visual: "Personaje mirando el mar", prompt_ia: "Slow push-in on a pier at night with neon reflections on the water" },
-      ], cta: "Suscríbete para más secretos.", fuentes: "Ejemplo ilustrativo." },
-      seo: { titulo: "GTA 6: 5 secretos de Vice City que casi nadie ha visto", descripcion: "GTA 6 esconde más de lo que parece.\nContenido no oficial hecho por fans. GTA VI es una marca de Rockstar Games.", etiquetas: ["gta 6", "gta vi", "vice city", "secretos gta 6"], hashtags: ["#GTA6", "#Shorts"], miniatura: { texto: "Solo de noche", prompt_imagen: "Neon tropical skyline at night", color: "#FFE14D" } },
-      compliance: { aprobado: true, declarar_ia: true, avisos: [{ nivel: "mejora", tema: "Veracidad", detalle: "Confirma cada ubicación jugando antes de publicar.", arreglo: "Graba tú cada secreto." }] },
+        { tema: "Coches más rápidos y dónde encontrarlos", por_que: "Tema visual y fácil de enseñar con gameplay.", fiabilidad: "probable" }] }),
+      idea: norm.idea({ ideas: [{ titulo: "5 secretos de Vice City que casi nadie ha visto", angulo: "Ubicaciones exactas en 50 segundos", gancho: "Este sitio de Vice City solo aparece de noche.", pilar: "secretos" }], elegida: 0, razon: "Gancho fuerte y formato lista que retiene." }),
+      script: norm.script({ titulo: "5 secretos de Vice City", gancho: "Este sitio de Vice City solo aparece de noche.", cta: "Suscríbete para más secretos.", fuentes: "Ejemplo ilustrativo.", escenas: [
+        { narracion: "Este sitio de Vice City solo aparece de noche. Y no es el único secreto.", texto_pantalla: "SOLO DE NOCHE", visual: "La ciudad al anochecer", prompt_ia: "Cinematic aerial shot of a neon tropical city at dusk, palm trees, ocean" },
+        { narracion: "Suscríbete y dime en comentarios cuál no conocías.", texto_pantalla: "¿CUÁL NO SABÍAS?", visual: "Muelle de noche", prompt_ia: "Slow push-in on a pier at night with neon reflections on the water" }] }),
+      seo: norm.seo({ titulo: "GTA 6: 5 secretos de Vice City que casi nadie ha visto", descripcion: "GTA 6 esconde más de lo que parece.\nContenido no oficial hecho por fans. GTA VI es una marca de Rockstar Games.", etiquetas: ["gta 6", "gta vi", "vice city", "secretos gta 6"], hashtags: ["#GTA6", "#Shorts"], miniatura: { texto: "Solo de noche", prompt_imagen: "Neon tropical skyline at night", color: "#FFE14D" } }),
+      compliance: norm.compliance({ aprobado: true, declarar_ia: true, avisos: [{ nivel: "mejora", tema: "Veracidad", detalle: "Confirma cada ubicación jugando antes de publicar.", arreglo: "Graba tú cada secreto." }] }),
     },
   };
 
   run = load() || EXAMPLE;
-  if (!run.example && run.stages.compliance) setStatus(["mateo", "julia", "lola"], "waiting", "Te espero en el chat");
-  renderAgentCard();
-  updateTeamPill();
+  if (run.stopAt === undefined) run.stopAt = null;
+  // un encargo que se quedó a medias (página cerrada mientras trabajaba) se puede continuar
+  if (!run.example && !run.stopAt) {
+    const missing = PASOS.findIndex(p => !run.stages[p.key]);
+    if (missing >= 0) { run.stopAt = PASOS[missing].key; run.stopReason = "Este encargo se quedó a medias."; }
+  }
+  syncStatus();
   renderResults();
 
-  // ---------------------------------------------------------------- conectar con Claude
   (async () => {
     try { sample = window.claude ? await window.claude.use("sample") : null; } catch { sample = null; }
-    goBtn.disabled = !sample;
-    goBtn.textContent = sample ? "Encargar vídeo" : "No disponible aquí";
-    if (!sample) {
-      capNote.textContent = "Abre esta página dentro de Claude (claude.ai o la app) para que el equipo pueda trabajar.";
-      capNote.className = "note warn";
-    }
+    setBusy(false);
+    if (!sample) { capNote.textContent = "Abre esta página dentro de Claude (claude.ai o la app) para que el equipo pueda trabajar."; capNote.className = "note warn"; }
+    renderResults();
   })();
 })();
 </script>
