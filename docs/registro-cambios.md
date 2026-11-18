@@ -26,3 +26,11 @@
 - **Banco de ideas** `docs/banco-ideas.md` con 4 ideas verificadas en la web oficial: Vercetti Estate (Vintage Vice City Pack), Cal Hampton y los pájaros, Brian Heder el contrabandista, y los jefes de banda.
 - **Investigación automática cada 2 días** (Jarvis + Nobita): tarea programada "Investigación GTA 6 cada 2 días", a las 10:23 hora de Madrid, que añade ideas verificadas al banco y hace push. Procedimiento en `docs/departamentos.md`.
 - Wikimedia Commons limita mucho las descargas (error 429): solo se pudo bajar 1 de 5 fotos reales. Para fotos reales, mejor pocas y elegidas.
+
+## 18/11/2026 (noche) — Producir un Short con solo escribir el título
+- La **oficina virtual** pasa a ser la "HQ" de VICECITY DAYS TV, con la paleta de marca. Panel **Nuevo Short**: título, ideas del banco con un toque y botón **Producir Short**; seguimiento de los 8 pasos con el equipo animado e historial de encargos. Se retira el sistema antiguo en español (vídeos largos).
+- Al pulsar Producir, la oficina lanza la tarea "Producir Short" (conector Claude Code), que manda el título a la sesión de producción de Claude Code (la que tiene Higgsfield, la plantilla y el entorno con acceso a Rockstar). Esa sesión sigue `docs/produccion-short.md`: verifica datos, escribe el guion, pone la voz de Dylan, monta, revisa fotogramas, entrega el MP4 al chat y al móvil con título, descripción y comentario fijado, y lo guarda en GitHub.
+- Limitación descubierta: las tareas que abren una sesión NUEVA no pueden llevar conectores en esta organización (no tendrían Higgsfield). Por eso la producción va siempre a la misma sesión.
+- **Coste real de la voz:** unos 1,6 créditos de Higgsfield por Short. La prueba ilimitada NO cubre `text2speech_v2`. Saldo tras los Shorts 03 y 04: 6,85 créditos (unos 4 Shorts más).
+- Entorno de nube: script de preparación que instala Pillow, numpy y faster-whisper al arrancar.
+- Oficina: 32 pruebas automáticas (`node oficina/test_oficina.js`).

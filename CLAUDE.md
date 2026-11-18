@@ -30,5 +30,11 @@ Fragmentos cortos, voz y datos propios, sin logo oficial, con el aviso "Unoffici
 - Registro de cambios para la otra sesión: `docs/registro-cambios.md`. Añade una entrada cada vez que termines algo.
 - Cada Short vive en `shorts/<nº>-<nombre>/`: `investigacion.md` (datos y fuentes), `guion.md`, `publicacion.md` y el montaje.
 
+## Producir un Short desde un título
+- Antonio escribe el título en la oficina virtual (https://claude.ai/artifact/WdZBBpgqbXUEDL1Wk3kFRC) y pulsa **Producir Short**.
+- La oficina lanza la tarea "Producir Short" (`trig_01474VhdtHa3mfx4H2mcy5p8`), que entrega en la sesión de producción (la que tiene Higgsfield conectado) un mensaje con `TÍTULO: …`.
+- Esa sesión sigue `docs/produccion-short.md` paso a paso y escribe `[PASO n/8]` al empezar cada paso; la oficina lee esos marcadores para animar al equipo.
+- Herramientas: `shorts/herramientas.py` (descargar capturas del catálogo, hoja de contacto, fotogramas, textos de Rockstar), `shorts/tiempos.py` y `shorts/montaje.py`.
+
 ## Partes antiguas del repositorio (antes del documento maestro)
-`gta6_studio/` (pipeline en español con ElevenLabs y vídeos largos) y `oficina/` (oficina virtual en español) son de una fase anterior y **no siguen** el documento maestro: español en vez de inglés, ElevenLabs, prioridad al vídeo largo. No los uses para VICECITY DAYS TV hasta que Antonio decida si se adaptan o se retiran.
+`gta6_studio/` (pipeline en español con ElevenLabs y vídeos largos) es de una fase anterior y **no sigue** el documento maestro: español en vez de inglés, ElevenLabs, prioridad al vídeo largo. No los uses para VICECITY DAYS TV hasta que Antonio decida si se adaptan o se retiran.

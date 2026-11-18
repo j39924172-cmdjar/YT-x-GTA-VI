@@ -4,18 +4,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
 <style>
-  /* Layout: oficina isométrica 4x3 → organigrama (12 puestos, mismo orden) → encargo + ficha + observatorio | resultados por puesto */
+  /* Layout: oficina isométrica 4x3 → panel 'Nuevo Short' + ficha | producción en curso, historial y flujo. Paleta de marca VICECITY DAYS TV. */
   :root {
     color-scheme: dark;
-    --night: #120B24;
-    --panel: #1B1233;
-    --panel-2: #241843;
-    --line: #382A63;
+    --night: #080810;
+    --panel: #120F22;
+    --panel-2: #1C1733;
+    --line: #2E2552;
     --ink: #F3EEFF;
     --muted: #A99DCB;
-    --pink: #FF4FA3;
+    --pink: #FF2E8C;
     --cyan: #33E1D6;
-    --sun: #FFB547;
+    --sun: #FFCE28;
     --red: #FF6B6B;
     --font-display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
     --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -203,77 +203,100 @@
   ol.steps { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
   .actions { display: flex; flex-wrap: wrap; gap: 8px; }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+  .brand h1 span { color: var(--pink); }
+  .pasos, .flujo { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; counter-reset: f; }
+  .pasos li { display: flex; gap: 10px; align-items: center; padding: 8px 10px; border-radius: 10px; background: var(--panel-2); font-size: 14px; opacity: .6; }
+  .pasos li .num { width: 26px; height: 26px; flex: none; display: grid; place-items: center; border-radius: 8px; border: 1px solid var(--line); font-family: var(--font-mono); font-size: 12px; color: var(--pink); }
+  .pasos li.hecho { opacity: 1; }
+  .pasos li.hecho .num { background: var(--cyan); color: #04211F; border-color: var(--cyan); }
+  .pasos li.ahora { opacity: 1; outline: 1px solid var(--pink); }
+  .pasos li.ahora .num { background: var(--pink); color: #fff; border-color: var(--pink); }
+  .flujo li { counter-increment: f; font-size: 14px; padding-left: 30px; position: relative; }
+  .flujo li::before { content: counter(f); position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 6px; background: var(--panel-2); color: var(--pink); font-family: var(--font-mono); font-size: 12px; display: grid; place-items: center; }
+  .chip.idea { cursor: pointer; background: var(--panel-2); color: var(--ink); white-space: normal; text-align: left; font-family: var(--font-body); font-size: 12.5px; padding: 6px 10px; border-radius: 10px; }
+  .chip.idea:hover { border-color: var(--pink); }
+  .chip.ok { color: var(--cyan); border-color: #1F5F5B; }
+  a.ghost { text-decoration: none; display: inline-block; }
+  [hidden] { display: none !important; }
+  #prodTitulo { font-family: var(--font-display); font-weight: 800; font-size: 18px; color: var(--ink); }
 </style>
 
 <div class="wrap">
   <header>
     <div class="brand">
-      <h1>Vice Studio <span>HQ</span></h1>
-      <p>12 puestos, un objetivo: que cada vídeo dé ganas de verlo y se vea hasta el final.</p>
+      <h1>VICECITY DAYS <span>TV</span> · HQ</h1>
+      <p>Escribe un título, pulsa Producir y el equipo hace el Short: datos verificados, voz, montaje y entrega.</p>
     </div>
     <div class="team-pill"><span class="dot" id="teamDot"></span><span id="teamText">Equipo en la oficina</span></div>
   </header>
 
   <section class="office" aria-label="Oficina virtual del equipo">
-    <canvas id="office" role="img" aria-label="Oficina isométrica con 12 departamentos numerados y una persona en cada uno"></canvas>
+    <canvas id="office" role="img" aria-label="Oficina isométrica con 12 departamentos y una persona en cada uno"></canvas>
     <div class="office-hint">Toca a una persona</div>
     <div class="legend">
       <span><i class="dot"></i>Libre</span>
       <span><i class="dot working"></i>Trabajando</span>
       <span><i class="dot done"></i>Hecho</span>
-      <span><i class="dot waiting"></i>Te espera en el chat</span>
       <span><i class="dot error"></i>Hay que revisar</span>
     </div>
   </section>
 
-  <section class="kv" aria-labelledby="lawsTitle">
-    <div class="section-head"><h2 id="lawsTitle">Las 5 reglas del equipo</h2></div>
-    <ol class="laws">
-      <li>Lo que promete el título y la miniatura, se cumple</li>
-      <li>Gancho en los 3 primeros segundos</li>
-      <li>Nada inventado: los rumores, como rumores</li>
-      <li>Mismo día y hora cada semana</li>
-      <li>Los datos mandan</li>
-    </ol>
-  </section>
-
-  <section class="kv" aria-labelledby="orgTitle">
-    <div class="section-head">
-      <h2 id="orgTitle">Organigrama</h2>
-      <p>El título y la miniatura se deciden antes del guion: el guion se escribe para cumplir esa promesa.</p>
-    </div>
-    <div class="org" id="org"></div>
-  </section>
-
   <section class="grid">
     <div class="side">
-      <aside class="panel">
-        <h2>Encargar a la Sala de Mando</h2>
-        <div class="seg" role="group" aria-label="Tipo de encargo">
-          <button type="button" id="modeWeek" aria-pressed="true">Vídeo de la semana<small>1 largo de 8-12 min + 3-5 Shorts</small></button>
-          <button type="button" id="modeExpress" aria-pressed="false">Short exprés<small>1 Short rápido de una noticia</small></button>
+      <aside class="panel" id="nuevo">
+        <h2>Nuevo Short</h2>
+        <label class="field" for="titulo">Título del vídeo (en inglés o en español)
+          <textarea id="titulo" rows="3" maxlength="160" placeholder="Ej.: GTA 6 Just Name-Dropped Tommy Vercetti's Estate"></textarea>
+        </label>
+        <div class="field">
+          <span class="k">Ideas del banco (verificadas)</span>
+          <div class="chips" id="ideas"></div>
         </div>
-        <label class="field" for="topic">Tema (opcional)
-          <input type="text" id="topic" placeholder="Ej.: todos los secretos de Vice City" autocomplete="off" maxlength="200">
-        </label>
-        <button class="go" id="goBtn" type="button" disabled>Conectando con el equipo…</button>
-        <button class="ghost" id="stopBtn" type="button" hidden>Parar</button>
-        <p class="note" id="capNote">El equipo trabaja con tu cuenta de Claude. La primera vez te pedirá permiso.</p>
-        <div class="card" id="agentCard"></div>
+        <button class="go" id="goBtn" type="button">Producir Short</button>
+        <p class="note" id="capNote">Cada Short gasta unos 1,6 créditos de Higgsfield (la voz de Dylan). Si no hay saldo, el equipo para y te avisa.</p>
+        <div id="fallback" class="kv" hidden>
+          <p class="note warn">Desde aquí no se puede lanzar el encargo. Copia esta frase y pégala en el chat con Claude:</p>
+          <div class="copyrow"><code id="fallbackTxt"></code><span id="fallbackBtn"></span></div>
+        </div>
       </aside>
-
-      <aside class="panel" id="obs">
-        <h2>El Observatorio</h2>
-        <p class="note">Cuando publiques, copia aquí los datos de YouTube Studio de cada vídeo (título, visualizaciones, porcentaje de clics, duración media vista, suscriptores y lo que dicen los comentarios). Taison los analiza y todo el equipo los tiene en cuenta en el siguiente encargo.</p>
-        <label class="field" for="obsData">Datos de tus vídeos
-          <textarea id="obsData" placeholder="Ej.: 5 secretos de Vice City — 12.400 visualizaciones — clics 7,8 % — vista media 3:10 de 9:00 — +210 suscriptores — piden más coches ocultos"></textarea>
-        </label>
-        <button class="ghost strong" id="obsBtn" type="button" disabled>Analizar con Taison</button>
-        <div id="obsOut" class="kv"></div>
+      <aside class="panel">
+        <h2>Ficha del equipo</h2>
+        <div class="card" id="agentCard"></div>
       </aside>
     </div>
 
-    <main class="results" id="results" aria-live="polite"></main>
+    <main class="results">
+      <section class="stage" id="produccion">
+        <div class="stage-top"><h3>Producción en curso</h3><span class="chip" id="prodChip">sin encargos</span></div>
+        <p class="note" id="prodTitulo">Cuando pulses “Producir Short”, aquí verás en qué paso va el equipo.</p>
+        <ol class="pasos" id="pasos"></ol>
+        <div class="actions">
+          <a class="ghost" id="verSesion" href="https://claude.ai/code/session_01Ezj41m7rURTutYvC7CDES7" target="_blank" rel="noopener">Abrir la producción en Claude</a>
+          <button class="ghost" id="refrescar" type="button" hidden>Actualizar</button>
+        </div>
+        <p class="note">El vídeo llega al chat con Claude y como aviso al móvil, con el título, la descripción y el comentario fijado listos para copiar.</p>
+      </section>
+
+      <section class="stage">
+        <div class="stage-top"><h3>Tus encargos</h3></div>
+        <ul class="list" id="historial"></ul>
+      </section>
+
+      <section class="stage">
+        <div class="stage-top"><h3>Cómo trabaja el equipo</h3></div>
+        <ol class="flujo">
+          <li><b>Investigación y verificación</b> · Jarvis y Nobita comprueban 3 datos en la web de Rockstar o en dos medios fiables. Si el título promete algo falso, lo corrigen.</li>
+          <li><b>Guion y gancho</b> · El Chapo, Torrente y Pablito: inglés, 25-35 s, gancho nuevo → 3 datos → “Follow for more GTA 6 secrets”.</li>
+          <li><b>Visuales</b> · Nil elige capturas oficiales en 4K que demuestran cada dato y dónde apuntan las flechas rojas.</li>
+          <li><b>Voz</b> · Cristiano: la voz de Dylan en Higgsfield.</li>
+          <li><b>Montaje</b> · Georgina: 1080×1920, Ken Burns, FACT n/3, subtítulos palabra a palabra, ritmo propio y −14 LUFS.</li>
+          <li><b>Revisión de calidad</b> · Almudena revisa fotograma a fotograma y manda corregir lo que falle.</li>
+          <li><b>Publicación y SEO</b> · Guerrero: título, descripción con fuentes y aviso, y comentario fijado.</li>
+          <li><b>Entrega</b> · el vídeo te llega listo para subir y queda guardado en GitHub.</li>
+        </ol>
+      </section>
+    </main>
   </section>
 </div>
 
@@ -875,612 +898,202 @@
     return b;
   }
 
-  // ================================================================ 4. CÓMO TRABAJA CADA PUESTO
-  const CANAL = "Canal de YouTube en español sobre GTA 6 (Grand Theft Auto VI, juego de Rockstar Games). Audiencia: jugadores hispanohablantes de 16 a 34 años. Tono: enérgico y cercano, con datos. Estrategia: cada semana 1 vídeo largo (8-12 min) del que salen 3-5 Shorts, más Shorts exprés de noticias.";
-  const REGLAS = "Reglas del equipo: 1) lo que prometen el título y la miniatura se cumple en el vídeo; 2) gancho en los 3 primeros segundos; 3) nada inventado, los rumores se dicen como rumores; 4) el canal no es oficial y GTA VI es de Rockstar Games: no reproducir tráileres, música ni diálogos oficiales; 5) contenido apto para anuncios de YouTube.";
-  const hoy = () => new Date().toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
-  const SPEC = {
-    week: { label: "vídeo largo horizontal 16:9 de 8 a 12 minutos (8 como mínimo, para poder poner anuncios a mitad de vídeo)", scenes: 10, minScenes: 7, words: [1200, 1900] },
-    express: { label: "YouTube Short vertical 9:16 de unos 45 segundos sobre una noticia o novedad", scenes: 6, minScenes: 4, words: [70, 160] },
+  // ================================================================ 4. EL EQUIPO EN EL SISTEMA DE SHORTS (documento maestro)
+  const ROL_SHORTS = {
+    jarvis: ["Investigación", "Encontrar los datos con más tirón y su fuente."],
+    nobita: ["Verificación y derechos", "Comprobar cada dato (Rockstar o dos medios fiables), el aviso no oficial y que no haya logo oficial."],
+    chapo: ["Guionista", "Guion en inglés de 25-35 s: gancho → 3 datos → “Follow for more GTA 6 secrets”."],
+    torrente: ["Ganchos y títulos", "Ganchos nuevos en el primer segundo, sin repetir los ya usados."],
+    pablito: ["Retención", "Ritmo: que nadie deslice. Algo nuevo cada 2 segundos."],
+    victillor: ["Formato Short", "Una sola idea, gancho en 1 s, subtítulos de 1-2 palabras."],
+    nil: ["Visuales", "Elegir las capturas oficiales que DEMUESTRAN cada dato y dónde apuntan las flechas rojas."],
+    cristiano: ["Voz (Dylan)", "Poner la voz de Dylan en Higgsfield al guion."],
+    georgina: ["Montaje", "Montar con la plantilla: Ken Burns, FACT n/3, subtítulos, ritmo propio y −14 LUFS."],
+    almudena: ["Dirección y calidad", "Revisar cada fotograma, dar la luz verde y entregar."],
+    guerrero: ["Publicación y SEO", "Título, descripción con fuentes y aviso no oficial, hashtags y comentario fijado."],
+    taison: ["Analítica", "Leer las estadísticas del canal para mejorar los próximos Shorts."],
   };
-  let insights = null;   // conclusiones de Taison
-  const insightTxt = () => insights ? `\nConclusiones de Taison sobre el canal (tenlas en cuenta):\n${JSON.stringify(insights)}` : "";
-  const finalScript = run => run.stages.retention?.guion_final || run.stages.script;
-  const sceneTimes = sc => { let t = 0; return sc.escenas.map(e => { const s = t; t += words(e.narracion) / 2.5; return s; }); };
-  const mmss = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
-
-  const normScript = d => ({
-    titulo: S(d.titulo), gancho: S(d.gancho), cta: S(d.cta), fuentes: S(d.fuentes),
-    escenas: asArr(d.escenas).map(asObj)
-      .map(e => ({ narracion: S(e.narracion), texto_pantalla: S(e.texto_pantalla), visual: S(e.visual), prompt_ia: S(e.prompt_ia) }))
-      .filter(e => e.narracion),
-  });
-  const normTitles = d => ({
-    promesa: S(d.promesa),
-    titulos: asArr(d.titulos).map(t => typeof t === "string" ? { titulo: t } : asObj(t)).map(t => ({ titulo: S(t.titulo), por_que: S(t.por_que) })).filter(t => t.titulo),
-  });
+  AGENTS.forEach(a => { const r = ROL_SHORTS[a.id]; if (r) { a.role = r[0]; a.mision = r[1]; } });
 
   const PASOS = [
-    { key: "trends", who: "jarvis", title: "Temas con tirón", bubble: "Rastreando temas", modes: ["week", "express"],
-      prompt: run => `${CANAL}\n${REGLAS}${insightTxt()}\n\nEres Jarvis, cazatendencias del canal (El Radar). Hoy es ${hoy()}. No tienes acceso a internet: usa lo que sabes de GTA 6 y los temas que siempre funcionan en gaming (secretos, guías, dinero, coches, comparativas, teorías, récords, curiosidades). No inventes noticias concretas.${run.topic ? `\nEl productor quiere hablar de: "${run.topic}". Incluye ese tema y variantes de él.` : ""}${run.mode === "express" ? "\nEs para un Short exprés: prioriza novedades y curiosidades rápidas." : ""}\n\nResponde solo con JSON:\n{"resumen": "1 frase", "temas": [{"tema": "...", "por_que": "1 frase", "fiabilidad": "evergreen" | "probable" | "verificar", "potencial": 1-10}]}\nExactamente 10 temas, ordenados de más a menos potencial. "evergreen" = funciona siempre, "probable" = encaja con la actualidad, "verificar" = depende de noticias que hay que comprobar.`,
-      norm: d => ({
-        resumen: S(d.resumen),
-        temas: asArr(d.temas ?? d.tendencias).map(t => typeof t === "string" ? { tema: t } : asObj(t))
-          .map(t => ({ tema: S(t.tema), por_que: S(t.por_que), fiabilidad: S(t.fiabilidad).toLowerCase(), potencial: num(t.potencial) })).filter(t => t.tema),
-      }),
-      check: d => [
-        qc(d.temas.length >= 5, `${d.temas.length} temas`, true),
-        qc(d.temas.length >= 8, "8 temas o más"),
-        qc(d.temas.every(t => ["evergreen", "probable", "verificar"].includes(t.fiabilidad)), "Fiabilidad marcada"),
-      ] },
-    { key: "plan", who: "almudena", title: "Plan de la semana", bubble: "Decidiendo el plan", modes: ["week", "express"],
-      prompt: run => `${CANAL}\n${REGLAS}${insightTxt()}\n\nEres Almudena, productora ejecutiva (La Sala de Mando). Tienes la última palabra. Formato del encargo: ${SPEC[run.mode].label}.${run.topic ? ` El productor ha pedido: "${run.topic}".` : ""}\nTemas de Jarvis:\n${JSON.stringify(run.stages.trends)}\n\nElige UN tema y define el vídeo. La "promesa" es lo que el espectador va a conseguir o descubrir, en una frase; el título y la miniatura saldrán de ella. ${run.mode === "week" ? "Planifica también 3 a 5 Shorts que saldrán de este vídeo." : "Es un Short exprés: shorts_previstos puede ir vacío."} Recomienda un día y hora fijos de publicación para un público de España y Latinoamérica.\n\nResponde solo con JSON:\n{"tema": "...", "angulo": "qué lo hace único frente a otros canales", "promesa": "...", "publico": "a quién va dirigido", "shorts_previstos": ["..."], "dia_hora": "...", "razon": "por qué este tema ahora"}`,
-      norm: d => ({ tema: S(d.tema), angulo: S(d.angulo), promesa: S(d.promesa), publico: S(d.publico), shorts_previstos: asArr(d.shorts_previstos).map(S).filter(Boolean), dia_hora: S(d.dia_hora), razon: S(d.razon) }),
-      check: (d, run) => [
-        qc(d.tema && d.promesa, "Tema y promesa", true),
-        ...(run.mode === "week" ? [qc(d.shorts_previstos.length >= 3, `${d.shorts_previstos.length} Shorts previstos`)] : []),
-        qc(d.dia_hora, "Día y hora"),
-      ] },
-    { key: "titles", tier: "complex", who: "torrente", title: "Títulos", bubble: "Afinando títulos", modes: ["week", "express"],
-      prompt: run => `${CANAL}\n${REGLAS}${insightTxt()}\n\nEres Torrente, especialista en títulos (El Escaparate). Plan de Almudena:\n${JSON.stringify(run.stages.plan)}\n\nEscribe 3 títulos MUY distintos entre sí (por ejemplo: uno de curiosidad, uno de lista o número, uno de reto o resultado) para probarlos en YouTube. Máximo 70 caracteres, palabra clave ("GTA 6") al principio, sin mayúsculas exageradas ni mentiras. Ordénalos del que crees mejor al peor.\n\nResponde solo con JSON:\n{"promesa": "la promesa en una frase", "titulos": [{"titulo": "...", "por_que": "1 frase"}]}`,
-      norm: normTitles,
-      check: d => [
-        qc(d.titulos.length >= 1, `${d.titulos.length} títulos`, true),
-        qc(d.titulos.length >= 3, "3 títulos para probar"),
-        qc(d.titulos.every(t => t.titulo.length <= 70), "70 caracteres o menos"),
-        qc(d.titulos.every(t => /gta\s*(6|vi)/i.test(t.titulo)), "Palabra clave GTA 6"),
-      ] },
-    { key: "thumbs", who: "nil", title: "Miniaturas", bubble: "Diseñando miniaturas", modes: ["week"],
-      prompt: run => `${CANAL}\n${REGLAS}\n\nEres Nil, diseñador de miniaturas (Estudio Neón). Plan:\n${JSON.stringify(run.stages.plan)}\nTítulos:\n${JSON.stringify(run.stages.titles)}\n\nDiseña 3 miniaturas MUY distintas para la prueba A/B de YouTube. Cada una: "texto" de 2 a 4 palabras que NO repita el título sino que lo complemente; "composicion" (qué se ve, dónde va el texto, una sola idea clara que se entienda en un móvil); "prompt_imagen" en inglés para generar el fondo con IA (original, sin personajes, logotipos ni marcas de Rockstar); "color" del texto en hexadecimal.\n\nResponde solo con JSON:\n{"miniaturas": [{"texto": "...", "composicion": "...", "prompt_imagen": "...", "color": "#RRGGBB"}]}`,
-      norm: d => ({ miniaturas: asArr(d.miniaturas).map(asObj).map(m => ({ texto: S(m.texto), composicion: S(m.composicion), prompt_imagen: S(m.prompt_imagen), color: S(m.color) })).filter(m => m.texto) }),
-      check: (d, run) => [
-        qc(d.miniaturas.length >= 1, `${d.miniaturas.length} miniaturas`, true),
-        qc(d.miniaturas.length >= 3, "3 para probar"),
-        qc(d.miniaturas.every(m => words(m.texto) <= 4), "4 palabras o menos"),
-        qc(d.miniaturas.every(m => !run.stages.titles?.titulos?.some(t => t.titulo.toLowerCase().includes(m.texto.toLowerCase()))), "No repite el título"),
-      ] },
-    { key: "script", tier: "complex", who: "chapo", title: "Guion", bubble: "Escribiendo el guion", modes: ["week", "express"],
-      prompt: run => {
-        const sp = SPEC[run.mode];
-        return `${CANAL}\n${REGLAS}\n\nEres El Chapo, guionista (La Fábrica de Guiones). Plan:\n${JSON.stringify(run.stages.plan)}\nTítulos (el primero es el principal):\n${JSON.stringify(run.stages.titles)}\n${run.stages.thumbs ? `Miniaturas:\n${JSON.stringify(run.stages.thumbs)}\n` : ""}\nEscribe el guion de un ${sp.label} que cumpla EXACTAMENTE la promesa del título y la miniatura. Exactamente ${sp.scenes} escenas y entre ${sp.words[0]} y ${sp.words[1]} palabras de narración en total. La escena 1 es el gancho: en los 3 primeros segundos confirma la promesa y crea curiosidad. Frases cortas, para decir en voz alta. La última escena pide suscribirse${run.mode === "week" ? " y recomienda otro vídeo del canal" : ""}.\nPara cada escena: "narracion" (texto exacto de la voz), "texto_pantalla" (5 palabras como máximo, en mayúsculas), "visual" (qué gameplay mostrar) y "prompt_ia" (en inglés, para un generador de vídeo IA: escena ORIGINAL con estética de Florida tropical y neón, sin personajes, logotipos ni marcas de Rockstar).\n\nResponde solo con JSON:\n{"titulo": "...", "gancho": "...", "escenas": [{"narracion": "...", "texto_pantalla": "...", "visual": "...", "prompt_ia": "..."}], "cta": "...", "fuentes": "qué es dato comprobado y qué es rumor"}`;
-      },
-      norm: normScript,
-      check: (d, run) => {
-        const sp = SPEC[run.mode];
-        const total = d.escenas.reduce((n, e) => n + words(e.narracion), 0);
-        const last = d.escenas[d.escenas.length - 1];
-        return [
-          qc(d.escenas.length >= sp.minScenes, `${d.escenas.length}/${sp.scenes} escenas`, true),
-          qc(total >= sp.words[0] && total <= sp.words[1], `${total} palabras (≈${mmss(total / 2.5)})`),
-          qc(d.escenas.every(e => e.texto_pantalla && words(e.texto_pantalla) <= 5), "Textos en pantalla cortos"),
-          qc(d.escenas.every(e => e.prompt_ia), "Prompt de IA en cada escena"),
-          qc(/suscr/i.test((last?.narracion || "") + " " + d.cta), "Pide suscribirse"),
-        ];
-      } },
-    { key: "retention", tier: "complex", who: "pablito", title: "Retención", bubble: "Buscando dónde se aburre la gente", modes: ["week", "express"],
-      prompt: run => `${CANAL}\n${REGLAS}\n\nEres Pablito, experto en retención (Laboratorio de Retención). Título principal: "${run.stages.titles?.titulos?.[0]?.titulo || ""}". Promesa: "${run.stages.plan?.promesa || ""}".\nGuion de El Chapo (escenas numeradas desde 1):\n${JSON.stringify(run.stages.script.escenas.map((e, i) => ({ escena: i + 1, narracion: e.narracion })))}\n\nRevisa el guion pensando en dónde se iría la gente. Pon una nota de retención de 1 a 10. Reescribe el gancho si se puede mejorar. Propón como máximo 4 cambios concretos: para cada uno indica el número de escena y el texto NUEVO completo de su narración (misma longitud aproximada); si cambia la idea de la escena, da también su nuevo texto en pantalla. Si mejoras el gancho, aplícalo también como cambio de la escena 1 (es la que se graba).${run.mode === "week" ? ` El guion final no puede bajar de ${SPEC.week.words[0]} palabras (8 minutos): si acortas una escena, compénsalo en otra o reescribe sin recortar.` : ""} Busca: gancho que tarda, partes lentas, falta de sorpresas, la mejor parte gastada demasiado pronto, final flojo.\n\nResponde solo con JSON:\n{"nota": 1-10, "gancho_mejorado": "...", "cambios": [{"escena": 1, "problema": "...", "nuevo_texto": "...", "nuevo_texto_pantalla": "opcional, 5 palabras como máximo"}], "consejo_montaje": "1 frase para la editora"}`,
-      norm: (d, run) => {
-        const base = run.stages.script;
-        const cambios = asArr(d.cambios).map(asObj).map(c => ({ escena: parseInt(c.escena, 10), problema: S(c.problema), nuevo_texto: S(c.nuevo_texto), nuevo_texto_pantalla: S(c.nuevo_texto_pantalla) }))
-          .filter(c => c.escena >= 1 && c.escena <= base.escenas.length && c.nuevo_texto);
-        const escenas = base.escenas.map((e, i) => {
-          const c = cambios.find(c => c.escena === i + 1);
-          return c ? { ...e, narracion: c.nuevo_texto, texto_pantalla: c.nuevo_texto_pantalla || e.texto_pantalla, cambiada: true } : { ...e };
-        });
-        const gancho = S(d.gancho_mejorado) || base.gancho;
-        return { nota: num(d.nota), gancho_mejorado: S(d.gancho_mejorado), cambios, consejo_montaje: S(d.consejo_montaje), guion_final: { ...base, gancho, escenas } };
-      },
-      check: (d, run) => {
-        const total = d.guion_final.escenas.reduce((n, e) => n + words(e.narracion), 0), min = SPEC[run.mode].words[0];
-        return [
-          qc(d.nota !== null && d.nota >= 1 && d.nota <= 10, d.nota !== null ? `Nota ${d.nota}/10` : "Sin nota", true),
-          qc(d.cambios.length > 0 || d.nota >= 9, `${d.cambios.length} mejoras aplicadas`),
-          qc(!d.gancho_mejorado || d.cambios.some(c => c.escena === 1), "Gancho aplicado en la escena 1"),
-          qc(d.guion_final.escenas.every(e => words(e.texto_pantalla) <= 5), "Textos en pantalla cortos"),
-          qc(total >= min, run.mode === "week" ? `Duración final ≈${mmss(total / 2.5)}${total < min ? " (menos de 8 min: sin anuncios a mitad)" : ""}` : `Duración final ≈${mmss(total / 2.5)}`),
-        ];
-      } },
-    { key: "compliance", who: "nobita", title: "Revisión de normas", bubble: "Revisando normas", modes: ["week", "express"],
-      prompt: run => `${REGLAS}\n\nEres Nobita, guardián de normas (El Escudo) de un canal de YouTube sobre GTA 6. Revisa antes de publicar:\n1) Derechos: comentar y analizar gameplay propio está permitido; no subir tráileres ni música oficial completos; no hacerse pasar por Rockstar.\n2) Normas de YouTube: el contenido realista hecho con IA hay que declararlo; nada de títulos o miniaturas engañosos (que prometan algo que el vídeo no da); apto para anuncios.\n3) Veracidad: rumores presentados como hechos.\n\nTítulos:\n${JSON.stringify(run.stages.titles)}\n${run.stages.thumbs ? `Miniaturas:\n${JSON.stringify(run.stages.thumbs)}\n` : ""}Guion final:\n${JSON.stringify(finalScript(run))}\n\nResponde solo con JSON:\n{"aprobado": true, "declarar_ia": true, "avisos": [{"nivel": "bloquea" | "mejora", "tema": "...", "detalle": "...", "arreglo": "..."}]}\n"aprobado" es false solo si hay algún aviso de nivel "bloquea". Máximo 4 avisos.`,
-      norm: d => {
-        const yes = v => v === true || S(v).toLowerCase() === "true";
-        const no = v => v === false || S(v).toLowerCase() === "false";
-        return {
-          aprobado: yes(d.aprobado) ? true : no(d.aprobado) ? false : null,
-          declarar_ia: yes(d.declarar_ia),
-          avisos: asArr(d.avisos).map(i => typeof i === "string" ? { detalle: i } : asObj(i))
-            .map(i => ({ nivel: S(i.nivel).toLowerCase() === "bloquea" ? "bloquea" : "mejora", tema: S(i.tema), detalle: S(i.detalle), arreglo: S(i.arreglo) }))
-            .filter(i => i.detalle || i.tema),
-        };
-      },
-      check: d => [qc(d.aprobado !== null, d.aprobado === null ? "Sin veredicto" : d.aprobado ? "Aprobado" : "Pide cambios", true)],
-      gate: true },
-    { key: "shorts", who: "victillor", title: "Shorts de la semana", bubble: "Cortando Shorts", modes: ["week"],
-      prompt: run => `${CANAL}\n${REGLAS}\n\nEres Victillor, cortador de Shorts (La Fábrica de Shorts). Del vídeo largo aprobado saca entre 3 y 5 Shorts verticales de 30 a 50 segundos. Shorts previstos por Almudena: ${JSON.stringify(run.stages.plan?.shorts_previstos || [])}.\nGuion del vídeo largo:\n${JSON.stringify(finalScript(run))}\n\nCada Short debe entenderse sin ver el vídeo largo, tener su propio gancho en el primer segundo, entre 70 y 130 palabras de narración, y terminar invitando a ver el vídeo completo. No reveles en los Shorts la sorpresa final del vídeo largo.\n\nResponde solo con JSON:\n{"shorts": [{"titulo": "máx 60 caracteres", "gancho": "primera frase", "narracion": "texto completo de la voz", "textos_pantalla": ["..."], "cierre": "frase final que lleva al vídeo largo"}]}`,
-      norm: d => ({ shorts: asArr(d.shorts).map(asObj).map(s => ({ titulo: S(s.titulo), gancho: S(s.gancho), narracion: S(s.narracion), textos_pantalla: asArr(s.textos_pantalla).map(S).filter(Boolean), cierre: S(s.cierre) })).filter(s => s.narracion) }),
-      check: d => [
-        qc(d.shorts.length >= 1, `${d.shorts.length} Shorts`, true),
-        qc(d.shorts.length >= 3, "3 o más"),
-        qc(d.shorts.every(s => words(s.narracion) >= 50 && words(s.narracion) <= 150), "Duración de Short"),
-        qc(d.shorts.every(s => s.gancho), "Gancho propio"),
-        qc(d.shorts.every(s => /v[ií]deo|completo|canal/i.test(s.cierre + " " + s.narracion.slice(-160))), "Llevan al vídeo largo"),
-      ] },
-    { key: "launch", who: "guerrero", title: "Ficha de publicación", bubble: "Preparando el lanzamiento", modes: ["week", "express"],
-      prompt: run => {
-        const sc = finalScript(run);
-        const times = sceneTimes(sc).map((t, i) => `escena ${i + 1} empieza en ${mmss(t)}: ${sc.escenas[i].texto_pantalla}`).join("\n");
-        return `${CANAL}\n${REGLAS}\n\nEres Guerrero, jefe de publicación (Torre de Lanzamiento). Formato: ${SPEC[run.mode].label}. Plan de Almudena:\n${JSON.stringify(run.stages.plan)}\nTítulos:\n${JSON.stringify(run.stages.titles)}\nGuion final:\n${JSON.stringify({ titulo: sc.titulo, gancho: sc.gancho, escenas: sc.escenas.map(e => e.narracion) })}\n${run.mode === "week" ? `Tiempos aproximados de cada escena:\n${times}\n` : ""}\nPrepara la ficha de publicación:\n- "descripcion": 3 a 6 líneas; las 2 primeras con la palabra clave; incluye la frase "Contenido no oficial hecho por fans. GTA VI es una marca de Rockstar Games.";\n- "etiquetas": 15 a 20;\n- "hashtags": 3 a 5${run.mode === "express" ? " (uno de ellos #Shorts)" : ""};\n- "capitulos": ${run.mode === "week" ? "usa los tiempos de arriba; el primero en 0:00; entre 5 y 10" : "lista vacía"};\n- "comentario_fijado": una pregunta que invite a comentar;\n- "dia_hora": el día y la hora de publicación;\n- "pantalla_final": qué vídeo o lista recomendar al final;\n- "lista": nombre de la lista de reproducción.\n\nResponde solo con JSON:\n{"descripcion": "...", "etiquetas": ["..."], "hashtags": ["#..."], "capitulos": [{"tiempo": "0:00", "titulo": "..."}], "comentario_fijado": "...", "dia_hora": "...", "pantalla_final": "...", "lista": "..."}`;
-      },
-      norm: d => ({
-        descripcion: S(d.descripcion),
-        etiquetas: asArr(d.etiquetas).map(S).filter(Boolean),
-        hashtags: asArr(d.hashtags).map(S).filter(Boolean).map(t => t.startsWith("#") ? t : "#" + t),
-        capitulos: asArr(d.capitulos).map(c => typeof c === "string" ? { tiempo: "", titulo: c } : asObj(c)).map(c => ({ tiempo: S(c.tiempo), titulo: S(c.titulo) })).filter(c => c.titulo),
-        comentario_fijado: S(d.comentario_fijado), dia_hora: S(d.dia_hora), pantalla_final: S(d.pantalla_final), lista: S(d.lista),
-      }),
-      check: (d, run) => [
-        qc(d.descripcion, "Descripción", true),
-        qc(/no oficial/i.test(d.descripcion), "Aviso no oficial"),
-        qc(d.etiquetas.length >= 10, `${d.etiquetas.length} etiquetas`),
-        ...(run.mode === "week" ? [qc(d.capitulos.length >= 3 && /^0?0:00$/.test(d.capitulos[0]?.tiempo), "Capítulos desde 0:00")] : [qc(d.hashtags.some(t => /^#shorts$/i.test(t)), "#Shorts")]),
-        qc(d.comentario_fijado.includes("?"), "Comentario fijado con pregunta"),
-      ] },
-    { key: "greenlight", tier: "complex", who: "almudena", title: "Luz verde", bubble: "Revisando todo el paquete", modes: ["week", "express"],
-      prompt: run => {
-        const sc = finalScript(run), week = run.mode === "week";
-        const resumen = { gancho: sc.gancho, escenas: sc.escenas.map(e => ({ pantalla: e.texto_pantalla, inicio: e.narracion.split(/\s+/).slice(0, 30).join(" ") })) };
-        return `${CANAL}\n${REGLAS}${insightTxt()}\n\nEres Almudena, productora ejecutiva (La Sala de Mando). Antes de publicar revisas el paquete completo con el criterio de quien ha llevado canales a decenas de millones de suscriptores. Eres exigente pero justa: no pides rehacer por detalles.\n\nPlan:\n${JSON.stringify(run.stages.plan)}\nTítulos:\n${JSON.stringify(run.stages.titles)}\n${week ? `Miniaturas (A, B, C):\n${JSON.stringify(run.stages.thumbs)}\n` : ""}Guion final (resumen):\n${JSON.stringify(resumen)}\nNota de retención de Pablito: ${run.stages.retention?.nota ?? "?"}/10\n${week ? `Shorts:\n${JSON.stringify(run.stages.shorts.shorts.map(x => ({ titulo: x.titulo, gancho: x.gancho })))}\n` : ""}Ficha de publicación:\n${JSON.stringify({ descripcion: run.stages.launch.descripcion, dia_hora: run.stages.launch.dia_hora, comentario_fijado: run.stages.launch.comentario_fijado })}\n\nPuntúa de 1 a 10: "clic" (¿lo pulsaría alguien que no te conoce?), "retencion" (¿lo vería hasta el final?), ${week ? '"shorts" (¿traerán suscriptores?), ' : ""}"publicacion" (¿está todo listo?). Elige el título final${week ? " y la miniatura final (A, B o C)" : ""} con el que se sube; ${week ? "los demás quedan para la prueba A/B" : "los demás quedan de reserva"}. Da luz verde si todas las notas son 7 o más. Si no, indica en "rehacer_desde" el puesto desde el que hay que rehacer: "titles" (Torrente)${week ? ', "thumbs" (Nil)' : ""}, "script" (El Chapo), "retention" (Pablito)${week ? ', "shorts" (Victillor)' : ""} o "launch" (Guerrero), y explica qué cambiar en "motivo".\n\nResponde solo con JSON:\n{"notas": {"clic": 8, "retencion": 8${week ? ', "shorts": 8' : ""}, "publicacion": 8}, "luz_verde": true, "rehacer_desde": "", "motivo": "...", "titulo_final": "...", ${week ? '"miniatura_final": "A", ' : ""}"consejo": "1 frase para el día de publicación"}`;
-      },
-      norm: (d, run) => {
-        const notas = Object.fromEntries(Object.entries(asObj(d.notas)).map(([k, v]) => [k, num(v)]).filter(([, v]) => v !== null));
-        const yes = v => v === true || S(v).toLowerCase() === "true", no = v => v === false || S(v).toLowerCase() === "false";
-        const allowed = stepsFor(run.mode).map(p => p.key).filter(k => ["titles", "thumbs", "script", "retention", "shorts", "launch"].includes(k));
-        const titulos = run.stages.titles?.titulos?.map(t => t.titulo) || [];
-        const tf = S(d.titulo_final);
-        const letter = S(d.miniatura_final).toUpperCase().slice(0, 1);
-        return {
-          notas, luz_verde: yes(d.luz_verde) ? true : no(d.luz_verde) ? false : null,
-          rehacer_desde: allowed.includes(S(d.rehacer_desde)) ? S(d.rehacer_desde) : "",
-          motivo: S(d.motivo), consejo: S(d.consejo),
-          titulo_final: titulos.includes(tf) ? tf : (tf && tf.length <= 100 ? tf : titulos[0] || ""),
-          miniatura_final: ["A", "B", "C"].slice(0, run.stages.thumbs?.miniaturas?.length || 0).includes(letter) ? letter : (run.stages.thumbs ? "A" : ""),
-        };
-      },
-      check: d => {
-        const vals = Object.values(d.notas);
-        return [
-          qc(d.luz_verde !== null, d.luz_verde === null ? "Sin decisión" : d.luz_verde ? "Luz verde" : "Pide rehacer", true),
-          qc(vals.length >= 3, `${vals.length} notas`),
-          qc(d.titulo_final, "Título final elegido"),
-        ];
-      },
-      gate: true },
+    { n: 1, nombre: "Investigación y verificación", who: ["jarvis", "nobita"], bubble: "Verificando datos" },
+    { n: 2, nombre: "Guion y gancho", who: ["chapo", "torrente", "pablito", "victillor"], bubble: "Escribiendo el guion" },
+    { n: 3, nombre: "Visuales", who: ["nil"], bubble: "Eligiendo capturas" },
+    { n: 4, nombre: "Voz de Dylan", who: ["cristiano"], bubble: "Grabando la voz" },
+    { n: 5, nombre: "Montaje", who: ["georgina"], bubble: "Montando" },
+    { n: 6, nombre: "Revisión de calidad", who: ["almudena"], bubble: "Revisando fotogramas" },
+    { n: 7, nombre: "Publicación y SEO", who: ["guerrero"], bubble: "Preparando la ficha" },
+    { n: 8, nombre: "Entrega", who: ["almudena"], bubble: "Entregando" },
   ];
-  function qc(ok, text, crit = false) { return { ok: !!ok, text, crit }; }
-  const stepsFor = mode => PASOS.filter(p => p.modes.includes(mode));
-  const agentForStep = key => agent(PASOS.find(p => p.key === key)?.who);
-  const greenOk = run => !!(run?.stages?.greenlight && (run.stages.greenlight.luz_verde || run.override));
+  const IDEAS = [
+    "GTA 6 Just Name-Dropped Tommy Vercetti's Estate",
+    "The GTA 6 Character Who Thinks Birds Are Fake",
+    "GTA 6's Smuggler Says He Made Leonida Levitate",
+    "Every GTA 6 Gang Leader in 30 Seconds",
+  ];
+  const SERVER = "Claude Code Remote";
+  const TRIGGER_ID = "trig_01474VhdtHa3mfx4H2mcy5p8";
+  const SESSION_ID = "session_01Ezj41m7rURTutYvC7CDES7";
 
-  const FIX_PROMPT = run => `${CANAL}\n${REGLAS}\n\nSois El Chapo (guionista) y Torrente (títulos). Nobita, de El Escudo, ha frenado el vídeo con estos avisos:\n${JSON.stringify(run.stages.compliance.avisos)}\n\nTítulos actuales:\n${JSON.stringify(run.stages.titles)}\n\nGuion actual:\n${JSON.stringify(finalScript(run))}\n\nCorregid TODO lo que piden los avisos de nivel "bloquea" (y los de "mejora" si es fácil) sin cambiar el tema del vídeo. Mantened exactamente ${SPEC[run.mode].scenes} escenas.\n\nResponde solo con JSON:\n{"titulos": {"promesa": "...", "titulos": [{"titulo": "...", "por_que": "..."}]}, "guion": {mismo formato que el guion actual}}`;
-  const OBS_PROMPT = data => `${CANAL}\n\nEres Taison, analista y responsable de comunidad (El Observatorio). Estos son los datos que el productor ha copiado de YouTube Studio:\n"""\n${data}\n"""\n\nAnalízalos como un experto en crecimiento de YouTube: porcentaje de clics (bueno en gaming: más de 6 %), retención (duración media vista frente a la duración del vídeo), suscriptores por cada 1.000 visualizaciones, y lo que piden los comentarios. Si faltan datos, dilo y trabaja con lo que hay. No inventes números.\n\nResponde solo con JSON:\n{"resumen": "2 frases", "repetir": ["..."], "evitar": ["..."], "ideas_de_comentarios": ["..."], "siguiente_paso": "1 frase"}`;
-
-  // ================================================================ 5. ESTADO DEL ENCARGO
-  let run = null, live = null, sample = null, ctl = null, busy = false, mode = "week";
-  const KEY = "vice-studio-hq:v3:last", IKEY = "vice-studio-hq:v3:insights";
-  const save = () => { try { if (run && !run.example) localStorage.setItem(KEY, JSON.stringify(run)); } catch {} };
-  const load = () => { try { const v = JSON.parse(localStorage.getItem(KEY) || "null"); return v && v.stages && SPEC[v.mode] ? v : null; } catch { return null; } };
-  try { insights = JSON.parse(localStorage.getItem(IKEY) || "null"); } catch { insights = null; }
+  // ================================================================ 5. ESTADO (encargos de este dispositivo)
+  const KEY = "vicecity-hq:encargos";
+  let encargos = [];
+  try { encargos = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch { encargos = []; }
+  const guardar = () => { try { localStorage.setItem(KEY, JSON.stringify(encargos.slice(0, 30))); } catch {} };
+  const actual = () => encargos.find(e => e.estado !== "entregado" && e.estado !== "error");
 
   function syncStatus() {
     AGENTS.forEach(a => { status[a.id] = "idle"; bubble[a.id] = ""; });
-    if (run && !run.example) {
-      for (const p of stepsFor(run.mode)) {
-        if (live === p.key) { status[p.who] = "working"; bubble[p.who] = p.bubble; }
-        else if (run.stopAt === p.key) status[p.who] = "error";
-        else if (run.stages[p.key]) status[p.who] = "done";
-      }
-      if (live === "fix") ["chapo", "torrente"].forEach(id => { status[id] = "working"; bubble[id] = "Corrigiendo"; });
-      const c = run.stages.compliance;
-      if (!live && c && !c.aprobado && !run.stopAt) status.nobita = "error";
-      const g = run.stages.greenlight;
-      if (!live && g && !g.luz_verde && !run.override && !run.stopAt) { status.almudena = "error"; }
-      if (!live && !run.stopAt && stepsFor(run.mode).every(p => run.stages[p.key]) && c?.aprobado && greenOk(run)) {
-        ["cristiano", "georgina"].forEach(id => { status[id] = "waiting"; });
-        bubble.cristiano = W < 640 ? "Te espero en el chat" : "Pégame el encargo en el chat";
+    const e = actual();
+    if (e && e.paso > 0) {
+      for (const p of PASOS) {
+        if (p.n < e.paso) p.who.forEach(id => { if (status[id] !== "working") status[id] = "done"; });
+        if (p.n === e.paso) p.who.forEach((id, i) => { status[id] = "working"; bubble[id] = i === 0 ? p.bubble : ""; });  // solo habla el primero
       }
     }
-    if (live === "obs") { status.taison = "working"; bubble.taison = "Leyendo tus datos"; }
-    else if (insights) status.taison = "done";
     refresh();
   }
-  function refresh() { renderAgentCard(); renderOrg(); updateTeamPill(); redraw(); }
+  function refresh() { renderAgentCard(); updateTeamPill(); redraw(); }
 
   function updateTeamPill() {
-    const working = AGENTS.filter(a => status[a.id] === "working");
+    const e = actual();
     const dot = document.getElementById("teamDot"), txt = document.getElementById("teamText");
-    if (working.length) { dot.className = "dot working"; txt.textContent = `${working.map(a => a.name).join(" y ")} trabajando`; }
-    else if (AGENTS.some(a => status[a.id] === "error")) { dot.className = "dot error"; txt.textContent = "Hay un puesto que revisar"; }
-    else if (AGENTS.some(a => status[a.id] === "waiting")) { dot.className = "dot waiting"; txt.textContent = "Todo aprobado · falta voz y montaje"; }
+    if (e && e.paso > 0) { dot.className = "dot working"; txt.textContent = `Paso ${e.paso}/8 · ${PASOS[e.paso - 1].nombre}`; }
+    else if (e) { dot.className = "dot waiting"; txt.textContent = "Encargo recibido · empezando"; }
     else { dot.className = "dot"; txt.textContent = "Equipo en la oficina"; }
   }
 
-  // ================================================================ 6. ORGANIGRAMA Y FICHA
-  function renderOrg() {
-    document.getElementById("org").replaceChildren(...ROOMS.map(r => {
-      const a = AGENTS.find(x => x.room === r.id);
-      return h("button", { class: "post", type: "button", "aria-current": String(a.id === selected),
-          onclick: () => { selected = a.id; refresh(); document.getElementById("agentCard").scrollIntoView({ behavior: "smooth", block: "nearest" }); } },
-        h("div", { class: "top" }, h("span", { class: "num" }, r.n), h("span", { class: "room" }, r.name)),
-        h("div", { class: "person" }, h("i", { class: `dot ${status[a.id]}` }), h("b", {}, a.name), h("small", {}, a.role)),
-        h("div", { class: "out" }, a.entrega),
-        h("div", { class: "mode" }, `${MODE_TXT[r.mode]} · pasa a ${a.pasaA.split(" (")[0]}`));
-    }));
-  }
   function renderAgentCard() {
     const a = agent(selected), r = roomById[a.room];
     document.getElementById("agentCard").replaceChildren(
       h("div", { class: "who" },
         h("span", { class: "avatar", style: `background:${a.shirt}` }),
-        h("div", {}, h("strong", {}, a.name), h("div", { class: "role" }, `${a.role} · ${r.n}. ${r.name}`))),
-      h("div", { class: "chips" },
-        h("span", { class: "chip" }, h("i", { class: `dot ${status[a.id]}` }), STATUS_TXT[status[a.id]]),
-        h("span", { class: "chip" }, `Usa ${a.tool}`),
-        h("span", { class: "chip" }, MODE_TXT[r.mode])),
-      h("dl", { class: "facts" },
-        h("dt", {}, "Misión"), h("dd", {}, a.mision),
-        h("dt", {}, "Recibe"), h("dd", {}, a.recibe),
-        h("dt", {}, "Entrega"), h("dd", {}, a.entrega),
-        h("dt", {}, "Se lo pasa a"), h("dd", {}, a.pasaA),
-        h("dt", {}, "Comprueba"), h("dd", {}, h("ul", {}, a.comprueba.map(c => h("li", {}, c))))),
-      h("details", { class: "know", open: true },
+        h("div", {}, h("strong", {}, a.name), h("div", { class: "role" }, `${a.role} · ${r.name}`))),
+      h("div", { class: "chips" }, h("span", { class: "chip" }, h("i", { class: `dot ${status[a.id]}` }), STATUS_TXT[status[a.id]])),
+      h("p", {}, a.mision),
+      a.exp ? h("details", { class: "know" },
         h("summary", {}, "Experiencia"),
         h("p", { class: "note" }, a.exp),
-        h("div", { class: "k" }, "Lo que sabe y aplica"),
-        h("ul", {}, a.sabe.map(x => h("li", {}, x))),
+        h("ul", {}, (a.sabe || []).map(x => h("li", {}, x))),
         h("div", { class: "k" }, "Errores que nunca comete"),
-        h("ul", { class: "avoid" }, a.evita.map(x => h("li", {}, x)))));
+        h("ul", { class: "avoid" }, (a.evita || []).map(x => h("li", {}, x)))) : null);
   }
 
-  // ================================================================ 7. RESULTADOS DE CADA PUESTO
-  const R = {
-    trends: d => h("div", { class: "kv" },
-      d.resumen ? h("p", { class: "note" }, d.resumen) : null,
-      h("ul", { class: "list" }, d.temas.map(t => h("li", {},
-        h("div", { class: "copyrow" }, h("span", { class: "t" }, t.tema),
-          h("span", { class: "chips" }, t.potencial ? h("span", { class: "chip" }, `${t.potencial}/10`) : null, h("span", { class: `chip rel-${t.fiabilidad}` }, t.fiabilidad || "sin marcar"))),
-        t.por_que ? h("span", { class: "d" }, t.por_que) : null)))),
-    plan: d => h("div", { class: "kv" },
-      h("div", {}, h("div", { class: "k" }, "Vídeo elegido"), h("div", { class: "v" }, d.tema)),
-      h("div", {}, h("div", { class: "k" }, "Promesa"), h("div", { class: "v" }, d.promesa)),
-      d.angulo ? h("div", {}, h("div", { class: "k" }, "Ángulo"), h("div", { class: "v" }, d.angulo)) : null,
-      d.shorts_previstos.length ? h("div", {}, h("div", { class: "k" }, "Shorts previstos"), h("ul", { class: "list" }, d.shorts_previstos.map(s => h("li", {}, s)))) : null,
-      d.dia_hora ? h("div", {}, h("div", { class: "k" }, "Publicar"), h("div", { class: "v" }, d.dia_hora)) : null,
-      d.razon ? h("p", { class: "note" }, "Por qué: " + d.razon) : null),
-    titles: d => h("div", { class: "kv" },
-      d.promesa ? h("p", { class: "note" }, "Promesa: " + d.promesa) : null,
-      h("ul", { class: "list" }, d.titulos.map((t, i) => h("li", { class: i === 0 ? "chosen" : "" },
-        h("div", { class: "copyrow" }, h("div", {}, h("span", { class: "t" }, t.titulo), h("div", { class: "d" }, `${t.titulo.length}/70 · ${i === 0 ? "principal" : "para probar"}${t.por_que ? " · " + t.por_que : ""}`)), copyBtn(() => t.titulo)))))),
-    thumbs: d => h("div", { class: "thumbs" }, d.miniaturas.map((m, i) => h("div", { class: "thumb" },
-      h("div", { class: "thumb-mock", style: `color:${isHex(m.color) ? m.color : "#FFE14D"}` }, m.texto),
-      h("span", { class: "chip" }, `Opción ${String.fromCharCode(65 + i)}`),
-      m.composicion ? h("p", { class: "note" }, m.composicion) : null,
-      m.prompt_imagen ? h("code", {}, m.prompt_imagen) : null))),
-    script: d => scriptView(d, false),
-    retention: d => h("div", { class: "kv" },
-      h("div", { class: "score" }, d.nota ?? "—", h("small", {}, " / 10 de retención")),
-      d.gancho_mejorado ? h("div", {}, h("div", { class: "k" }, "Gancho mejorado"), h("div", { class: "v" }, d.gancho_mejorado)) : null,
-      d.cambios.map(c => h("div", { class: "issue good" }, h("b", {}, `Escena ${c.escena}: `), c.problema,
-        c.nuevo_texto_pantalla ? h("div", { class: "note" }, "Nuevo texto en pantalla: " + c.nuevo_texto_pantalla) : null,
-        h("div", { class: "note" }, "Nueva narración: " + c.nuevo_texto))),
-      d.consejo_montaje ? h("p", { class: "note" }, "Para Georgina: " + d.consejo_montaje) : null,
-      h("details", {}, h("summary", { class: "note" }, "Ver guion final con las mejoras"), scriptView(d.guion_final, true))),
-    compliance: d => h("div", { class: "kv" },
-      h("div", { class: "verdict " + (d.aprobado ? "ok" : "no") }, d.aprobado ? "Aprobado para publicar" : "Necesita cambios antes de publicar"),
-      d.declarar_ia ? h("p", { class: "note warn" }, "Al subirlo marca en YouTube: “Contenido alterado o sintético: Sí”.") : null,
-      d.avisos.length ? d.avisos.map(i => h("div", { class: "issue" + (i.nivel === "bloquea" ? " block" : "") },
-        h("b", {}, (i.nivel === "bloquea" ? "Bloquea" : "Mejora") + (i.tema ? ` · ${i.tema}` : "") + ": "), i.detalle,
-        i.arreglo ? h("div", { class: "note" }, "Arreglo: " + i.arreglo) : null)) : h("p", { class: "note" }, "Sin avisos.")),
-    shorts: d => h("div", { class: "kv" }, d.shorts.map((s, i) => h("div", { class: "scene" },
-      h("span", { class: "n" }, `S${i + 1}`),
-      h("div", { class: "kv" },
-        h("div", { class: "copyrow" }, h("p", { class: "ost" }, s.titulo || `Short ${i + 1}`), copyBtn(() => shortText(s, i))),
-        h("p", {}, s.narracion),
-        s.textos_pantalla.length ? h("p", { class: "meta" }, "En pantalla: " + s.textos_pantalla.join(" · ")) : null,
-        s.cierre ? h("p", { class: "meta" }, "Cierre: " + s.cierre) : null)))),
-    greenlight: d => h("div", { class: "kv" },
-      h("div", { class: "scores" }, Object.entries(d.notas).map(([k, v]) => h("div", { class: "scorebox" + (v < 7 ? " low" : "") },
-        h("div", { class: "score" }, v, h("small", {}, "/10")), h("div", { class: "k" }, { clic: "Clic", retencion: "Retención", shorts: "Shorts", publicacion: "Publicación" }[k] || k)))),
-      h("div", { class: "verdict " + (d.luz_verde ? "ok" : "no") }, d.luz_verde ? "Luz verde: se publica" : `Rehacer desde ${agentForStep(d.rehacer_desde)?.name || "el equipo"}`),
-      d.motivo ? h("p", {}, d.motivo) : null,
-      d.titulo_final ? h("div", {}, h("div", { class: "k" }, "Título con el que se sube"), h("div", { class: "v" }, d.titulo_final)) : null,
-      d.miniatura_final ? h("div", {}, h("div", { class: "k" }, "Miniatura con la que se sube"), h("div", { class: "v" }, `Opción ${d.miniatura_final}`)) : null,
-      d.consejo ? h("p", { class: "note" }, "Para el día de publicación: " + d.consejo) : null),
-    launch: d => {
-      const desc = launchDescription(d);
-      return h("div", { class: "kv" },
-        h("div", { class: "copyrow" }, h("div", {}, h("div", { class: "k" }, "Descripción (con capítulos y hashtags)"), h("div", { class: "v" }, desc)), copyBtn(() => desc)),
-        h("div", { class: "copyrow" }, h("div", {}, h("div", { class: "k" }, "Etiquetas"), h("div", { class: "v" }, d.etiquetas.join(", ") || "—")), copyBtn(() => d.etiquetas.join(", "))),
-        h("div", { class: "copyrow" }, h("div", {}, h("div", { class: "k" }, "Comentario fijado"), h("div", { class: "v" }, d.comentario_fijado || "—")), copyBtn(() => d.comentario_fijado)),
-        h("div", {}, h("div", { class: "k" }, "Cuándo publicar"), h("div", { class: "v" }, d.dia_hora || "—")),
-        d.pantalla_final ? h("div", {}, h("div", { class: "k" }, "Pantalla final"), h("div", { class: "v" }, d.pantalla_final)) : null,
-        d.lista ? h("div", {}, h("div", { class: "k" }, "Lista de reproducción"), h("div", { class: "v" }, d.lista)) : null);
-    },
+  // ================================================================ 6. PANTALLA
+  const titulo = document.getElementById("titulo"), goBtn = document.getElementById("goBtn"), capNote = document.getElementById("capNote");
+  document.getElementById("ideas").replaceChildren(...IDEAS.map(t =>
+    h("button", { class: "chip idea", type: "button", onclick: () => { titulo.value = t; titulo.focus(); } }, t)));
+
+  function renderPasos() {
+    const e = actual() || encargos[0];
+    const ol = document.getElementById("pasos");
+    document.getElementById("prodChip").textContent = !e ? "sin encargos" : e.estado === "entregado" ? "entregado" : e.estado === "error" ? "no se pudo lanzar" : e.paso ? `paso ${e.paso}/8` : "en cola";
+    document.getElementById("prodTitulo").textContent = e ? `“${e.titulo}”` : "Cuando pulses “Producir Short”, aquí verás en qué paso va el equipo.";
+    ol.replaceChildren(...PASOS.map(p => {
+      const st = !e ? "" : e.estado === "entregado" || p.n < e.paso ? "hecho" : p.n === e.paso ? "ahora" : "";
+      return h("li", { class: st },
+        h("span", { class: "num" }, st === "hecho" ? "✓" : p.n),
+        h("span", {}, h("b", {}, p.nombre), " · ", p.who.map(id => agent(id).name).join(", ")));
+    }));
+  }
+  function renderHistorial() {
+    const ul = document.getElementById("historial");
+    ul.replaceChildren(...(encargos.length ? encargos : [null]).map(e => e
+      ? h("li", {}, h("div", { class: "copyrow" }, h("span", { class: "t" }, e.titulo),
+          h("span", { class: "chip" + (e.estado === "entregado" ? " ok" : "") }, e.estado === "entregado" ? "entregado" : e.estado === "error" ? "error" : e.paso ? `paso ${e.paso}/8` : "en cola")),
+          h("span", { class: "d" }, new Date(e.ts).toLocaleString("es-ES", { dateStyle: "short", timeStyle: "short" })))
+      : h("li", {}, h("span", { class: "d" }, "Todavía no hay encargos desde este dispositivo."))));
+  }
+  function renderTodo() { renderPasos(); renderHistorial(); syncStatus(); }
+
+  function mostrarAlternativa(t, motivo) {
+    const box = document.getElementById("fallback");
+    box.hidden = false;
+    const frase = `Produce un Short siguiendo docs/produccion-short.md. TÍTULO: ${t}`;
+    document.getElementById("fallbackTxt").textContent = frase;
+    document.getElementById("fallbackBtn").replaceChildren(copyBtn(() => frase));
+    capNote.textContent = motivo;
+    capNote.className = "note warn";
+  }
+
+  // ================================================================ 7. LANZAR EL ENCARGO Y SEGUIR EL PROGRESO
+  let mcp = null, vigilando = false;
+  const MOTIVO = {
+    server_not_connected: "Tu cuenta no tiene el conector de Claude Code disponible en esta página.",
+    not_in_manifest: "No has dado permiso a la página para lanzar encargos. Recarga y pulsa “Permitir”.",
+    approval_required: "Hace falta tu permiso para lanzar el encargo. Pulsa otra vez “Producir Short” y acepta.",
+    needs_reauth: "Vuelve a conectar Claude Code en claude.ai → Ajustes → Conectores.",
+    blocked_by_policy: "Tu organización no permite lanzar encargos desde una página.",
   };
-  function scriptView(d, showChanges) {
-    return h("div", { class: "kv" },
-      h("div", { class: "copyrow" },
-        h("div", {}, h("div", { class: "k" }, "Gancho"), h("div", { class: "v" }, d.gancho || "—")),
-        copyBtn(() => scriptText(d), "Copiar guion")),
-      h("div", { class: "scenes" }, d.escenas.map((e, n) => h("div", { class: "scene" + (showChanges && e.cambiada ? " changed" : "") },
-        h("span", { class: "n" }, String(n + 1).padStart(2, "0")),
-        h("div", { class: "kv" },
-          e.texto_pantalla ? h("p", { class: "ost" }, e.texto_pantalla) : null,
-          h("p", {}, e.narracion),
-          e.visual ? h("p", { class: "meta" }, "Se ve: " + e.visual) : null,
-          e.prompt_ia ? h("code", {}, e.prompt_ia) : null)))),
-      d.cta ? h("p", { class: "note" }, "Cierre: " + d.cta) : null,
-      d.fuentes ? h("p", { class: "note" }, "Datos: " + d.fuentes) : null);
-  }
-  const scriptText = d => `${d.titulo}\n\nGancho: ${d.gancho}\n\n` + d.escenas.map((e, n) =>
-    `Escena ${n + 1} — ${e.texto_pantalla}\nVoz: ${e.narracion}\nSe ve: ${e.visual}\nPrompt IA: ${e.prompt_ia}`).join("\n\n") + `\n\nCierre: ${d.cta}`;
-  const shortText = (s, i) => `SHORT ${i + 1}: ${s.titulo}\nGancho: ${s.gancho}\nVoz: ${s.narracion}\nEn pantalla: ${s.textos_pantalla.join(" · ")}\nCierre: ${s.cierre}`;
-  const launchDescription = d => d.descripcion
-    + (d.capitulos.length ? "\n\n" + d.capitulos.map(c => `${c.tiempo} ${c.titulo}`.trim()).join("\n") : "")
-    + (d.hashtags.length ? "\n\n" + d.hashtags.join(" ") : "");
 
-  function handoffText() {
-    const s = finalScript(run), t = run.stages.titles, m = run.stages.thumbs, l = run.stages.launch, sh = run.stages.shorts, c = run.stages.compliance;
-    const week = run.mode === "week";
-    return `Claude, monta este encargo de mi canal de GTA 6. Antes de empezar dime cuántos créditos de Higgsfield vas a gastar.\n`
-      + `- Cristiano (voz): pon la voz en off${week ? " del vídeo largo y de los Shorts" : ""}.\n`
-      + `- Georgina (montaje): ${week ? "monta el vídeo largo en horizontal 16:9 y los Shorts en vertical 9:16" : "monta el Short en vertical 9:16"}, con textos en pantalla y subtítulos. ${run.stages.retention?.consejo_montaje || ""}\n`
-      + `- Haz ${week ? "las miniaturas" : "la portada"} y mándamelo todo aquí.\n\n`
-      + `TÍTULO PRINCIPAL: ${run.stages.greenlight?.titulo_final || t.titulos[0]?.titulo || s.titulo}\n`
-      + (run.stages.greenlight?.miniatura_final ? `MINIATURA PRINCIPAL: opción ${run.stages.greenlight.miniatura_final}\n` : "")
-      + (run.stages.greenlight?.consejo ? `CONSEJO DE ALMUDENA: ${run.stages.greenlight.consejo}\n` : "")
-      + (t.titulos.length > 1 ? `TÍTULOS PARA PROBAR: ${t.titulos.map(x => x.titulo).filter(x => x !== (run.stages.greenlight?.titulo_final || t.titulos[0]?.titulo)).join(" | ")}\n` : "")
-      + (m ? `MINIATURAS: ${m.miniaturas.map((x, i) => `${String.fromCharCode(65 + i)}) "${x.texto}" color ${x.color} — ${x.composicion}`).join(" | ")}\n` : "")
-      + `CONTENIDO CON IA: ${c.declarar_ia ? "sí, declararlo" : "no"}\nPUBLICAR: ${l.dia_hora}\n\n`
-      + `GUION ${week ? "DEL VÍDEO LARGO" : "DEL SHORT"}\n${scriptText(s)}\n`
-      + (sh ? `\nSHORTS\n${sh.shorts.map(shortText).join("\n\n")}\n` : "")
-      + `\nDESCRIPCIÓN\n${launchDescription(l)}`;
-  }
-
-  function stageCard(p, idx) {
-    const data = run?.stages?.[p.key];
-    const checks = run?.checks?.[p.key] || [];
-    const fixing = live === "fix" && (p.key === "script" || p.key === "titles");
-    const isLive = live === p.key || fixing;
-    const stopped = run?.stopAt === p.key;
-    const r = roomById[agent(p.who).room], a = agent(p.who);
-    let body;
-    if (isLive) body = h("div", { class: "thinking" }, fixing ? "Corrigiendo lo que pidió Nobita…" : `${a.name} está trabajando… puede tardar hasta un minuto.`);
-    else if (data) body = R[p.key](data);
-    else if (!stopped) body = h("p", { class: "note" }, "Pendiente");
-    return h("section", { class: "stage" + (isLive ? " live" : stopped ? " failed" : data ? "" : " pending"), "data-step": p.key },
-      h("div", { class: "stage-top" },
-        h("h3", {}, `${p.key === "greenlight" ? "Final" : r.n} · ${p.title}`),
-        h("span", { class: "by" }, "por ", h("b", {}, a.name), ` · ${r.name}`),
-        run?.revisions && (p.key === "script" || p.key === "titles") && data ? h("span", { class: "chip" }, `corregido ×${run.revisions}`) : null),
-      checks.length && !isLive ? h("div", { class: "qc", "aria-label": "Control de calidad" },
-        checks.map(c => h("span", { class: "chip " + (c.ok ? "ok" : c.crit ? "bad" : "warn") }, (c.ok ? "✓ " : c.crit ? "✗ " : "! ") + c.text))) : null,
-      stopped ? h("div", { class: "kv" },
-        h("p", { class: "note warn" }, run.stopReason || "Este puesto se paró."),
-        h("div", { class: "actions" }, h("button", { class: "ghost strong", type: "button", onclick: () => runFrom(idx), disabled: !sample || busy }, `Seguir desde ${a.name}`))) : null,
-      body);
-  }
-
-  function redoBox(g) {
-    const steps = stepsFor(run.mode);
-    const idx = steps.findIndex(p => p.key === g.rehacer_desde);
-    const who = agentForStep(g.rehacer_desde);
-    const tooMany = (run.redos || 0) >= 2;
-    return h("section", { class: "stage failed", "data-step": "redo-box" },
-      h("div", { class: "stage-top" }, h("h3", {}, "Almudena no da luz verde todavía")),
-      h("p", { class: "note" }, idx >= 0 ? `Propone rehacer desde ${who.name} (${roomById[who.room].name}) y todo lo que viene después.` : "No ha dicho desde dónde rehacer."),
-      tooMany ? h("p", { class: "note warn" }, "Ya se ha rehecho 2 veces. Puedes seguir igualmente o probar con otro tema.") : null,
-      h("div", { class: "actions" },
-        idx >= 0 ? h("button", { class: "ghost strong", type: "button", disabled: !sample || busy || tooMany, onclick: () => { run.redos = (run.redos || 0) + 1; runFrom(idx); } }, `Rehacer desde ${who.name}`) : null,
-        h("button", { class: "ghost", type: "button", disabled: busy, onclick: () => { run.override = true; save(); syncStatus(); renderResults(); } }, "Seguir igualmente")));
-  }
-
-  function fixBox() {
-    return h("section", { class: "stage failed", "data-step": "fix-box" },
-          h("div", { class: "stage-top" }, h("h3", {}, "Nobita ha frenado el vídeo")),
-          h("p", { class: "note" }, "El Chapo y Torrente pueden corregir el guion y los títulos con sus avisos. Después Nobita lo revisa otra vez."),
-          (run.revisions || 0) >= 2 ? h("p", { class: "note warn" }, "Ya se ha corregido 2 veces. Si sigue frenado, prueba con otro tema.") : null,
-          h("div", { class: "actions" }, h("button", { class: "ghost strong", type: "button", onclick: runFix, disabled: !sample || busy || (run.revisions || 0) >= 2 }, "Pedir correcciones")));
-  }
-
-  function renderResults() {
-    const root = document.getElementById("results");
-    const steps = stepsFor(run?.mode || "week");
-    const kids = [h("div", { class: "section-head" },
-      h("h2", {}, run?.example ? "Ejemplo de encargo" : "Tu encargo"),
-      run ? h("span", { class: "chip" }, run.example ? "ejemplo" : `${run.mode === "week" ? "vídeo de la semana" : "short exprés"}${run.topic ? " · " + run.topic : ""}`) : null)];
-    if (run?.example) kids.push(h("p", { class: "note" }, "Este es un encargo real completo, hecho y revisado por el equipo. Pulsa “Encargar” y el equipo hará el tuyo."));
-    const c = run?.stages?.compliance;
-    const blocked = c && !live && !run.stopAt && !c.aprobado;
-    const g = run?.stages?.greenlight;
-    const redo = g && !live && !run.stopAt && !g.luz_verde && !run.override;
-    steps.forEach((p, i) => {
-      kids.push(stageCard(p, i));
-      if (p.key === "compliance" && blocked) kids.push(fixBox());
-      if (p.key === "greenlight" && redo) kids.push(redoBox(g));
-    });
-    const allDone = run && steps.every(p => run.stages[p.key]);
-    if (c && !live && !run.stopAt && c.aprobado && allDone && greenOk(run)) {
-      kids.push(h("section", { class: "stage handoff", "data-step": "handoff" },
-          h("div", { class: "stage-top" }, h("h3", {}, "8 · 9 · Voz y montaje"), h("span", { class: "by" }, "por ", h("b", {}, "Cristiano y Georgina"))),
-          h("ol", { class: "steps" },
-            h("li", {}, "Pulsa “Copiar encargo”."),
-            h("li", {}, "Vuelve al chat con Claude y pégalo."),
-            h("li", {}, "Claude te dice el coste, pone la voz y monta los vídeos."),
-            h("li", {}, "Los subes con la app de YouTube usando la ficha de Guerrero."),
-            h("li", {}, "A los 2-3 días copia los datos en El Observatorio para Taison.")),
-          run.example ? h("p", { class: "note" }, "Disponible cuando hagas tu propio encargo.") : h("div", { class: "actions" }, copyBtn(handoffText, "Copiar encargo"))));
-    }
-    root.replaceChildren(...kids);
-  }
-
-  // ================================================================ 8. EJECUTAR
-  const ERR = {
-    not_granted: "No has dado permiso para usar Claude. Recarga la página y pulsa “Permitir”.",
-    sampling_disabled: "Claude no está disponible en esta cuenta.",
-    rate_limited: "Has llegado al límite de uso por ahora. Prueba otra vez en un rato.",
-    session_expired: "Tu sesión ha caducado. Vuelve a iniciar sesión en Claude.",
-    invalid_json: "La respuesta llegó incompleta.",
-    refused: "Claude no quiso hacer esta parte. Prueba con otro tema.",
-    quality: "El resultado no pasó el control de calidad.",
-    cancelled: "Has parado el encargo.",
-  };
-  const goBtn = document.getElementById("goBtn"), stopBtn = document.getElementById("stopBtn"), capNote = document.getElementById("capNote");
-  const modeWeek = document.getElementById("modeWeek"), modeExpress = document.getElementById("modeExpress");
-  const obsBtn = document.getElementById("obsBtn");
-  function setMode(m) { mode = m; modeWeek.setAttribute("aria-pressed", String(m === "week")); modeExpress.setAttribute("aria-pressed", String(m === "express")); }
-  modeWeek.onclick = () => setMode("week");
-  modeExpress.onclick = () => setMode("express");
-
-  function setBusy(b) {
-    busy = b;
-    stopBtn.hidden = !b;
-    goBtn.disabled = b || !sample;
-    goBtn.textContent = b ? "El equipo está trabajando…" : sample ? "Encargar" : "No disponible aquí";
-    obsBtn.disabled = b || !sample;
-  }
-  // Los puestos creativos clave usan el modelo más capaz; el resto, el equilibrado.
-  async function ask(prompt, tier = "default") {
-    const raw = await sample.json(prompt, { signal: ctl.signal, modelTier: tier, cache: false });
-    if (!raw || typeof raw !== "object" || Array.isArray(raw)) throw { code: "invalid_json" };
-    return raw;
-  }
-  function lostAccess(code) {
-    if (code === "not_granted" || code === "sampling_disabled") { sample = null; capNote.textContent = ERR[code]; capNote.className = "note warn"; }
-  }
-
-  async function runFrom(start) {
-    if (!sample || busy || !run || run.example) return;
-    const steps = stepsFor(run.mode);
-    ctl = new AbortController();
-    setBusy(true);
-    run.stopAt = null; run.stopReason = ""; run.override = false;
-    for (const p of steps.slice(start)) { delete run.stages[p.key]; delete run.checks[p.key]; }
-    let i = start;
+  goBtn.onclick = async () => {
+    const t = titulo.value.trim().replace(/\s+/g, " ");
+    if (t.length < 6) { capNote.textContent = "Escribe un título un poco más largo."; capNote.className = "note warn"; return; }
+    if (!mcp) { mostrarAlternativa(t, "Abre esta página dentro de Claude para lanzar encargos con un botón."); return; }
+    goBtn.disabled = true; goBtn.textContent = "Enviando al equipo…";
     try {
-      for (; i < steps.length; i++) {
-        const p = steps[i];
-        live = p.key; syncStatus(); renderResults();
-        const data = p.norm(await ask(withExpert(p.prompt(run), p.who), p.tier), run);
-        const checks = p.check(data, run);
-        run.stages[p.key] = data; run.checks[p.key] = checks;
-        if (checks.some(c => c.crit && !c.ok)) throw { code: "quality" };
-        live = null; save(); syncStatus(); renderResults();
-        const next = steps[i + 1]?.who || (p.gate && !(data.aprobado ?? data.luz_verde) ? null : "cristiano");
-        if (p.gate && !(data.aprobado ?? data.luz_verde)) break;   // Nobita o Almudena frenan: no se sigue
-        sendPacket(p.who, next);
-      }
+      await mcp.callTool(SERVER, "fire_trigger", { trigger_id: TRIGGER_ID, text: `TÍTULO: ${t}` }, { cache: false });
+      encargos.unshift({ titulo: t, ts: Date.now(), paso: 0, estado: "en cola" });
+      guardar(); titulo.value = "";
+      capNote.textContent = "Encargo enviado. El equipo empieza en menos de un minuto; aquí verás cada paso."; capNote.className = "note";
+      renderTodo(); vigilar();
     } catch (e) {
       const code = e?.code || "upstream_error";
-      run.stopAt = steps[i].key;
-      run.stopReason = (ERR[code] || "Algo falló al hablar con Claude.") + (code === "cancelled" ? "" : " Puedes seguir desde aquí.");
-      lostAccess(code);
-    } finally {
-      live = null; save(); setBusy(false); syncStatus(); renderResults();
-    }
-  }
-
-  async function runFix() {
-    if (!sample || busy || !run?.stages?.compliance) return;
-    ctl = new AbortController();
-    setBusy(true);
-    live = "fix"; syncStatus(); renderResults();
-    const steps = stepsFor(run.mode);
-    try {
-      const raw = await ask(withExpert(FIX_PROMPT(run), "chapo", "torrente"), "complex");
-      const t = normTitles(asObj(raw.titulos)), s = normScript(asObj(raw.guion));
-      const ct = steps.find(p => p.key === "titles").check(t, run), cs = steps.find(p => p.key === "script").check(s, run);
-      if (ct.concat(cs).some(c => c.crit && !c.ok)) throw { code: "quality" };
-      run.stages.titles = t; run.checks.titles = ct;
-      run.stages.script = s; run.checks.script = cs;
-      if (run.stages.retention) run.stages.retention = { ...run.stages.retention, guion_final: s };
-      run.revisions = (run.revisions || 0) + 1;
-      live = null; save(); setBusy(false);
-      await runFrom(steps.findIndex(p => p.key === "compliance"));
-    } catch (e) {
-      live = null;
-      lostAccess(e?.code);
-      if (sample) { capNote.textContent = (ERR[e?.code] || "Algo falló al corregir.") + " Puedes pulsar “Pedir correcciones” otra vez."; capNote.className = "note warn"; }
-      setBusy(false); syncStatus(); renderResults();
-    }
-  }
-
-  goBtn.onclick = () => {
-    if (!sample || busy) return;
-    const topic = document.getElementById("topic").value.trim().slice(0, 200);
-    run = { mode, topic, createdAt: Date.now(), stages: {}, checks: {}, revisions: 0, stopAt: null };
-    capNote.textContent = "El equipo trabaja con tu cuenta de Claude."; capNote.className = "note";
-    runFrom(0);
-  };
-  stopBtn.onclick = () => ctl?.abort();
-
-  // ---------------------------------------------------------------- El Observatorio (Taison)
-  function renderObs(err) {
-    const out = document.getElementById("obsOut");
-    if (!insights) { out.replaceChildren(err ? h("p", { class: "note warn" }, err) : h("p", { class: "note" }, "Taison todavía no tiene datos. Hasta entonces, el equipo trabaja con lo que funciona en canales de gaming.")); return; }
-    const list = (title, items) => items?.length ? h("div", {}, h("div", { class: "k" }, title), h("ul", { class: "list" }, items.map(x => h("li", {}, S(x))))) : null;
-    out.replaceChildren(
-      err ? h("p", { class: "note warn" }, err) : null,
-      h("p", {}, S(insights.resumen)),
-      list("Repetir", insights.repetir), list("Evitar", insights.evitar), list("Ideas de los comentarios", insights.ideas_de_comentarios),
-      insights.siguiente_paso ? h("p", { class: "note" }, "Siguiente paso: " + S(insights.siguiente_paso)) : null,
-      h("p", { class: "note" }, "Jarvis, Almudena y Torrente ya usan estas conclusiones."));
-  }
-  obsBtn.onclick = async () => {
-    const data = document.getElementById("obsData").value.trim().slice(0, 8000);
-    if (!sample || busy) return;
-    if (data.length < 20) { renderObs("Copia primero los datos de al menos un vídeo."); return; }
-    ctl = new AbortController();
-    setBusy(true); live = "obs"; syncStatus();
-    try {
-      const raw = await ask(withExpert(OBS_PROMPT(data), "taison"));
-      const d = { resumen: S(raw.resumen), repetir: asArr(raw.repetir).map(S).filter(Boolean), evitar: asArr(raw.evitar).map(S).filter(Boolean), ideas_de_comentarios: asArr(raw.ideas_de_comentarios).map(S).filter(Boolean), siguiente_paso: S(raw.siguiente_paso) };
-      if (!d.resumen) throw { code: "quality" };
-      insights = d;
-      try { localStorage.setItem(IKEY, JSON.stringify(insights)); } catch {}
-      renderObs();
-    } catch (e) {
-      lostAccess(e?.code);
-      renderObs(ERR[e?.code] || "Taison no pudo leer los datos. Inténtalo otra vez.");
-    } finally {
-      live = null; setBusy(false); syncStatus();
-    }
+      if (MOTIVO[code]) mostrarAlternativa(t, MOTIVO[code]);
+      else if (code === "tool_error") mostrarAlternativa(t, "Claude Code no aceptó el encargo: " + String(e.message || "").slice(0, 140));
+      else { // resultado dudoso: puede que se haya lanzado
+        encargos.unshift({ titulo: t, ts: Date.now(), paso: 0, estado: "en cola" }); guardar(); renderTodo(); vigilar();
+        capNote.textContent = "No hubo respuesta clara. Puede que el encargo se haya lanzado: comprueba la producción en Claude antes de repetirlo.";
+        capNote.className = "note warn";
+      }
+    } finally { goBtn.disabled = false; goBtn.textContent = "Producir Short"; }
   };
 
-  // ================================================================ 9. EJEMPLO Y ARRANQUE
-  // Ejemplo: un encargo real completo (guía de las 6 zonas de Leonida), revisado paso a paso.
-  const EXAMPLE_RAW = {"trends": {"resumen": "A días del lanzamiento, lo que más se busca es saber qué hacer primero y qué hay en el mapa; las noticias concretas hay que verificarlas.", "temas": [{"tema": "Qué hacer en las primeras horas de GTA 6", "por_que": "Todo el mundo va a empezar a la vez y busca una guía de inicio.", "fiabilidad": "evergreen", "potencial": 10}, {"tema": "Las zonas del mapa de Leonida explicadas", "por_que": "Rockstar ha mostrado seis zonas y la gente quiere saber qué hay en cada una.", "fiabilidad": "evergreen", "potencial": 9}, {"tema": "Secretos y easter eggs de los tráileres", "por_que": "Las listas de secretos retienen hasta el final y se comparten mucho.", "fiabilidad": "evergreen", "potencial": 9}, {"tema": "Cómo ganar dinero rápido al empezar", "por_que": "Es la pregunta número uno en cada GTA durante las primeras semanas.", "fiabilidad": "evergreen", "potencial": 8}, {"tema": "Coches más rápidos y dónde encontrarlos", "por_que": "Tema muy visual y fácil de enseñar con gameplay propio.", "fiabilidad": "evergreen", "potencial": 8}, {"tema": "Lucia y Jason: lo que sabemos de su historia", "por_que": "Los protagonistas generan teorías y debate en comentarios.", "fiabilidad": "probable", "potencial": 7}, {"tema": "GTA 6 frente a GTA 5: lo que cambia", "por_que": "Comparativa clásica que atrae a jugadores veteranos.", "fiabilidad": "evergreen", "potencial": 7}, {"tema": "Cómo rinde en cada consola", "por_que": "Mucha gente decide cómo jugar según estos datos.", "fiabilidad": "verificar", "potencial": 6}, {"tema": "GTA 6 Online: qué se sabe", "por_que": "Interés enorme, pero casi todo son rumores hasta que Rockstar lo confirme.", "fiabilidad": "verificar", "potencial": 6}, {"tema": "Precio y ediciones del juego", "por_que": "Búsqueda puntual alrededor del lanzamiento.", "fiabilidad": "verificar", "potencial": 5}]}, "plan": {"tema": "Las 6 zonas de Leonida y qué explorar primero", "angulo": "Guía para el primer día: qué hay en cada zona y en qué orden explorarlas, separando lo confirmado por Rockstar de lo que es suposición.", "promesa": "Sabrás qué hay en cada una de las 6 zonas de Leonida y qué explorar primero para no perderte nada.", "publico": "Jugadores que van a empezar GTA 6 en los primeros días y no quieren perderse nada", "shorts_previstos": ["La zona que casi nadie está mirando", "Vice City cambia por completo de noche", "Muévete por los Cayos en barco", "La zona con más pinta de esconder la historia"], "dia_hora": "Viernes a las 18:00 en España (11:00 en México, 13:00 en Argentina)", "razon": "Es el tema evergreen con más búsquedas justo al empezar y abre una serie: una zona por vídeo."}, "titles": {"promesa": "Qué hay en cada zona de Leonida y por dónde empezar", "titulos": [{"titulo": "GTA 6: las 6 zonas de Leonida que tienes que conocer", "por_que": "Número + claridad: funciona en búsquedas."}, {"titulo": "GTA 6: qué explorar primero en Leonida (guía del día 1)", "por_que": "Beneficio inmediato para quien va a empezar."}, {"titulo": "GTA 6: la zona del mapa que casi nadie está mirando", "por_que": "Curiosidad concreta que cumple el final del vídeo."}]}, "thumbs": {"miniaturas": [{"texto": "6 MUNDOS", "composicion": "Mapa de Leonida partido en seis zonas de colores saturados, texto enorme arriba a la izquierda", "prompt_imagen": "Bold stylized map of an original tropical state divided into six saturated neon regions, high contrast, no text", "color": "#FFE14D"}, {"texto": "EMPIEZA AQUÍ", "composicion": "Mapa oscuro con una flecha rosa gigante señalando una zona iluminada; texto a la izquierda", "prompt_imagen": "Dark map with a single glowing coastal region and a huge pink arrow pointing at it, cinematic lighting, no text", "color": "#FF4FA3"}, {"texto": "NADIE MIRA AQUÍ", "composicion": "Montaña con bosque al amanecer y un círculo rojo sobre un punto escondido entre los árboles", "prompt_imagen": "Sunrise over a forested mountain with mist, a small mysterious structure hidden among trees, high contrast, no text", "color": "#33E1D6"}]}, "script": {"titulo": "Las 6 zonas de Leonida y qué explorar primero", "gancho": "Leonida no es un mapa: son seis mundos distintos, y si empiezas sin conocerlos te vas a perder la mitad de GTA 6.", "escenas": [{"narracion": "Leonida no es un mapa: son seis mundos distintos, y si empiezas a jugar sin conocerlos te vas a perder la mitad de GTA 6. Hoy te enseño las seis zonas que Rockstar ha mostrado de forma oficial, qué se ha visto en cada una y qué tienes que buscar primero en cuanto tengas el mando en la mano. Y quédate hasta el final, porque la última zona es la que menos gente está mirando y, para mí, la que más sorpresas puede esconder. Todo lo que vas a oír sale de la web oficial y de los tráileres; cuando algo sea una suposición mía, te lo diré claramente. Así no te comes ningún bulo. Vamos con la primera, la que todos conocemos… o eso creemos.", "texto_pantalla": "6 ZONAS, 6 MUNDOS", "visual": "Plano aéreo general del mapa de Leonida, de la costa al interior", "prompt_ia": "Cinematic aerial establishing shot over an original tropical state at golden hour, neon city on the coast, wetlands and mountains in the distance, 4k"}, {"narracion": "Primero, el contexto en diez segundos. Leonida es el estado ficticio de GTA 6, inspirado en Florida, y sus protagonistas son Lucia Caminos y Jason Duval. Rockstar ha dividido el mapa en seis zonas con personalidad propia: Vice City, los Cayos de Leonida, Grassrivers, Port Gellhorn, Ambrosia y el Parque Nacional del Monte Kalaga. Cada una tiene un paisaje, un tipo de gente y, casi seguro, un tipo de misión diferente. Eso es importante, porque en GTA cada zona cambia cómo juegas: los vehículos que encuentras, los negocios que puedes hacer y hasta la música que suena en la radio del coche. Así que no te las voy a enseñar en orden geográfico, sino de la que más vas a visitar a la que más te puede sorprender.", "texto_pantalla": "EL MAPA EN 10 SEGUNDOS", "visual": "Mapa dividido en seis colores, uno por zona", "prompt_ia": "Stylized animated map of an original fictional tropical state split into six glowing colored regions, neon outlines, top-down view"}, {"narracion": "Zona uno: Vice City. Es la gran ciudad del juego y el sitio donde vas a pasar más horas. En los tráileres se ven playas llenas de gente, edificios de colores, discotecas, coches de lujo y mucho neón por la noche. Rockstar la presenta como la capital del sol y la diversión, y eso se nota en cada plano. Lo primero que yo buscaría es la vida nocturna: en GTA las ciudades cambian muchísimo cuando se pone el sol, y en el segundo tráiler hay escenas de fiesta que dan pistas de actividades. Lo segundo, el paseo marítimo, porque es donde más gente aparece en los vídeos oficiales. Y un consejo: no te quedes solo en el centro. Las afueras suelen tener los mejores secretos.", "texto_pantalla": "1. VICE CITY", "visual": "Paseo marítimo de día y la misma calle de noche con neón", "prompt_ia": "Slow dolly along an original art deco beachfront boulevard transitioning from sunny day to neon night, palm trees, no people faces"}, {"narracion": "Zona dos: los Cayos de Leonida. Es una cadena de islas al sur, inspirada claramente en los Cayos de Florida. En las imágenes oficiales se ven aguas turquesas, puentes larguísimos entre islas, barcos y pueblos pequeños junto al mar. Aquí el protagonista no es el coche, es el agua. Así que lo primero que haría en esta zona es conseguir cualquier barco y recorrer la costa, porque en los GTA anteriores los mejores escondites estaban en sitios a los que solo se llega navegando. Ojo: esto último es una suposición basada en otros juegos de Rockstar, no algo confirmado para GTA 6. Lo que sí está confirmado es el ambiente: tranquilo de día, y bastante menos tranquilo cuando cae la noche, según se ve en los tráileres.", "texto_pantalla": "2. CAYOS DE LEONIDA", "visual": "Puente largo entre islas y una lancha recorriendo la costa", "prompt_ia": "Drone shot following a speedboat along turquoise water past a long bridge connecting small tropical islands, sunset"}, {"narracion": "Zona tres: Grassrivers. Son humedales enormes, inspirados en los Everglades, y en los tráileres aparecen pantanos, hierba alta, aerodeslizadores y, sí, caimanes. Es la zona más salvaje cerca de la ciudad, y por eso puede ser la más peligrosa. Si vas a explorarla, hazlo con calma y con un vehículo que flote, porque a pie cada charca puede ser una sorpresa. Lo que más me interesa de Grassrivers es el contraste: a pocos minutos del neón de Vice City tienes un lugar donde casi no hay nadie. En los GTA, esos lugares vacíos suelen esconder misiones secundarias, encuentros raros y objetos coleccionables. No está confirmado qué habrá aquí exactamente, pero si yo fuera tú, sería una de mis primeras excursiones.", "texto_pantalla": "3. GRASSRIVERS", "visual": "Aerodeslizador cruzando el pantano entre hierba alta", "prompt_ia": "Low angle shot of an airboat gliding through tall sawgrass in a misty swamp at dawn, an alligator's eyes breaking the water surface"}, {"narracion": "Zona cuatro: Port Gellhorn. Rockstar la describe como un puerto olvidado, y en las imágenes se ve un pueblo costero venido a menos: carteles viejos, moteles, calles vacías y un ambiente mucho más duro que el de Vice City. Esta zona me parece clave para la historia, porque los lugares así suelen ser donde los personajes de GTA empiezan desde abajo o se esconden cuando las cosas se complican. Fíjate en los moteles y en los negocios pequeños, porque en los tráileres aparecen varias veces. Y un detalle que casi nadie comenta: que una zona tenga tanto protagonismo en el material oficial, siendo tan poco glamurosa, suele significar que tiene peso en la trama. Eso es una deducción mía, no un dato confirmado.", "texto_pantalla": "4. PORT GELLHORN", "visual": "Calle de un pueblo portuario con motel y carteles viejos", "prompt_ia": "Moody tracking shot down an empty run-down harbor town street with a flickering roadside motel sign and rusty cranes, overcast"}, {"narracion": "Zona cinco: Ambrosia. Es la zona del interior, más industrial y agrícola, con fábricas, campos y carreteras largas. Según la web oficial, aquí la economía gira alrededor de la industria, y eso cambia el tipo de gente y de vehículos que vas a ver: más camiones, más trabajadores y menos turistas. Para el jugador, Ambrosia puede ser el sitio perfecto para persecuciones largas por carretera y para descubrir negocios que no tienen nada que ver con la playa. Mi consejo es que la recorras de día, con calma, mirando cada nave y cada granja, porque en mapas tan grandes los detalles del interior son los que más tarda la comunidad en encontrar. Y quien sabe dónde mirar, los encuentra antes que nadie.", "texto_pantalla": "5. AMBROSIA", "visual": "Carretera larga entre campos y naves industriales", "prompt_ia": "Wide shot of a long straight highway through farmland toward a smoky industrial refinery, heat haze, trucks passing"}, {"narracion": "Zona seis, y la que te dije que guardaba para el final: el Parque Nacional del Monte Kalaga. Es la parte más salvaje de todo el mapa: bosques, montaña, ríos y rutas por la naturaleza. Apenas aparece en los tráileres, y justo por eso es la zona que menos gente está mirando. En los juegos de Rockstar, las zonas de naturaleza suelen tener actividades propias, como caza, pesca o rutas, y sitios con vistas espectaculares. Que lo tenga GTA 6 está por confirmar, así que tómatelo como algo a comprobar cuando juguemos. Pero piensa en esto: si Rockstar le ha dado nombre de parque nacional, es porque quiere que lo explores. Y en los GTA, donde menos gente mira es donde más secretos aparecen.", "texto_pantalla": "6. MONTE KALAGA", "visual": "Bosque y montaña al amanecer, sendero entre árboles", "prompt_ia": "Sunrise crane shot rising over a dense green forest toward a mountain peak, river below, mist, cinematic"}, {"narracion": "Entonces, ¿por dónde empiezo? Mi plan para las primeras horas es este. Primero, sigue la historia hasta que el juego te deje moverte con libertad, sin desviarte demasiado. Segundo, da una vuelta por Vice City de día y de noche, para ver cómo cambia. Tercero, consigue un barco y baja a los Cayos. Cuarto, haz una excursión a Grassrivers y a Kalaga, que son las zonas con más pinta de esconder cosas. Y quinto, apunta todo lo raro que veas: un edificio cerrado, un personaje extraño, un ruido en mitad del pantano. En los primeros días, la comunidad va a descubrir secretos a toda velocidad, y tú puedes ser de los primeros si sabes dónde mirar.", "texto_pantalla": "TU PLAN DE INICIO", "visual": "Lista de 5 pasos sobre gameplay variado", "prompt_ia": "Fast montage-style shot of a car speeding from neon city streets to a coastal bridge to a swamp road, motion blur"}, {"narracion": "Y ahora te toca a ti: dime en los comentarios cuál de las seis zonas vas a explorar primero y qué crees que esconde. Las respuestas más repetidas serán los próximos vídeos del canal. Si te ha servido esta guía, suscríbete y activa la campana, porque en cuanto salga el juego vamos a recorrer Leonida zona por zona, buscando secretos, coches escondidos y todo lo que la gente no ve a la primera. Y si quieres seguir ahora mismo, tienes en pantalla el siguiente vídeo, donde repasamos todo lo que se sabe de Lucia y Jason. Recuerda: este es un canal de fans, no oficial de Rockstar. Nos vemos en Leonida.", "texto_pantalla": "¿CUÁL EXPLORAS PRIMERO?", "visual": "Mapa con las seis zonas y una pregunta en pantalla", "prompt_ia": "Slow pull-back from a glowing neon map of six regions on a table to reveal a night skyline through a window"}], "cta": "Suscríbete y dime en comentarios qué zona exploras primero; siguiente vídeo: Lucia y Jason.", "fuentes": "Confirmado (web oficial y tráileres): nombre y número de zonas, ambientación de cada una, protagonistas. Suposiciones marcadas en voz: barcos y escondites en los Cayos, peso en la trama de Port Gellhorn, actividades de caza o pesca en Kalaga."}, "retention": {"nota": 7, "gancho_mejorado": "Leonida no es un mapa: son seis mundos distintos, y la última zona es la que casi nadie está mirando.", "cambios": [{"escena": 1, "problema": "El gancho promete seis zonas pero el bucle abierto (“la última zona”) llega tarde; se adelanta a la primera frase.", "nuevo_texto": "Leonida no es un mapa: son seis mundos distintos, y la última zona es la que casi nadie está mirando. Si empiezas a jugar sin conocerlas, te vas a perder la mitad de GTA 6. Hoy te enseño las seis zonas que Rockstar ha mostrado de forma oficial, qué se ha visto en cada una y qué tienes que buscar primero en cuanto tengas el mando en la mano. Esa última zona, para mí, es la que más sorpresas puede esconder, así que no te la saltes. Todo lo que vas a oír sale de la web oficial y de los tráileres; cuando algo sea una suposición mía, te lo diré claramente. Así no te comes ningún bulo. Vamos con la primera, la que todos conocemos… o eso creemos."}, {"escena": 2, "problema": "Promete “el contexto en diez segundos” y dura unos 50: quien lo note se va. Se quita la promesa de tiempo y se añade un bucle abierto hacia la zona cuatro.", "nuevo_texto": "Antes de entrar, lo básico, rápido. Leonida es el estado ficticio de GTA 6, inspirado en Florida, y sus protagonistas son Lucia Caminos y Jason Duval. El mapa tiene seis zonas con personalidad propia: Vice City, los Cayos de Leonida, Grassrivers, Port Gellhorn, Ambrosia y el Parque Nacional del Monte Kalaga. Y no son solo paisajes: cada zona cambia cómo juegas, desde los vehículos que encuentras hasta los negocios que puedes montar o la música que suena en la radio. Te las voy a enseñar de la que más vas a visitar a la que más te puede sorprender. Y atento a la cuarta, porque tiene una pista sobre la historia que casi nadie ha visto. Empezamos.", "nuevo_texto_pantalla": "LO BÁSICO, RÁPIDO"}, {"escena": 7, "problema": "Ambrosia llega en mitad del vídeo sin nada nuevo que enganche; la sexta zona queda lejos.", "nuevo_texto": "Zona cinco, y aquí cambia todo: Ambrosia. Se acabaron la playa y el neón. Es el interior industrial y agrícola de Leonida, con fábricas, campos y carreteras larguísimas. Según la web oficial, aquí manda la industria, y eso se nota en todo: más camiones, más trabajadores y casi ningún turista. ¿Y eso qué significa para ti como jugador? Persecuciones largas por carretera, rutas con vehículos pesados y negocios que no tienen nada que ver con la playa. Mi consejo es recorrerla de día, con calma, mirando cada nave y cada granja, porque los detalles del interior son los que más tarda la comunidad en encontrar. Y quien sabe dónde mirar, los encuentra antes que nadie."}], "consejo_montaje": "Cambia de plano en cada frase durante el primer minuto y pon el número de zona grande al empezar cada bloque."}, "compliance": {"aprobado": true, "declarar_ia": true, "avisos": [{"nivel": "mejora", "tema": "Veracidad", "detalle": "Las descripciones de Ambrosia y Kalaga dependen de la web oficial; si algo cambia en el juego final, hay que corregirlo.", "arreglo": "Revisa esas dos zonas jugando antes de publicar o añade “según la web oficial” en pantalla."}, {"nivel": "mejora", "tema": "Contenido con IA", "detalle": "Si se usan los clips generados con IA de los prompts, son realistas.", "arreglo": "Marca “Contenido alterado o sintético: Sí” al subir el vídeo."}]}, "shorts": {"shorts": [{"titulo": "La zona de GTA 6 que nadie está mirando", "gancho": "Todo el mundo habla de Vice City, y se está olvidando de esto.", "narracion": "Todo el mundo habla de Vice City, y se está olvidando de esto. En el mapa de GTA 6 hay una zona que apenas sale en los tráileres, con bosques, montaña y ríos. Rockstar le ha dado nombre de parque nacional, y eso no se hace por casualidad. Si quieres saber cuál es y por qué creo que esconde más secretos que ninguna otra, te lo cuento con todo detalle en el vídeo completo del canal.", "textos_pantalla": ["NADIE MIRA AQUÍ", "NOMBRE DE PARQUE NACIONAL"], "cierre": "La zona y sus secretos, en el vídeo completo."}, {"titulo": "Vice City cambia por completo de noche", "gancho": "Esta calle de día parece tranquila. Ahora mírala de noche.", "narracion": "Esta calle de día parece tranquila. Ahora mírala de noche. En los tráileres de GTA 6, Vice City se transforma cuando se pone el sol: neón, discotecas y fiestas que dan pistas de actividades. Mi consejo para tus primeras horas es que recorras la ciudad dos veces, una de día y otra de noche, porque no parecen el mismo sitio. En el vídeo completo te enseño qué buscar en las otras cinco zonas del mapa.", "textos_pantalla": ["DE DÍA", "DE NOCHE"], "cierre": "Las otras 5 zonas, en el vídeo completo."}, {"titulo": "En GTA 6 consigue un barco cuanto antes", "gancho": "En esta zona de GTA 6 el coche no te va a servir.", "narracion": "En esta zona de GTA 6 el coche no te va a servir. Los Cayos de Leonida son una cadena de islas con puentes larguísimos y aguas turquesas, y aquí el protagonista es el agua. En otros juegos de Rockstar los mejores escondites estaban en sitios a los que solo se llega navegando; en GTA 6 está por confirmar, pero yo no me la jugaría. Tienes mi plan de inicio completo en el vídeo largo del canal.", "textos_pantalla": ["CONSIGUE UN BARCO", "POR CONFIRMAR"], "cierre": "Mi plan de inicio, en el vídeo completo."}, {"titulo": "La zona de GTA 6 con más pinta de historia", "gancho": "Esta es la zona menos bonita de GTA 6, y puede que la más importante.", "narracion": "Esta es la zona menos bonita de GTA 6, y puede que la más importante. Port Gellhorn es un puerto olvidado: moteles, carteles viejos y calles vacías. Aun así, aparece una y otra vez en el material oficial. Y cuando Rockstar enseña tanto un sitio tan poco glamuroso, suele ser porque pesa en la historia. Es una teoría mía, no un dato confirmado, y te explico por qué en el vídeo completo.", "textos_pantalla": ["LA MENOS BONITA", "TEORÍA"], "cierre": "La teoría completa, en el vídeo completo."}]}, "launch": {"descripcion": "GTA 6: las 6 zonas de Leonida explicadas y qué explorar primero el día 1.\nVice City, los Cayos, Grassrivers, Port Gellhorn, Ambrosia y el Monte Kalaga: lo confirmado por Rockstar y lo que es suposición, separado.\nSerie “Leonida zona por zona”: suscríbete para no perderte ninguna.\nContenido no oficial hecho por fans. GTA VI es una marca de Rockstar Games.", "etiquetas": ["gta 6", "gta vi", "gta 6 mapa", "gta 6 leonida", "leonida", "vice city", "gta 6 vice city", "cayos de leonida", "grassrivers", "port gellhorn", "ambrosia gta 6", "monte kalaga", "gta 6 guia", "gta 6 que hacer primero", "gta seis", "gta 6 español"], "hashtags": ["#GTA6", "#GTAVI", "#Leonida", "#ViceCity"], "capitulos": [{"tiempo": "0:00", "titulo": "Seis mundos"}, {"tiempo": "0:51", "titulo": "Lo básico de Leonida"}, {"tiempo": "1:38", "titulo": "Vice City"}, {"tiempo": "2:28", "titulo": "Cayos de Leonida"}, {"tiempo": "3:19", "titulo": "Grassrivers"}, {"tiempo": "4:07", "titulo": "Port Gellhorn"}, {"tiempo": "4:56", "titulo": "Ambrosia"}, {"tiempo": "5:42", "titulo": "Monte Kalaga"}, {"tiempo": "6:32", "titulo": "Tu plan para empezar"}, {"tiempo": "7:18", "titulo": "¿Cuál exploras primero?"}], "comentario_fijado": "¿Cuál de las 6 zonas vas a explorar primero? La más votada tendrá su propio vídeo 👇", "dia_hora": "Viernes a las 18:00 en España (11:00 en México, 13:00 en Argentina)", "pantalla_final": "Siguiente vídeo de la serie: todo lo que se sabe de Lucia y Jason", "lista": "GTA 6: Leonida zona por zona"}, "greenlight": {"notas": {"clic": 8, "retencion": 8, "shorts": 8, "publicacion": 9}, "luz_verde": true, "rehacer_desde": "", "motivo": "Promesa clara y útil justo al empezar el juego, título y miniatura alineados, y Pablito ha arreglado el bache del minuto 1.", "titulo_final": "GTA 6: qué explorar primero en Leonida (guía del día 1)", "miniatura_final": "B", "consejo": "Fija el comentario de la zona favorita y contesta todo lo que puedas en la primera hora: esas respuestas deciden el siguiente vídeo."}};
-  const EXAMPLE = (() => {
-    const r = { example: true, mode: "week", topic: "qué explorar primero en Leonida", createdAt: 0, revisions: 0, checks: {}, stopAt: null, stages: {} };
-    for (const p of stepsFor("week")) { r.stages[p.key] = p.norm(EXAMPLE_RAW[p.key], r); r.checks[p.key] = p.check(r.stages[p.key], r); }
-    return r;
-  })();
-
-  run = load() || EXAMPLE;
-  if (!run.example && !run.stopAt) {
-    const steps = stepsFor(run.mode);
-    const missing = steps.findIndex(p => !run.stages[p.key]);
-    const blocked = (run.stages.compliance && !run.stages.compliance.aprobado) || (run.stages.greenlight && !run.stages.greenlight.luz_verde);
-    if (missing >= 0 && !blocked) { run.stopAt = steps[missing].key; run.stopReason = "Este encargo se quedó a medias."; }
+  // Lee los marcadores [PASO n/8] que escribe el equipo en la conversación de producción.
+  function leerProgreso(texto) {
+    const e = actual();
+    if (!e) return;
+    const s = String(texto);
+    const iTitulo = s.lastIndexOf(e.titulo.slice(0, 40));
+    const desde = iTitulo >= 0 ? iTitulo : 0;
+    if (iTitulo < 0 && e.paso === 0) return;          // aún no ha llegado a la conversación
+    let paso = e.paso;
+    for (const m of s.slice(desde).matchAll(/\[PASO (\d)\/8\]/g)) paso = Math.max(paso, Number(m[1]));
+    if (paso !== e.paso) {
+      const antes = PASOS[e.paso - 1]?.who[0] || "almudena", ahora = PASOS[paso - 1]?.who[0];   // al empezar, la jefa reparte el encargo
+      e.paso = paso; guardar(); renderTodo();
+      if (antes && ahora) sendPacket(antes, ahora);
+    }
   }
-  syncStatus();
-  renderResults();
-  renderObs();
+  function leerSesion(texto) {
+    const e = actual();
+    if (!e) return;
+    const working = /STATUS_BUCKET_WORKING|"working"/.test(String(texto));
+    if (!working && e.paso >= 8) { e.estado = "entregado"; guardar(); renderTodo(); }
+  }
+  function vigilar() {
+    if (!mcp || vigilando || !actual()) return;
+    vigilando = true;
+    const ev = (fn) => (x) => {
+      if (x.type === "data") fn(JSON.stringify(x.result.payload ?? x.result.content ?? ""));
+      else if (["not_in_manifest", "server_not_connected", "blocked_by_policy", "approval_required", "needs_reauth"].includes(x.error?.code)) {
+        document.getElementById("refrescar").hidden = true;
+      }
+    };
+    mcp.watchTool(SERVER, "list_events", { session_id: SESSION_ID, kinds: ["user", "assistant"], limit: 100 }, ev(leerProgreso), { refetchInterval: 30000 });
+    mcp.watchTool(SERVER, "get_session", { session_id: SESSION_ID }, ev(leerSesion), { refetchInterval: 60000 });
+  }
 
+  // ================================================================ 8. ARRANQUE
+  renderTodo();
   (async () => {
-    try { sample = window.claude ? await window.claude.use("sample") : null; } catch { sample = null; }
-    setBusy(false);
-    if (!sample) { capNote.textContent = "Abre esta página dentro de Claude (claude.ai o la app) para que el equipo pueda trabajar."; capNote.className = "note warn"; }
-    renderResults();
+    try { mcp = window.claude ? await window.claude.use("mcp") : null; } catch { mcp = null; }
+    if (!mcp) {
+      capNote.textContent = "Abre esta página dentro de Claude (claude.ai o la app) para lanzar encargos con un botón. Fuera de Claude te daré la frase para pegar en el chat.";
+      capNote.className = "note warn";
+      return;
+    }
+    vigilar();
   })();
 })();
 </script>
