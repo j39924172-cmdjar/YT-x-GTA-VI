@@ -1,0 +1,55 @@
+name: Producción diaria GTA 6
+
+on:
+  schedule:
+    - cron: "17 15 * * *"   # todos los días 15:17 UTC
+  workflow_dispatch:
+    inputs:
+      format:
+        description: "short o long"
+        default: "short"
+      topic:
+        description: "Tema forzado (opcional)"
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-dejavu
+      - run: pip install -r requirements.txt
+      - name: Producir
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ secrets.ELEVENLABS_VOICE_ID }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+          FORMAT: ${{ github.event.inputs.format || 'short' }}
+          TOPIC: ${{ github.event.inputs.topic }}
+        run: |
+          python -m gta6_studio stats || true
+          ARGS=(--format "$FORMAT")
+          if [ -n "$TOPIC" ]; then ARGS+=(--topic "$TOPIC"); fi
+          python -m gta6_studio run "${ARGS[@]}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: produccion-${{ github.run_id }}
+          path: runs/
+          retention-days: 14
+      - name: Guardar historial
+        run: |
+          git config user.name "gta6-studio-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/history.json 2>/dev/null || exit 0
+          git diff --cached --quiet || (git commit -m "Actualizar historial del canal" && git push)

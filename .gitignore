@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+runs/
+assets/footage/*
+assets/music/*
+assets/ai_clips/*
+!assets/**/.gitkeep
+client_secret*.json
+token*.json
