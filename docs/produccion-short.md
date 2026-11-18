@@ -3,7 +3,10 @@
 Lo sigue la sesión que se lanza desde la oficina (tarea programada **"Producir Short"**). Recibe el título que escribe Antonio y entrega el vídeo listo para subir.
 Cumple siempre `docs/vicecity-estado.md` (fuente de verdad) y `CLAUDE.md`.
 
-**Marcadores de progreso.** Al empezar cada paso, escribe en el chat una línea que empiece EXACTAMENTE por `[PASO n/8]`. La oficina la lee para animar al departamento que trabaja.
+**Cómo llega el encargo.** En la oficina (https://claude.ai/artifact/WdZBBpgqbXUEDL1Wk3kFRC), Antonio pulsa "Producir Short" y la página envía un comentario "Send to Claude" con el texto `Producir Short — TÍTULO: … / Encargo: <id>`. Ese comentario despierta a la sesión de producción (la que vigila la oficina). También puede llegar pegado en el chat.
+
+**Progreso en la oficina.** Si el encargo trae `<id>`, al empezar cada paso actualiza el documento `encargos/<id>` con ArtifactData (`url` de la oficina, `collection` "encargos", `action` "update" con `if_version`): `{"estado": "en marcha", "paso": n}`. Al terminar: `{"estado": "entregado", "paso": 8, "nota": "<título final o cambio>"}`; si hay que parar (sin saldo, datos imposibles): `{"estado": "error", "nota": "<motivo corto>"}`. La oficina lo muestra al momento. Escribe también en el chat una línea que empiece por `[PASO n/8]`.
+Al recibir el encargo, contesta en el hilo del comentario (ArtifactComments `reply`) diciendo que el equipo ha empezado; al terminar, contesta con el título final y márcalo resuelto.
 
 ## [PASO 1/8] Investigación y verificación (Jarvis + Nobita)
 1. Prepara el repositorio `j39924172-cmdjar/YT-x-GTA-VI` en la rama `claude/youtube-gta6-automation-team-aua7ki`. Si no está en la sesión, añádelo con `add_repo` y clónalo. Luego `git pull`.

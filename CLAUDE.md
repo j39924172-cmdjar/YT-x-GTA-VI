@@ -32,8 +32,8 @@ Fragmentos cortos, voz y datos propios, sin logo oficial, con el aviso "Unoffici
 
 ## Producir un Short desde un título
 - Antonio escribe el título en la oficina virtual (https://claude.ai/artifact/WdZBBpgqbXUEDL1Wk3kFRC) y pulsa **Producir Short**.
-- La oficina lanza la tarea "Producir Short" (`trig_01474VhdtHa3mfx4H2mcy5p8`), que entrega en la sesión de producción (la que tiene Higgsfield conectado) un mensaje con `TÍTULO: …`.
-- Esa sesión sigue `docs/produccion-short.md` paso a paso y escribe `[PASO n/8]` al empezar cada paso; la oficina lee esos marcadores para animar al equipo.
+- La oficina guarda el encargo en su base de datos (`encargos/<id>`) y lo envía como comentario "Send to Claude" a la sesión de producción, la que vigila la oficina y tiene Higgsfield conectado. No usa conectores: el del conector "Claude Code Remote" falló en la cuenta de Antonio y esa tarea está desactivada.
+- Esa sesión sigue `docs/produccion-short.md` y anota el paso en `encargos/<id>` con ArtifactData; la oficina lo muestra en directo.
 - Herramientas: `shorts/herramientas.py` (descargar capturas del catálogo, hoja de contacto, fotogramas, textos de Rockstar), `shorts/tiempos.py` y `shorts/montaje.py`.
 
 ## Partes antiguas del repositorio (antes del documento maestro)

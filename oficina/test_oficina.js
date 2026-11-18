@@ -9,19 +9,21 @@ const SHOTS = process.env.SHOTS_DIR || path.dirname(FILE);
 const results = [];
 const ok = (name, cond, detail = "") => results.push({ name, pass: !!cond, detail });
 
-// Simula el conector "Claude Code Remote" (window.claude.use("mcp"))
+// Simula la base de datos de la página (db) y los comentarios "Send to Claude"
 function mock({ modo }) {
-  window.__calls = []; window.__watch = {};
-  const mcp = {
-    callTool: async (server, tool, input) => {
-      window.__calls.push({ server, tool, input });
-      if (modo === "sin_conector") throw { code: "server_not_connected", message: "no" };
-      if (modo === "dudoso") throw { code: "upstream_error", message: "timeout" };
-      return { content: [], payload: { session_id: "cse_x" } };
-    },
-    watchTool: (server, tool, input, handler) => { window.__watch[tool] = handler; return () => {}; },
+  window.__sent = []; window.__docs = {}; const subs = [];
+  const emit = () => { const docs = Object.entries(window.__docs).map(([id, d]) => ({ id, exists: true, data: () => d, metadata: {} })).sort((x, y) => y.data().ts - x.data().ts); subs.forEach(f => f({ docs, size: docs.length, empty: !docs.length, docChanges: () => [], metadata: {} })); };
+  window.__claudeActualiza = (id, cambios) => { Object.assign(window.__docs[id], cambios); emit(); };
+  let n = 0;
+  const ref = id => ({ id, set: async d => { window.__docs[id] = { ...d }; emit(); }, update: async d => { Object.assign(window.__docs[id], d); emit(); } });
+  const query = { orderBy: () => query, limit: () => query, onSnapshot: f => { subs.push(f); setTimeout(emit, 0); return () => {}; } };
+  const db = { collection: () => ({ ...query, doc: id => ref(id || "enc" + (++n)) }) };
+  const comments = {
+    anchorFor: async () => ({ path: "#nuevo", x: 0.5, y: 0.5 }),
+    canSendToClaude: async () => (modo === "sin_sesion" ? "no_session" : "available"),
+    sendToClaude: async t => { window.__sent.push(t); if (modo === "sin_sesion") throw { code: "claude_unavailable", message: "no" }; return { threadId: "t1", commentId: "c1" }; },
   };
-  if (modo !== "fuera") window.claude = { use: async n => (n === "mcp" ? mcp : null) };
+  if (modo !== "fuera") window.claude = { use: async name => (name === "db" ? db : name === "comments" ? comments : null) };
 }
 async function abrir(browser, modo, width = 1024) {
   const ctx = await browser.newContext({ viewport: { width, height: 1300 } });
@@ -34,72 +36,54 @@ async function abrir(browser, modo, width = 1024) {
   await page.waitForTimeout(300);
   return { page, ctx, errors };
 }
-const emitir = (page, tool, payload) => page.evaluate(([tool, payload]) => window.__watch[tool]?.({ type: "data", result: { payload } }), [tool, payload]);
 const estado = (page, id) => page.evaluate(id => window.__vshDebug().status[id], id);
+const docs = page => page.evaluate(() => window.__docs);
 
 (async () => {
   const browser = await chromium.launch();
 
-  { // 1. Producir desde un título y seguir los pasos
+  { // 1. Enviar un encargo y seguir los pasos que anota Claude
     const { page, ctx, errors } = await abrir(browser, "ok");
     ok("Hay 4 ideas del banco", (await page.$$eval("#ideas .idea", e => e.length)) === 4);
     await page.click("#ideas .idea >> nth=0");
     ok("Tocar una idea rellena el título", /Vercetti/.test(await page.inputValue("#titulo")));
     await page.click("#goBtn");
-    await page.waitForFunction(() => window.__calls.length === 1);
-    const call = await page.evaluate(() => window.__calls[0]);
-    ok("Lanza la tarea Producir Short", call.server === "Claude Code Remote" && call.tool === "fire_trigger" && call.input.trigger_id === "trig_01474VhdtHa3mfx4H2mcy5p8");
-    ok("Envía el título con el prefijo TÍTULO:", call.input.text === "TÍTULO: GTA 6 Just Name-Dropped Tommy Vercetti's Estate");
-    ok("El encargo aparece en el historial y en cola", /Vercetti/.test(await page.textContent("#historial")) && /en cola/.test(await page.textContent("#prodChip")));
-    ok("Empieza a seguir la conversación de producción", await page.evaluate(() => !!window.__watch.list_events && !!window.__watch.get_session));
-    await emitir(page, "list_events", { data: [{ text: "TÍTULO: GTA 6 Just Name-Dropped Tommy Vercetti's Estate" }, { text: "[PASO 1/8] Investigación" }, { text: "[PASO 2/8] Guion" }, { text: "[PASO 3/8] Visuales" }] });
+    await page.waitForFunction(() => window.__sent.length === 1);
+    const sent = await page.evaluate(() => window.__sent[0]);
+    const d = await docs(page); const id = Object.keys(d)[0];
+    ok("Guarda el encargo en la base de datos", d[id].titulo === "GTA 6 Just Name-Dropped Tommy Vercetti's Estate" && d[id].estado === "enviado");
+    ok("Lo envía a Claude con título e id del encargo", sent.text === `Producir Short — TÍTULO: GTA 6 Just Name-Dropped Tommy Vercetti's Estate\nEncargo: ${id}` && !!sent.anchor);
+    await page.waitForTimeout(100);
+    ok("Aparece como recibido en cola", /recibido, en cola/.test(await page.textContent("#prodChip")));
+    await page.evaluate(id => window.__claudeActualiza(id, { estado: "en marcha", paso: 3 }), id);
     await page.waitForTimeout(150);
-    ok("Lee el paso actual (3/8)", /paso 3\/8/.test(await page.textContent("#prodChip")));
+    ok("Lee el paso que anota Claude (3/8)", /paso 3\/8/.test(await page.textContent("#prodChip")));
     ok("Nil trabaja y Jarvis está hecho", (await estado(page, "nil")) === "working" && (await estado(page, "jarvis")) === "done");
-    ok("La lista de pasos marca hechos y actual", (await page.$$eval("#pasos li.hecho", e => e.length)) === 2 && (await page.$$eval("#pasos li.ahora", e => e.length)) === 1);
-    await page.waitForTimeout(80);
+    ok("La lista marca 2 hechos y 1 actual", (await page.$$eval("#pasos li.hecho", e => e.length)) === 2 && (await page.$$eval("#pasos li.ahora", e => e.length)) === 1);
     ok("El trabajo viaja de mesa en mesa", (await page.evaluate(() => window.__vshDebug().packets)) > 0);
-    await emitir(page, "list_events", { data: [{ text: "TÍTULO: GTA 6 Just Name-Dropped Tommy Vercetti's Estate" }, { text: "[PASO 8/8] Entrega" }] });
-    await emitir(page, "get_session", { status_bucket: "SESSION_STATUS_BUCKET_REVIEW_READY" });
+    await page.evaluate(id => window.__claudeActualiza(id, { estado: "entregado", paso: 8, nota: "título ajustado" }), id);
     await page.waitForTimeout(150);
-    ok("Al terminar queda como entregado", /entregado/.test(await page.textContent("#prodChip")) && (await estado(page, "almudena")) === "idle");
-    await page.reload(); await page.waitForTimeout(300);
-    ok("El historial se recuerda al recargar", /entregado/.test(await page.textContent("#historial")));
+    ok("Al terminar: entregado y equipo libre", /entregado/.test(await page.textContent("#prodChip")) && (await estado(page, "almudena")) === "idle");
+    ok("El historial muestra la nota de Claude", /título ajustado/.test(await page.textContent("#historial")));
     ok("Sin errores de JavaScript", errors.length === 0, errors.join(" | "));
     await ctx.close();
   }
 
-  { // 2. Marcadores antiguos de otro encargo no cuentan
-    const { page, ctx } = await abrir(browser, "ok");
-    await page.fill("#titulo", "Every GTA 6 Gang Leader in 30 Seconds");
-    await page.click("#goBtn");
-    await page.waitForFunction(() => window.__calls.length === 1);
-    await emitir(page, "list_events", { data: [{ text: "TÍTULO: Otro encargo anterior" }, { text: "[PASO 7/8] Publicación" }] });
-    await page.waitForTimeout(150);
-    ok("No confunde los pasos de un encargo anterior", /en cola/.test(await page.textContent("#prodChip")));
-    await ctx.close();
-  }
-
-  { // 3. Sin conector
-    const { page, ctx, errors } = await abrir(browser, "sin_conector");
+  { // 2. No hay sesión escuchando: NO queda nada en cola
+    const { page, ctx, errors } = await abrir(browser, "sin_sesion");
+    await page.waitForTimeout(200);
+    ok("Avisa al cargar de que la sesión no escucha", /no está escuchando/.test(await page.textContent("#capNote")));
     await page.fill("#titulo", "GTA 6 test title here");
     await page.click("#goBtn");
     await page.waitForSelector("#fallback:not([hidden])");
-    ok("Sin conector: da la frase para pegar en el chat", /TÍTULO: GTA 6 test title here/.test(await page.textContent("#fallbackTxt")) && /conector/.test(await page.textContent("#capNote")));
-    ok("Sin conector: sin errores de JavaScript", errors.length === 0, errors.join(" | "));
+    const d = await docs(page);
+    ok("El encargo queda como NO enviado (no en cola)", Object.values(d).every(x => x.estado === "no enviado") && !/en cola/.test(await page.textContent("#historial")));
+    ok("Da la frase para pegar en el chat", /TÍTULO: GTA 6 test title here/.test(await page.textContent("#fallbackTxt")) && /No se ha encargado nada/.test(await page.textContent("#capNote")));
+    ok("Sin sesión: sin errores", errors.length === 0, errors.join(" | "));
     await ctx.close();
   }
 
-  { // 4. Respuesta dudosa
-    const { page, ctx } = await abrir(browser, "dudoso");
-    await page.fill("#titulo", "GTA 6 another test title");
-    await page.click("#goBtn");
-    await page.waitForTimeout(200);
-    ok("Dudoso: avisa de comprobar antes de repetir", /comprueba la producción/.test(await page.textContent("#capNote")) && /another test/.test(await page.textContent("#historial")));
-    await ctx.close();
-  }
-
-  { // 5. Fuera de Claude
+  { // 3. Fuera de Claude
     const { page, ctx, errors } = await abrir(browser, "fuera");
     await page.waitForTimeout(200);
     ok("Fuera de Claude: lo explica", /Abre esta página dentro de Claude/.test(await page.textContent("#capNote")));
@@ -115,8 +99,8 @@ const estado = (page, id) => page.evaluate(id => window.__vshDebug().status[id],
       const { page, ctx } = await abrir(browser, "ok", w);
       await page.fill("#titulo", "Every GTA 6 Gang Leader in 30 Seconds");
       await page.click("#goBtn");
-      await page.waitForFunction(() => window.__calls.length === 1);
-      await emitir(page, "list_events", { data: [{ text: "TÍTULO: Every GTA 6 Gang Leader in 30 Seconds" }, { text: "[PASO 2/8] Guion" }] });
+      await page.waitForFunction(() => window.__sent.length === 1);
+      await page.evaluate(() => window.__claudeActualiza(Object.keys(window.__docs)[0], { estado: "en marcha", paso: 2 }));
       await page.waitForTimeout(200);
       ok(`${w}px: sin desplazamiento lateral`, (await page.evaluate(() => document.documentElement.scrollWidth)) <= w);
       const tags = await page.evaluate(() => window.__vshDebug().tags);

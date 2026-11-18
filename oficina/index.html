@@ -935,12 +935,10 @@
   const TRIGGER_ID = "trig_01474VhdtHa3mfx4H2mcy5p8";
   const SESSION_ID = "session_01Ezj41m7rURTutYvC7CDES7";
 
-  // ================================================================ 5. ESTADO (encargos de este dispositivo)
-  const KEY = "vicecity-hq:encargos";
+  // ================================================================ 5. ESTADO (base de datos de la página: la página crea el encargo y Claude anota el paso)
   let encargos = [];
-  try { encargos = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch { encargos = []; }
-  const guardar = () => { try { localStorage.setItem(KEY, JSON.stringify(encargos.slice(0, 30))); } catch {} };
-  const actual = () => encargos.find(e => e.estado !== "entregado" && e.estado !== "error");
+  const ACTIVOS = ["enviado", "en marcha"];
+  const actual = () => encargos.find(e => ACTIVOS.includes(e.estado));
 
   function syncStatus() {
     AGENTS.forEach(a => { status[a.id] = "idle"; bubble[a.id] = ""; });
@@ -987,10 +985,10 @@
   function renderPasos() {
     const e = actual() || encargos[0];
     const ol = document.getElementById("pasos");
-    document.getElementById("prodChip").textContent = !e ? "sin encargos" : e.estado === "entregado" ? "entregado" : e.estado === "error" ? "no se pudo lanzar" : e.paso ? `paso ${e.paso}/8` : "en cola";
+    document.getElementById("prodChip").textContent = !e ? "sin encargos" : etiqueta(e);
     document.getElementById("prodTitulo").textContent = e ? `“${e.titulo}”` : "Cuando pulses “Producir Short”, aquí verás en qué paso va el equipo.";
     ol.replaceChildren(...PASOS.map(p => {
-      const st = !e ? "" : e.estado === "entregado" || p.n < e.paso ? "hecho" : p.n === e.paso ? "ahora" : "";
+      const st = !e || !ACTIVOS.concat("entregado").includes(e.estado) ? "" : e.estado === "entregado" || p.n < e.paso ? "hecho" : p.n === e.paso ? "ahora" : "";
       return h("li", { class: st },
         h("span", { class: "num" }, st === "hecho" ? "✓" : p.n),
         h("span", {}, h("b", {}, p.nombre), " · ", p.who.map(id => agent(id).name).join(", ")));
@@ -1000,100 +998,88 @@
     const ul = document.getElementById("historial");
     ul.replaceChildren(...(encargos.length ? encargos : [null]).map(e => e
       ? h("li", {}, h("div", { class: "copyrow" }, h("span", { class: "t" }, e.titulo),
-          h("span", { class: "chip" + (e.estado === "entregado" ? " ok" : "") }, e.estado === "entregado" ? "entregado" : e.estado === "error" ? "error" : e.paso ? `paso ${e.paso}/8` : "en cola")),
-          h("span", { class: "d" }, new Date(e.ts).toLocaleString("es-ES", { dateStyle: "short", timeStyle: "short" })))
+          h("span", { class: "chip" + (e.estado === "entregado" ? " ok" : "") }, etiqueta(e))),
+          h("span", { class: "d" }, new Date(e.ts).toLocaleString("es-ES", { dateStyle: "short", timeStyle: "short" }) + (e.nota ? " · " + e.nota : "")))
       : h("li", {}, h("span", { class: "d" }, "Todavía no hay encargos desde este dispositivo."))));
+  }
+  function etiqueta(e) {
+    if (e.estado === "entregado") return "entregado";
+    if (e.estado === "no enviado") return "no enviado";
+    if (e.estado === "error") return "con problema";
+    if (e.estado === "enviando") return "enviando…";
+    return e.paso ? `paso ${e.paso}/8` : "recibido, en cola";
   }
   function renderTodo() { renderPasos(); renderHistorial(); syncStatus(); }
 
   function mostrarAlternativa(t, motivo) {
     const box = document.getElementById("fallback");
     box.hidden = false;
-    const frase = `Produce un Short siguiendo docs/produccion-short.md. TÍTULO: ${t}`;
+    const frase = `Produce un Short siguiendo docs/produccion-short.md. TÍTULO: ${t}`;   // se pega en la conversación de producción
     document.getElementById("fallbackTxt").textContent = frase;
     document.getElementById("fallbackBtn").replaceChildren(copyBtn(() => frase));
     capNote.textContent = motivo;
     capNote.className = "note warn";
   }
 
-  // ================================================================ 7. LANZAR EL ENCARGO Y SEGUIR EL PROGRESO
-  let mcp = null, vigilando = false;
+  // ================================================================ 7. ENVIAR EL ENCARGO (comentario "Send to Claude") Y SEGUIRLO (base de datos)
+  let db = null, comments = null;
   const MOTIVO = {
-    server_not_connected: "Tu cuenta no tiene el conector de Claude Code disponible en esta página.",
-    not_in_manifest: "No has dado permiso a la página para lanzar encargos. Recarga y pulsa “Permitir”.",
-    approval_required: "Hace falta tu permiso para lanzar el encargo. Pulsa otra vez “Producir Short” y acepta.",
-    needs_reauth: "Vuelve a conectar Claude Code en claude.ai → Ajustes → Conectores.",
-    blocked_by_policy: "Tu organización no permite lanzar encargos desde una página.",
+    claude_unavailable: "Ahora mismo no hay una sesión de Claude escuchando la oficina.",
+    consent_required: "Hace falta tu permiso para que la oficina envíe el encargo como comentario. Pulsa otra vez y acepta.",
+    forbidden: "Enviar desde la oficina está desactivado para tu cuenta aquí.",
+    rate_limited: "Has enviado varios encargos muy seguidos. Espera un minuto.",
+    capability_removed: "Tu app de Claude todavía no permite enviar desde la página.",
   };
 
   goBtn.onclick = async () => {
-    const t = titulo.value.trim().replace(/\s+/g, " ");
+    const t = titulo.value.trim().replace(/\s+/g, " ").slice(0, 160);
     if (t.length < 6) { capNote.textContent = "Escribe un título un poco más largo."; capNote.className = "note warn"; return; }
-    if (!mcp) { mostrarAlternativa(t, "Abre esta página dentro de Claude para lanzar encargos con un botón."); return; }
+    document.getElementById("fallback").hidden = true;
+    if (!comments) { mostrarAlternativa(t, "Abre esta página dentro de Claude para enviar encargos con un botón."); return; }
     goBtn.disabled = true; goBtn.textContent = "Enviando al equipo…";
+    let ref = null;
     try {
-      await mcp.callTool(SERVER, "fire_trigger", { trigger_id: TRIGGER_ID, text: `TÍTULO: ${t}` }, { cache: false });
-      encargos.unshift({ titulo: t, ts: Date.now(), paso: 0, estado: "en cola" });
-      guardar(); titulo.value = "";
-      capNote.textContent = "Encargo enviado. El equipo empieza en menos de un minuto; aquí verás cada paso."; capNote.className = "note";
-      renderTodo(); vigilar();
+      if (db) { ref = db.collection("encargos").doc(); await ref.set({ titulo: t, ts: Date.now(), estado: "enviando", paso: 0 }); }
+      const anchor = await comments.anchorFor(document.getElementById("nuevo"));
+      await comments.sendToClaude({ anchor, text: `Producir Short — TÍTULO: ${t}` + (ref ? `\nEncargo: ${ref.id}` : "") });
+      if (ref) await ref.update({ estado: "enviado" });
+      titulo.value = "";
+      capNote.textContent = "Encargo enviado. El equipo lo recoge en menos de un minuto y aquí verás cada paso."; capNote.className = "note";
     } catch (e) {
       const code = e?.code || "upstream_error";
-      if (MOTIVO[code]) mostrarAlternativa(t, MOTIVO[code]);
-      else if (code === "tool_error") mostrarAlternativa(t, "Claude Code no aceptó el encargo: " + String(e.message || "").slice(0, 140));
-      else { // resultado dudoso: puede que se haya lanzado
-        encargos.unshift({ titulo: t, ts: Date.now(), paso: 0, estado: "en cola" }); guardar(); renderTodo(); vigilar();
-        capNote.textContent = "No hubo respuesta clara. Puede que el encargo se haya lanzado: comprueba la producción en Claude antes de repetirlo.";
-        capNote.className = "note warn";
-      }
+      if (ref) { try { await ref.update({ estado: "no enviado", nota: "no llegó al equipo" }); } catch {} }
+      mostrarAlternativa(t, (MOTIVO[code] || "No se pudo enviar el encargo desde la oficina.") + " No se ha encargado nada.");
     } finally { goBtn.disabled = false; goBtn.textContent = "Producir Short"; }
   };
 
-  // Lee los marcadores [PASO n/8] que escribe el equipo en la conversación de producción.
-  function leerProgreso(texto) {
-    const e = actual();
-    if (!e) return;
-    const s = String(texto);
-    const iTitulo = s.lastIndexOf(e.titulo.slice(0, 40));
-    const desde = iTitulo >= 0 ? iTitulo : 0;
-    if (iTitulo < 0 && e.paso === 0) return;          // aún no ha llegado a la conversación
-    let paso = e.paso;
-    for (const m of s.slice(desde).matchAll(/\[PASO (\d)\/8\]/g)) paso = Math.max(paso, Number(m[1]));
-    if (paso !== e.paso) {
-      const antes = PASOS[e.paso - 1]?.who[0] || "almudena", ahora = PASOS[paso - 1]?.who[0];   // al empezar, la jefa reparte el encargo
-      e.paso = paso; guardar(); renderTodo();
-      if (antes && ahora) sendPacket(antes, ahora);
+  async function comprobarEnvio() {
+    if (!comments) return;
+    let st = "off";
+    try { st = await comments.canSendToClaude(); } catch { st = "off"; }
+    if (st !== "available") {
+      capNote.textContent = st === "no_session" ? "La sesión de producción no está escuchando ahora mismo: al pulsar te daré la frase para pegar en el chat."
+        : "Desde aquí no se puede enviar a Claude con tu cuenta: al pulsar te daré la frase para pegar en el chat.";
+      capNote.className = "note warn";
     }
-  }
-  function leerSesion(texto) {
-    const e = actual();
-    if (!e) return;
-    const working = /STATUS_BUCKET_WORKING|"working"/.test(String(texto));
-    if (!working && e.paso >= 8) { e.estado = "entregado"; guardar(); renderTodo(); }
-  }
-  function vigilar() {
-    if (!mcp || vigilando || !actual()) return;
-    vigilando = true;
-    const ev = (fn) => (x) => {
-      if (x.type === "data") fn(JSON.stringify(x.result.payload ?? x.result.content ?? ""));
-      else if (["not_in_manifest", "server_not_connected", "blocked_by_policy", "approval_required", "needs_reauth"].includes(x.error?.code)) {
-        document.getElementById("refrescar").hidden = true;
-      }
-    };
-    mcp.watchTool(SERVER, "list_events", { session_id: SESSION_ID, kinds: ["user", "assistant"], limit: 100 }, ev(leerProgreso), { refetchInterval: 30000 });
-    mcp.watchTool(SERVER, "get_session", { session_id: SESSION_ID }, ev(leerSesion), { refetchInterval: 60000 });
   }
 
   // ================================================================ 8. ARRANQUE
   renderTodo();
   (async () => {
-    try { mcp = window.claude ? await window.claude.use("mcp") : null; } catch { mcp = null; }
-    if (!mcp) {
-      capNote.textContent = "Abre esta página dentro de Claude (claude.ai o la app) para lanzar encargos con un botón. Fuera de Claude te daré la frase para pegar en el chat.";
-      capNote.className = "note warn";
-      return;
+    try { [db, comments] = await Promise.all([window.claude?.use("db") ?? null, window.claude?.use("comments") ?? null]); } catch { db = db || null; comments = comments || null; }
+    if (db) {
+      db.collection("encargos").orderBy("ts", "desc").limit(20).onSnapshot(snap => {
+        const antes = actual()?.paso || 0;
+        encargos = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        const e = actual();
+        renderTodo();
+        if (e && e.paso > antes) sendPacket(PASOS[antes - 1]?.who[0] || "almudena", PASOS[e.paso - 1].who[0]);
+      }, () => { document.getElementById("historial").replaceChildren(h("li", {}, h("span", { class: "d" }, "No se pudo leer el historial de encargos."))); });
     }
-    vigilar();
+    if (!comments) {
+      capNote.textContent = "Abre esta página dentro de Claude (claude.ai o la app) para enviar encargos con un botón. Fuera de Claude te daré la frase para pegar en el chat.";
+      capNote.className = "note warn";
+    } else comprobarEnvio();
   })();
 })();
 </script>
