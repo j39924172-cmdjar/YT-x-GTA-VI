@@ -83,6 +83,16 @@ Pon tus grabaciones de GTA 6 en `assets/footage/` con nombres descriptivos (`vic
 
 Ten en cuenta que en la nube el equipo no tiene tu gameplay, porque los vídeos pesan demasiado para el repositorio. Sin él, las escenas usan tarjetas de título. Para vídeos con imagen real, produce en local con tu carpeta `assets/footage/` o usa el flujo de clips IA.
 
+## Usarlo desde un iPad (sin ordenador)
+
+En un iPad no se pueden instalar programas como Python o ffmpeg, así que el equipo trabaja **en los servidores de GitHub**. Todo se hace desde Safari:
+
+1. **Llaves:** en github.com → tu repositorio → Settings → Secrets and variables → Actions → *New repository secret*, crea `ANTHROPIC_API_KEY`, `ELEVENLABS_API_KEY` y `ELEVENLABS_VOICE_ID`.
+2. **Gameplay:** en el repositorio, abre `assets/footage` → *Add file* → *Upload files* y sube clips cortos (máx. 25 MB cada uno) con nombres descriptivos. La música libre de derechos va en `assets/music`.
+3. **Hacer un vídeo:** pestaña *Actions* → "Producción diaria GTA 6" → *Run workflow* (elige `short` o `long` y, si quieres, un tema).
+4. **Descargarlo:** cuando termine (unos 10 minutos), abre la ejecución y descarga el archivo de *Artifacts*. Ábrelo en la app Archivos (tócalo para descomprimir) y dentro de `runs/` tendrás `final.mp4`, `thumbnail.jpg` y `metadata.md`.
+5. **Subirlo:** con la app de YouTube, copiando el título y la descripción de `metadata.md`.
+
 ## Configuración (`config.yaml`)
 - `channel`: nombre, idioma, audiencia, tono y pilares temáticos.
 - `claude`: modelo y nivel de esfuerzo.
