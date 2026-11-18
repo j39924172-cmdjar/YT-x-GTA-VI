@@ -1,4 +1,4 @@
-// Pruebas de la oficina con respuestas de Claude simuladas.
+// Pruebas de Vice Studio HQ con respuestas de Claude simuladas.
 // Uso: node oficina/test_oficina.js   (requiere Playwright con Chromium)
 const { chromium } = require("playwright");
 const fs = require("fs");
@@ -12,29 +12,30 @@ fs.writeFileSync(FILE, `<!doctype html><html><head><meta charset=utf-8><meta nam
 const SHOTS = process.env.SHOTS_DIR || TMP;
 
 // ------------------------------------------------------------------ respuestas simuladas
-const scene = (i, n) => ({
-  narracion: i === n - 1 ? "Suscríbete y cuéntame en comentarios cuál no conocías." : `Secreto número ${i + 1}: en esta zona de Vice City hay algo que casi nadie ha visto todavía.`,
+const filler = n => Array.from({ length: n }, (_, i) => ["Vice", "City", "esconde", "algo", "que", "casi", "nadie", "ha", "visto", "todavía"][i % 10]).join(" ") + ".";
+const scene = (i, n, perScene) => ({
+  narracion: i === n - 1 ? `Suscríbete y dime en comentarios cuál no conocías. ${filler(perScene - 9)}` : `Secreto ${i + 1}. ${filler(perScene - 2)}`,
   texto_pantalla: i === 0 ? "SOLO DE NOCHE" : `SECRETO ${i + 1}`,
   visual: "Gameplay de la playa al anochecer",
   prompt_ia: "Cinematic aerial shot of a neon tropical beach city at dusk, palm trees",
 });
+const script = (n, perScene) => ({ titulo: "7 secretos de Vice City", gancho: "Este sitio solo aparece de noche.", escenas: Array.from({ length: n }, (_, i) => scene(i, n, perScene)), cta: "Suscríbete", fuentes: "Ubicaciones a comprobar jugando." });
 const FIX = {
-  trends: { resumen: "Secretos y dinero dominan.", tendencias: [
-    { tema: "Secretos de Vice City", por_que: "Retienen.", fiabilidad: "evergreen" },
-    { tema: "Dinero rápido", por_que: "Búsquedas constantes.", fiabilidad: "evergreen" },
-    { tema: "Coches ocultos", por_que: "Muy visual.", fiabilidad: "probable" },
-    { tema: "Próxima actualización online", por_que: "Depende de anuncios.", fiabilidad: "verificar" }] },
-  idea: { ideas: [
-    { titulo: "5 secretos de Vice City", angulo: "Ubicaciones exactas", gancho: "Este sitio solo aparece de noche.", pilar: "secretos" },
-    { titulo: "Dinero rápido en GTA 6", angulo: "Método paso a paso", gancho: "Así hice un millón en una hora.", pilar: "guías" }], elegida: 0, razon: "Gancho fuerte." },
-  script: n => ({ titulo: "5 secretos de Vice City", gancho: "Este sitio solo aparece de noche.", escenas: Array.from({ length: n }, (_, i) => scene(i, n)), cta: "Suscríbete", fuentes: "Ubicaciones a comprobar jugando." }),
-  seo: { titulo: "GTA 6: 5 secretos de Vice City que casi nadie ha visto", descripcion: "Secretos de GTA 6.\nContenido no oficial hecho por fans. GTA VI es una marca de Rockstar Games.",
-    etiquetas: Array.from({ length: 16 }, (_, i) => `gta 6 etiqueta ${i}`), hashtags: ["#GTA6", "#Shorts", "#ViceCity"], miniatura: { texto: "Solo de noche", prompt_imagen: "Neon skyline", color: "#FFE14D" } },
+  trends: { resumen: "Secretos y dinero dominan.", temas: Array.from({ length: 10 }, (_, i) => ({ tema: ["Secretos de Vice City", "Dinero rápido", "Coches ocultos", "Easter eggs", "Récords", "Teorías", "Comparativa GTA 5", "Mapa completo", "Armas", "Próxima actualización"][i], por_que: "Interés alto.", fiabilidad: i === 9 ? "verificar" : i % 3 ? "probable" : "evergreen", potencial: 10 - i })) },
+  plan: { tema: "Secretos de Vice City", angulo: "Ubicaciones exactas", promesa: "Descubrirás 7 lugares ocultos y cómo llegar.", publico: "Jugadores que ya han terminado la historia", shorts_previstos: ["Solo de noche", "Coche del puerto", "Faro"], dia_hora: "Viernes 18:00 (España)", razon: "Tema con más potencial." },
+  titles: { promesa: "7 lugares ocultos", titulos: [{ titulo: "GTA 6: 7 secretos de Vice City que casi nadie ha encontrado", por_que: "Curiosidad + número" }, { titulo: "GTA 6: el lugar que solo aparece de noche", por_que: "Curiosidad" }, { titulo: "GTA 6: encontré 7 sitios ocultos en Vice City", por_que: "Resultado" }] },
+  thumbs: { miniaturas: [{ texto: "Solo de noche", composicion: "Faro iluminado", prompt_imagen: "Neon lighthouse", color: "#FFE14D" }, { texto: "Nadie lo vio", composicion: "Puerta oculta", prompt_imagen: "Hidden door", color: "#33E1D6" }, { texto: "Sitio oculto", composicion: "Mapa con X", prompt_imagen: "Map with X", color: "#FF4FA3" }] },
+  scriptWeek: script(10, 130),
+  scriptExpress: script(6, 18),
+  retention: { nota: 7, gancho_mejorado: "Este sitio de Vice City solo aparece de noche, y es el menos raro de los 7.", cambios: [{ escena: 1, problema: "Gancho lento", nuevo_texto: "TEXTO MEJORADO POR PABLITO. " + filler(120) }, { escena: 99, problema: "No existe", nuevo_texto: "ignorar" }], consejo_montaje: "Corta rápido al principio." },
   ok: { aprobado: true, declarar_ia: true, avisos: [] },
   block: { aprobado: false, declarar_ia: true, avisos: [{ nivel: "bloquea", tema: "Título", detalle: "El título promete algo que no se ve.", arreglo: "Cambiar el título." }] },
+  shorts: { shorts: Array.from({ length: 4 }, (_, i) => ({ titulo: `Short ${i + 1}`, gancho: "Este lugar no existe de día.", narracion: filler(90) + " Tienes el resto en el vídeo completo.", textos_pantalla: ["SOLO DE NOCHE"], cierre: "Los otros 6, en el vídeo completo." })) },
+  launchWeek: { descripcion: "Los 7 secretos de Vice City en GTA 6.\nContenido no oficial hecho por fans. GTA VI es una marca de Rockstar Games.", etiquetas: Array.from({ length: 16 }, (_, i) => `gta 6 ${i}`), hashtags: ["#GTA6", "#ViceCity"], capitulos: [{ tiempo: "0:00", titulo: "Intro" }, { tiempo: "1:10", titulo: "Secreto 2" }, { tiempo: "2:20", titulo: "Secreto 3" }], comentario_fijado: "¿Cuál no conocías?", dia_hora: "Viernes 18:00", pantalla_final: "Coches ocultos", lista: "Secretos GTA 6" },
+  launchExpress: { descripcion: "Novedad de GTA 6.\nContenido no oficial hecho por fans. GTA VI es una marca de Rockstar Games.", etiquetas: Array.from({ length: 12 }, (_, i) => `gta 6 ${i}`), hashtags: ["#GTA6", "#Shorts"], capitulos: [], comentario_fijado: "¿Qué opinas?", dia_hora: "Hoy 20:00" },
+  obs: { resumen: "Los vídeos de secretos tienen el doble de clics.", repetir: ["Secretos con número en el título"], evitar: ["Miniaturas con mucho texto"], ideas_de_comentarios: ["Coches ocultos"], siguiente_paso: "Haz una serie de secretos." },
 };
 
-// Se inyecta en la página: simula window.claude.use("sample")
 function mockInit({ scenario }) {
   window.__prompts = [];
   let complianceCalls = 0, scriptCalls = 0;
@@ -47,18 +48,28 @@ function mockInit({ scenario }) {
       opts?.signal?.addEventListener("abort", () => { clearTimeout(t); rej({ code: "cancelled" }); });
     });
     if (scenario === "deny") throw { code: "not_granted", message: "no" };
-    const isLong = /10 escenas/.test(prompt);
-    if (/Eres Valeria/.test(prompt)) return scenario === "messy" ? { tendencias: "Secretos de Vice City\nDinero rápido\nCoches" } : F.trends;
-    if (/Eres Tomás/.test(prompt)) return scenario === "messy" ? { ideas: [{ titulo: "Secretos", gancho: "Mira esto" }], elegida: "7" } : F.idea;
-    if (/Sois Irene \(guionista\) y Bruno/.test(prompt)) {
+    const express = /Short vertical 9:16 de unos 45 segundos/.test(prompt);
+    if (/Eres Jarvis/.test(prompt)) return scenario === "messy" ? { tendencias: "Secretos de Vice City\nDinero rápido\nCoches\nArmas\nMapa" } : F.trends;
+    if (/Eres Almudena/.test(prompt)) return scenario === "messy" ? { tema: "Secretos", promesa: "Ver secretos", shorts_previstos: "uno, dos" } : F.plan;
+    if (/Eres Torrente/.test(prompt)) return scenario === "messy" ? { titulos: ["Un título larguísimo sin la palabra clave que se pasa de los setenta caracteres de largo"] } : F.titles;
+    if (/Eres Nil/.test(prompt)) return scenario === "messy" ? { miniaturas: [{ texto: "Un texto de miniatura demasiado largo", color: "rojo" }] } : F.thumbs;
+    if (/Eres El Chapo/.test(prompt)) {
       scriptCalls++;
       if (scenario === "bad_script" && scriptCalls === 1) return { titulo: "x", escenas: [] };
-      if (scenario === "messy") return { titulo: "Secretos", escenas: [1, 2, 3, 4, 5].map(i => ({ narracion: "Texto " + i, texto_pantalla: "UN TEXTO DEMASIADO LARGO PARA PANTALLA" })) };
-      return isLong ? F.script10 : F.script6;
+      if (scenario === "messy") return { titulo: "Secretos", escenas: Array.from({ length: 8 }, (_, i) => ({ narracion: "Texto corto " + i, texto_pantalla: "UN TEXTO DEMASIADO LARGO PARA PANTALLA" })) };
+      return express ? F.scriptExpress : F.scriptWeek;
     }
-    if (/Sois Carla/.test(prompt)) return scenario === "messy" ? { titulo: "Un título larguísimo ".repeat(6), descripcion: "sin aviso", etiquetas: "gta 6, gta vi", hashtags: "GTA6", miniatura: "nada" } : F.seo;
-    if (/Eres Andrés/.test(prompt)) { complianceCalls++; return scenario === "reject_then_fix" && complianceCalls === 1 ? F.block : F.ok; }
-    if (/Sois Irene \(guionista\) y Carla/.test(prompt)) return { guion: F.script6, seo: { ...F.seo, titulo: "GTA 6: secretos de Vice City (corregido)" } };
+    if (/Eres Pablito/.test(prompt)) return scenario === "messy" ? { nota: "8", cambios: "nada" } : F.retention;
+    if (/Eres Nobita/.test(prompt)) {
+      // el contador sobrevive a las recargas, como lo haría la conversación real
+      complianceCalls = Number(sessionStorage.getItem("complianceCalls") || 0) + 1;
+      sessionStorage.setItem("complianceCalls", String(complianceCalls));
+      return scenario === "reject_then_fix" && complianceCalls === 1 ? F.block : F.ok;
+    }
+    if (/Eres Victillor/.test(prompt)) return scenario === "messy" ? { shorts: [{ narracion: "muy corto" }] } : F.shorts;
+    if (/Eres Guerrero/.test(prompt)) return scenario === "messy" ? { descripcion: "sin aviso", etiquetas: "gta 6, gta vi", comentario_fijado: "Comenta" } : (express ? F.launchExpress : F.launchWeek);
+    if (/Sois El Chapo \(guionista\) y Torrente/.test(prompt)) return { titulos: { ...F.titles, titulos: [{ titulo: "GTA 6: 7 secretos de Vice City (corregido)" }, ...F.titles.titulos.slice(1)] }, guion: F.scriptWeek };
+    if (/Eres Taison/.test(prompt)) return F.obs;
     throw { code: "upstream_error" };
   }
   const sample = Object.assign(async (p, o) => ({ text: JSON.stringify(await json(p, o)) }), { json });
@@ -68,111 +79,126 @@ function mockInit({ scenario }) {
 // ------------------------------------------------------------------ utilidades
 const results = [];
 function ok(name, cond, detail = "") { results.push({ name, pass: !!cond, detail }); }
-
-async function open(browser, scenario, { width = 1024, storage } = {}) {
+async function open(browser, scenario, { width = 1024, storage, insights } = {}) {
   const ctx = await browser.newContext({ viewport: { width, height: 1200 } });
   const page = await ctx.newPage();
   const errors = [];
   page.on("pageerror", e => errors.push(e.message));
-  page.on("console", m => { if (m.type() === "error" && !/fonts\.(googleapis|gstatic)/.test(m.text()) && !/ERR_/.test(m.text())) errors.push(m.text()); });
-  await page.addInitScript(`window.__FIX = ${JSON.stringify({ ...FIX, script6: FIX.script(6), script10: FIX.script(10) })};`);
+  page.on("console", m => { if (m.type() === "error" && !/fonts\.(googleapis|gstatic)|ERR_/.test(m.text())) errors.push(m.text()); });
+  await page.addInitScript(`window.__FIX = ${JSON.stringify(FIX)};`);
   await page.addInitScript(mockInit, { scenario });
-  if (storage) await page.addInitScript(s => { try { localStorage.setItem("vice-studio-hq:last", s); } catch {} }, storage);
+  if (storage) await page.addInitScript(s => { try { if (!sessionStorage.getItem("seeded")) { localStorage.setItem("vice-studio-hq:v3:last", s); sessionStorage.setItem("seeded", "1"); } } catch {} }, storage);
+  if (insights) await page.addInitScript(s => { try { localStorage.setItem("vice-studio-hq:v3:insights", s); } catch {} }, insights);
   await page.goto("file://" + FILE);
   await page.waitForFunction(() => !/Conectando/.test(document.getElementById("goBtn").textContent));
   return { page, ctx, errors };
 }
-const go = async (page, { long = false, topic = "" } = {}) => {
-  if (long) await page.click("#fmtLong");
+const go = async (page, { express = false, topic = "" } = {}) => {
+  if (express) await page.click("#modeExpress");
   if (topic) await page.fill("#topic", topic);
   await page.click("#goBtn");
 };
-const idle = page => page.waitForFunction(() => document.getElementById("stopBtn").hidden, null, { timeout: 15000 });
+const idle = page => page.waitForFunction(() => document.getElementById("stopBtn").hidden, null, { timeout: 20000 });
 const steps = page => page.$$eval(".stage[data-step]", els => els.map(e => ({ step: e.dataset.step, cls: e.className, qc: [...e.querySelectorAll(".qc .chip")].map(c => c.textContent) })));
+const stepOf = async (page, key) => (await steps(page)).find(s => s.step === key);
+const statusOf = (page, id) => page.evaluate(id => window.__vshDebug().status[id], id);
 const card = page => page.textContent("#agentCard");
-const statusOf = (page, id) => page.evaluate(id => window.__vshDebug?.().status[id], id);
+const reloadPage = async page => { await page.reload(); await page.waitForFunction(() => !/Conectando/.test(document.getElementById("goBtn").textContent)); };
+const KEYS_WEEK = ["trends", "plan", "titles", "thumbs", "script", "retention", "compliance", "shorts", "launch"];
 
-// ------------------------------------------------------------------ escenarios
 (async () => {
   const browser = await chromium.launch();
 
-  { // 1. Short completo
+  { // 1. Vídeo de la semana completo
     const { page, ctx, errors } = await open(browser, "ok");
-    ok("Arranca mostrando el ejemplo", /Ejemplo de producción/.test(await page.textContent("#results")));
+    ok("Equipo: 12 puestos en el organigrama", (await page.$$eval(".org .post", e => e.length)) === 12);
+    const orgText = await page.textContent("#org");
+    ok("Equipo: los 12 nombres aparecen", ["Jarvis", "Almudena", "Torrente", "Nil", "El Chapo", "Pablito", "Nobita", "Cristiano", "Georgina", "Victillor", "Guerrero", "Taison"].every(n => orgText.includes(n)));
+    ok("Equipo: los 12 departamentos aparecen", ["El Radar", "La Sala de Mando", "El Escaparate", "Estudio Neón", "La Fábrica de Guiones", "Laboratorio de Retención", "El Escudo", "Estudio Ocean Drive", "La Sala de Montaje", "La Fábrica de Shorts", "Torre de Lanzamiento", "El Observatorio"].every(n => orgText.includes(n)));
+    ok("Equipo: 12 personas dibujadas en la oficina", (await page.evaluate(() => window.__vshDebug().hits.length)) === 12);
     await go(page, { topic: "secretos de Vice City" });
     await page.waitForSelector('.stage.live[data-step="trends"]');
-    ok("Valeria trabaja en el paso 1", (await statusOf(page, "valeria")) === "working");
+    ok("Semana: Jarvis trabaja primero", (await statusOf(page, "jarvis")) === "working");
     await idle(page);
     const st = await steps(page);
-    ok("Short: los 5 pasos terminan", st.filter(s => ["trends", "idea", "script", "seo", "compliance"].includes(s.step) && !/pending|failed/.test(s.cls)).length === 5);
-    ok("Short: aparece el paso de voz y montaje", st.some(s => s.step === "handoff"));
-    ok("Short: control de calidad sin fallos graves", st.every(s => !s.qc.some(q => q.startsWith("✗"))), JSON.stringify(st.map(s => s.qc)));
-    ok("Short: 6 escenas en pantalla", (await page.$$eval('[data-step="script"] .scene', e => e.length)) === 6);
+    ok("Semana: los 9 puestos automáticos terminan", KEYS_WEEK.every(k => st.find(s => s.step === k && !/pending|failed/.test(s.cls))), JSON.stringify(st.map(s => s.step + ":" + s.cls)));
+    ok("Semana: control de calidad sin fallos graves", st.every(s => !s.qc.some(q => q.startsWith("✗"))), JSON.stringify(st.map(s => s.qc)));
+    ok("Semana: sin avisos de calidad", st.every(s => !s.qc.some(q => q.startsWith("!"))), JSON.stringify(st.filter(s => s.qc.some(q => q.startsWith("!"))).map(s => s.step + " " + s.qc)));
     const prompts = await page.evaluate(() => window.__prompts);
-    ok("Se hacen exactamente 5 llamadas", prompts.length === 5, String(prompts.length));
-    ok("El tema llega a Valeria", /secretos de Vice City/.test(prompts[0]));
-    ok("Guion pide 6 escenas", /Exactamente 6 escenas/.test(prompts[2]));
-    ok("Tomás recibe las tendencias de Valeria", /Dinero rápido/.test(prompts[1]));
-    ok("Mateo, Julia y Lola esperan en el chat", (await statusOf(page, "mateo")) === "waiting" && (await statusOf(page, "lola")) === "waiting");
-    ok("Andrés queda en 'hecho'", (await statusOf(page, "andres")) === "done");
+    ok("Semana: 9 llamadas, en orden", prompts.length === 9 && ["Jarvis", "Almudena", "Torrente", "Nil", "El Chapo", "Pablito", "Nobita", "Victillor", "Guerrero"].every((n, i) => prompts[i].includes("Eres " + n)), prompts.map(p => (p.match(/Eres (\w+( \w+)?)/) || [])[1]).join(","));
+    ok("Semana: el tema llega a Jarvis", /secretos de Vice City/.test(prompts[0]));
+    ok("Semana: Almudena recibe los temas de Jarvis", /Comparativa GTA 5/.test(prompts[1]));
+    ok("Semana: títulos antes del guion (El Chapo recibe títulos y miniaturas)", /7 secretos de Vice City que casi nadie/.test(prompts[4]) && /Solo de noche/.test(prompts[4]));
+    ok("Semana: el guion pide 10 escenas", /Exactamente 10 escenas/.test(prompts[4]));
+    ok("Semana: Nobita revisa el guion mejorado por Pablito", /TEXTO MEJORADO POR PABLITO/.test(prompts[6]));
+    ok("Semana: Victillor parte del guion mejorado", /TEXTO MEJORADO POR PABLITO/.test(prompts[7]));
+    ok("Semana: Guerrero recibe tiempos de escena", /escena 2 empieza en/.test(prompts[8]));
+    ok("Semana: Pablito ignora cambios en escenas que no existen", (await page.textContent('[data-step="retention"]')).includes("1 mejoras aplicadas"));
+    ok("Semana: 3 miniaturas y 4 Shorts en pantalla", (await page.$$eval('[data-step="thumbs"] .thumb', e => e.length)) === 3 && (await page.$$eval('[data-step="shorts"] .scene', e => e.length)) === 4);
+    ok("Semana: Cristiano y Georgina esperan en el chat", (await statusOf(page, "cristiano")) === "waiting" && (await statusOf(page, "georgina")) === "waiting");
+    ok("Semana: Taison libre (sin datos aún)", (await statusOf(page, "taison")) === "idle");
     await ctx.grantPermissions(["clipboard-read", "clipboard-write"]);
-    await page.click('[data-step="handoff"] button');
+    await page.click('[data-step="handoff"] .actions button');
     const clip = await page.evaluate(() => navigator.clipboard.readText());
-    ok("Copiar encargo incluye título, guion y formato", /TÍTULO: GTA 6: 5 secretos/.test(clip) && /Escena 6/.test(clip) && /9:16/.test(clip));
-    // persistencia
-    await page.reload();
-    await page.waitForFunction(() => !/Conectando/.test(document.getElementById("goBtn").textContent));
-    ok("Al recargar se recupera la producción", /Tu producción/.test(await page.textContent("#results")) && (await page.$('[data-step="handoff"]')) !== null);
-    ok("Al recargar los estados se mantienen", (await statusOf(page, "mateo")) === "waiting");
-    // ficha del puesto desde el organigrama y desde la oficina
-    await page.click(".org .post:nth-child(5)");
-    ok("Organigrama abre la ficha de Andrés", /Andrés Molina/.test(await card(page)) && /Se lo pasa a/.test(await card(page)));
-    const hit = await page.evaluate(() => window.__vshDebug().hits.find(h => h.id === "gael"));
+    ok("Encargo: incluye título principal y títulos para probar", /TÍTULO PRINCIPAL: GTA 6: 7 secretos/.test(clip) && /TÍTULOS PARA PROBAR:/.test(clip));
+    ok("Encargo: incluye miniaturas A, B y C", /A\) "Solo de noche"/.test(clip) && /C\) "Sitio oculto"/.test(clip));
+    ok("Encargo: usa el guion mejorado por Pablito", /TEXTO MEJORADO POR PABLITO/.test(clip));
+    ok("Encargo: incluye los 4 Shorts y la descripción con capítulos", /SHORT 4:/.test(clip) && /0:00 Intro/.test(clip));
+    ok("Encargo: pide avisar del coste de créditos", /cuántos créditos/.test(clip));
+    await reloadPage(page);
+    ok("Recarga: se recupera el encargo y los estados", !!(await page.$('[data-step="handoff"]')) && (await statusOf(page, "cristiano")) === "waiting");
+    await page.click(".org .post:nth-child(7)");
+    ok("Ficha: el organigrama abre la de Nobita", /Nobita/.test(await card(page)) && /Guardián de normas/.test(await card(page)) && /Se lo pasa a/.test(await card(page)));
+    await page.$eval("#office", e => e.scrollIntoView({ block: "center" }));
+    const hit = await page.evaluate(() => window.__vshDebug().hits.find(h => h.id === "taison"));
     const box = await page.$eval("#office", e => e.getBoundingClientRect().toJSON());
     await page.mouse.click(box.x + hit.x, box.y + hit.y);
-    ok("Tocar a Gael en la oficina abre su ficha", /Gael Ortiz/.test(await card(page)));
-    await page.screenshot({ path: path.join(SHOTS, "t1_ipad.png"), fullPage: false });
-    ok("Short: sin errores de JavaScript", errors.length === 0, errors.join(" | "));
+    ok("Ficha: tocar a Taison en la oficina abre la suya", /Taison/.test(await card(page)) && /Analista y comunidad/.test(await card(page)));
+    ok("Semana: sin errores de JavaScript", errors.length === 0, errors.join(" | "));
     await ctx.close();
   }
 
-  { // 2. Vídeo largo
+  { // 2. Short exprés
     const { page, ctx, errors } = await open(browser, "ok");
-    await go(page, { long: true });
+    await go(page, { express: true });
     await idle(page);
     const prompts = await page.evaluate(() => window.__prompts);
-    ok("Largo: el guion pide 10 escenas", /Exactamente 10 escenas/.test(prompts[2]));
-    ok("Largo: 10 escenas en pantalla", (await page.$$eval('[data-step="script"] .scene', e => e.length)) === 10);
-    ok("Largo: no exige #Shorts", !(await steps(page)).find(s => s.step === "seo").qc.some(q => /Shorts/.test(q)));
-    ok("Largo: sin errores de JavaScript", errors.length === 0, errors.join(" | "));
+    ok("Exprés: 7 llamadas (sin miniaturas ni Shorts)", prompts.length === 7 && !prompts.some(p => /Eres Nil|Eres Victillor/.test(p)), String(prompts.length));
+    ok("Exprés: el guion pide 6 escenas", prompts.some(p => /Exactamente 6 escenas/.test(p)));
+    const st = await steps(page);
+    ok("Exprés: no muestra puestos que no tocan", !st.some(s => s.step === "thumbs" || s.step === "shorts"));
+    ok("Exprés: sin fallos de calidad", st.every(s => !s.qc.some(q => q.startsWith("✗") || q.startsWith("!"))), JSON.stringify(st.map(s => s.qc)));
+    ok("Exprés: aparece el encargo para el chat", !!(await page.$('[data-step="handoff"]')));
+    ok("Exprés: sin errores de JavaScript", errors.length === 0, errors.join(" | "));
     await ctx.close();
   }
 
-  { // 3. Respuestas mal formadas
+  { // 3. Respuestas desordenadas
     const { page, ctx, errors } = await open(browser, "messy");
     await go(page);
     await idle(page);
     const st = await steps(page);
-    ok("Desordenado: no se rompe la página", errors.length === 0, errors.join(" | "));
-    ok("Desordenado: tendencias en texto se convierten en lista", (await page.$$eval('[data-step="trends"] li', e => e.length)) === 3);
-    ok("Desordenado: idea elegida fuera de rango usa la primera", /elegida/.test(await page.textContent('[data-step="idea"]')));
-    ok("Desordenado: avisa de textos largos y falta de prompts", st.find(s => s.step === "script").qc.some(q => q.startsWith("!")));
-    ok("Desordenado: avisa título largo y falta de #Shorts", st.find(s => s.step === "seo").qc.filter(q => q.startsWith("!")).length >= 3);
+    ok("Desordenado: la página no se rompe", errors.length === 0, errors.join(" | "));
+    ok("Desordenado: la lista en texto se convierte en temas", (await page.$$eval('[data-step="trends"] li', e => e.length)) === 5);
+    ok("Desordenado: avisa de títulos largos y sin GTA 6", (await stepOf(page, "titles")).qc.filter(q => q.startsWith("!")).length >= 2);
+    ok("Desordenado: avisa de miniaturas largas", (await stepOf(page, "thumbs")).qc.some(q => q.startsWith("!")));
+    ok("Desordenado: avisa de guion corto y textos largos", (await stepOf(page, "script")).qc.filter(q => q.startsWith("!")).length >= 2);
+    ok("Desordenado: un Short demasiado corto se avisa", (await stepOf(page, "shorts")).qc.some(q => q.startsWith("!")));
+    ok("Desordenado: avisa de falta de aviso no oficial y de capítulos", (await stepOf(page, "launch")).qc.filter(q => q.startsWith("!")).length >= 3);
+    ok("Desordenado: todos los puestos terminan", st.filter(s => KEYS_WEEK.includes(s.step)).every(s => !/failed|pending/.test(s.cls)));
     await ctx.close();
   }
 
-  { // 4. Guion vacío → se para en el paso 3 y se puede seguir
+  { // 4. Guion vacío
     const { page, ctx, errors } = await open(browser, "bad_script");
     await go(page);
     await idle(page);
-    ok("Guion vacío: se para en el paso 3", /failed/.test((await steps(page)).find(s => s.step === "script").cls));
-    ok("Guion vacío: Irene y Bruno en rojo", (await statusOf(page, "irene")) === "error" && (await statusOf(page, "bruno")) === "error");
-    ok("Guion vacío: no aparece el encargo", !(await page.$('[data-step="handoff"]')));
+    ok("Guion vacío: se para en El Chapo", /failed/.test((await stepOf(page, "script")).cls) && (await statusOf(page, "chapo")) === "error");
+    ok("Guion vacío: los siguientes quedan pendientes", /pending/.test((await stepOf(page, "retention")).cls));
     await page.click('[data-step="script"] button.strong');
     await idle(page);
-    ok("Seguir desde el paso 3 completa el encargo", !!(await page.$('[data-step="handoff"]')));
     const prompts = await page.evaluate(() => window.__prompts);
-    ok("Al seguir no repite los pasos 1 y 2", prompts.filter(p => /Eres Valeria/.test(p)).length === 1);
+    ok("Guion vacío: seguir completa el encargo sin repetir a Jarvis", !!(await page.$('[data-step="handoff"]')) && prompts.filter(p => /Eres Jarvis/.test(p)).length === 1);
     ok("Guion vacío: sin errores de JavaScript", errors.length === 0, errors.join(" | "));
     await ctx.close();
   }
@@ -181,48 +207,49 @@ const statusOf = (page, id) => page.evaluate(id => window.__vshDebug?.().status[
     const { page, ctx } = await open(browser, "deny");
     await go(page);
     await idle(page);
-    ok("Sin permiso: explica qué hacer", /permiso/.test(await page.textContent("#capNote")));
-    ok("Sin permiso: el botón queda desactivado", await page.$eval("#goBtn", b => b.disabled));
+    ok("Sin permiso: explica qué hacer y desactiva botones", /permiso/.test(await page.textContent("#capNote")) && await page.$eval("#goBtn", b => b.disabled) && await page.$eval("#obsBtn", b => b.disabled));
     await ctx.close();
   }
 
-  { // 6. Parar a mitad y seguir
+  { // 6. Parar y seguir
     const { page, ctx, errors } = await open(browser, "slow");
     await go(page);
-    await page.waitForFunction(() => window.__prompts.length === 2);
+    await page.waitForFunction(() => window.__prompts.length === 3);
     await page.click("#stopBtn");
     await idle(page);
-    ok("Parar: se queda en el paso 2", /failed/.test((await steps(page)).find(s => s.step === "idea").cls));
-    ok("Parar: dice que lo has parado", /Has parado/.test(await page.textContent('[data-step="idea"]')));
+    ok("Parar: se queda en Torrente", /failed/.test((await stepOf(page, "titles")).cls) && /Has parado/.test(await page.textContent('[data-step="titles"]')));
     ok("Parar: nadie sigue trabajando", !(await page.evaluate(() => Object.values(window.__vshDebug().status).includes("working"))));
-    await page.click('[data-step="idea"] button.strong');
+    await page.click('[data-step="titles"] button.strong');
     await idle(page);
     ok("Parar: al seguir termina", !!(await page.$('[data-step="handoff"]')));
     ok("Parar: sin errores de JavaScript", errors.length === 0, errors.join(" | "));
     await ctx.close();
   }
 
-  { // 7. Andrés frena el vídeo → correcciones → aprobado
+  { // 7. Nobita frena → correcciones
     const { page, ctx, errors } = await open(browser, "reject_then_fix");
     await go(page);
     await idle(page);
-    ok("Frenado: aparece el aviso de Andrés", !!(await page.$('[data-step="fix-box"]')));
-    ok("Frenado: Andrés en rojo", (await statusOf(page, "andres")) === "error");
-    ok("Frenado: no deja copiar el encargo", !(await page.$('[data-step="handoff"]')));
+    const n1 = await page.evaluate(() => window.__prompts.length);
+    ok("Frenado: no se hacen Shorts ni ficha hasta corregir", n1 === 7, String(n1));
+    ok("Frenado: aparece el aviso justo después de Nobita", (await steps(page)).map(s => s.step).join(",").includes("compliance,fix-box"));
+    ok("Frenado: Nobita en rojo y sin encargo", (await statusOf(page, "nobita")) === "error" && !(await page.$('[data-step="handoff"]')));
+    await reloadPage(page);
+    ok("Frenado: tras recargar sigue mostrando 'Pedir correcciones'", !!(await page.$('[data-step="fix-box"]')));
     await page.click('[data-step="fix-box"] button');
     await idle(page);
-    ok("Corrección: después queda aprobado", !!(await page.$('[data-step="handoff"]')));
-    ok("Corrección: el título cambia", /corregido/.test(await page.textContent('[data-step="seo"]')));
-    ok("Corrección: se marca como corregido", /corregido ×1/.test(await page.textContent('[data-step="script"]')));
+    ok("Corrección: queda aprobado y se completan Shorts y ficha", !!(await page.$('[data-step="handoff"]')) && !/pending/.test((await stepOf(page, "launch")).cls),
+      JSON.stringify({ steps: (await steps(page)).map(s => s.step + ":" + s.cls + ":" + s.qc.join("/")), prompts: await page.evaluate(() => window.__prompts.map(p => (p.match(/(Eres|Sois) \S+/) || [])[0])), note: await page.textContent("#capNote") }));
+    ok("Corrección: el título cambia y se marca corregido", /corregido/.test(await page.textContent('[data-step="titles"]')) && /corregido ×1/.test(await page.textContent('[data-step="titles"]')));
     ok("Corrección: sin errores de JavaScript", errors.length === 0, errors.join(" | "));
     await ctx.close();
   }
 
-  { // 8. Encargo a medias guardado (página cerrada mientras trabajaba)
-    const half = JSON.stringify({ format: "short", topic: "", createdAt: 1, stages: { trends: FIX.trends }, checks: {}, revisions: 0, stopAt: null });
+  { // 8. Encargo a medias guardado
+    const half = JSON.stringify({ mode: "week", topic: "", createdAt: 1, stages: { trends: FIX.trends, plan: { ...FIX.plan } }, checks: {}, revisions: 0, stopAt: null });
     const { page, ctx, errors } = await open(browser, "ok", { storage: half });
-    ok("A medias: ofrece seguir desde el paso 2", /Seguir desde el paso 2/.test(await page.textContent("#results")));
-    await page.click('[data-step="idea"] button.strong');
+    ok("A medias: ofrece seguir desde Torrente", /Seguir desde Torrente/.test(await page.textContent("#results")));
+    await page.click('[data-step="titles"] button.strong');
     await idle(page);
     ok("A medias: al seguir termina", !!(await page.$('[data-step="handoff"]')));
     ok("A medias: sin errores de JavaScript", errors.length === 0, errors.join(" | "));
@@ -232,40 +259,54 @@ const statusOf = (page, id) => page.evaluate(id => window.__vshDebug?.().status[
   { // 9. Fuera de Claude
     const { page, ctx, errors } = await open(browser, "no_claude");
     ok("Fuera de Claude: avisa y desactiva", (await page.$eval("#goBtn", b => b.disabled)) && /Abre esta página dentro de Claude/.test(await page.textContent("#capNote")));
-    ok("Fuera de Claude: el ejemplo se ve igual", !!(await page.$('[data-step="handoff"]')));
+    ok("Fuera de Claude: el ejemplo se ve completo", !!(await page.$('[data-step="handoff"]')) && (await page.$$eval(".stage[data-step]", e => e.length)) === 10);
     ok("Fuera de Claude: sin errores de JavaScript", errors.length === 0, errors.join(" | "));
     await ctx.close();
   }
 
-  { // 10. Tamaños de pantalla
-    for (const w of [390, 768, 1024, 1366]) {
-      const { page, ctx } = await open(browser, "ok", { width: w });
-      const sw = await page.evaluate(() => document.documentElement.scrollWidth);
-      ok(`Ancho ${w}px: sin desplazamiento lateral`, sw <= w, `scrollWidth ${sw}`);
-      const countOverlaps = tags => {
-        let n = 0;
-        for (let i = 0; i < tags.length; i++) for (let j = i + 1; j < tags.length; j++) {
-          const a = tags[i], b = tags[j];
-          if (a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h) n++;
-        }
-        return n;
-      };
-      await go(page);
-      await page.waitForSelector('.stage.live[data-step="script"]');
-      await page.waitForTimeout(100);
-      const busyTags = await page.evaluate(() => window.__vshDebug().tags);
-      ok(`Ancho ${w}px: nombres y bocadillos no se pisan mientras trabajan`, countOverlaps(busyTags) === 0, `${countOverlaps(busyTags)} solapes`);
-      await idle(page);
-      await page.waitForTimeout(100);
-      const tags = await page.evaluate(() => window.__vshDebug().tags);
-      ok(`Ancho ${w}px: todo dentro de la oficina`, tags.every(t => t.y >= 0 && t.x >= 0 && t.x + t.w <= w), JSON.stringify(tags.filter(t => t.y < 0 || t.x < 0)));
-      let overlaps = 0;
+  { // 10. El Observatorio
+    const { page, ctx, errors } = await open(browser, "ok");
+    await page.fill("#obsData", "corto");
+    await page.click("#obsBtn");
+    ok("Observatorio: pide datos si están vacíos", /al menos un vídeo/.test(await page.textContent("#obsOut")));
+    await page.fill("#obsData", "5 secretos de Vice City — 12.400 visualizaciones — clics 7,8 % — vista media 3:10 de 9:00 — +210 suscriptores");
+    await page.click("#obsBtn");
+    await idle(page);
+    ok("Observatorio: Taison entrega conclusiones", /doble de clics/.test(await page.textContent("#obsOut")) && (await statusOf(page, "taison")) === "done");
+    await go(page);
+    await idle(page);
+    const prompts = await page.evaluate(() => window.__prompts);
+    ok("Observatorio: Jarvis, Almudena y Torrente usan las conclusiones", ["Jarvis", "Almudena", "Torrente"].every(n => prompts.find(p => p.includes("Eres " + n))?.includes("Conclusiones de Taison")));
+    await reloadPage(page);
+    ok("Observatorio: las conclusiones se guardan", /doble de clics/.test(await page.textContent("#obsOut")));
+    ok("Observatorio: sin errores de JavaScript", errors.length === 0, errors.join(" | "));
+    await ctx.close();
+  }
+
+  { // 11. Pantallas
+    const countOverlaps = tags => {
+      let n = 0;
       for (let i = 0; i < tags.length; i++) for (let j = i + 1; j < tags.length; j++) {
         const a = tags[i], b = tags[j];
-        if (a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h) overlaps++;
+        if (a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h) n++;
       }
-      ok(`Ancho ${w}px: al terminar, nombres y bocadillos no se pisan`, overlaps === 0, `${overlaps} solapes`);
-      if (w === 390) await page.screenshot({ path: path.join(SHOTS, "t10_phone.png"), fullPage: true });
+      return n;
+    };
+    for (const w of [390, 768, 1024, 1366]) {
+      const { page, ctx } = await open(browser, "ok", { width: w });
+      ok(`${w}px: sin desplazamiento lateral`, (await page.evaluate(() => document.documentElement.scrollWidth)) <= w);
+      await go(page);
+      await page.waitForSelector('.stage.live[data-step="script"]');
+      await page.waitForTimeout(80);
+      const busyTags = await page.evaluate(() => window.__vshDebug().tags);
+      ok(`${w}px: nombres y bocadillos no se pisan mientras trabajan`, countOverlaps(busyTags) === 0, `${countOverlaps(busyTags)} solapes`);
+      await idle(page);
+      await page.waitForTimeout(80);
+      const tags = await page.evaluate(() => window.__vshDebug().tags);
+      ok(`${w}px: al terminar no se pisan`, countOverlaps(tags) === 0, `${countOverlaps(tags)} solapes`);
+      ok(`${w}px: todo dentro de la oficina`, tags.every(t => t.y >= 0 && t.x >= 0 && t.x + t.w <= w), JSON.stringify(tags.filter(t => t.y < 0 || t.x < 0 || t.x + t.w > w)));
+      if (w === 1024) await page.screenshot({ path: path.join(SHOTS, "v3_ipad.png") });
+      if (w === 390) await page.screenshot({ path: path.join(SHOTS, "v3_phone.png") });
       await ctx.close();
     }
   }
