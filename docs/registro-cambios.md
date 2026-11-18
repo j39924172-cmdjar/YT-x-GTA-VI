@@ -48,3 +48,7 @@
 - Nueva herramienta `shorts/canal.py`: lee los datos públicos de @vicecitydaystv (sin contraseñas ni claves) y guarda el historial en `docs/canal-estadisticas.json`. Primer registro: 1 suscriptor, 3 Shorts públicos, 328 visualizaciones (298 del Short de horarios de lanzamiento).
 - Entorno de nube: se permite `www.youtube.com` para leer el canal.
 - Las estadísticas privadas (vistos frente a deslizados, retención) las pasa Adam con capturas de YouTube Studio.
+
+## 18/11/2026 (noche) — Prueba de voz gratuita
+- Adam quiere no pagar nada aparte de Claude. Higgsfield: el plan Starter (19 $/mes, 270 créditos) no le aparece mientras dure la prueba de Ultra (hasta el 21/11); lo gratis de sus campañas no funciona desde Claude (MCP) y no incluye voz.
+- Prueba con **Kokoro** (voz de código abierto, gratis, funciona en la sesión con kokoro-onnx y el modelo de Hugging Face). Comparativa `shorts/05-crime-bosses/comparativa_voces.mp3`: Dylan / Michael / Fenrir / Puck. Pendiente de que Adam elija; el sistema sigue con Dylan hasta entonces.
