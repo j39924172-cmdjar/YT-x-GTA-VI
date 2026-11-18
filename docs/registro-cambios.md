@@ -15,3 +15,14 @@
   - Tipografías libres (OFL): Anton y Montserrat, en `shorts/fuentes/`.
   - El montaje se hace en este entorno de Claude Code (≈45 s por Short) en lugar del sandbox de Higgsfield: misma tecnología (Python + Pillow + ffmpeg) y sin colas.
 - **Entorno de nube "YT-x-GTA-VI"** con acceso a videogameschronicle.com, rockstargames.com, el CDN de Higgsfield y Hugging Face (para faster-whisper).
+
+## 18/11/2026 (tarde) — Sesión de Claude Code
+- **Short 04 "GTA 6's Map Is Real Florida… Except ONE Place" producido** (31,7 s, −14,3 LUFS). Carpeta `shorts/04-florida-real/`.
+  - Gancho del banco corregido para que sea 100 % cierto: en vez de "They copied a real state" (no demostrable), "Their own website calls Leonida 'the sunshine state'" (cita literal de rockstargames.com/VI/only-in-leonida; es el apodo de Florida).
+  - Datos: Grassrivers ↔ Everglades, "River of Grass" (NPS); Ambrosia (refinería Allied Crystal, según Rockstar) ↔ Clewiston "America's Sweetest Town" y la quema de caña antes de la cosecha; Mount Kalaga ↔ Florida no tiene montañas: Britton Hill mide 345 ft y es el punto más alto más bajo de los 50 estados.
+  - Primera **comparativa IN GAME / REAL LIFE**: Leonida_Keys_01 frente a una foto real del Seven Mile Bridge (U.S. DOT, dominio público, con crédito en el vídeo y en la descripción).
+- **Hallazgo:** las capturas oficiales en 4K también están en rockstargames.com (`/VI/_next/static/media/...jpg`), cada una con la descripción de Rockstar. Catálogo de 86 imágenes en `docs/catalogo-imagenes.md`, incluidas las nuevas de la galería de lanzamiento (Vice_City_13–27, Grassrivers_07–08, Leonida_Keys_07…).
+- **Plantilla** `shorts/montaje.py`: capas nuevas "tarjeta" (dato con contador animado, p. ej. 0 → 345 FT) y "comparativa" (pantalla partida juego/real).
+- **Banco de ideas** `docs/banco-ideas.md` con 4 ideas verificadas en la web oficial: Vercetti Estate (Vintage Vice City Pack), Cal Hampton y los pájaros, Brian Heder el contrabandista, y los jefes de banda.
+- **Investigación automática cada 2 días** (Jarvis + Nobita): tarea programada "Investigación GTA 6 cada 2 días", a las 10:23 hora de Madrid, que añade ideas verificadas al banco y hace push. Procedimiento en `docs/departamentos.md`.
+- Wikimedia Commons limita mucho las descargas (error 429): solo se pudo bajar 1 de 5 fotos reales. Para fotos reales, mejor pocas y elegidas.

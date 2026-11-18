@@ -1,0 +1,459 @@
+{
+ "voz": "voz.mp3",
+ "palabras": "palabras.json",
+ "salida": "final.mp4",
+ "fuente": "Sources: Rockstar Games, NPS, Wikipedia",
+ "marca": "VICECITY DAYS TV",
+ "musica": {
+  "bpm": 124,
+  "volumen": 0.3
+ },
+ "palabras_clave": [
+  "Rockstar",
+  "map",
+  "Leonida",
+  "sunshine",
+  "state",
+  "Grassrivers",
+  "Everglades",
+  "River",
+  "Grass",
+  "Ambrosia",
+  "sugar",
+  "refinery",
+  "fire",
+  "Florida",
+  "Clewiston",
+  "Sweetest",
+  "sugarcane",
+  "burned",
+  "Kalaga",
+  "highest",
+  "345",
+  "feet",
+  "lowest",
+  "mountain",
+  "Follow",
+  "secrets"
+ ],
+ "escenas": [
+  {
+   "img": "capturas/Vice_City_01.jpg",
+   "desde": 0.0,
+   "hasta": 1.85,
+   "foco": [
+    0.5,
+    0.55
+   ],
+   "foco_fin": [
+    0.56,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.15
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_27.jpg",
+   "desde": 1.85,
+   "hasta": 3.5,
+   "foco": [
+    0.45,
+    0.5
+   ],
+   "foco_fin": [
+    0.55,
+    0.5
+   ],
+   "zoom": [
+    1.05,
+    1.15
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_01.jpg",
+   "desde": 3.5,
+   "hasta": 5.5,
+   "foco": [
+    0.45,
+    0.62
+   ],
+   "foco_fin": [
+    0.58,
+    0.62
+   ],
+   "zoom": [
+    1.0,
+    1.1
+   ],
+   "etiqueta": {
+    "texto": "“THE SUNSHINE STATE”",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     265
+    ],
+    "desde": 0.35
+   }
+  },
+  {
+   "img": "capturas/Grassrivers_04.jpg",
+   "desde": 5.5,
+   "hasta": 7.6,
+   "foco": [
+    0.3,
+    0.55
+   ],
+   "foco_fin": [
+    0.42,
+    0.55
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ]
+  },
+  {
+   "img": "capturas/Grassrivers_08.jpg",
+   "desde": 7.6,
+   "hasta": 10.6,
+   "foco": [
+    0.45,
+    0.58
+   ],
+   "zoom": [
+    1.0,
+    1.18
+   ]
+  },
+  {
+   "img": "capturas/Ambrosia_02.jpg",
+   "desde": 10.6,
+   "hasta": 12.8,
+   "foco": [
+    0.42,
+    0.42
+   ],
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "etiqueta": {
+    "texto": "SUGAR REFINERY",
+    "fondo": "amarillo",
+    "flecha": [
+     0.4,
+     0.33
+    ],
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 1.0
+   }
+  },
+  {
+   "img": "capturas/Ambrosia_04.jpg",
+   "desde": 12.8,
+   "hasta": 14.6,
+   "foco": [
+    0.5,
+    0.55
+   ],
+   "zoom": [
+    1.05,
+    1.2
+   ],
+   "etiqueta": {
+    "texto": "FIELDS ON FIRE",
+    "fondo": "rosa",
+    "color": "blanco",
+    "flecha": [
+     0.5,
+     0.65
+    ],
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.3
+   }
+  },
+  {
+   "img": "capturas/Ambrosia_01.jpg",
+   "desde": 14.6,
+   "hasta": 17.3,
+   "foco": [
+    0.55,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ]
+  },
+  {
+   "img": "capturas/Ambrosia_04.jpg",
+   "desde": 17.3,
+   "hasta": 20.4,
+   "foco": [
+    0.5,
+    0.62
+   ],
+   "zoom": [
+    1.3,
+    1.5
+   ]
+  },
+  {
+   "img": "capturas/Mount_Kalaga_National_Park_04.jpg",
+   "desde": 20.4,
+   "hasta": 24.1,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.5,
+    0.42
+   ],
+   "zoom": [
+    1.0,
+    1.15
+   ]
+  },
+  {
+   "img": "capturas/Mount_Kalaga_National_Park_02.jpg",
+   "desde": 24.1,
+   "hasta": 27.0,
+   "foco": [
+    0.72,
+    0.5
+   ],
+   "foco_fin": [
+    0.62,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.1
+   ]
+  },
+  {
+   "img": "capturas/Mount_Kalaga_National_Park_06.jpg",
+   "desde": 27.0,
+   "hasta": 29.2,
+   "foco": [
+    0.45,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 29.2,
+   "hasta": 32.0,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.6,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.1
+   ]
+  }
+ ],
+ "capas": [
+  {
+   "tipo": "titulo",
+   "desde": 0.0,
+   "hasta": 3.5,
+   "lineas": [
+    [
+     "GTA 6'S MAP",
+     "blanco"
+    ],
+    [
+     "IS REAL FLORIDA",
+     "amarillo"
+    ]
+   ],
+   "size": 135,
+   "pastilla": "EXCEPT ONE PLACE"
+  },
+  {
+   "tipo": "comparativa",
+   "desde": 3.5,
+   "hasta": 5.5,
+   "img": "reales/seven_mile_bridge.jpg",
+   "foco": [
+    0.45,
+    0.62
+   ],
+   "foco_fin": [
+    0.6,
+    0.6
+   ],
+   "zoom": [
+    1.25,
+    1.35
+   ],
+   "arriba": "IN GAME: LEONIDA KEYS",
+   "abajo": "REAL: SEVEN MILE BRIDGE, FL",
+   "credito": "Photo: U.S. DOT (public domain)"
+  },
+  {
+   "tipo": "fact",
+   "desde": 5.5,
+   "hasta": 10.6,
+   "n": 1,
+   "total": 3,
+   "titulo": "GRASSRIVERS"
+  },
+  {
+   "tipo": "tarjeta",
+   "desde": 6.8,
+   "hasta": 10.6,
+   "y": 820,
+   "lineas": [
+    {
+     "texto": "REAL LIFE: THE EVERGLADES",
+     "fuente": "Montserrat-Black.ttf",
+     "size": 50,
+     "color": "blanco",
+     "stroke": 0
+    },
+    {
+     "texto": "NICKNAME:",
+     "fuente": "Montserrat-Black.ttf",
+     "size": 44,
+     "color": "lila",
+     "stroke": 0,
+     "retraso": 1.2
+    },
+    {
+     "texto": "“RIVER OF GRASS”",
+     "size": 116,
+     "color": "amarillo",
+     "retraso": 2.6
+    }
+   ]
+  },
+  {
+   "tipo": "fact",
+   "desde": 10.6,
+   "hasta": 20.4,
+   "n": 2,
+   "total": 3,
+   "titulo": "AMBROSIA"
+  },
+  {
+   "tipo": "tarjeta",
+   "desde": 15.4,
+   "hasta": 20.4,
+   "y": 820,
+   "lineas": [
+    {
+     "texto": "REAL LIFE: CLEWISTON, FL",
+     "fuente": "Montserrat-Black.ttf",
+     "size": 50,
+     "color": "blanco",
+     "stroke": 0
+    },
+    {
+     "texto": "“AMERICA'S",
+     "size": 108,
+     "color": "amarillo",
+     "retraso": 1.0
+    },
+    {
+     "texto": "SWEETEST TOWN”",
+     "size": 108,
+     "color": "amarillo",
+     "retraso": 1.6
+    },
+    {
+     "texto": "CANE BURNED BEFORE HARVEST",
+     "pastilla": true,
+     "fondo": "rosa",
+     "color": "blanco",
+     "size": 40,
+     "icono": "ok",
+     "retraso": 2.8
+    }
+   ]
+  },
+  {
+   "tipo": "fact",
+   "desde": 20.4,
+   "hasta": 29.2,
+   "n": 3,
+   "total": 3,
+   "titulo": "MOUNT KALAGA"
+  },
+  {
+   "tipo": "tarjeta",
+   "desde": 21.8,
+   "hasta": 27.0,
+   "y": 820,
+   "lineas": [
+    {
+     "texto": "FLORIDA'S HIGHEST POINT",
+     "fuente": "Montserrat-Black.ttf",
+     "size": 50,
+     "color": "blanco",
+     "stroke": 0
+    },
+    {
+     "texto": "{n} FT",
+     "contar": 345,
+     "dur": 0.8,
+     "size": 190,
+     "color": "amarillo",
+     "retraso": 1.4
+    },
+    {
+     "texto": "LOWEST OF ANY US STATE",
+     "pastilla": true,
+     "fondo": "rosa",
+     "color": "blanco",
+     "size": 44,
+     "icono": "no",
+     "retraso": 3.3
+    }
+   ]
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 27.0,
+   "hasta": 29.2,
+   "items": [
+    {
+     "texto": "PURE ROCKSTAR",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "size": 84,
+     "desde": 27.9,
+     "y": 820
+    }
+   ]
+  },
+  {
+   "tipo": "cta",
+   "desde": 29.2,
+   "hasta": 99,
+   "lineas": [
+    "FOLLOW",
+    "FOR MORE GTA 6 SECRETS"
+   ]
+  }
+ ]
+}

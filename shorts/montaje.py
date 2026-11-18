@@ -244,7 +244,59 @@ def capa_cta(fr, c, t):
     pegar(fr, p, W / 2, 880, alpha=min(1, k * 1.5), escala=0.6 + 0.4 * k)
 
 
-CAPAS = {"titulo": capa_titulo, "fact": capa_fact, "ruta": capa_ruta, "pastillas": capa_pastillas, "cta": capa_cta}
+def capa_tarjeta(fr, c, t):
+    """Tarjeta de dato: caja oscura con líneas que van apareciendo; una línea puede tener contador ("contar": 345).
+    La caja se calcula con todas las líneas desde el principio para que no cambie de tamaño."""
+    k = ease_back((t - c["desde"]) / 0.35)
+    if k <= 0:
+        return
+
+    def pieza(ln, txt):
+        if ln.get("pastilla"):
+            return pastilla(txt, ln.get("fondo", "amarillo"), ln.get("color", "negro"), ln.get("size", 54), icono=ln.get("icono", ""))
+        return texto_img(txt, ln.get("fuente", "Anton-Regular.ttf"), ln.get("size", 90), ln.get("color", "blanco"), stroke=ln.get("stroke", 6))
+
+    finales = [pieza(ln, ln["texto"].replace("{n}", f"{ln['contar']:,}") if "contar" in ln else ln["texto"]) for ln in c["lineas"]]
+    ancho = min(W - 120, max(p.width for p in finales) + 80)
+    escalas = [min(1.0, (ancho - 40) / p.width) for p in finales]
+    alto = sum((p.height - 18) * e for p, e in zip(finales, escalas)) + 60
+    cy = c.get("y", 820)
+    caja = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    ImageDraw.Draw(caja).rounded_rectangle((W / 2 - ancho / 2, cy - alto / 2, W / 2 + ancho / 2, cy + alto / 2), radius=40,
+                                          fill=(8, 8, 16, int(215 * min(1, k))), outline=COL[c.get("borde", "morado")] + (int(255 * min(1, k)),), width=6)
+    fr.alpha_composite(caja)
+    y = cy - alto / 2 + 30
+    for ln, fin, esc in zip(c["lineas"], finales, escalas):
+        t0 = c["desde"] + ln.get("retraso", 0)
+        if t >= t0:
+            txt = ln["texto"]
+            if "contar" in ln:
+                txt = txt.replace("{n}", f"{int(round(ln['contar'] * ease((t - t0) / ln.get('dur', 1.0)))):,}")
+            im = pieza(ln, txt)
+            kk = ease_back((t - t0) / 0.25)
+            pegar(fr, im, W / 2, y + fin.height * esc / 2 - 9, escala=esc * (0.7 + 0.3 * kk), alpha=min(1, kk * 2))
+        y += (fin.height - 18) * esc
+
+
+def capa_comparativa(fr, c, t):
+    """Pantalla partida: el fondo (juego) arriba y una foto real abajo, con etiquetas IN GAME / REAL LIFE."""
+    k = ease((t - c["desde"]) / 0.3)
+    real = c["_escena"]
+    abajo = real.render(t).crop((0, (H - H // 2) // 2, W, (H - H // 2) // 2 + H // 2))
+    y0 = int(H / 2 + (1 - k) * H / 2)
+    fr.alpha_composite(abajo, (0, y0))
+    ImageDraw.Draw(fr).rectangle((0, y0 - 5, W, y0 + 5), fill=COL["amarillo"] + (255,))
+    pa = pastilla(c.get("arriba", "IN GAME"), "rosa", "blanco", 40)
+    pb = pastilla(c.get("abajo", "REAL LIFE"), "amarillo", "negro", 40, icono="ok")
+    pegar(fr, pa, 50 + pa.width / 2, y0 - 62, alpha=k)
+    pegar(fr, pb, 50 + pb.width / 2, y0 + 66, alpha=k)
+    if c.get("credito"):
+        cr = texto_img(c["credito"], "Montserrat-ExtraBold.ttf", 24, "blanco")
+        pegar(fr, cr, W - 60 - cr.width / 2, y0 + H // 2 - 40, alpha=0.8 * k)
+
+
+CAPAS = {"titulo": capa_titulo, "fact": capa_fact, "ruta": capa_ruta, "pastillas": capa_pastillas, "cta": capa_cta,
+         "tarjeta": capa_tarjeta, "comparativa": capa_comparativa}
 
 
 def etiqueta_escena(fr, esc: Escena, t):
@@ -285,7 +337,7 @@ def subtitulos(fr, palabras, t, clave):
         if g[0]["s"] - 0.05 <= t < g[-1]["e"] + 0.12:
             x_total, piezas = 0, []
             for w in g:
-                limpio = w["w"].strip(".,?!").upper()
+                limpio = w["w"].strip(".,?!\"“”").upper()
                 es_clave = any(limpio.startswith(k.upper()) for k in clave)
                 im = texto_img(limpio, "Montserrat-Black.ttf", 112, "amarillo" if es_clave else "blanco", stroke=10)
                 piezas.append(im); x_total += im.width - 30
@@ -351,6 +403,10 @@ def montar(plan_path: str) -> Path:
     dur_voz = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(voz)], capture_output=True, text=True).stdout)
     dur = plan.get("duracion") or round(dur_voz + 0.8, 2)
     escenas = [Escena(e, base) for e in plan["escenas"]]
+    for c in plan.get("capas", []):           # la comparativa lleva su propia foto con Ken Burns
+        if c["tipo"] == "comparativa":
+            c["_escena"] = Escena({"img": c["img"], "desde": c["desde"], "hasta": c["hasta"], "foco": c.get("foco", [0.5, 0.5]),
+                                   "foco_fin": c.get("foco_fin", c.get("foco", [0.5, 0.5])), "zoom": c.get("zoom", [1.0, 1.1])}, base)
     escenas[-1].t1 = max(escenas[-1].t1, dur)
     cortes = [e.t0 for e in escenas[1:]]
     salida_mudo = base / "render_mudo.mp4"
