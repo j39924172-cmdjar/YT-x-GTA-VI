@@ -8,3 +8,7 @@ assets/ai_clips/*
 client_secret*.json
 token*.json
 oficina/pruebas_reales/captura.png
+# Material de Shorts: las capturas son de Rockstar y los vídeos pesan; no se suben al repositorio
+shorts/*/capturas/
+shorts/*/*.mp4
+shorts/*/ritmo.wav

@@ -1,0 +1,445 @@
+{
+ "voz": "voz.mp3",
+ "palabras": "palabras.json",
+ "salida": "final.mp4",
+ "fuente": "Source: Rockstar Games",
+ "marca": "VICECITY DAYS TV",
+ "musica": {
+  "bpm": 128,
+  "volumen": 0.3
+ },
+ "palabras_clave": [
+  "Army",
+  "vet",
+  "prison",
+  "Jason",
+  "Duval",
+  "grifters",
+  "crooks",
+  "Keys",
+  "drug",
+  "runners",
+  "Lucia",
+  "Caminos",
+  "fight",
+  "Leonida",
+  "Penitentiary",
+  "luck",
+  "Liberty",
+  "City",
+  "GTA",
+  "best",
+  "worst",
+  "Follow",
+  "secrets"
+ ],
+ "escenas": [
+  {
+   "img": "capturas/Jason_Duval_02.jpg",
+   "desde": 0.0,
+   "hasta": 1.95,
+   "foco": [
+    0.36,
+    0.45
+   ],
+   "foco_fin": [
+    0.37,
+    0.42
+   ],
+   "zoom": [
+    1.05,
+    1.2
+   ],
+   "etiqueta": {
+    "texto": "ARMY VET",
+    "fondo": "amarillo",
+    "flecha": [
+     0.3,
+     0.3
+    ],
+    "pos": [
+     720,
+     1060
+    ],
+    "desde": 0.35
+   }
+  },
+  {
+   "img": "capturas/Lucia_Caminos_05.jpg",
+   "desde": 1.95,
+   "hasta": 4.1,
+   "foco": [
+    0.47,
+    0.45
+   ],
+   "foco_fin": [
+    0.47,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "etiqueta": {
+    "texto": "JUST OUT OF PRISON",
+    "fondo": "rosa",
+    "color": "blanco",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.6
+   }
+  },
+  {
+   "img": "capturas/Jason_Duval_06.jpg",
+   "desde": 4.1,
+   "hasta": 6.6,
+   "foco": [
+    0.44,
+    0.45
+   ],
+   "foco_fin": [
+    0.5,
+    0.45
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ],
+   "etiqueta": {
+    "texto": "GRIFTERS & CROOKS",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 1.2
+   }
+  },
+  {
+   "img": "capturas/Jason_Duval_01.jpg",
+   "desde": 6.6,
+   "hasta": 8.2,
+   "foco": [
+    0.7,
+    0.55
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ],
+   "etiqueta": {
+    "texto": "EX-ARMY",
+    "fondo": "amarillo",
+    "icono": "ok",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.4
+   },
+   "foco_fin": [
+    0.68,
+    0.5
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_01.jpg",
+   "desde": 8.2,
+   "hasta": 9.15,
+   "foco": [
+    0.45,
+    0.5
+   ],
+   "foco_fin": [
+    0.6,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ],
+   "etiqueta": {
+    "texto": "THE KEYS",
+    "fondo": "rosa",
+    "color": "blanco",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.05
+   }
+  },
+  {
+   "img": "capturas/Jason_Duval_03.jpg",
+   "desde": 9.15,
+   "hasta": 10.1,
+   "foco": [
+    0.3,
+    0.48
+   ],
+   "zoom": [
+    1.05,
+    1.15
+   ],
+   "etiqueta": {
+    "texto": "WORKING FOR DRUG RUNNERS",
+    "fondo": "amarillo",
+    "size": 50,
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.05
+   }
+  },
+  {
+   "img": "capturas/Lucia_Caminos_01.jpg",
+   "desde": 10.1,
+   "hasta": 12.9,
+   "foco": [
+    0.72,
+    0.42
+   ],
+   "foco_fin": [
+    0.74,
+    0.4
+   ],
+   "zoom": [
+    1.0,
+    1.14
+   ],
+   "etiqueta": {
+    "texto": "TRAINED TO FIGHT",
+    "fondo": "amarillo",
+    "flecha": [
+     0.84,
+     0.33
+    ],
+    "pos": [
+     460,
+     1060
+    ],
+    "desde": 1.0
+   }
+  },
+  {
+   "img": "capturas/Lucia_Caminos_05.jpg",
+   "desde": 12.9,
+   "hasta": 15.75,
+   "foco": [
+    0.46,
+    0.55
+   ],
+   "foco_fin": [
+    0.46,
+    0.62
+   ],
+   "zoom": [
+    1.25,
+    1.45
+   ],
+   "etiqueta": {
+    "texto": "LEONIDA PENITENTIARY",
+    "fondo": "rosa",
+    "color": "blanco",
+    "size": 50,
+    "flecha": [
+     0.46,
+     0.5
+    ],
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 1.6
+   }
+  },
+  {
+   "img": "capturas/Lucia_Caminos_03.jpg",
+   "desde": 15.75,
+   "hasta": 18.0,
+   "foco": [
+    0.45,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ],
+   "etiqueta": {
+    "texto": "SHEER LUCK",
+    "fondo": "amarillo",
+    "icono": "ok",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.6
+   }
+  },
+  {
+   "img": "capturas/Lucia_Caminos_02.jpg",
+   "desde": 18.0,
+   "hasta": 20.4,
+   "foco": [
+    0.42,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.1
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_04.jpg",
+   "desde": 20.4,
+   "hasta": 22.6,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.4,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.1
+   ]
+  },
+  {
+   "img": "capturas/Lucia_Caminos_04.jpg",
+   "desde": 22.6,
+   "hasta": 24.5,
+   "foco": [
+    0.18,
+    0.45
+   ],
+   "foco_fin": [
+    0.82,
+    0.45
+   ],
+   "zoom": [
+    1.05,
+    1.05
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_04.jpg",
+   "desde": 24.5,
+   "hasta": 26.8,
+   "foco": [
+    0.33,
+    0.45
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_02.jpg",
+   "desde": 26.8,
+   "hasta": 29.5,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.6,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.1
+   ]
+  }
+ ],
+ "capas": [
+  {
+   "tipo": "titulo",
+   "desde": 0.0,
+   "hasta": 4.1,
+   "lineas": [
+    [
+     "MEET GTA 6'S",
+     "blanco"
+    ],
+    [
+     "2 CRIMINALS",
+     "amarillo"
+    ]
+   ],
+   "pastilla": "IN 30 SECONDS"
+  },
+  {
+   "tipo": "fact",
+   "desde": 4.1,
+   "hasta": 10.1,
+   "n": 1,
+   "total": 3,
+   "titulo": "JASON DUVAL"
+  },
+  {
+   "tipo": "fact",
+   "desde": 10.1,
+   "hasta": 18.0,
+   "n": 2,
+   "total": 3,
+   "titulo": "LUCIA CAMINOS"
+  },
+  {
+   "tipo": "fact",
+   "desde": 18.0,
+   "hasta": 22.6,
+   "n": 3,
+   "total": 3,
+   "titulo": "HER FAMILY"
+  },
+  {
+   "tipo": "ruta",
+   "desde": 18.2,
+   "hasta": 22.6,
+   "origen": "LIBERTY CITY",
+   "destino": "LEONIDA",
+   "nota": {
+    "texto": "GTA 4",
+    "icono": "ok",
+    "desde": 21.1
+   }
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 22.6,
+   "hasta": 26.8,
+   "items": [
+    {
+     "texto": "BEST",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 23.7,
+     "y": 560
+    },
+    {
+     "texto": "WORST",
+     "fondo": "rosa",
+     "color": "blanco",
+     "icono": "no",
+     "desde": 24.55,
+     "y": 740
+    }
+   ]
+  },
+  {
+   "tipo": "cta",
+   "desde": 26.8,
+   "hasta": 99,
+   "lineas": [
+    "FOLLOW",
+    "FOR MORE GTA 6 SECRETS"
+   ]
+  }
+ ]
+}
