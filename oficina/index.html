@@ -1,0 +1,778 @@
+<title>Vice Studio HQ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  /* Layout: oficina isométrica arriba (el equipo), debajo panel de encargo + resultados por departamento */
+  :root {
+    color-scheme: dark;
+    --night: #120B24;
+    --panel: #1B1233;
+    --panel-2: #241843;
+    --line: #382A63;
+    --ink: #F3EEFF;
+    --muted: #A99DCB;
+    --pink: #FF4FA3;
+    --cyan: #33E1D6;
+    --sun: #FFB547;
+    --red: #FF6B6B;
+    --font-display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+    --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--night);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 20px 48px;
+    display: grid;
+    gap: 18px;
+  }
+  header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px; }
+  .brand h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 5vw, 44px);
+    line-height: 1;
+    margin: 0;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  .brand h1 span { color: var(--pink); }
+  .brand p { margin: 6px 0 0; color: var(--muted); }
+  .team-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 12px; border-radius: 999px;
+    background: var(--panel); border: 1px solid var(--line);
+    font-family: var(--font-mono); font-size: 12px; color: var(--muted);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); flex: none; }
+  .dot.working { background: var(--pink); box-shadow: 0 0 8px var(--pink); }
+  .dot.done { background: var(--cyan); }
+  .dot.waiting { background: var(--sun); }
+  .dot.error { background: var(--red); }
+
+  .office {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    background:
+      radial-gradient(120% 80% at 50% 0%, #2B1650 0%, transparent 60%),
+      linear-gradient(180deg, #170E2F, var(--night));
+    border: 1px solid var(--line);
+  }
+  #office { display: block; width: 100%; touch-action: manipulation; cursor: pointer; }
+  .office-hint {
+    position: absolute; left: 14px; bottom: 10px;
+    font-size: 12px; color: var(--muted);
+    background: rgba(18, 11, 36, 0.75); padding: 4px 10px; border-radius: 999px;
+  }
+  .legend {
+    position: absolute; right: 12px; bottom: 10px;
+    display: flex; gap: 10px; flex-wrap: wrap; justify-content: end;
+    font-size: 11px; color: var(--muted);
+    background: rgba(18, 11, 36, 0.75); padding: 4px 10px; border-radius: 999px;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 5px; }
+
+  .grid { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 18px; align-items: start; }
+  @media (max-width: 820px) { .grid { grid-template-columns: minmax(0, 1fr); } .legend { display: none; } }
+
+  .panel {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+    padding: 18px; display: grid; gap: 14px; min-width: 0;
+  }
+  .panel h2, .stage h3 {
+    font-family: var(--font-display); font-weight: 800; margin: 0; letter-spacing: -0.01em;
+  }
+  .panel h2 { font-size: 20px; }
+  label.field { display: grid; gap: 6px; font-size: 13px; color: var(--muted); }
+  .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .seg button {
+    padding: 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel-2);
+    color: var(--ink); font: 600 14px var(--font-body); cursor: pointer;
+  }
+  .seg button[aria-pressed="true"] { border-color: var(--pink); background: #3A1A44; }
+  .seg small { display: block; font-weight: 400; color: var(--muted); font-size: 11px; }
+  input[type="text"] {
+    width: 100%; padding: 11px 12px; border-radius: 10px; border: 1px solid var(--line);
+    background: var(--night); color: var(--ink); font: 15px var(--font-body);
+  }
+  .go {
+    padding: 14px; border-radius: 12px; border: 0; cursor: pointer;
+    background: linear-gradient(90deg, var(--pink), #FF7A59);
+    color: #1A0716; font: 800 17px var(--font-display); letter-spacing: 0.01em;
+  }
+  .go:disabled { opacity: 0.45; cursor: default; }
+  .ghost {
+    padding: 9px 12px; border-radius: 10px; border: 1px solid var(--line); background: transparent;
+    color: var(--ink); font: 600 13px var(--font-body); cursor: pointer;
+  }
+  button:focus-visible, input:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+  .note { font-size: 13px; color: var(--muted); margin: 0; }
+  .note.warn { color: var(--sun); }
+
+  .agent-card { border-top: 1px solid var(--line); padding-top: 14px; display: grid; gap: 6px; }
+  .agent-card .who { display: flex; align-items: center; gap: 10px; }
+  .avatar { width: 34px; height: 34px; border-radius: 50%; flex: none; border: 2px solid var(--line); }
+  .agent-card strong { font-size: 15px; }
+  .agent-card .role { font-size: 12px; color: var(--muted); }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 2px 9px; border-radius: 999px;
+    font-size: 11px; font-family: var(--font-mono); border: 1px solid var(--line); color: var(--muted);
+    white-space: nowrap;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .results { display: grid; gap: 14px; min-width: 0; }
+  .results-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+  .results-head h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; margin: 0; }
+  .stage {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+    padding: 16px 18px; display: grid; gap: 10px; min-width: 0;
+  }
+  .stage-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .stage h3 { font-size: 17px; }
+  .stage .by { font-size: 12px; color: var(--muted); }
+  .stage .by b { color: var(--ink); font-weight: 600; }
+  .stage.pending { opacity: 0.55; }
+  .stage.live { border-color: var(--pink); }
+  .thinking { font-family: var(--font-mono); font-size: 13px; color: var(--pink); }
+  .list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  .list li { display: grid; gap: 2px; padding: 8px 10px; border-radius: 10px; background: var(--panel-2); min-width: 0; }
+  .list li .t { font-weight: 600; }
+  .list li .d { font-size: 13px; color: var(--muted); }
+  .rel-evergreen { color: var(--cyan); border-color: #1F5F5B; }
+  .rel-probable { color: var(--sun); border-color: #6B4A1C; }
+  .rel-verificar { color: var(--red); border-color: #6B2A2A; }
+  .chosen { border: 1px solid var(--pink); }
+  .scenes { display: grid; gap: 8px; }
+  .scene { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; padding: 10px; border-radius: 10px; background: var(--panel-2); }
+  .scene .n {
+    font-family: var(--font-mono); font-size: 12px; color: var(--pink);
+    border: 1px solid var(--line); border-radius: 8px; height: 30px; display: grid; place-items: center;
+  }
+  .scene p { margin: 0; }
+  .scene .ost { font-family: var(--font-display); font-weight: 800; color: var(--sun); font-size: 14px; letter-spacing: 0.02em; }
+  .scene .meta { font-size: 12px; color: var(--muted); }
+  .scene code { font-family: var(--font-mono); font-size: 11.5px; color: var(--cyan); word-break: break-word; }
+  .kv { display: grid; gap: 4px; }
+  .kv .k { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+  .kv .v { white-space: pre-wrap; word-break: break-word; }
+  .copyrow { display: flex; gap: 8px; align-items: start; justify-content: space-between; }
+  .copyrow > div { min-width: 0; flex: 1; }
+  .thumb-mock {
+    aspect-ratio: 16 / 9; max-width: 100%; border-radius: 12px; display: grid; place-items: end center;
+    padding: 6%; background: linear-gradient(160deg, #2B1650, #FF4FA3 120%);
+    font-family: var(--font-display); font-weight: 800; text-align: center;
+    font-size: clamp(22px, 4vw, 38px); line-height: 1; text-transform: uppercase;
+    -webkit-text-stroke: 1.5px #120B24; paint-order: stroke fill;
+  }
+  .issue { padding: 8px 10px 8px 12px; border-radius: 10px; background: var(--panel-2); border-left: 3px solid var(--sun); font-size: 14px; }
+  .issue.block { border-left-color: var(--red); }
+  .verdict { font-family: var(--font-display); font-weight: 800; font-size: 18px; }
+  .verdict.ok { color: var(--cyan); }
+  .verdict.no { color: var(--red); }
+  .handoff { border-color: var(--sun); }
+  .handoff ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <h1>Vice Studio <span>HQ</span></h1>
+      <p>Tu equipo de IA para el canal de GTA 6. Toca a cualquiera para ver qué hace.</p>
+    </div>
+    <div class="team-pill" id="teamPill"><span class="dot" id="teamDot"></span><span id="teamText">Equipo en la oficina</span></div>
+  </header>
+
+  <section class="office" aria-label="Oficina virtual del equipo">
+    <canvas id="office" role="img" aria-label="Oficina isométrica con 11 miembros del equipo en 9 departamentos"></canvas>
+    <div class="office-hint">Toca a una persona</div>
+    <div class="legend">
+      <span><i class="dot"></i>Libre</span>
+      <span><i class="dot working"></i>Trabajando</span>
+      <span><i class="dot done"></i>Hecho</span>
+      <span><i class="dot waiting"></i>Te espera en el chat</span>
+    </div>
+  </section>
+
+  <section class="grid">
+    <aside class="panel">
+      <h2>Encargar un vídeo</h2>
+      <div class="field">
+        <div class="seg" role="group" aria-label="Formato">
+          <button type="button" id="fmtShort" aria-pressed="true">Short<small>vertical · 50 s</small></button>
+          <button type="button" id="fmtLong" aria-pressed="false">Vídeo largo<small>horizontal · 8 min</small></button>
+        </div>
+      </div>
+      <label class="field" for="topic">Tema (opcional)
+        <input type="text" id="topic" placeholder="Ej.: secretos de Vice City" autocomplete="off">
+      </label>
+      <button class="go" id="goBtn" type="button" disabled>Conectando con el equipo…</button>
+      <button class="ghost" id="stopBtn" type="button" hidden>Parar</button>
+      <p class="note" id="capNote">El equipo trabaja con tu cuenta de Claude. La primera vez te pedirá permiso.</p>
+
+      <div class="agent-card" id="agentCard"></div>
+    </aside>
+
+    <main class="results" id="results" aria-live="polite"></main>
+  </section>
+</div>
+
+<script>
+(() => {
+  // ---------------------------------------------------------------- datos
+  const ROOMS = [
+    { id: "scout", name: "Investigación", col: 0, row: 0, floor: "#2A1F52" },
+    { id: "strat", name: "Estrategia", col: 1, row: 0, floor: "#22305A" },
+    { id: "guion", name: "Guion y arte", col: 2, row: 0, floor: "#3A1F4D" },
+    { id: "voz", name: "Estudio de voz", col: 0, row: 1, floor: "#1E3A4F" },
+    { id: "edit", name: "Sala de edición", col: 1, row: 1, floor: "#2E2350" },
+    { id: "thumb", name: "Miniaturas y SEO", col: 2, row: 1, floor: "#3F2245" },
+    { id: "legal", name: "Cumplimiento", col: 0, row: 2, floor: "#23344A" },
+    { id: "pub", name: "Publicación", col: 1, row: 2, floor: "#3A2640" },
+    { id: "data", name: "Analítica", col: 2, row: 2, floor: "#24294F" },
+  ];
+  const AGENTS = [
+    { id: "valeria", name: "Valeria Ríos", role: "Scout de tendencias", room: "scout", spot: [2.5, 2.6], shirt: "#FF4FA3", hair: "#3B2416", skin: "#D9A07B", tool: "Claude",
+      job: "Detecta de qué se habla sobre GTA 6 y qué temas funcionan siempre." },
+    { id: "tomas", name: "Tomás Herrera", role: "Estratega de contenido", room: "strat", spot: [2.5, 2.6], shirt: "#33E1D6", hair: "#141018", skin: "#B57A55", tool: "Claude",
+      job: "Propone ideas y elige la que más puede crecer sin engañar al público." },
+    { id: "irene", name: "Irene Solís", role: "Guionista", room: "guion", spot: [1.2, 3.7], shirt: "#FFB547", hair: "#6B2E1E", skin: "#E8B48F", tool: "Claude",
+      job: "Escribe el guion escena a escena, con gancho en los 3 primeros segundos." },
+    { id: "bruno", name: "Bruno Castillo", role: "Director de arte", room: "guion", spot: [3.9, 1.7], shirt: "#8F7BFF", hair: "#1C1414", skin: "#C98E68", tool: "Claude",
+      job: "Prepara los prompts para generar clips de vídeo con IA en Higgsfield." },
+    { id: "mateo", name: "Mateo León", role: "Locutor", room: "voz", spot: [2.5, 2.6], shirt: "#FF7A59", hair: "#2A1B12", skin: "#A86B48", tool: "Higgsfield",
+      job: "Pone la voz en off. Lo activa Claude en el chat con tus créditos de Higgsfield." },
+    { id: "julia", name: "Julia Pardo", role: "Editora de vídeo", room: "edit", spot: [2.5, 2.6], shirt: "#33E1D6", hair: "#5A3A1A", skin: "#EDC09B", tool: "ffmpeg",
+      job: "Monta imágenes, voz, textos, subtítulos y música. Lo activa Claude en el chat." },
+    { id: "pablo", name: "Pablo Medina", role: "Diseñador de miniaturas", room: "thumb", spot: [1.2, 3.7], shirt: "#FF4FA3", hair: "#0F0B10", skin: "#D49A72", tool: "Claude",
+      job: "Decide el texto y la imagen de la miniatura para que llame la atención." },
+    { id: "carla", name: "Carla Vega", role: "Especialista SEO", room: "thumb", spot: [3.9, 1.7], shirt: "#FFB547", hair: "#7A4A26", skin: "#E3AD86", tool: "Claude",
+      job: "Escribe título, descripción, etiquetas y hashtags para que te encuentren." },
+    { id: "andres", name: "Andrés Molina", role: "Cumplimiento", room: "legal", spot: [2.5, 2.6], shirt: "#8F7BFF", hair: "#2E2E2E", skin: "#BF8460", tool: "Claude",
+      job: "Revisa derechos de Rockstar, normas de YouTube y que los rumores no parezcan hechos." },
+    { id: "lola", name: "Lola Fuentes", role: "Publicación", room: "pub", spot: [2.5, 2.6], shirt: "#FF7A59", hair: "#3E1F14", skin: "#DDA582", tool: "YouTube",
+      job: "Prepara la subida. Por ahora el vídeo lo subes tú con la app de YouTube." },
+    { id: "gael", name: "Gael Ortiz", role: "Analista", room: "data", spot: [2.5, 2.6], shirt: "#33E1D6", hair: "#1A1210", skin: "#B07250", tool: "YouTube",
+      job: "Mide qué vídeos funcionan para mejorar las siguientes ideas. Aún sin datos del canal." },
+  ];
+  const roomById = Object.fromEntries(ROOMS.map(r => [r.id, r]));
+  const status = {};   // id -> idle | working | done | waiting | error
+  const bubble = {};   // id -> texto del bocadillo
+  AGENTS.forEach(a => { status[a.id] = "idle"; });
+  let selected = "valeria";
+
+  // ---------------------------------------------------------------- oficina (canvas isométrico)
+  const canvas = document.getElementById("office");
+  const ctx = canvas.getContext("2d");
+  const N = 17;            // 3 salas de 5 casillas + 2 pasillos
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W = 0, H = 0, tw = 0, th = 0, ox = 0, oy = 0, hits = [];
+
+  function resize() {
+    const w = canvas.clientWidth;
+    tw = w / 17.6;
+    th = tw / 2;
+    W = w;
+    H = Math.round(N * th + tw * 2.6);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.style.height = H + "px";
+    canvas.width = Math.round(W * dpr);
+    canvas.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ox = W / 2;
+    oy = tw * 2.1;
+  }
+  const iso = (x, y, z = 0) => [ox + (x - y) * tw / 2, oy + (x + y) * th / 2 - z * tw * 0.5];
+
+  function poly(points, fill, stroke) {
+    ctx.beginPath();
+    points.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y));
+    ctx.closePath();
+    if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+    if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = 1; ctx.stroke(); }
+  }
+  function shade(hex, k) {
+    const n = parseInt(hex.slice(1), 16);
+    const c = [n >> 16, (n >> 8) & 255, n & 255].map(v => Math.max(0, Math.min(255, Math.round(v * k))));
+    return `rgb(${c[0]},${c[1]},${c[2]})`;
+  }
+  function box(x, y, w, d, h, color) {
+    poly([iso(x, y + d, 0), iso(x + w, y + d, 0), iso(x + w, y + d, h), iso(x, y + d, h)], shade(color, 0.62));
+    poly([iso(x + w, y, 0), iso(x + w, y + d, 0), iso(x + w, y + d, h), iso(x + w, y, h)], shade(color, 0.8));
+    poly([iso(x, y, h), iso(x + w, y, h), iso(x + w, y + d, h), iso(x, y + d, h)], color);
+  }
+  function roundRect(x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  function drawRoom(r) {
+    const x0 = r.col * 6, y0 = r.row * 6, x1 = x0 + 5, y1 = y0 + 5;
+    poly([iso(x0, y0), iso(x1, y0), iso(x1, y1), iso(x0, y1)], r.floor);
+    ctx.globalAlpha = 0.18;
+    for (let i = 1; i < 5; i++) {
+      poly([iso(x0 + i, y0), iso(x0 + i, y1)], null, "#FFFFFF");
+      poly([iso(x0, y0 + i), iso(x1, y0 + i)], null, "#FFFFFF");
+    }
+    ctx.globalAlpha = 1;
+    const wallH = 1.1;
+    poly([iso(x0, y0), iso(x1, y0), iso(x1, y0, wallH), iso(x0, y0, wallH)], shade(r.floor, 1.35));
+    poly([iso(x0, y0), iso(x0, y1), iso(x0, y1, wallH), iso(x0, y0, wallH)], shade(r.floor, 1.15));
+    // franja de neón en la pared
+    const busy = AGENTS.some(a => a.room === r.id && status[a.id] === "working");
+    ctx.strokeStyle = busy ? "#FF4FA3" : "rgba(51,225,214,0.45)";
+    ctx.lineWidth = busy ? 2.5 : 1.5;
+    ctx.beginPath();
+    const p1 = iso(x0 + 0.2, y0, wallH * 0.85), p2 = iso(x1 - 0.2, y0, wallH * 0.85);
+    ctx.moveTo(p1[0], p1[1]); ctx.lineTo(p2[0], p2[1]); ctx.stroke();
+    // planta
+    box(x1 - 0.8, y1 - 0.8, 0.5, 0.5, 0.45, "#5B3A2A");
+    ctx.fillStyle = "#2FA36B";
+    const pl = iso(x1 - 0.55, y1 - 0.55, 0.75);
+    ctx.beginPath(); ctx.arc(pl[0], pl[1], tw * 0.22, 0, Math.PI * 2); ctx.fill();
+  }
+
+  function drawRoomLabel(r) {
+    if (W < 640) return;
+    const [lx, ly] = iso(r.col * 6 + 4.4, r.row * 6 + 4.4);
+    const fs = Math.max(9, Math.min(12, tw * 0.24));
+    ctx.font = `600 ${fs}px Inter, system-ui, sans-serif`;
+    const text = r.name.toUpperCase();
+    const w = ctx.measureText(text).width + fs * 1.4, hh = fs * 1.8;
+    ctx.fillStyle = "rgba(14,9,30,0.62)";
+    roundRect(lx - w / 2, ly - hh / 2, w, hh, 6); ctx.fill();
+    ctx.fillStyle = "rgba(243,238,255,0.78)";
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.fillText(text, lx, ly + 0.5);
+  }
+
+  function drawAgent(a, i, t) {
+    const r = roomById[a.room];
+    const ax = r.col * 6 + a.spot[0], ay = r.row * 6 + a.spot[1];
+    const st = status[a.id];
+    // mesa y monitor detrás de la persona
+    box(ax - 0.75, ay - 1.25, 1.5, 0.75, 0.55, "#4A3A70");
+    const glow = st === "working" ? (0.75 + 0.25 * Math.sin(t * 9 + i)) : st === "done" ? 0.7 : 0.35;
+    box(ax - 0.4, ay - 1.15, 0.8, 0.12, 1.15, "#1A1530");
+    const s1 = iso(ax - 0.36, ay - 1.02, 0.62), s2 = iso(ax + 0.36, ay - 1.02, 0.62),
+          s3 = iso(ax + 0.36, ay - 1.02, 1.08), s4 = iso(ax - 0.36, ay - 1.02, 1.08);
+    ctx.globalAlpha = glow;
+    poly([s1, s2, s3, s4], st === "working" ? "#FF4FA3" : st === "done" ? "#33E1D6" : "#6C5CB0");
+    ctx.globalAlpha = 1;
+
+    const [px, py] = iso(ax, ay);
+    const bob = reduceMotion ? 0 : (st === "working" ? Math.sin(t * 10 + i) * 1.6 : Math.sin(t * 1.6 + i) * 0.8);
+    const u = tw;
+    // anillo de estado
+    if (st !== "idle") {
+      ctx.strokeStyle = { working: "#FF4FA3", done: "#33E1D6", waiting: "#FFB547", error: "#FF6B6B" }[st];
+      ctx.globalAlpha = st === "working" ? 0.55 + 0.35 * Math.sin(t * 5) : 0.7;
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.ellipse(px, py, u * 0.42, u * 0.21, 0, 0, Math.PI * 2); ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+    if (a.id === selected) {
+      ctx.strokeStyle = "#F3EEFF"; ctx.lineWidth = 1.5; ctx.setLineDash([3, 3]);
+      ctx.beginPath(); ctx.ellipse(px, py, u * 0.52, u * 0.26, 0, 0, Math.PI * 2); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    ctx.fillStyle = "rgba(0,0,0,0.35)";
+    ctx.beginPath(); ctx.ellipse(px, py, u * 0.26, u * 0.12, 0, 0, Math.PI * 2); ctx.fill();
+    // cuerpo
+    const bw = u * 0.36, bh = u * 0.62, by = py - bh - u * 0.05 + bob;
+    ctx.fillStyle = "#231B3A";
+    roundRect(px - bw * 0.38, py - u * 0.22 + bob, bw * 0.3, u * 0.22, 3); ctx.fill();
+    roundRect(px + bw * 0.08, py - u * 0.22 + bob, bw * 0.3, u * 0.22, 3); ctx.fill();
+    ctx.fillStyle = a.shirt;
+    roundRect(px - bw / 2, by, bw, bh * 0.75, bw * 0.35); ctx.fill();
+    // cabeza
+    const hr = u * 0.17, hy = by - hr * 0.7;
+    ctx.fillStyle = a.skin;
+    ctx.beginPath(); ctx.arc(px, hy, hr, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = a.hair;
+    ctx.beginPath(); ctx.arc(px, hy - hr * 0.15, hr * 1.02, Math.PI * 1.02, Math.PI * 1.98); ctx.fill();
+
+    // etiqueta con nombre
+    const short = W < 640;
+    const label = short ? a.name.split(" ")[0] : a.name;
+    const fs = Math.max(10, Math.min(14, u * 0.34));
+    ctx.font = `600 ${fs}px Inter, system-ui, sans-serif`;
+    const tw2 = ctx.measureText(label).width;
+    const pad = fs * 0.6, lh = fs * 1.75, dotR = fs * 0.28;
+    const lift = 0;
+    const lw = tw2 + pad * 2 + dotR * 2 + fs * 0.45;
+    const lx = px - lw / 2, ly = hy - hr - lh - fs * 0.4 - lift;
+    ctx.fillStyle = "rgba(14,9,30,0.86)";
+    roundRect(lx, ly, lw, lh, lh / 2); ctx.fill();
+    ctx.strokeStyle = "rgba(255,255,255,0.12)"; ctx.lineWidth = 1; ctx.stroke();
+    ctx.fillStyle = { idle: "#A99DCB", working: "#FF4FA3", done: "#33E1D6", waiting: "#FFB547", error: "#FF6B6B" }[st];
+    ctx.beginPath(); ctx.arc(lx + pad + dotR, ly + lh / 2, dotR, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#F3EEFF"; ctx.textAlign = "left"; ctx.textBaseline = "middle";
+    ctx.fillText(label, lx + pad + dotR * 2 + fs * 0.45, ly + lh / 2 + 0.5);
+
+    // bocadillo
+    if (bubble[a.id] && (st === "working" || st === "waiting")) {
+      const text = bubble[a.id] + (st === "working" && !reduceMotion ? ".".repeat(1 + Math.floor(t * 2.5) % 3) : "");
+      const bf = Math.max(10, fs * 0.92);
+      ctx.font = `500 ${bf}px Inter, system-ui, sans-serif`;
+      const bwid = Math.min(ctx.measureText(text).width + bf * 1.4, W * 0.45);
+      const bx = Math.max(6, Math.min(W - bwid - 6, px - bwid / 2)), bhh = bf * 1.9, byy = ly - bhh - 7;
+      ctx.fillStyle = st === "working" ? "#FFF3FA" : "#FFF4E0";
+      roundRect(bx, byy, bwid, bhh, 8); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(px - 5, byy + bhh); ctx.lineTo(px + 5, byy + bhh); ctx.lineTo(px, byy + bhh + 6); ctx.fill();
+      ctx.fillStyle = "#1A0716"; ctx.textAlign = "center";
+      ctx.save(); roundRect(bx, byy, bwid, bhh, 8); ctx.clip();
+      ctx.fillText(text, bx + bwid / 2, byy + bhh / 2 + 0.5);
+      ctx.restore();
+    }
+    hits.push({ id: a.id, x: px, y: hy, r: Math.max(u * 0.7, 22) });
+  }
+
+  function frame(ms) {
+    const t = ms / 1000;
+    ctx.clearRect(0, 0, W, H);
+    hits = [];
+    ROOMS.slice().sort((a, b) => (a.col + a.row) - (b.col + b.row)).forEach(drawRoom);
+    AGENTS.map((a, i) => [a, i])
+      .sort(([a], [b]) => {
+        const ra = roomById[a.room], rb = roomById[b.room];
+        return (ra.col * 6 + a.spot[0] + ra.row * 6 + a.spot[1]) - (rb.col * 6 + b.spot[0] + rb.row * 6 + b.spot[1]);
+      })
+      .forEach(([a, i]) => drawAgent(a, i, t));
+    ROOMS.forEach(drawRoomLabel);
+    if (!reduceMotion) requestAnimationFrame(frame);
+  }
+  function redraw() { if (reduceMotion) frame(0); }
+
+  canvas.addEventListener("pointerdown", e => {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left, y = e.clientY - rect.top;
+    let best = null, bd = Infinity;
+    for (const h of hits) {
+      const d = Math.hypot(h.x - x, h.y - y);
+      if (d < h.r && d < bd) { best = h; bd = d; }
+    }
+    if (best) { selected = best.id; renderAgentCard(); redraw(); }
+  });
+  new ResizeObserver(() => { resize(); redraw(); }).observe(canvas);
+  resize();
+  requestAnimationFrame(frame);
+
+  // ---------------------------------------------------------------- ayudas DOM
+  function h(tag, attrs, ...kids) {
+    const el = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs || {})) {
+      if (v == null || v === false) continue;
+      if (k === "class") el.className = v;
+      else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+      else el.setAttribute(k, v);
+    }
+    for (const kid of kids.flat()) if (kid != null && kid !== false) el.append(kid instanceof Node ? kid : String(kid));
+    return el;
+  }
+  const S = v => (v == null ? "" : String(v));
+  const arr = v => (Array.isArray(v) ? v : []);
+  const agent = id => AGENTS.find(a => a.id === id);
+  const STATUS_TXT = { idle: "Libre", working: "Trabajando", done: "Hecho", waiting: "Te espera en el chat", error: "Con un problema" };
+
+  function copyBtn(getText, label = "Copiar") {
+    const b = h("button", { class: "ghost", type: "button" }, label);
+    b.addEventListener("click", async () => {
+      const text = getText();
+      try { await navigator.clipboard.writeText(text); b.textContent = "Copiado ✓"; }
+      catch {
+        const ta = h("textarea", { style: "position:fixed;opacity:0" }); ta.value = text;
+        document.body.append(ta); ta.select();
+        try { document.execCommand("copy"); b.textContent = "Copiado ✓"; } catch { b.textContent = "Mantén pulsado y copia"; }
+        ta.remove();
+      }
+      setTimeout(() => { b.textContent = label; }, 1800);
+    });
+    return b;
+  }
+
+  function renderAgentCard() {
+    const a = agent(selected);
+    const card = document.getElementById("agentCard");
+    card.replaceChildren(
+      h("div", { class: "who" },
+        h("span", { class: "avatar", style: `background:${a.shirt}` }),
+        h("div", {}, h("strong", {}, a.name), h("div", { class: "role" }, `${a.role} · ${roomById[a.room].name}`))),
+      h("p", { class: "note" }, a.job),
+      h("div", { class: "chips" },
+        h("span", { class: "chip" }, h("i", { class: `dot ${status[a.id]}` }), STATUS_TXT[status[a.id]]),
+        h("span", { class: "chip" }, `Usa: ${a.tool}`)),
+    );
+  }
+
+  function updateTeamPill() {
+    const working = AGENTS.filter(a => status[a.id] === "working");
+    const dot = document.getElementById("teamDot"), txt = document.getElementById("teamText");
+    if (working.length) { dot.className = "dot working"; txt.textContent = `${working.map(a => a.name.split(" ")[0]).join(" y ")} trabajando`; }
+    else if (AGENTS.some(a => status[a.id] === "waiting")) { dot.className = "dot waiting"; txt.textContent = "Guion listo · falta voz y montaje"; }
+    else { dot.className = "dot"; txt.textContent = "Equipo en la oficina"; }
+  }
+  function setStatus(ids, st, text) {
+    for (const id of [].concat(ids)) { status[id] = st; bubble[id] = text || ""; }
+    renderAgentCard(); updateTeamPill(); redraw();
+  }
+
+  // ---------------------------------------------------------------- resultados
+  const STAGES = [
+    { key: "trends", title: "Tendencias", who: ["valeria"] },
+    { key: "idea", title: "Idea elegida", who: ["tomas"] },
+    { key: "script", title: "Guion y prompts visuales", who: ["irene", "bruno"] },
+    { key: "seo", title: "Título, descripción y miniatura", who: ["carla", "pablo"] },
+    { key: "compliance", title: "Revisión de normas", who: ["andres"] },
+  ];
+  let run = null;       // producción mostrada
+  let liveKey = null;   // etapa en curso
+
+  function stageShell(st, body) {
+    const names = st.who.map(id => agent(id).name).join(" y ");
+    const state = run?.stages?.[st.key] ? "" : liveKey === st.key ? " live" : " pending";
+    return h("section", { class: "stage" + state },
+      h("div", { class: "stage-top" }, h("h3", {}, st.title), h("span", { class: "by" }, "por ", h("b", {}, names))),
+      body);
+  }
+
+  function renderTrends(d) {
+    return h("div", { class: "kv" },
+      d.resumen ? h("p", { class: "note" }, S(d.resumen)) : null,
+      h("ul", { class: "list" }, arr(d.tendencias).map(t =>
+        h("li", {},
+          h("div", { class: "copyrow" }, h("span", { class: "t" }, S(t.tema)),
+            h("span", { class: `chip rel-${S(t.fiabilidad)}` }, S(t.fiabilidad) || "?")),
+          h("span", { class: "d" }, S(t.por_que))))));
+  }
+  function renderIdea(d) {
+    const ideas = arr(d.ideas), idx = Number(d.elegida) || 0;
+    return h("div", { class: "kv" },
+      h("ul", { class: "list" }, ideas.map((i, n) =>
+        h("li", { class: n === idx ? "chosen" : "" },
+          h("div", { class: "copyrow" }, h("span", { class: "t" }, S(i.titulo)), n === idx ? h("span", { class: "chip rel-evergreen" }, "elegida") : null),
+          h("span", { class: "d" }, `${S(i.angulo)} · Gancho: “${S(i.gancho)}”`)))),
+      d.razon ? h("p", { class: "note" }, "Por qué: " + S(d.razon)) : null);
+  }
+  function renderScript(d) {
+    return h("div", { class: "kv" },
+      h("div", { class: "copyrow" },
+        h("div", {}, h("div", { class: "k" }, "Gancho"), h("div", { class: "v" }, S(d.gancho))),
+        copyBtn(() => scriptText(d), "Copiar guion")),
+      h("div", { class: "scenes" }, arr(d.escenas).map((e, n) =>
+        h("div", { class: "scene" },
+          h("span", { class: "n" }, String(n + 1).padStart(2, "0")),
+          h("div", { class: "kv" },
+            h("p", { class: "ost" }, S(e.texto_pantalla)),
+            h("p", {}, S(e.narracion)),
+            h("p", { class: "meta" }, "Se ve: " + S(e.visual)),
+            e.prompt_ia ? h("code", {}, S(e.prompt_ia)) : null)))),
+      d.cta ? h("p", { class: "note" }, "Llamada a la acción: " + S(d.cta)) : null,
+      d.fuentes ? h("p", { class: "note" }, "Datos: " + S(d.fuentes)) : null);
+  }
+  function renderSeo(d) {
+    const m = d.miniatura || {};
+    const tags = arr(d.etiquetas).map(S).join(", ");
+    const desc = S(d.descripcion) + (arr(d.hashtags).length ? "\n\n" + arr(d.hashtags).map(S).join(" ") : "");
+    return h("div", { class: "kv" },
+      h("div", { class: "thumb-mock", style: `color:${/^#[0-9a-f]{6}$/i.test(S(m.color)) ? m.color : "#FFE14D"}` }, S(m.texto) || "GTA 6"),
+      m.prompt_imagen ? h("p", { class: "note" }, "Fondo para generar con IA: ", h("code", {}, S(m.prompt_imagen))) : null,
+      h("div", { class: "copyrow" }, h("div", {}, h("div", { class: "k" }, "Título"), h("div", { class: "v" }, S(d.titulo))), copyBtn(() => S(d.titulo))),
+      h("div", { class: "copyrow" }, h("div", {}, h("div", { class: "k" }, "Descripción"), h("div", { class: "v" }, desc)), copyBtn(() => desc)),
+      h("div", { class: "copyrow" }, h("div", {}, h("div", { class: "k" }, "Etiquetas"), h("div", { class: "v" }, tags)), copyBtn(() => tags)));
+  }
+  function renderCompliance(d) {
+    const ok = d.aprobado === true;
+    return h("div", { class: "kv" },
+      h("div", { class: "verdict " + (ok ? "ok" : "no") }, ok ? "Aprobado para publicar" : "Necesita cambios antes de publicar"),
+      d.declarar_ia ? h("p", { class: "note warn" }, "Al subirlo marca en YouTube: “Contenido alterado o sintético: Sí”.") : null,
+      arr(d.avisos).length
+        ? arr(d.avisos).map(i => h("div", { class: "issue" + (S(i.nivel) === "bloquea" ? " block" : "") },
+            h("b", {}, S(i.tema) + ": "), S(i.detalle), i.arreglo ? h("div", { class: "note" }, "Arreglo: " + S(i.arreglo)) : null))
+        : h("p", { class: "note" }, "Sin avisos."));
+  }
+  const RENDER = { trends: renderTrends, idea: renderIdea, script: renderScript, seo: renderSeo, compliance: renderCompliance };
+
+  function scriptText(d) {
+    return `${S(d.titulo)}\n\nGancho: ${S(d.gancho)}\n\n` + arr(d.escenas).map((e, n) =>
+      `Escena ${n + 1} — ${S(e.texto_pantalla)}\nVoz: ${S(e.narracion)}\nSe ve: ${S(e.visual)}\nPrompt IA: ${S(e.prompt_ia)}`).join("\n\n")
+      + `\n\nCierre: ${S(d.cta)}`;
+  }
+  function handoffText() {
+    const s = run.stages.script || {}, seo = run.stages.seo || {};
+    return `Claude, monta este vídeo para mi canal de GTA 6: pon la voz en off con Higgsfield (dime antes cuántos créditos gasta), móntalo en formato ${run.format === "long" ? "horizontal 16:9" : "vertical 9:16 (Short)"} con textos y subtítulos, haz la miniatura y mándamelo aquí.\n\n`
+      + `TÍTULO: ${S(seo.titulo || s.titulo)}\nMINIATURA: ${S(seo.miniatura?.texto)}\n\nGUION\n` + scriptText(s);
+  }
+
+  function renderResults() {
+    const root = document.getElementById("results");
+    const kids = [];
+    kids.push(h("div", { class: "results-head" },
+      h("h2", {}, run?.example ? "Ejemplo de producción" : "Producción actual"),
+      run ? h("span", { class: "chip" }, run.example ? "ejemplo" : `${run.format === "long" ? "vídeo largo" : "short"} · ${new Date(run.createdAt).toLocaleString("es-ES", { dateStyle: "short", timeStyle: "short" })}`) : null));
+    if (run?.example) kids.push(h("p", { class: "note" }, "Así queda un encargo terminado. Pulsa “Encargar vídeo” y tu equipo hará uno nuevo."));
+    for (const st of STAGES) {
+      const data = run?.stages?.[st.key];
+      let body;
+      if (data) body = RENDER[st.key](data);
+      else if (liveKey === st.key) body = h("div", { class: "thinking" }, "Trabajando en ello… puede tardar hasta un minuto.");
+      else body = h("p", { class: "note" }, "Pendiente");
+      kids.push(stageShell(st, body));
+    }
+    if (run?.stages?.compliance) {
+      kids.push(h("section", { class: "stage handoff" },
+        h("div", { class: "stage-top" }, h("h3", {}, "Último paso: voz y montaje"), h("span", { class: "by" }, "por ", h("b", {}, "Mateo, Julia y Lola"))),
+        h("ol", {},
+          h("li", {}, "Pulsa “Copiar encargo”."),
+          h("li", {}, "Vuelve al chat con Claude y pégalo."),
+          h("li", {}, "Claude pone la voz, monta el vídeo y te lo manda."),
+          h("li", {}, "Lo subes con la app de YouTube, copiando título y descripción de aquí.")),
+        h("div", {}, copyBtn(handoffText, "Copiar encargo"))));
+    }
+    root.replaceChildren(...kids);
+  }
+
+  // ---------------------------------------------------------------- equipo trabajando (Claude)
+  const CANAL = "Canal de YouTube en español sobre GTA 6 (Grand Theft Auto VI, juego de Rockstar Games). Audiencia: jugadores hispanohablantes de 16 a 34 años. Tono: enérgico y cercano, con datos, sin clickbait engañoso.";
+  const REGLAS = "Reglas: el canal no es oficial y GTA VI es de Rockstar Games; no inventes datos y marca los rumores como rumores; el título y la miniatura deben cumplirse en el vídeo; no reproduzcas tráileres, música ni diálogos oficiales; contenido apto para anuncios de YouTube.";
+  const hoy = () => new Date().toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
+
+  const P = {
+    trends: (topic) => `${CANAL}\n${REGLAS}\n\nEres Valeria, scout de tendencias del canal. Hoy es ${hoy()}. No tienes acceso a internet: basa la lista en lo que sabes de GTA 6 y en temas que siempre funcionan en gaming (secretos, guías, dinero, coches, comparativas, teorías). No inventes noticias concretas.${topic ? `\nEl productor quiere hablar de: "${topic}". Incluye ese tema y variantes de él.` : ""}\n\nResponde solo con JSON:\n{"resumen": "1 frase", "tendencias": [{"tema": "...", "por_que": "1 frase", "fiabilidad": "evergreen" | "probable" | "verificar"}]}\nExactamente 6 tendencias. "evergreen" = funciona siempre, "probable" = encaja con la actualidad, "verificar" = depende de noticias que hay que comprobar.`,
+    idea: (fmt, trends, topic) => `${CANAL}\n${REGLAS}\n\nEres Tomás, estratega de contenido. Formato: ${fmt === "long" ? "vídeo largo horizontal de unos 8 minutos" : "YouTube Short vertical de unos 50 segundos"}.${topic ? ` El productor ha pedido: "${topic}".` : ""}\nTendencias del scout:\n${JSON.stringify(trends)}\n\nPropón 4 ideas distintas y elige la que más visitas puede conseguir sin engañar. Responde solo con JSON:\n{"ideas": [{"titulo": "...", "angulo": "qué la hace única", "gancho": "primera frase del vídeo", "pilar": "secretos | guías | noticias | teorías | comparativas"}], "elegida": 0, "razon": "1 frase"}`,
+    script: (fmt, idea) => `${CANAL}\n${REGLAS}\n\nSois Irene (guionista) y Bruno (director de arte). Escribid el guion de esta idea:\n${JSON.stringify(idea)}\n\nFormato: ${fmt === "long" ? "vídeo largo 16:9, 10 escenas, unas 1000 palabras de narración en total" : "Short 9:16, 6 escenas, unas 120 palabras de narración en total"}. Frases cortas, ritmo alto, gancho en los 3 primeros segundos, un giro cada 15-20 segundos, la última escena con llamada a suscribirse.\nPara cada escena: "narracion" (texto exacto de la voz), "texto_pantalla" (máx. 5 palabras, en mayúsculas), "visual" (qué gameplay mostrar) y "prompt_ia" (en inglés, para un generador de vídeo IA: escena ORIGINAL con estética Florida tropical y neón, sin personajes, logotipos ni marcas de Rockstar).\n\nResponde solo con JSON:\n{"titulo": "...", "gancho": "...", "escenas": [{"narracion": "...", "texto_pantalla": "...", "visual": "...", "prompt_ia": "..."}], "cta": "...", "fuentes": "qué es dato comprobado y qué es rumor"}`,
+    seo: (fmt, script) => `${CANAL}\n${REGLAS}\n\nSois Carla (SEO) y Pablo (miniaturas). Guion final:\n${JSON.stringify(script)}\n\nFormato: ${fmt === "long" ? "vídeo largo" : "Short"}. Escribid: título de máximo 70 caracteres con la palabra clave al principio; descripción de 3-5 líneas que empiece con la palabra clave e incluya "Contenido no oficial hecho por fans. GTA VI es una marca de Rockstar Games."; 15-20 etiquetas; 3-5 hashtags${fmt === "long" ? "" : " (incluye #Shorts)"}; y la miniatura: texto de 2-4 palabras, prompt en inglés para la imagen de fondo (original, sin personajes ni logos de Rockstar) y un color de texto en hexadecimal.\n\nResponde solo con JSON:\n{"titulo": "...", "descripcion": "...", "etiquetas": ["..."], "hashtags": ["#..."], "miniatura": {"texto": "...", "prompt_imagen": "...", "color": "#RRGGBB"}}`,
+    compliance: (script, seo) => `${REGLAS}\n\nEres Andrés, responsable de cumplimiento de un canal de YouTube sobre GTA 6. Revisa antes de publicar:\n1) Derechos: comentar y analizar gameplay propio está permitido; no subir tráileres ni música oficial completos; no hacerse pasar por Rockstar.\n2) Normas de YouTube: el contenido realista hecho con IA hay que declararlo; nada de metadatos engañosos; apto para anuncios.\n3) Veracidad: rumores presentados como hechos.\n\nGuion:\n${JSON.stringify(script)}\n\nMetadatos:\n${JSON.stringify(seo)}\n\nResponde solo con JSON:\n{"aprobado": true, "declarar_ia": true, "avisos": [{"nivel": "bloquea" | "mejora", "tema": "...", "detalle": "...", "arreglo": "..."}]}\n"aprobado" es false solo si hay algún aviso de nivel "bloquea". Máximo 4 avisos.`,
+  };
+
+  const ERR = {
+    not_granted: "No se ha dado permiso para usar Claude. Recarga la página y pulsa “Permitir”.",
+    sampling_disabled: "Claude no está disponible en esta cuenta.",
+    rate_limited: "Has llegado al límite de uso por ahora. Prueba otra vez en un rato.",
+    session_expired: "Tu sesión ha caducado. Vuelve a iniciar sesión en Claude.",
+    invalid_json: "La respuesta llegó incompleta. Pulsa “Encargar vídeo” para repetir.",
+    refused: "Claude no quiso hacer esta parte. Prueba con otro tema.",
+  };
+
+  let sample = null, ctl = null, busy = false, fmt = "short";
+  const goBtn = document.getElementById("goBtn"), stopBtn = document.getElementById("stopBtn"), capNote = document.getElementById("capNote");
+  const fmtShort = document.getElementById("fmtShort"), fmtLong = document.getElementById("fmtLong");
+  function setFmt(f) { fmt = f; fmtShort.setAttribute("aria-pressed", String(f === "short")); fmtLong.setAttribute("aria-pressed", String(f === "long")); }
+  fmtShort.onclick = () => setFmt("short");
+  fmtLong.onclick = () => setFmt("long");
+
+  async function step(key, who, bubbleText, prompt) {
+    liveKey = key;
+    setStatus(who, "working", bubbleText);
+    renderResults();
+    const data = await sample.json(prompt, { signal: ctl.signal, modelTier: "default", cache: false });
+    if (!data || typeof data !== "object") throw { code: "invalid_json" };
+    run.stages[key] = data;
+    setStatus(who, "done", "");
+    save();
+    renderResults();
+    return data;
+  }
+
+  async function produce() {
+    if (!sample || busy) return;
+    busy = true;
+    ctl = new AbortController();
+    goBtn.disabled = true; goBtn.textContent = "El equipo está trabajando…";
+    stopBtn.hidden = false;
+    AGENTS.forEach(a => { status[a.id] = "idle"; bubble[a.id] = ""; });
+    const topic = document.getElementById("topic").value.trim().slice(0, 200);
+    run = { format: fmt, topic, createdAt: Date.now(), stages: {} };
+    renderResults();
+    try {
+      const trends = await step("trends", "valeria", "Buscando tendencias", P.trends(topic));
+      const ideaSlate = await step("idea", "tomas", "Eligiendo la mejor idea", P.idea(fmt, trends, topic));
+      const chosen = arr(ideaSlate.ideas)[Number(ideaSlate.elegida) || 0] || arr(ideaSlate.ideas)[0] || {};
+      const script = await step("script", ["irene", "bruno"], "Escribiendo el guion", P.script(fmt, chosen));
+      const seo = await step("seo", ["carla", "pablo"], "Preparando título y miniatura", P.seo(fmt, script));
+      await step("compliance", "andres", "Revisando normas", P.compliance(script, seo));
+      liveKey = null;
+      setStatus(["mateo", "julia", "lola"], "waiting", "Te espero en el chat");
+      selected = "mateo"; renderAgentCard();
+      renderResults();
+    } catch (e) {
+      const code = e?.code || "upstream_error";
+      const who = AGENTS.filter(a => status[a.id] === "working").map(a => a.id);
+      liveKey = null;
+      if (code === "cancelled") { setStatus(who, "idle", ""); capNote.textContent = "Encargo parado."; capNote.className = "note"; }
+      else {
+        setStatus(who, "error", "");
+        capNote.textContent = ERR[code] || "Algo falló al hablar con Claude. Pulsa “Encargar vídeo” para intentarlo otra vez.";
+        capNote.className = "note warn";
+        if (code === "not_granted" || code === "sampling_disabled") { sample = null; }
+      }
+      renderResults();
+    } finally {
+      busy = false;
+      stopBtn.hidden = true;
+      goBtn.disabled = !sample;
+      goBtn.textContent = sample ? "Encargar vídeo" : "No disponible";
+    }
+  }
+  goBtn.onclick = produce;
+  stopBtn.onclick = () => ctl?.abort();
+
+  // ---------------------------------------------------------------- guardar la última producción en este dispositivo
+  const KEY = "vice-studio-hq:last";
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(run)); } catch {} }
+  function load() { try { const v = JSON.parse(localStorage.getItem(KEY) || "null"); return v && v.stages ? v : null; } catch { return null; } }
+
+  const EXAMPLE = {
+    example: true, format: "short", createdAt: Date.now(), stages: {
+      trends: { resumen: "Ejemplo: lo que suele funcionar en canales de GTA 6.", tendencias: [
+        { tema: "Secretos y easter eggs de Vice City", por_que: "Las listas de secretos retienen hasta el final.", fiabilidad: "evergreen" },
+        { tema: "Cómo ganar dinero rápido al empezar", por_que: "Búsqueda constante de jugadores nuevos.", fiabilidad: "evergreen" },
+        { tema: "Coches más rápidos y dónde encontrarlos", por_que: "Tema visual y fácil de enseñar con gameplay.", fiabilidad: "probable" },
+      ] },
+      idea: { ideas: [{ titulo: "5 secretos de Vice City que casi nadie ha visto", angulo: "Ubicaciones exactas, enseñadas en 50 segundos", gancho: "Este sitio de Vice City solo aparece de noche.", pilar: "secretos" }], elegida: 0, razon: "Gancho fuerte y formato lista que retiene." },
+      script: { titulo: "5 secretos de Vice City", gancho: "Este sitio de Vice City solo aparece de noche.", escenas: [
+        { narracion: "Este sitio de Vice City solo aparece de noche. Y no es el único secreto.", texto_pantalla: "SOLO DE NOCHE", visual: "Plano de la ciudad al anochecer", prompt_ia: "Cinematic aerial shot of a neon tropical city at dusk, palm trees, ocean, 4k" },
+        { narracion: "Suscríbete y dime en comentarios cuál no conocías.", texto_pantalla: "¿CUÁL NO SABÍAS?", visual: "Personaje mirando el mar", prompt_ia: "Slow push-in on a pier at night with neon reflections on the water" },
+      ], cta: "Suscríbete para más secretos.", fuentes: "Ejemplo ilustrativo." },
+      seo: { titulo: "GTA 6: 5 secretos de Vice City que casi nadie ha visto", descripcion: "GTA 6 esconde más de lo que parece.\nContenido no oficial hecho por fans. GTA VI es una marca de Rockstar Games.", etiquetas: ["gta 6", "gta vi", "vice city", "secretos gta 6"], hashtags: ["#GTA6", "#Shorts"], miniatura: { texto: "Solo de noche", prompt_imagen: "Neon tropical skyline at night", color: "#FFE14D" } },
+      compliance: { aprobado: true, declarar_ia: true, avisos: [{ nivel: "mejora", tema: "Veracidad", detalle: "Confirma cada ubicación jugando antes de publicar.", arreglo: "Graba tú cada secreto." }] },
+    },
+  };
+
+  run = load() || EXAMPLE;
+  if (!run.example && run.stages.compliance) setStatus(["mateo", "julia", "lola"], "waiting", "Te espero en el chat");
+  renderAgentCard();
+  updateTeamPill();
+  renderResults();
+
+  // ---------------------------------------------------------------- conectar con Claude
+  (async () => {
+    try { sample = window.claude ? await window.claude.use("sample") : null; } catch { sample = null; }
+    goBtn.disabled = !sample;
+    goBtn.textContent = sample ? "Encargar vídeo" : "No disponible aquí";
+    if (!sample) {
+      capNote.textContent = "Abre esta página dentro de Claude (claude.ai o la app) para que el equipo pueda trabajar.";
+      capNote.className = "note warn";
+    }
+  })();
+})();
+</script>
