@@ -140,3 +140,4 @@
 - Datos (2+ medios): perder el dinero en mano al morir o ser detenido; ingresarlo con la app BuckMe en cualquier cajero (buscador de cajeros); Family Savings no se puede sacar nunca.
 - Primer montaje con clips del Launch Trailer. La revisión de fotogramas pilló el logo oficial al final del tráiler: el plano LT32 se separó en LT32 (piscina, ✅) y LT33 (logo, fecha y plataformas, ❌).
 - `shorts/voz_gratis.py`: la velocidad puede bajar hasta 0,78 (mejor alargar el guion que hablar despacio). `shorts/montaje.py`: la capa "fact" admite `"etiqueta": "TIP"` para los trucos.
+- 19/11 15:53 · Preproducción continua: preparados el **Short 09** "Press Both Sticks in GTA 6 Right Now" (modo Focus) y el **Short 10** "GTA 6 Hid a Real Easter Egg on Top of a Tower". Ya hay 4 preproducidos (06, 07, 09, 10). Agenda, títulos recomendados y actividad actualizados en la oficina.
