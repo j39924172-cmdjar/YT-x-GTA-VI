@@ -51,6 +51,18 @@ def leer() -> dict:
             "shorts": shorts}
 
 
+def serie(hist: list) -> list:
+    """Visualizaciones totales a lo largo del tiempo (últimos 60 repasos) para el gráfico de la oficina."""
+    out = []
+    for r in hist[-60:]:
+        try:
+            ts = int(dt.datetime.strptime(r["fecha"], "%Y-%m-%d %H:%M UTC").replace(tzinfo=dt.timezone.utc).timestamp() * 1000)
+        except (KeyError, ValueError):
+            continue
+        out.append({"ts": ts, "total": sum(s["vistas"] for s in r.get("shorts", [])), "subs": r.get("suscriptores")})
+    return out
+
+
 def resumen_oficina(hoy: dict, antes: dict | None) -> dict:
     previas = {s["titulo"]: s["vistas"] for s in (antes or {}).get("shorts", [])}
     total = sum(s["vistas"] for s in hoy["shorts"])
@@ -74,7 +86,9 @@ def main() -> None:
     hist.append(hoy)
     HISTORIAL.write_text(json.dumps(hist, indent=1, ensure_ascii=False) + "\n")
     if oficina:
-        Path(oficina).write_text(json.dumps(resumen_oficina(hoy, antes), ensure_ascii=False))
+        d = resumen_oficina(hoy, antes)
+        d["serie"] = serie(hist)
+        Path(oficina).write_text(json.dumps(d, ensure_ascii=False))
 
     def delta(a, b):
         return "" if a is None or b is None else f" ({b - a:+d})"

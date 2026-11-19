@@ -74,3 +74,16 @@
 - Resultados: Short 03 9,6 · Short 04 9,4 · Short 05 10. Los tres APTOS. Se añadió `**Formato:**` a sus fichas.
 - `docs/produccion-short.md`: el paso 6 exige aprobar el examen y el paso 7 anota el formato.
 - Oficina: la ficha de cada trabajador tiene sus nuevos conocimientos para Shorts (antes eran de la fase de vídeos largos en español) y su nota en el examen.
+
+## 19/11/2026 — Rediseño profesional de la oficina (VICECITY DAYS HQ)
+- Nueva oficina con aspecto de **consola de productora**. Sustituye a la oficina isométrica con muñecos.
+  - Barra superior con la marca, la hora de Madrid y el estado del equipo.
+  - Indicadores del día: los 2 temporizadores del piloto automático, suscriptores, visualizaciones, Shorts publicados y nota media del examen.
+  - **Plantilla** por los 6 departamentos: cada persona con su avatar, su rol, **qué está haciendo ahora mismo** (según el paso del encargo, el piloto automático o su último trabajo) y su nota del examen. Al tocarla se abre su ficha: su trabajo, lo que domina, lo que nunca hace, su examen y sus últimos trabajos.
+  - **Cadena de producción** en 4 columnas: Ideas → En producción → Listos para subir → Publicados.
+  - **Cómo va el canal**, con gráfico de visualizaciones; **Actividad** en directo; **Última investigación**.
+- Mejoras internas:
+  - Colección `actividad` en la base de datos de la oficina: el equipo anota cada trabajo (`docs/produccion-short.md`) y las dos tareas automáticas también.
+  - `estado/equipo` con las notas del examen (`shorts/examen.py --todos --oficina`) y la serie del canal para el gráfico (`shorts/canal.py`).
+  - Todo es privado: solo lo ve Adam.
+- 44 pruebas automáticas en móvil, iPad, portátil y escritorio (`node oficina/test_oficina.js`).

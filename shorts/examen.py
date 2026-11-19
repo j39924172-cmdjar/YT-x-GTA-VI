@@ -2,6 +2,7 @@
 
   python shorts/examen.py shorts/NN-nombre [--rapido]      # --rapido: sin medir el volumen (más lento)
   python shorts/examen.py --todos                          # examina todos los Shorts de shorts/
+  python shorts/examen.py --todos --oficina salida.json    # además prepara estado/equipo para la oficina
 
 Las reglas salen de docs/manual-shorts.md (manual magistral del equipo) y del documento maestro.
 Un Short solo se entrega si NO tiene fallos (✗). Los avisos (⚠) son mejoras recomendadas.
@@ -273,16 +274,38 @@ def similar(a: str, b: str) -> float:
     return difflib.SequenceMatcher(None, norm(a), norm(b)).ratio()
 
 
+def titulo_de(carpeta: Path) -> str:
+    pub = (carpeta / "publicacion.md").read_text(encoding="utf-8") if (carpeta / "publicacion.md").exists() else ""
+    m = re.search(r"\*\*Título[^*]*:\*\*\s*(.+)", pub)
+    return m.group(1).strip() if m else carpeta.name
+
+
 def main(args):
+    oficina = args[args.index("--oficina") + 1] if "--oficina" in args else None
+    if oficina:
+        args = [a for a in args if a != oficina]
     rapido = "--rapido" in args
     args = [a for a in args if not a.startswith("--")] if "--todos" not in sys.argv else \
         sorted(str(p) for p in (RAIZ / "shorts").glob("[0-9][0-9]-*") if (p / "plan.json").exists())
     total_fallos = 0
+    por_quien: dict[str, list[int]] = {}
+    shorts = []
     for a in args:
         e = Examen(Path(a), rapido)
         e.pruebas()
-        f, _ = e.informe()
+        f, nota = e.informe()
         total_fallos += f
+        for q, est, *_ in e.res:
+            t = por_quien.setdefault(q, [0, 0])
+            t[0] += est == "ok"
+            t[1] += 1
+        shorts.append({"carpeta": Path(a).name, "titulo": titulo_de(Path(a)), "nota": nota, "apto": not f})
+    if oficina:
+        import datetime as dt
+        notas = {q: f"{ok}/{n}" for q, (ok, n) in por_quien.items()}
+        media = round(sum(s["nota"] for s in shorts) / len(shorts), 1) if shorts else None
+        Path(oficina).write_text(json.dumps({"ts": int(dt.datetime.now(dt.timezone.utc).timestamp() * 1000),
+                                             "notas": notas, "media": media, "shorts": shorts}, ensure_ascii=False))
     sys.exit(1 if total_fallos else 0)
 
 

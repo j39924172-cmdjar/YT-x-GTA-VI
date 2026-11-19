@@ -30,4 +30,5 @@ Tarea programada **"Investigación GTA 6 (diaria)"** (`trig_01KUgBNkFNc643SCwefs
 Tarea programada **"Repaso del canal (cada 6 h)"** (`trig_017hV7C4vxR4x2DuzQiHRZGF`). `python shorts/canal.py --oficina /tmp/estado_canal.json` lee los datos públicos de https://www.youtube.com/@vicecitydaystv, guarda el historial en `docs/canal-estadisticas.json` y prepara `estado/canal` para la oficina. Nunca se piden contraseñas: las estadísticas privadas (vistos frente a deslizados, retención) las pasa Adam con capturas de YouTube Studio una vez por semana.
 
 Si se cambian estos horarios, hay que cambiar también `HORARIO` en `oficina/index.html`.
+Las dos tareas anotan lo que hacen en la colección `actividad` de la oficina (ver `docs/produccion-short.md`).
 Ninguna de las dos tareas produce vídeos ni gasta créditos: eso lo decide Adam.
