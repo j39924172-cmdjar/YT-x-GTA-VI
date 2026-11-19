@@ -93,3 +93,19 @@
 - Cuando trabaja, teclea y su pantalla muestra su tarea: radar de tendencias (Jarvis), fuentes verificándose (Nobita), guion escribiéndose (El Chapo), títulos (Torrente), curva de retención (Pablito), móvil vertical (Victillor), capturas con flecha roja (Nil), onda de voz (Cristiano, que además habla al micro), línea de tiempo (Georgina), subida con hashtags (Guerrero), fotogramas aprobados (Almudena) y gráficas (Taison). Un bocadillo dice lo que hace.
 - Cuando no tiene trabajo, se recuesta, parpadea, se queda pensando y el café humea; la pantalla muestra el salvapantallas de la marca.
 - Respeta "reducir movimiento" del sistema. 51 pruebas automáticas.
+
+## 19/11/2026 — Cámara en directo más realista: cada uno con su puesto de trabajo
+- Personas mejor dibujadas: proporciones, cuello, oreja, ojos con brillo, cejas, barba en algunos, gafas (Nobita, Taison), cascos (Cristiano, Georgina) y auricular de dirección (Almudena). Ambos brazos con manos; silla de oficina con ruedas; flexo, sombras, brillo de la pantalla en la cara y viñeta.
+- Equipo de cada puesto:
+  - Jarvis: dos monitores (radar y noticias), móvil que vibra y mapa de Leonida en la pared.
+  - Nobita: documentos, lupa y estantería.
+  - El Chapo: portátil, libreta y corcho con el guion.
+  - Torrente: pizarra con pósits de títulos.
+  - Pablito: dos monitores y tele con gráficas.
+  - Victillor: trípode con aro de luz y móvil grabando.
+  - Nil: tableta gráfica con lápiz y muestras de color.
+  - Cristiano: cabina con paneles acústicos, micro de estudio con filtro antipop e interfaz de audio.
+  - Georgina: mesa de edición con dos monitores y altavoces.
+  - Guerrero: portátil, monitor y calendario de publicación.
+  - Almudena: claqueta y tele.
+  - Taison: dos monitores y tele de estadísticas.
