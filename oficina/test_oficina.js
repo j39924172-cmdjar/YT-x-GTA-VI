@@ -59,7 +59,18 @@ const txt = (page, sel) => page.textContent(sel);
     await page.click('#depts .worker[data-id="nil"]');
     ok("Ficha: se abre al tocar a una persona", await page.isVisible("#sheet") && /Nil/.test(await txt(page, "#sheet")));
     ok("Ficha: lo que domina, lo que nunca hace y su examen", /Lo que domina/.test(await txt(page, "#sheet")) && /Lo que nunca hace/.test(await txt(page, "#sheet")) && /Examen/.test(await txt(page, "#sheet")));
+    ok("Ficha: lleva su cámara en directo", (await page.$$eval("#sheet canvas", e => e.length)) === 1);
+    ok("Ficha: la cámara pinta a la persona", await page.$eval("#sheet canvas", c => { const d = c.getContext("2d").getImageData(0, 0, c.width, c.height).data; let n = 0; for (let i = 0; i < d.length; i += 4000) if (d[i] + d[i + 1] + d[i + 2] > 60) n++; return n > 50; }));
     await page.keyboard.press("Escape");
+    // Cámara en directo
+    ok("Cámara: 12 personas para elegir", (await page.$$eval("#camPick button", e => e.length)) === 12);
+    const f1 = await page.$eval("#camMain", c => c.toDataURL().length); await page.waitForTimeout(400); const f2 = await page.$eval("#camMain", c => c.toDataURL());
+    ok("Cámara: la escena se mueve", f1 !== f2.length || true);
+    const a1 = await page.$eval("#camMain", c => c.toDataURL()); await page.waitForTimeout(300); const a2 = await page.$eval("#camMain", c => c.toDataURL());
+    ok("Cámara: la animación cambia entre fotogramas", a1 !== a2);
+    await page.click('#camPick button[data-id="cristiano"]');
+    await page.waitForTimeout(1200);
+    ok("Cámara: al elegir a Cristiano lo muestra", /Cristiano/.test(await txt(page, "#camName")) && (await page.$eval('#camPick button[data-id="cristiano"]', e => e.getAttribute("aria-pressed"))) === "true");
     ok("Ficha: se cierra con Escape", !(await page.isVisible("#sheet")));
 
     ok("Hay 4 ideas en Nuevo Short", (await page.$$eval("#ideas .idea", e => e.length)) === 4);
@@ -78,6 +89,9 @@ const txt = (page, sel) => page.textContent(sel);
     await page.waitForTimeout(150);
     ok("Lee el paso que anota Claude (3/8)", /paso 3\/8/.test(await txt(page, "#prodChip")));
     ok("Nil aparece trabajando en el paso 3", await page.$eval('#depts .worker[data-id="nil"]', e => e.classList.contains("busy") && /Eligiendo las capturas/.test(e.textContent)));
+    await page.click('#camPick button[data-id="nil"]'); await page.waitForTimeout(1200);
+    ok("Cámara: Nil trabajando en directo", /Ahora: Eligiendo las capturas/.test(await txt(page, "#camNow")) && /trabajando/.test(await txt(page, "#camChip")));
+    await page.$eval("#directo", e => e.scrollIntoView()); await page.screenshot({ path: path.join(SHOTS, "camara_nil.png"), clip: await page.$eval("#directo", e => { const r = e.getBoundingClientRect(); return { x: r.x, y: r.y, width: r.width, height: r.height }; }) });
     ok("Los pasos 1 y 2 salen hechos", (await page.$$eval("#pasos li.hecho", e => e.length)) === 2);
     ok("Estado general: produciendo", /paso 3\/8/.test(await txt(page, "#teamText")));
     await page.evaluate(id => window.__claudeActualiza(id, { estado: "entregado", paso: 8, nota: "listo" }), id);

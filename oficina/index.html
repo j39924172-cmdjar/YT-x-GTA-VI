@@ -168,6 +168,20 @@
   .nowbox { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 13.5px; }
   .nowbox.busy { border-color: var(--pink); }
 
+  /* Cámara en directo */
+  .cam { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: var(--bg); }
+  .cam canvas { display: block; width: 100%; aspect-ratio: 16 / 9; max-width: 100%; }
+  .cam .rec { position: absolute; top: 10px; left: 10px; display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px; border-radius: 6px; background: rgba(8, 8, 16, 0.72); font-family: var(--font-mono); font-size: 11px; color: var(--ink); }
+  .cam .rec i { width: 7px; height: 7px; border-radius: 50%; background: var(--bad); animation: pulse 1.2s ease-in-out infinite; }
+  .cam .lbl { position: absolute; left: 10px; bottom: 10px; right: 10px; display: flex; gap: 8px; align-items: center; padding: 6px 10px; border-radius: 8px; background: rgba(8, 8, 16, 0.78); font-size: 12.5px; }
+  .cam .lbl b { white-space: nowrap; }
+  .cam .lbl span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); }
+  .cam-pick { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
+  .cam-pick button { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px 4px 4px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface-2); cursor: pointer; font-size: 12.5px; }
+  .cam-pick button[aria-pressed="true"] { border-color: var(--lilac); background: color-mix(in srgb, var(--violet) 25%, var(--surface-2)); }
+  .cam-pick .mini { margin-left: 0; }
+  .cam-pick .busy-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--pink); }
+
   @media (max-width: 1100px) { .today { grid-template-columns: repeat(3, minmax(0, 1fr)); } .main { grid-template-columns: minmax(0, 1fr); } .side { order: -1; } }
   @media (max-width: 760px) { .board { grid-template-columns: repeat(2, minmax(0, 1fr)); } .canal-grid { grid-template-columns: minmax(0, 1fr); } }
   @media (max-width: 640px) { .depts { grid-template-columns: minmax(0, 1fr); } .today { grid-template-columns: repeat(2, minmax(0, 1fr)); } .clock { display: none; } }
@@ -198,6 +212,13 @@
 
   <div class="main">
     <div class="col">
+      <section class="panel" id="directo" aria-labelledby="hDirecto">
+        <div class="ph"><h2 id="hDirecto">Cámara en directo</h2><span class="chip" id="camChip">elige a una persona</span></div>
+        <div class="cam-pick" id="camPick" role="group" aria-label="Elegir a quién ver"></div>
+        <div class="cam"><canvas id="camMain" width="1280" height="720" role="img" aria-label="Escena animada de la persona elegida trabajando en su mesa"></canvas>
+          <span class="rec"><i></i>EN DIRECTO</span><div class="lbl"><b id="camName">Almudena</b><span id="camNow"></span></div></div>
+      </section>
+
       <section class="panel" aria-labelledby="hPlantilla">
         <div class="ph"><h2 id="hPlantilla">Plantilla</h2><span class="chip" id="plantillaChip">12 personas</span></div>
         <p class="note">Toca a una persona para ver qué hace, lo que domina y su nota en el examen.</p>
@@ -465,10 +486,12 @@
       }))));
     $("plantillaChip").textContent = ocupados ? `${ocupados} trabajando ahora` : "12 personas · disponibles";
     $("plantillaChip").className = "chip" + (ocupados ? " hot" : "");
+    if (typeof renderCamPick === "function" && $("camPick")) renderCamPick();
     if (fichaAbierta) abrirFicha(fichaAbierta, true);
   }
 
   let fichaAbierta = null, focoAntes = null;
+  const camSheet = h("canvas", { width: 1280, height: 720, role: "img", "aria-label": "Escena animada de la persona trabajando" });
   function abrirFicha(id, refresco = false) {
     const p = person(id), d = deptOf(p), a = ahoraDe(id), nota = notaDe(id);
     if (!refresco) focoAntes = document.activeElement;
@@ -477,6 +500,7 @@
     $("sheet").replaceChildren(
       h("div", { class: "head" }, avatar(p), h("div", {}, h("h3", {}, p.name), h("div", { class: "muted" }, `${p.role} · ${d.nombre}`)),
         h("button", { class: "ghost", type: "button", id: "cerrarFicha", onclick: cerrarFicha }, "Cerrar")),
+      h("div", { class: "cam" }, camSheet, h("span", { class: "rec" }, h("i", {}), "EN DIRECTO")),
       h("div", { class: "nowbox" + (a.busy ? " busy" : "") }, h("b", {}, a.busy ? "Ahora mismo: " : "Estado: "), a.txt),
       h("div", { class: "sec" }, h("h4", {}, "Su trabajo"), h("p", { style: { margin: "0" } }, p.mision)),
       h("div", { class: "sec" }, h("h4", {}, "Lo que domina"), h("ul", {}, p.sabe.map(s => h("li", {}, s)))),
@@ -487,10 +511,11 @@
       h("div", { class: "sec" }, h("h4", {}, "Sus últimos trabajos"),
         suyas.length ? h("ul", {}, suyas.map(x => h("li", {}, `${x.texto} · ${hace(x.ts)}`))) : h("p", { class: "note" }, "Todavía no hay trabajos anotados.")));
     $("sheet").hidden = false; $("sheetBg").hidden = false;
+    CAMS.sheet = { canvas: camSheet, id };
     if (!refresco) $("cerrarFicha").focus();
   }
   function cerrarFicha() {
-    fichaAbierta = null; $("sheet").hidden = true; $("sheetBg").hidden = true;
+    fichaAbierta = null; $("sheet").hidden = true; $("sheetBg").hidden = true; CAMS.sheet = null;
     if (focoAntes && focoAntes.focus) focoAntes.focus();
   }
   $("sheetBg").onclick = cerrarFicha;
@@ -650,9 +675,195 @@
     }
   }
 
+
+  // ================================================================ 8b. CÁMARA EN DIRECTO (escena animada de cada persona en su mesa)
+  const LOOK = {   // piel y pelo de cada persona; la camiseta es el color de su departamento
+    jarvis: ["#C98E68", "#1C1414"], nobita: ["#E8B48F", "#1A1A1A"], chapo: ["#A86B48", "#2A1B12"], torrente: ["#B57A55", "#141018"],
+    pablito: ["#EDC09B", "#5A3A1A"], victillor: ["#BF8460", "#2E2E2E"], nil: ["#D49A72", "#0F0B10"], cristiano: ["#C98E68", "#141018"],
+    georgina: ["#DDA582", "#3E1F14"], guerrero: ["#B07250", "#1A1210"], almudena: ["#E3AD86", "#3B2416"], taison: ["#A86B48", "#141018"],
+  };
+  const LARGO = new Set(["nil", "georgina", "almudena"]);   // pelo largo
+  const COLOR = { "var(--violet)": "#8B35FF", "var(--pink)": "#FF2E8C", "var(--lilac)": "#C77DFF", "var(--sun)": "#FFCE28", "var(--sky)": "#5CC8FF", "var(--ok)": "#3DDC97" };
+  const CAMS = { main: null, sheet: null };
+  let camId = "almudena";
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function rr(c, x, y, w, hh, r) { c.beginPath(); c.roundRect ? c.roundRect(x, y, w, hh, r) : c.rect(x, y, w, hh); }
+  function pantalla(c, id, x, y, w, hh, t, busy) {
+    c.save(); c.beginPath(); c.rect(x, y, w, hh); c.clip();
+    c.fillStyle = "#0B0A16"; c.fillRect(x, y, w, hh);
+    const acc = COLOR[deptOf(person(id)).color];
+    if (!busy) {   // salvapantallas con la marca
+      const bx = x + w / 2 + Math.sin(t * 0.6) * w * 0.25, by = y + hh / 2 + Math.cos(t * 0.45) * hh * 0.22;
+      c.fillStyle = "#8B35FF"; rr(c, bx - 26, by - 16, 52, 32, 6); c.fill();
+      c.fillStyle = "#F4F1FF"; c.font = "800 14px Archivo, sans-serif"; c.textAlign = "center"; c.textBaseline = "middle"; c.fillText("VCD", bx, by + 1);
+      c.restore(); return;
+    }
+    const L = (i, ww, col = "#3A3360") => { c.fillStyle = col; rr(c, x + 12, y + 14 + i * 16, ww, 7, 3); c.fill(); };
+    const k = (t * 1.2) % 1;
+    switch (id) {
+      case "jarvis": {   // radar de tendencias
+        const cx = x + w * 0.3, cy = y + hh / 2, r = hh * 0.36;
+        c.strokeStyle = "#2E6B5A"; c.lineWidth = 1.5; for (const f of [1, 0.66, 0.33]) { c.beginPath(); c.arc(cx, cy, r * f, 0, 7); c.stroke(); }
+        const a = t * 2.2; c.strokeStyle = "#3DDC97"; c.lineWidth = 2; c.beginPath(); c.moveTo(cx, cy); c.lineTo(cx + Math.cos(a) * r, cy + Math.sin(a) * r); c.stroke();
+        for (const [bx, by, ph] of [[0.4, -0.3, 0], [-0.5, 0.2, 2], [0.2, 0.5, 4]]) { c.globalAlpha = 0.4 + 0.6 * Math.abs(Math.sin(t * 2 + ph)); c.fillStyle = "#FFCE28"; c.beginPath(); c.arc(cx + bx * r, cy + by * r, 4, 0, 7); c.fill(); }
+        c.globalAlpha = 1; for (let i = 0; i < 5; i++) L(i, 40 + ((i * 37 + Math.floor(t)) % 50), i === Math.floor(t) % 5 ? acc : "#3A3360");
+        c.translate(w * 0.55, 0); break;
+      }
+      case "nobita": {   // fuentes verificadas una a una
+        const n = Math.floor(t * 1.4) % 7;
+        for (let i = 0; i < 6; i++) { L(i, 90 + (i * 23) % 50); if (i < n) { c.fillStyle = "#3DDC97"; c.font = "700 12px Inter, sans-serif"; c.fillText("✓", x + w - 30, y + 21 + i * 16); } }
+        break;
+      }
+      case "chapo": case "torrente": {   // guion o títulos escribiéndose
+        const total = 7, prog = (t * 0.8) % total;
+        for (let i = 0; i < total; i++) { const full = i < Math.floor(prog), ww = id === "torrente" && i % 2 === 0 ? 120 : 70 + (i * 41) % 70; L(i, full ? ww : i === Math.floor(prog) ? ww * (prog % 1) : 0, id === "torrente" && i % 2 === 0 ? "#FFCE28" : "#4A4380"); }
+        if (Math.floor(t * 3) % 2) { c.fillStyle = "#F4F1FF"; const i = Math.floor(prog), ww = 70 + (i * 41) % 70; c.fillRect(x + 14 + ww * (prog % 1), y + 12 + i * 16, 2, 11); }
+        break;
+      }
+      case "pablito": case "taison": {   // curva de retención / estadísticas
+        c.strokeStyle = "#2A2444"; c.lineWidth = 1; for (let i = 1; i < 4; i++) { c.beginPath(); c.moveTo(x, y + hh * i / 4); c.lineTo(x + w, y + hh * i / 4); c.stroke(); }
+        if (id === "taison") { for (let i = 0; i < 6; i++) { const v = 0.25 + 0.6 * Math.abs(Math.sin(i * 1.7 + t * 0.5)); c.fillStyle = i === 5 ? "#FF2E8C" : "#8B35FF"; c.fillRect(x + 14 + i * (w - 28) / 6, y + hh - 10 - v * (hh - 24), (w - 28) / 6 - 8, v * (hh - 24)); } }
+        else { const m = Math.min(1, (t * 0.35) % 1.3); c.strokeStyle = "#C77DFF"; c.lineWidth = 2.5; c.beginPath(); for (let i = 0; i <= 40 * m; i++) { const px = x + 10 + (w - 20) * i / 40, py = y + 14 + (hh - 28) * (0.05 + 0.55 * (1 - Math.exp(-i / 9)) + 0.04 * Math.sin(i)); i ? c.lineTo(px, py) : c.moveTo(px, py); } c.stroke(); }
+        break;
+      }
+      case "victillor": {   // móvil vertical con el Short
+        const pw = hh * 0.5, px = x + w / 2 - pw / 2; c.fillStyle = "#1C1733"; rr(c, px, y + 6, pw, hh - 12, 8); c.fill();
+        const off = (t * 22) % 40; for (let i = -1; i < 4; i++) { c.fillStyle = i % 2 ? "#3A2A66" : "#5A2A55"; c.fillRect(px + 5, y + 12 + i * 40 + off, pw - 10, 34); }
+        c.fillStyle = "#FFCE28"; c.font = "800 10px Archivo, sans-serif"; c.textAlign = "center"; c.fillText("FACT 2/3", px + pw / 2, y + hh - 18);
+        break;
+      }
+      case "nil": {   // capturas con flecha roja
+        const g = [["#5A2A55", "#2B3A66"], ["#3A5A4A", "#6A4A2A"]];
+        for (let i = 0; i < 2; i++) for (let j = 0; j < 2; j++) { c.fillStyle = g[i][j]; rr(c, x + 10 + j * (w - 20) / 2, y + 10 + i * (hh - 20) / 2, (w - 20) / 2 - 6, (hh - 20) / 2 - 6, 4); c.fill(); }
+        const sel = Math.floor(t * 0.7) % 4, sx = x + 10 + (sel % 2) * (w - 20) / 2, sy = y + 10 + Math.floor(sel / 2) * (hh - 20) / 2;
+        c.strokeStyle = "#FFCE28"; c.lineWidth = 2.5; rr(c, sx, sy, (w - 20) / 2 - 6, (hh - 20) / 2 - 6, 4); c.stroke();
+        const ax = sx + (w - 20) / 4, ay = sy + (hh - 20) / 4 + Math.sin(t * 5) * 3; c.strokeStyle = "#FF3B3B"; c.lineWidth = 3; c.beginPath(); c.moveTo(ax - 18, ay - 14); c.lineTo(ax, ay); c.moveTo(ax - 9, ay - 1); c.lineTo(ax, ay); c.lineTo(ax - 2, ay - 9); c.stroke();
+        break;
+      }
+      case "cristiano": {   // onda de la voz
+        for (let i = 0; i < 26; i++) { const v = Math.abs(Math.sin(i * 0.9 + t * 9) * Math.sin(i * 0.3 + t * 2.3)); c.fillStyle = i % 5 === 0 ? "#FF2E8C" : "#C77DFF"; const bh = 6 + v * (hh - 30); c.fillRect(x + 10 + i * (w - 20) / 26, y + hh / 2 - bh / 2, (w - 20) / 26 - 2, bh); }
+        break;
+      }
+      case "georgina": {   // línea de tiempo de montaje
+        const cols = ["#8B35FF", "#FF2E8C", "#FFCE28", "#3DDC97"];
+        for (let r = 0; r < 4; r++) for (let j = 0; j < 6; j++) { c.fillStyle = cols[r]; c.globalAlpha = 0.75; c.fillRect(x + 8 + j * (w - 16) / 6 + (r % 2) * 8, y + 12 + r * (hh - 24) / 4, (w - 16) / 6 - 6, (hh - 24) / 4 - 6); }
+        c.globalAlpha = 1; const ph = x + 8 + ((t * 0.18) % 1) * (w - 16); c.fillStyle = "#F4F1FF"; c.fillRect(ph, y + 6, 2, hh - 12);
+        break;
+      }
+      case "guerrero": {   // subida y ficha de publicación
+        L(0, 130, "#5CC8FF"); L(1, 90); L(2, 110);
+        const p = (t * 0.25) % 1.15; c.fillStyle = "#2A2444"; rr(c, x + 12, y + hh - 34, w - 24, 12, 6); c.fill(); c.fillStyle = "#3DDC97"; rr(c, x + 12, y + hh - 34, (w - 24) * Math.min(p, 1), 12, 6); c.fill();
+        c.fillStyle = "#F4F1FF"; c.font = "500 10px JetBrains Mono, monospace"; c.fillText(`#GTA6 #GTAVI #Shorts · ${Math.min(100, Math.round(p * 100))} %`, x + 12, y + hh - 42);
+        break;
+      }
+      case "almudena": {   // revisión de fotogramas con examen
+        for (let i = 0; i < 6; i++) { const fx = x + 10 + (i % 3) * (w - 20) / 3, fy = y + 10 + Math.floor(i / 3) * (hh - 20) / 2; c.fillStyle = ["#3A2A66", "#5A2A55", "#2B3A66"][i % 3]; rr(c, fx, fy, (w - 20) / 3 - 6, (hh - 20) / 2 - 6, 4); c.fill();
+          if (i < Math.floor(t * 1.5) % 7) { c.fillStyle = "#3DDC97"; c.font = "800 16px Inter, sans-serif"; c.fillText("✓", fx + 6, fy + 18); } }
+        break;
+      }
+    }
+    c.restore();
+  }
+
+  function escena(cv, id, t) {
+    const c = cv.getContext("2d"), W = 640, H = 360, sc = cv.width / W;
+    const p = person(id), [piel, pelo] = LOOK[id], camisa = COLOR[deptOf(p).color], a = ahoraDe(id), busy = a.busy;
+    c.setTransform(sc, 0, 0, sc, 0, 0);
+    // pared, ventana con Vice City de noche, letrero de neón y reloj
+    let g = c.createLinearGradient(0, 0, 0, H); g.addColorStop(0, "#161132"); g.addColorStop(1, "#0B0918"); c.fillStyle = g; c.fillRect(0, 0, W, H);
+    g = c.createLinearGradient(0, 40, 0, 175); g.addColorStop(0, "#241248"); g.addColorStop(0.7, "#7A1E66"); g.addColorStop(1, "#FF6A5C"); c.fillStyle = g; c.fillRect(440, 40, 170, 135);
+    c.fillStyle = "#0B0716"; const edif = [[445, 120, 22], [470, 95, 18], [492, 130, 26], [520, 80, 20], [544, 110, 24], [570, 100, 18], [590, 125, 20]];
+    for (const [bx, by, bw] of edif) { c.fillRect(bx, by, bw, 175 - by); for (let yy = by + 6; yy < 170; yy += 9) for (let xx = bx + 4; xx < bx + bw - 3; xx += 6) if ((xx * 7 + yy * 3 + Math.floor(t * 0.5)) % 5 === 0) { c.fillStyle = "#FFCE28"; c.fillRect(xx, yy, 2, 3); c.fillStyle = "#0B0716"; } }
+    c.strokeStyle = "#0B0716"; c.lineWidth = 3; c.beginPath(); c.moveTo(600, 175); c.quadraticCurveTo(596, 130, 604, 105); c.stroke();
+    for (let i = 0; i < 5; i++) { c.beginPath(); c.moveTo(604, 105); c.quadraticCurveTo(604 + Math.cos(i * 1.3) * 16, 98 + Math.sin(i * 1.3) * 6, 604 + Math.cos(i * 1.25 + 0.3) * 24, 108 + Math.sin(i * 1.3) * 10); c.stroke(); }
+    c.strokeStyle = "#2A2444"; c.lineWidth = 6; c.strokeRect(440, 40, 170, 135); c.lineWidth = 3; c.beginPath(); c.moveTo(525, 40); c.lineTo(525, 175); c.stroke();
+    c.save(); c.shadowColor = "#FF2E8C"; c.shadowBlur = 12 + 4 * Math.sin(t * 3); c.fillStyle = "#FF6FB1"; c.font = "900 18px Archivo, sans-serif"; c.textAlign = "left"; c.fillText("VICECITY DAYS TV", 40, 46); c.restore();
+    c.fillStyle = "#9D94BE"; c.font = "600 11px Inter, sans-serif"; c.fillText(`${deptOf(p).nombre.toUpperCase()}`, 40, 64);
+    const hora = new Date(); c.fillStyle = "#1C1733"; c.beginPath(); c.arc(370, 62, 22, 0, 7); c.fill(); c.strokeStyle = "#3A3360"; c.lineWidth = 2; c.stroke();
+    const hh = hora.getHours() % 12 + hora.getMinutes() / 60, mm = hora.getMinutes() + hora.getSeconds() / 60;
+    c.strokeStyle = "#F4F1FF"; c.lineCap = "round"; c.lineWidth = 2.5; c.beginPath(); c.moveTo(370, 62); c.lineTo(370 + Math.sin(hh / 6 * Math.PI) * 11, 62 - Math.cos(hh / 6 * Math.PI) * 11); c.stroke();
+    c.lineWidth = 1.5; c.beginPath(); c.moveTo(370, 62); c.lineTo(370 + Math.sin(mm / 30 * Math.PI) * 16, 62 - Math.cos(mm / 30 * Math.PI) * 16); c.stroke();
+    // suelo y planta
+    c.fillStyle = "#0E0B1C"; c.fillRect(0, 300, W, 60); c.fillStyle = "#1A1530"; c.fillRect(0, 298, W, 3);
+    c.fillStyle = "#2A2444"; rr(c, 560, 262, 34, 38, 4); c.fill();
+    c.fillStyle = "#2E7A5A"; for (let i = 0; i < 6; i++) { c.save(); c.translate(577, 262); c.rotate(-1.2 + i * 0.48 + Math.sin(t + i) * 0.03); c.beginPath(); c.ellipse(0, -26, 7, 26, 0, 0, 7); c.fill(); c.restore(); }
+    // mesa, monitor, teclado, taza
+    c.fillStyle = "#2B2448"; c.fillRect(170, 236, 330, 10); c.fillStyle = "#1E1935"; c.fillRect(180, 246, 8, 54); c.fillRect(482, 246, 8, 54);
+    c.fillStyle = "#3A3360"; c.fillRect(330, 212, 14, 24); c.fillRect(306, 232, 62, 5);
+    c.fillStyle = "#1C1733"; rr(c, 252, 108, 170, 108, 8); c.fill();
+    pantalla(c, id, 260, 116, 154, 92, t, busy);
+    c.fillStyle = "#3A3360"; rr(c, 262, 228, 64, 8, 2); c.fill();
+    c.fillStyle = "#F4F1FF"; rr(c, 440, 214, 20, 22, 3); c.fill(); c.strokeStyle = "#F4F1FF"; c.lineWidth = 3; c.beginPath(); c.arc(462, 225, 6, -1.4, 1.4); c.stroke();
+    c.fillStyle = "#FF2E8C"; c.fillRect(443, 220, 14, 4);
+    if (!busy) { c.strokeStyle = "rgba(244,241,255,0.35)"; c.lineWidth = 1.5; for (let i = 0; i < 2; i++) { c.beginPath(); const o = (t * 12 + i * 9) % 18; c.moveTo(447 + i * 6, 210 - o); c.quadraticCurveTo(452 + i * 6 + Math.sin(t * 3 + i) * 4, 204 - o, 447 + i * 6, 198 - o); c.stroke(); } }
+    if (id === "cristiano") { c.strokeStyle = "#3A3360"; c.lineWidth = 3; c.beginPath(); c.moveTo(250, 236); c.lineTo(250, 170); c.lineTo(236, 150); c.stroke(); c.fillStyle = "#9D94BE"; rr(c, 228, 136, 14, 22, 6); c.fill(); }
+    // silla
+    c.fillStyle = "#1E1935"; rr(c, 118, 150, 16, 96, 6); c.fill(); c.fillRect(126, 250, 6, 40); c.fillRect(104, 288, 50, 5);
+    // persona (de perfil, mirando al monitor)
+    const lean = busy ? 0 : -0.07 + Math.sin(t * 0.8) * 0.02;
+    const bob = busy ? Math.sin(t * 2.4) * 1.2 : Math.sin(t * 1.1) * 1.5;
+    c.save(); c.translate(160, 240); c.rotate(lean);
+    c.fillStyle = "#231C3E"; rr(c, -8, -6, 70, 16, 6); c.fill(); c.fillRect(48, 2, 14, 52); c.fillStyle = "#0E0B1C"; c.fillRect(46, 52, 22, 6);   // piernas
+    c.fillStyle = camisa; rr(c, -12, -78 + bob, 40, 78, 12); c.fill();   // torso
+    c.fillStyle = "rgba(0,0,0,0.15)"; c.fillRect(-12, -40 + bob, 40, 4);
+    const hx = 10, hy = -98 + bob;   // cabeza
+    c.fillStyle = piel; c.fillRect(hx - 5, hy + 14, 12, 10); c.beginPath(); c.arc(hx, hy, 20, 0, 7); c.fill();
+    c.beginPath(); c.arc(hx + 19, hy + 3, 4, 0, 7); c.fill();   // nariz
+    c.fillStyle = pelo; c.beginPath(); c.arc(hx - 2, hy - 4, 21, Math.PI * 0.95, Math.PI * 2.08); c.fill();
+    if (LARGO.has(id)) { c.fillRect(hx - 22, hy - 6, 14, 34); }
+    const parpadeo = (t % 4.2) < 0.13;   // ojo y boca
+    c.fillStyle = "#14101F"; if (parpadeo) c.fillRect(hx + 9, hy - 1, 6, 2); else { c.beginPath(); c.arc(hx + 12, hy - 1, 2.6, 0, 7); c.fill(); }
+    c.strokeStyle = "#5A2E2E"; c.lineWidth = 2; c.beginPath(); if (id === "cristiano" && busy) { c.arc(hx + 14, hy + 10, 2 + Math.abs(Math.sin(t * 9)) * 2.5, 0, 7); } else { c.moveTo(hx + 10, hy + 10); c.lineTo(hx + 16, hy + 10 - (busy ? 0 : 1)); } c.stroke();
+    // brazo: teclea si trabaja; si no, se lleva la taza a la boca de vez en cuando
+    c.strokeStyle = camisa; c.lineCap = "round"; c.lineWidth = 13;
+    let mx, my;
+    if (busy) { const tec = Math.sin(t * 16) * 3; mx = 112 + tec; my = -14 + Math.abs(Math.cos(t * 16)) * -3; }
+    else { const pensar = Math.max(0, Math.sin(t * 0.55)) ** 2; mx = 96 + (hx + 14 - 96) * pensar; my = -12 + (hy + 20 - -12) * pensar; }
+    const ex = 34, ey = -34 + bob;
+    c.beginPath(); c.moveTo(10, -62 + bob); c.lineTo(ex, ey); c.stroke();
+    c.strokeStyle = piel; c.lineWidth = 10; c.beginPath(); c.moveTo(ex, ey); c.lineTo(Math.min(mx, 140), my); c.stroke();
+    c.fillStyle = piel; c.beginPath(); c.arc(Math.min(mx, 140), my, 6, 0, 7); c.fill();
+    c.restore();
+    // bocadillo con lo que hace
+    const texto = busy ? a.txt : "Disponible · " + (p.libre === "Disponible" ? "esperando el próximo encargo" : p.libre);
+    c.font = "600 12px Inter, sans-serif"; c.textAlign = "left"; c.textBaseline = "middle";
+    let tx = texto; while (c.measureText(tx).width > 250 && tx.length > 8) tx = tx.slice(0, -2);
+    if (tx !== texto) tx = tx.trimEnd() + "…";
+    const bw = c.measureText(tx).width + 22, bx = 40, by = 80;
+    c.fillStyle = busy ? "#FF2E8C" : "#F4F1FF"; rr(c, bx, by, bw, 26, 13); c.fill();
+    c.beginPath(); c.moveTo(bx + 110, by + 26); c.lineTo(bx + 124, by + 36); c.lineTo(bx + 126, by + 26); c.fill();
+    c.fillStyle = busy ? "#F4F1FF" : "#100E1C"; c.fillText(tx, bx + 11, by + 13.5);
+  }
+
+  function renderCamPick() {
+    $("camPick").replaceChildren(...PEOPLE.map(p => h("button", { type: "button", "aria-pressed": p.id === camId ? "true" : "false", "data-id": p.id, onclick: () => verEnDirecto(p.id) },
+      avatar(p, "mini"), p.name, ahoraDe(p.id).busy ? h("i", { class: "busy-dot", title: "Trabajando" }) : null)));
+  }
+  function verEnDirecto(id) {
+    camId = id; renderCamPick(); actualizarCamTexto();
+  }
+  function actualizarCamTexto() {
+    const p = person(camId), a = ahoraDe(camId);
+    $("camName").textContent = `${p.name} · ${p.role}`;
+    $("camNow").textContent = a.busy ? "Ahora: " + a.txt : a.txt;
+    $("camChip").textContent = a.busy ? "trabajando" : "disponible";
+    $("camChip").className = "chip" + (a.busy ? " hot" : "");
+  }
+  CAMS.main = { canvas: $("camMain"), get id() { return camId; } };
+  let ultimoTexto = 0;
+  function bucle(ms) {
+    const t = reduceMotion ? 0 : ms / 1000;
+    for (const k of ["main", "sheet"]) { const cam = CAMS[k]; if (cam && cam.canvas.isConnected && cam.canvas.offsetParent !== null) escena(cam.canvas, cam.id, t); }
+    if (ms - ultimoTexto > 1000) { ultimoTexto = ms; actualizarCamTexto(); }
+    if (!reduceMotion) requestAnimationFrame(bucle);
+  }
+
   // ================================================================ 9. ARRANQUE
-  window.__vshDebug = () => ({ proxima, ahoraDe, people: PEOPLE.length });
-  renderIdeas(); renderTodo(); renderFeed(); tick(); setInterval(tick, 1000);
+  window.__vshDebug = () => ({ proxima, ahoraDe, people: PEOPLE.length, camId: () => camId });
+  renderIdeas(); renderTodo(); renderFeed(); renderCamPick(); actualizarCamTexto(); tick(); setInterval(tick, 1000);
+  requestAnimationFrame(bucle);
+  if (reduceMotion) setInterval(() => bucle(0), 2000);
   (async () => {
     try { [db, comments] = await Promise.all([window.claude?.use("db") ?? null, window.claude?.use("comments") ?? null]); } catch { db = db || null; comments = comments || null; }
     if (db) {

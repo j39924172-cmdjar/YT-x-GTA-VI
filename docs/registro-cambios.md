@@ -87,3 +87,9 @@
   - `estado/equipo` con las notas del examen (`shorts/examen.py --todos --oficina`) y la serie del canal para el gráfico (`shorts/canal.py`).
   - Todo es privado: solo lo ve Adam.
 - 44 pruebas automáticas en móvil, iPad, portátil y escritorio (`node oficina/test_oficina.js`).
+
+## 19/11/2026 — Cámara en directo en la oficina
+- Nueva sección **"Cámara en directo"** (arriba de la oficina) y cámara dentro de la ficha de cada persona: escena animada de la persona en su mesa de la productora (ventana con Vice City de noche, letrero de neón, reloj con la hora real).
+- Cuando trabaja, teclea y su pantalla muestra su tarea: radar de tendencias (Jarvis), fuentes verificándose (Nobita), guion escribiéndose (El Chapo), títulos (Torrente), curva de retención (Pablito), móvil vertical (Victillor), capturas con flecha roja (Nil), onda de voz (Cristiano, que además habla al micro), línea de tiempo (Georgina), subida con hashtags (Guerrero), fotogramas aprobados (Almudena) y gráficas (Taison). Un bocadillo dice lo que hace.
+- Cuando no tiene trabajo, se recuesta, parpadea, se queda pensando y el café humea; la pantalla muestra el salvapantallas de la marca.
+- Respeta "reducir movimiento" del sistema. 51 pruebas automáticas.
