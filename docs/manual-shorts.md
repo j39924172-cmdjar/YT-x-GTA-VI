@@ -12,7 +12,7 @@ Manda siempre el documento maestro (`docs/vicecity-estado.md`). Este manual lo c
 | 02 · Some Americans Get GTA 6 Before Everyone Else | noticia útil | 403 | Una noticia que afecta al espectador ("¿cuándo juego yo?") engancha. |
 | 03 · Meet GTA 6's 2 Criminals in 30 Seconds | personajes | 57 | Las fichas de personajes, sin sorpresa, rinden poco. |
 
-Con solo 3 Shorts esto son pistas, no leyes. Taison actualiza esta tabla cada semana. Mientras tanto: **más "juego vs real" y noticias útiles; los personajes, solo con un giro sorprendente** (una cita loca, un secreto, una contradicción).
+Con solo 3 Shorts esto son pistas, no leyes. **Desde el lanzamiento (19/11), además: trucos y curiosidades del juego** (lo que más busca la gente aparte de la historia), siempre sin spoilers de misiones y con 2 medios fiables; un truco que solo cuenta una web se queda en 🟡. Taison actualiza esta tabla cada semana. Mientras tanto: **más "juego vs real" y noticias útiles; los personajes, solo con un giro sorprendente** (una cita loca, un secreto, una contradicción).
 
 ## Las 10 reglas de oro (todo el equipo)
 1. **El primer segundo lo decide todo.** Voz desde el fotograma 0, texto en pantalla desde el fotograma 0 y una imagen que se entiende sin sonido.

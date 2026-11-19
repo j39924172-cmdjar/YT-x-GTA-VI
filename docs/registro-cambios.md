@@ -129,3 +129,8 @@
 - Las tareas de investigación diaria y de preproducción continua actualizan esa lista cada vez, siempre con la traducción (`es`).
 - `docs/banco-ideas.md`: títulos con su traducción y estado 📝 preproducido. Oficina: 55 pruebas automáticas.
 - Oficina: selector de **voz** en "Nuevo Short" (Fenrir gratis / Dylan de Higgsfield). El encargo lleva `Voz: …` y el procedimiento la respeta; si el título ya está preproducido se salta directamente a la voz.
+
+## 19/11/2026 — Más títulos: trucos y curiosidades
+- Investigación de trucos y curiosidades del lanzamiento (sin spoilers). 7 temas ✅ con 2 medios fiables o más: modo Focus (L3+R3), la policía sigue pistas, perder el dinero al morir, el huevo de Pascua de la torre, el piso de Dexter (hallazgo de fans), el perro en moto de agua y el truco de 250.000 $. 4 temas 🟡 esperan un segundo medio (edificios azul oscuro, empujar barcos, viaje rápido por 100 $, ovni). Bigfoot descartado por spoiler. El tope de 20.000 $ en mano no está confirmado: no se dice.
+- Oficina: 13 títulos recomendados, cada uno con traducción al español y etiqueta de tipo (truco, curiosidad, noticia). Se ven hasta 8 en "Nuevo Short" y en la cadena; todos en "Última investigación".
+- La investigación diaria prioriza trucos y curiosidades (mínimo 3 de cada 4-6 ideas) y repasa las 🟡. El examen acepta el formato "truco". 56 pruebas.

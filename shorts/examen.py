@@ -26,7 +26,7 @@ MULETILLAS = ["in this video", "hey guys", "welcome back", "what's up", "make su
 RUMOR = ["leak", "leaked", "rumor", "rumour", "insider", "reportedly", "allegedly"]
 CURIOSIDAD = re.compile(r"(\d|\?|…|\.\.\.|\bONE\b|\bexcept\b|\bonly\b|\bjust\b|\bsecret|\breal\b|\bnever\b|\bwhy\b|\bhow\b)", re.I)
 EVITAR_1A = re.compile(r"\b(club|nightclub|dancer|strip|nude|topless|dead|corpse|blood)\b", re.I)
-FORMATOS = ["juego vs real", "noticia", "personajes", "secreto", "lista", "comparativa", "curiosidad"]
+FORMATOS = ["juego vs real", "noticia", "personajes", "secreto", "lista", "comparativa", "curiosidad", "truco"]
 
 EQUIPO = {
     "jarvis": "Jarvis · tendencias",

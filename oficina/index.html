@@ -131,6 +131,11 @@
   .chips .idea:hover { border-color: var(--lilac); }
   .chips .idea { display: grid; gap: 1px; border-radius: 10px; padding: 6px 10px; }
   .chips .idea .en { font-weight: 600; }
+  .chips { max-height: 360px; overflow-y: auto; }
+  .tipo { display: inline-block; font-style: normal; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; padding: 1px 6px; margin-right: 6px; border-radius: 5px; vertical-align: 1px; background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
+  .tipo.t-truco { color: var(--sky); border-color: color-mix(in srgb, var(--sky) 45%, transparent); }
+  .tipo.t-curiosidad { color: var(--lilac); border-color: color-mix(in srgb, var(--lilac) 45%, transparent); }
+  .tipo.t-noticia { color: var(--sun); border-color: color-mix(in srgb, var(--sun) 45%, transparent); }
   .es { display: block; font-size: 11.5px; color: var(--muted); font-style: italic; }
   .es::before { content: "ES · "; font-style: normal; color: var(--lilac); font-size: 10.5px; letter-spacing: 0.04em; }
   .voces { border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; }
@@ -434,6 +439,8 @@
     { titulo: "GTA 6 Needs 212 GB. Will It Fit?", es: "GTA 6 necesita 212 GB. ¿Te cabe?", estado: "Preproducido · Short 07", recomendada: true },
     { titulo: "GTA 6's Rap Duo Started by Robbing Dealers", es: "El dúo de rap de GTA 6 empezó robando a camellos" },
     { titulo: "GTA 6 Just Name-Dropped Tommy Vercetti's Estate", es: "GTA 6 acaba de mencionar la mansión de Tommy Vercetti" },
+    { titulo: "Press Both Sticks in GTA 6 Right Now", es: "Pulsa los dos sticks en GTA 6 ahora mismo", tipo: "truco" },
+    { titulo: "GTA 6 Hid a Real Easter Egg on Top of a Tower", es: "GTA 6 escondió un huevo de Pascua de verdad en lo alto de una torre", tipo: "curiosidad" },
   ];
   const ideaDe = i => typeof i === "string" ? { titulo: i } : i;
   // Horarios del piloto automático (hora de Madrid). Deben coincidir con las tareas programadas de Claude Code.
@@ -570,13 +577,13 @@
     const esPublicado = t => pubNorm.some(p => p && (p === norm(t) || p.slice(0, 24) === norm(t).slice(0, 24)));
     const enCurso = encargos.filter(e => ACTIVOS.includes(e.estado));
     const listos = ((ESTADO.equipo && ESTADO.equipo.shorts) || []).filter(s => !esPublicado(s.titulo));
-    const ideas = IDEAS.slice(0, 5).map(ideaDe);
+    const ideas = IDEAS.slice(0, 8).map(ideaDe);
     const lane = (titulo, n, color, cards, vacio) => h("div", { class: "lane" },
       h("div", { class: "lane-h" }, h("i", { class: "dot", style: { background: color } }), titulo, h("b", {}, n)),
       cards.length ? cards : h("div", { class: "empty" }, vacio));
     $("board").replaceChildren(
       lane("Títulos recomendados", ideas.length, "var(--lilac)", ideas.map(i => h("button", { class: "card idea", type: "button", onclick: () => elegirIdea(i.titulo) },
-        h("span", { class: "t" }, i.titulo), i.es ? h("span", { class: "es" }, i.es) : null,
+        h("span", { class: "t" }, i.tipo ? h("i", { class: "tipo t-" + i.tipo }, i.tipo) : null, i.titulo), i.es ? h("span", { class: "es" }, i.es) : null,
         h("span", { class: "m" }, i.estado ? h("span", { class: "chip " + (i.recomendada ? "ok" : "sun") }, i.estado) : (i.recomendada ? h("span", { class: "chip ok" }, "producir hoy") : null), "Toca para encargarla"))), "La investigación diaria trae ideas nuevas."),
       lane("En producción", enCurso.length, "var(--pink)", enCurso.map(e => h("div", { class: "card" },
         h("span", { class: "t" }, e.titulo), h("span", { class: "m" }, h("span", { class: "chip hot" }, e.paso ? `paso ${e.paso}/8` : "recibido"),
@@ -636,10 +643,10 @@
     $("invResumen").textContent = v.resumen || "";
     const ideas = Array.isArray(v.ideas) ? v.ideas.filter(i => i && i.titulo) : [];
     $("invIdeas").replaceChildren(...ideas.map(i => h("li", {},
-      h("span", {}, h("b", {}, i.titulo), " ", i.recomendada ? h("span", { class: "chip ok" }, "producir hoy") : null, i.estado ? h("span", { class: "chip sun" }, i.estado) : null),
+      h("span", {}, i.tipo ? h("i", { class: "tipo t-" + i.tipo }, i.tipo) : null, h("b", {}, i.titulo), " ", i.recomendada ? h("span", { class: "chip ok" }, "producir hoy") : null, i.estado ? h("span", { class: "chip sun" }, i.estado) : null),
       i.es ? h("span", { class: "es" }, i.es) : null,
       i.porque ? h("span", { class: "d" }, i.porque) : null)));
-    if (ideas.length) { IDEAS = ideas.slice(0, 6); renderIdeas(); renderBoard(); }
+    if (ideas.length) { IDEAS = ideas.slice(0, 14); renderIdeas(); renderBoard(); }
   }
 
   // ================================================================ 7. PRODUCCIÓN EN CURSO Y ESTADO GENERAL
@@ -674,8 +681,8 @@
   const titulo = $("titulo"), goBtn = $("goBtn"), capNote = $("capNote");
   function elegirIdea(t) { titulo.value = t; titulo.focus(); }
   function renderIdeas() {
-    $("ideas").replaceChildren(...IDEAS.slice(0, 4).map(ideaDe).map(i => h("button", { class: "chip idea", type: "button", onclick: () => elegirIdea(i.titulo) },
-      h("span", { class: "en" }, i.titulo), i.es ? h("span", { class: "es" }, i.es) : null)));
+    $("ideas").replaceChildren(...IDEAS.slice(0, 8).map(ideaDe).map(i => h("button", { class: "chip idea", type: "button", onclick: () => elegirIdea(i.titulo) },
+      h("span", { class: "en" }, i.tipo ? h("i", { class: "tipo t-" + i.tipo }, i.tipo) : null, i.titulo), i.es ? h("span", { class: "es" }, i.es) : null)));
   }
   function mostrarAlternativa(t, motivo) {
     $("fallback").hidden = false;

@@ -73,7 +73,8 @@ const txt = (page, sel) => page.textContent(sel);
     ok("Cámara: al elegir a Cristiano lo muestra", /Cristiano/.test(await txt(page, "#camName")) && (await page.$eval('#camPick button[data-id="cristiano"]', e => e.getAttribute("aria-pressed"))) === "true");
     ok("Ficha: se cierra con Escape", !(await page.isVisible("#sheet")));
 
-    ok("Hay 4 ideas en Nuevo Short", (await page.$$eval("#ideas .idea", e => e.length)) === 4);
+    ok("Hay 6 títulos en Nuevo Short", (await page.$$eval("#ideas .idea", e => e.length)) === 6);
+    ok("Los trucos llevan su etiqueta", /truco/.test(await txt(page, "#ideas")));
     await page.click("#ideas .idea >> nth=0");
     ok("Tocar una idea rellena el título (en inglés)", /Tied the Best Score/.test(await page.inputValue("#titulo")) && !/ES ·|igualar/.test(await page.inputValue("#titulo")));
     ok("Los títulos recomendados llevan la traducción al español", /acaba de igualar la mejor nota/.test(await txt(page, "#ideas")) && /acaba de igualar/.test(await txt(page, "#board")));
