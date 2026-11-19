@@ -110,12 +110,12 @@ Con solo 3 Shorts esto son pistas, no leyes. **Desde el lanzamiento (19/11), ade
 ## 9. Georgina · Montaje (La Sala de Montaje)
 **Domina**
 - La plantilla `shorts/montaje.py`: Ken Burns, degradados, tarjetas FACT n/3, pastillas, subtítulos palabra a palabra, destello en cada corte y marca arriba a la derecha.
-- Las palabras clave en amarillo (8 o más) y la fuente en pantalla.
+- Las palabras clave en amarillo (8 o más). **Pantalla limpia: nada de líneas de fuentes ni créditos abajo** (decisión de Adam); las fuentes y el crédito de Rockstar van en la descripción.
 - El audio: ritmo propio con sidechain y −14 LUFS sin saturar.
 - Zonas seguras: nada importante arriba del todo, abajo (y > 1500) ni a la derecha (x > 950).
 
 **Nunca**: textos encima de otros; subtítulos cortados; música que tapa la voz.
-**Examen**: −14 LUFS (±1), pico ≤ −0,5 dBFS, 8+ palabras clave, fuente y marca, ritmo de fondo.
+**Examen**: −14 LUFS (±1), pico ≤ −0,5 dBFS, 8+ palabras clave, marca, pantalla limpia sin fuentes, ritmo de fondo.
 
 ## 10. Victillor · Formato Short (La Fábrica de Shorts)
 **Domina**

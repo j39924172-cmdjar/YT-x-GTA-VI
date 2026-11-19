@@ -126,7 +126,7 @@ class Examen:
             vcat = json.loads((RAIZ / "docs" / "catalogo-videos.json").read_text()) if (RAIZ / "docs" / "catalogo-videos.json").exists() else []
             malos = [c["id"] for c in vcat if c["evitar"] and any(Path(e["video"]).stem == c["video"] and c["inicio"] - 0.2 <= e.get("inicio", 0) <= c["fin"] for e in clips)]
             self.r("nobita", not malos, "Ningún plano prohibido (logo oficial, club, arma a cámara…)", ", ".join(malos))
-            self.r("nobita", "footage" in self.plan.get("fuente", "").lower(), "Crédito \"Footage: Rockstar Games\" en pantalla", self.plan.get("fuente", ""))
+            self.r("nobita", "rockstar games" in self.desc.lower(), "Crédito de Rockstar Games en la descripción (footage)")
             largos = [round(e["hasta"] - e["desde"], 1) for e in clips if e["hasta"] - e["desde"] > 3.5 and e["hasta"] < 90]
             self.r("nobita", not largos, "Planos de vídeo cortos (≤ 3,5 s): nada de escenas enteras", str(largos))
         self.r("nobita", not any("Vice_City_07" in i for i in imgs), "No usa Vice_City_07")
@@ -211,7 +211,8 @@ class Examen:
             self.r("georgina", abs(v["lufs"] + 14) <= 1.0, "Volumen −14 LUFS (±1)", f"{v['lufs']} LUFS")
             self.r("georgina", v["pico"] is None or v["pico"] <= -0.5, "Sin saturar (pico ≤ −0,5 dBFS)", f"{v['pico']} dBFS")
         self.r("georgina", len(self.plan.get("palabras_clave", [])) >= 8, "Palabras clave en amarillo (≥ 8)", f"{len(self.plan.get('palabras_clave', []))}")
-        self.r("georgina", bool(self.plan.get("fuente")) and bool(self.plan.get("marca")), "Fuente en pantalla y marca VICECITY DAYS TV")
+        self.r("georgina", bool(self.plan.get("marca")), "Marca VICECITY DAYS TV arriba a la derecha")
+        self.r("georgina", not self.plan.get("mostrar_fuente"), "Pantalla limpia: sin línea de fuentes ni créditos abajo (van en la descripción)")
         self.r("georgina", bool(self.plan.get("musica")), "Ritmo de fondo con sidechain")
 
         # Guerrero · publicación y SEO

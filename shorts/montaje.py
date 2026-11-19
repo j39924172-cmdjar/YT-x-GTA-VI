@@ -419,8 +419,9 @@ def marca(fr, txt, fuente):
     glow = texto_img(txt, "Montserrat-Black.ttf", 34, "morado", stroke=6, stroke_col="morado", shadow=False).filter(ImageFilter.GaussianBlur(6))
     pegar(fr, glow, SAFE_RIGHT - im.width / 2 + 10, SAFE_TOP - 50, alpha=0.9)
     pegar(fr, im, SAFE_RIGHT - im.width / 2 + 10, SAFE_TOP - 50)
-    s = texto_img(fuente, "Montserrat-ExtraBold.ttf", 30, "blanco", shadow=True)
-    pegar(fr, s, 60 + s.width / 2, SAFE_BOTTOM - 10, alpha=0.85)
+    if fuente:   # por defecto NO se pinta (decisión de Adam, 19/11/2026): las fuentes y el crédito van en la descripción
+        s = texto_img(fuente, "Montserrat-ExtraBold.ttf", 30, "blanco", shadow=True)
+        pegar(fr, s, 60 + s.width / 2, SAFE_BOTTOM - 10, alpha=0.85)
 
 
 # ------------------------------------------------------------------ música propia (sin derechos de terceros)
@@ -487,7 +488,7 @@ def montar(plan_path: str) -> Path:
                 CAPAS[c["tipo"]](fr, c, t)
         etiqueta_escena(fr, esc, t)
         subtitulos(fr, palabras, t, plan.get("palabras_clave", []))
-        marca(fr, plan.get("marca", "VICECITY DAYS TV"), plan.get("fuente", "Source: Rockstar Games"))
+        marca(fr, plan.get("marca", "VICECITY DAYS TV"), plan.get("fuente") if plan.get("mostrar_fuente") else None)
         for c0 in cortes:                     # destello blanco en cada corte
             if 0 <= t - c0 < 0.14:
                 a = 1 - (t - c0) / 0.14

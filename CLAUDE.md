@@ -19,7 +19,7 @@ o algo no se puede aplicar, avisa a Antonio ANTES de cambiarlo.
 5. Publicación: título con curiosidad; descripción con datos, fuente, aviso no oficial y #GTA6 #GTAVI #Shorts; comentario fijado con pregunta; "Contenido alterado: No"; "Hecho para niños: No".
 
 ## Patrones que funcionan (sección 3)
-Gancho concreto en el primer segundo; formato de lista o datos con contador y fuente en pantalla; imágenes reales del juego que demuestran el dato; subtítulos de 1–2 palabras con la palabra clave en color; gráficos animados para los datos sin imagen.
+Gancho concreto en el primer segundo; formato de lista o datos con contador (las fuentes van en la descripción, nunca en pantalla: decisión de Adam, 19/11/2026); imágenes reales del juego que demuestran el dato; subtítulos de 1–2 palabras con la palabra clave en color; gráficos animados para los datos sin imagen.
 **No repetir:** fondos synthwave o genéricos sin imágenes del juego, vídeo de IA "bonito" sin dato, ganchos ya usados.
 
 ## Derechos y monetización (sección 6)
