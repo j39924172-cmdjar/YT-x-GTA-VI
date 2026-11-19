@@ -1,0 +1,414 @@
+{
+ "voz": "voz.mp3",
+ "palabras": "palabras.json",
+ "salida": "final.mp4",
+ "fuente": "Footage: Rockstar Games · Cheats: Kotaku, Vice, Screen Rant, GTABase",
+ "marca": "VICECITY DAYS TV",
+ "musica": {
+  "bpm": 126,
+  "volumen": 0.3
+ },
+ "palabras_clave": [
+  "cheat",
+  "quarter",
+  "million",
+  "catch",
+  "up",
+  "right",
+  "down",
+  "left",
+  "unlocks",
+  "finish",
+  "story",
+  "trophies",
+  "saving",
+  "cash",
+  "never",
+  "main",
+  "save",
+  "Follow",
+  "secrets"
+ ],
+ "escenas": [
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 39.05,
+   "desde": 0.0,
+   "hasta": 1.35,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "img": "capturas/VINTAGE_VICE_CITY_WEAPON_PATTERN_01.jpg",
+   "desde": 1.35,
+   "hasta": 3.22,
+   "foco": [
+    0.28,
+    0.55
+   ],
+   "foco_fin": [
+    0.27,
+    0.6
+   ],
+   "zoom": [
+    1.1,
+    1.2
+   ],
+   "etiqueta": {
+    "texto": "$250,000",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.4,
+    "flecha": [
+     0.3,
+     0.68
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Pre-Load_Now.mp4",
+   "inicio": 11.25,
+   "desde": 3.22,
+   "hasta": 4.84,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ],
+   "etiqueta": {
+    "texto": "THE CATCH?",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.4,
+    "color": "blanco"
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 47.05,
+   "desde": 4.84,
+   "hasta": 6.7,
+   "foco": [
+    0.55,
+    0.55
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 55.25,
+   "desde": 6.7,
+   "hasta": 8.44,
+   "foco": [
+    0.45,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.7,
+   "desde": 8.44,
+   "hasta": 9.38,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 26.45,
+   "desde": 9.38,
+   "hasta": 10.73,
+   "foco": [
+    0.45,
+    0.45
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 2.8,
+   "desde": 10.73,
+   "hasta": 13.24,
+   "foco": [
+    0.5,
+    0.45
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ],
+   "etiqueta": {
+    "texto": "FINISH THE STORY",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.8
+   }
+  },
+  {
+   "img": "capturas/Boobie_Ike_01.jpg",
+   "desde": 13.24,
+   "hasta": 15.46,
+   "foco": [
+    0.55,
+    0.45
+   ],
+   "foco_fin": [
+    0.6,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "etiqueta": {
+    "texto": "THE CATCH",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.34,
+    "color": "blanco",
+    "flecha": [
+     0.65,
+     0.62
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 35.15,
+   "desde": 15.46,
+   "hasta": 16.71,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 40.55,
+   "desde": 16.71,
+   "hasta": 18.65,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 57.15,
+   "desde": 18.65,
+   "hasta": 20.02,
+   "foco": [
+    0.55,
+    0.45
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 11.95,
+   "desde": 20.02,
+   "hasta": 22.2,
+   "foco": [
+    0.55,
+    0.45
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ],
+   "etiqueta": {
+    "texto": "SAVE FIRST",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.54
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 74.0,
+   "desde": 22.2,
+   "hasta": 22.62,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 22.62,
+   "hasta": 99,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.55,
+    0.45
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ]
+  }
+ ],
+ "capas": [
+  {
+   "tipo": "titulo",
+   "desde": 0.0,
+   "hasta": 4.84,
+   "lineas": [
+    [
+     "$250,000",
+     "amarillo"
+    ],
+    [
+     "CHEAT CODE",
+     "blanco"
+    ]
+   ],
+   "pastilla": "GTA 6 TIP"
+  },
+  {
+   "tipo": "fact",
+   "etiqueta": "TIP",
+   "desde": 4.84,
+   "hasta": 9.38,
+   "n": 1,
+   "total": 3,
+   "titulo": "THE CODE"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 5.85,
+   "hasta": 9.38,
+   "items": [
+    {
+     "texto": "UP · RIGHT · DOWN · LEFT",
+     "fondo": "amarillo",
+     "desde": 6.26,
+     "y": 760,
+     "size": 58
+    },
+    {
+     "texto": "UP · LEFT · DOWN · RIGHT",
+     "fondo": "amarillo",
+     "desde": 7.56,
+     "y": 900,
+     "size": 58
+    }
+   ]
+  },
+  {
+   "tipo": "fact",
+   "etiqueta": "TIP",
+   "desde": 9.38,
+   "hasta": 13.24,
+   "n": 2,
+   "total": 3,
+   "titulo": "UNLOCK IT"
+  },
+  {
+   "tipo": "fact",
+   "etiqueta": "TIP",
+   "desde": 13.24,
+   "hasta": 22.62,
+   "n": 3,
+   "total": 3,
+   "titulo": "THE CATCH"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 15.46,
+   "hasta": 20.02,
+   "items": [
+    {
+     "texto": "NO TROPHIES",
+     "fondo": "rosa",
+     "color": "blanco",
+     "icono": "no",
+     "desde": 15.63,
+     "y": 760
+    },
+    {
+     "texto": "NO SAVING",
+     "fondo": "rosa",
+     "color": "blanco",
+     "icono": "no",
+     "desde": 16.43,
+     "y": 900
+    },
+    {
+     "texto": "CASH STAYS OUT",
+     "fondo": "rosa",
+     "color": "blanco",
+     "icono": "no",
+     "desde": 18.21,
+     "y": 1040
+    }
+   ]
+  },
+  {
+   "tipo": "cta",
+   "desde": 22.62,
+   "hasta": 99,
+   "lineas": [
+    "FOLLOW",
+    "FOR MORE GTA 6 SECRETS"
+   ]
+  }
+ ]
+}

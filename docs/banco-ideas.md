@@ -27,7 +27,7 @@ Lo que más busca la gente además de la historia. Sin spoilers de misiones. Vis
 | 13 | 📝 GTA 6 Hid a Real Easter Egg on Top of a Tower (`shorts/10-huevo-torre`)<br>*ES: GTA 6 escondió un huevo de Pascua de verdad en lo alto de una torre* | curiosidad | "Rockstar hid an actual egg in GTA 6. Literally." | 1) En lo alto de una torre altísima hay un nido con un huevo de Pascua. 2) Si lo lanzas lejos, salta una escena. 3) Arriba hay un paracaídas para bajar en salto base (IBTimes, TechRadar, GameSpot "GTA 6 Easter Eggs…"). Descubierto por jugadores, no anunciado por Rockstar | ✅ |
 | 14 | Fans Found Dexter's Apartment in GTA 6<br>*ES: Los fans encontraron el piso de Dexter en GTA 6* | curiosidad | "This GTA 6 building looks way too familiar." | 1) Un edificio de Vice City es casi idéntico al de Dexter Morgan en la serie. 2) Está en Washington Island, cerca de la tienda Top Fun Drones (GameSpot). 3) Rockstar no lo ha confirmado como homenaje (Dexerto, OpenCritic, Yahoo) | ✅ (decirlo como hallazgo de fans) |
 | 15 | In GTA 6, a Dog Can Drive You on a Jet Ski<br>*ES: En GTA 6 un perro puede llevarte en moto de agua* | curiosidad | "In GTA 6, your ride might be a dog." | 1) Un perro con gafas aparece en moto de agua y te lleva detrás. 2) Puedes acariciar perros y gatos. 3) Un gato en un coche robado te gruñe y te ataca (TechRadar en directo del lanzamiento, Windows Central) | ✅ |
-| 16 | The $250,000 Cheat Code in GTA 6<br>*ES: El truco de 250.000 $ de GTA 6* | truco | "GTA 6 has a cheat for $250,000. Here's the catch." | 1) Arriba, Derecha, Abajo, Izquierda, Arriba, Izquierda, Abajo, Derecha = 250.000 $. 2) Se desbloquea al terminar la historia. 3) Otros trucos se ganan jugando: chaleco tras 100 entrenamientos (Screen Rant, Shane the Gamer, Gamer Tweak). ⚠️ Algunas webs mezclan trucos de GTA 5: no usarlas | ✅ |
+| 16 | 🎬 The $250,000 Cheat Code in GTA 6 (Short 11)<br>*ES: El truco de 250.000 $ de GTA 6* | truco | "GTA 6 has a cheat for $250,000. Here's the catch." | 1) Arriba, Derecha, Abajo, Izquierda, Arriba, Izquierda, Abajo, Derecha = 250.000 $. 2) Se desbloquea al terminar la historia. 3) Otros trucos se ganan jugando: chaleco tras 100 entrenamientos (Screen Rant, Shane the Gamer, Gamer Tweak). ⚠️ Algunas webs mezclan trucos de GTA 5: no usarlas | ✅ |
 | 17 | Dark Blue Buildings in GTA 6 Mean Something<br>*ES: Los edificios azul oscuro de GTA 6 significan algo* | truco | "Look at the map colors in GTA 6." | Edificios azul oscuro = se puede entrar (solo Yahoo/The Big Lead; el resto de webs son filtraciones previas al lanzamiento) | 🟡 falta 2.º medio (repasado 19/11 21:54) |
 | 18 | You Can Push a Stuck Boat in GTA 6<br>*ES: En GTA 6 puedes empujar un barco encallado* | truco | — | Mantener cuadrado empuja vehículos (solo Yahoo/The Big Lead) | 🟡 falta 2.º medio |
 | 19 | GTA 6 Has Fast Travel. It's Hidden in Your Phone<br>*ES: GTA 6 tiene viaje rápido: está escondido en tu móvil* | truco | "GTA 6 has fast travel. Nobody told you where." | 1) La app Ryde Me viene en el móvil (Beebom, GTABoom). 2) Marcas un destino, pides un coche y vas detrás (Yahoo/The Big Lead, tras el lanzamiento). 3) Puedes ir mirando el viaje o saltártelo (Beebom, GTABoom). ⚠️ El precio de 100 $ por saltar NO está confirmado: no decirlo | ✅ (repaso 19/11 21:54) |
@@ -42,6 +42,7 @@ Lo que más busca la gente además de la historia. Sin spoilers de misiones. Vis
 | 04 | GTA 6's Map Is Real Florida… Except ONE Place | 🎬 18/11 |
 | 05 | 3 GTA 6 Crime Bosses in 30 Seconds (encargo de la oficina) | 🎬 18/11 |
 | 08 | Never Die With Cash in Your Pocket in GTA 6 (truco, voz Fenrir, clips del tráiler) | 🎬 19/11 |
+| 11 | The $250,000 Cheat Code in GTA 6 (truco, voz Fenrir) | 🎬 19/11 |
 
 ## Ganchos usados (no repetir)
 - "Who plays GTA 6 first?" / unlock por zonas horarias
@@ -49,3 +50,4 @@ Lo que más busca la gente además de la historia. Sin spoilers de misiones. Vis
 - "Rockstar didn't invent this map. Their own website calls Leonida 'the sunshine state.'"
 - "One owns a strip club. One robs banks. One smuggles from a boat yard."
 - "Die in GTA 6, and this money is gone forever."
+- "GTA 6 has a cheat worth a quarter million. But there's a catch."

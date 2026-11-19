@@ -148,3 +148,8 @@
 - Re-montados sin la línea: Short 08 y Short 05 (las dos voces). Los 03 y 04 ya estaban subidos.
 - 19/11 18:53 · Preproducción continua: ya hay 4 preproducidos (06, 07, 09, 10), no se preparan más. Repaso: datos vigentes; la nota del 06 se vuelve a comprobar justo antes de producir (las búsquedas mezclan páginas previas al lanzamiento).
 - 19/11 21:53 · Preproducción continua: cola llena (06, 07, 09, 10). Repaso de las ideas 🟡: el viaje rápido pasa a ✅ reformulado ("GTA 6 Has Fast Travel. It's Hidden in Your Phone", app Ryde Me; sin el precio de 100 $, no confirmado). Los edificios azul oscuro siguen 🟡.
+
+## 19/11/2026 (noche) — Short 11: The $250,000 Cheat Code in GTA 6
+- Encargo de la oficina con voz Fenrir. 26,5 s, examen 9,8/10. Carpeta `shorts/11-truco-250k/`.
+- Datos con 5 medios (Kotaku, Vice, Screen Rant, GTABase, Beebom): el código ↑ → ↓ ← ↑ ← ↓ →, se desbloquea al acabar la historia y usar trucos desactiva trofeos y guardado en esa sesión (el dinero no pasa a la partida principal).
+- El examen pilló una frase de más de 22 palabras: se partió y se regeneró la voz (gratis). Gancho acortado ("a quarter million") para que dure menos de 3 s.
