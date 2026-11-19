@@ -1,0 +1,458 @@
+{
+ "voz": "voz_gratis.mp3",
+ "palabras": "palabras_gratis.json",
+ "salida": "final_gratis.mp4",
+ "fuente": "Source: Rockstar Games · Only in Leonida",
+ "marca": "VICECITY DAYS TV",
+ "musica": {
+  "bpm": 124,
+  "volumen": 0.3
+ },
+ "palabras_clave": [
+  "strip",
+  "club",
+  "robs",
+  "banks",
+  "smuggles",
+  "boat",
+  "yard",
+  "crime",
+  "bosses",
+  "Boobie",
+  "Ike",
+  "legend",
+  "empire",
+  "real",
+  "estate",
+  "recording",
+  "studio",
+  "Raul",
+  "Bautista",
+  "bank",
+  "robber",
+  "talent",
+  "risks",
+  "Brian",
+  "Heder",
+  "drug",
+  "runner",
+  "smuggling",
+  "dirty",
+  "work",
+  "Follow",
+  "secrets"
+ ],
+ "escenas": [
+  {
+   "img": "capturas/Boobie_Ike_02.jpg",
+   "desde": 0.0,
+   "hasta": 1.33,
+   "foco": [
+    0.36,
+    0.45
+   ],
+   "foco_fin": [
+    0.37,
+    0.42
+   ],
+   "zoom": [
+    1.05,
+    1.2
+   ],
+   "etiqueta": {
+    "texto": "STRIP CLUB",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.16
+   }
+  },
+  {
+   "img": "capturas/Raul_Bautista_02.jpg",
+   "desde": 1.33,
+   "hasta": 2.72,
+   "foco": [
+    0.4,
+    0.5
+   ],
+   "foco_fin": [
+    0.4,
+    0.55
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ],
+   "etiqueta": {
+    "texto": "ROBS BANKS",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.36,
+    "color": "blanco"
+   }
+  },
+  {
+   "img": "capturas/Brian_Heder_03.jpg",
+   "desde": 2.72,
+   "hasta": 4.26,
+   "foco": [
+    0.42,
+    0.45
+   ],
+   "foco_fin": [
+    0.4,
+    0.45
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ],
+   "etiqueta": {
+    "texto": "SMUGGLER",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.41,
+    "flecha": [
+     0.3,
+     0.6
+    ]
+   }
+  },
+  {
+   "img": "capturas/Raul_Bautista_03.jpg",
+   "desde": 4.26,
+   "hasta": 7.02,
+   "foco": [
+    0.58,
+    0.4
+   ],
+   "foco_fin": [
+    0.58,
+    0.35
+   ],
+   "zoom": [
+    1.0,
+    1.15
+   ]
+  },
+  {
+   "img": "capturas/Boobie_Ike_01.jpg",
+   "desde": 7.02,
+   "hasta": 9.28,
+   "foco": [
+    0.38,
+    0.4
+   ],
+   "foco_fin": [
+    0.36,
+    0.35
+   ],
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "etiqueta": {
+    "texto": "VICE CITY LEGEND",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 1.56
+   }
+  },
+  {
+   "img": "capturas/Boobie_Ike_03.jpg",
+   "desde": 9.28,
+   "hasta": 11.53,
+   "foco": [
+    0.42,
+    0.45
+   ],
+   "foco_fin": [
+    0.42,
+    0.4
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "FROM STREETS TO EMPIRE",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.95,
+    "color": "blanco"
+   }
+  },
+  {
+   "img": "capturas/Boobie_Ike_02.jpg",
+   "desde": 11.53,
+   "hasta": 14.7,
+   "foco": [
+    0.34,
+    0.28
+   ],
+   "foco_fin": [
+    0.37,
+    0.3
+   ],
+   "zoom": [
+    1.2,
+    1.28
+   ]
+  },
+  {
+   "img": "capturas/Raul_Bautista_04.jpg",
+   "desde": 14.7,
+   "hasta": 16.37,
+   "foco": [
+    0.38,
+    0.4
+   ],
+   "foco_fin": [
+    0.38,
+    0.35
+   ],
+   "zoom": [
+    1.0,
+    1.15
+   ]
+  },
+  {
+   "img": "capturas/Raul_Bautista_02.jpg",
+   "desde": 16.37,
+   "hasta": 18.71,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.4,
+    0.55
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ],
+   "etiqueta": {
+    "texto": "BANK ROBBER",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.59,
+    "color": "blanco"
+   }
+  },
+  {
+   "img": "capturas/Raul_Bautista_01.jpg",
+   "desde": 18.71,
+   "hasta": 20.62,
+   "foco": [
+    0.56,
+    0.4
+   ],
+   "foco_fin": [
+    0.58,
+    0.38
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ],
+   "etiqueta": {
+    "texto": "HUNTING FOR TALENT",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.24
+   }
+  },
+  {
+   "img": "capturas/Brian_Heder_02.jpg",
+   "desde": 20.62,
+   "hasta": 22.72,
+   "foco": [
+    0.63,
+    0.4
+   ],
+   "foco_fin": [
+    0.62,
+    0.35
+   ],
+   "zoom": [
+    1.0,
+    1.15
+   ]
+  },
+  {
+   "img": "capturas/Brian_Heder_03.jpg",
+   "desde": 22.72,
+   "hasta": 24.64,
+   "foco": [
+    0.42,
+    0.45
+   ],
+   "foco_fin": [
+    0.4,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ],
+   "etiqueta": {
+    "texto": "DRUG RUNNER",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.11,
+    "flecha": [
+     0.3,
+     0.6
+    ]
+   }
+  },
+  {
+   "img": "capturas/Brian_Heder_04.jpg",
+   "desde": 24.64,
+   "hasta": 26.34,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.5,
+    0.35
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ],
+   "etiqueta": {
+    "texto": "OTHERS DO THE DIRTY WORK",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.5,
+    "color": "blanco"
+   }
+  },
+  {
+   "img": "capturas/Brian_Heder_01.jpg",
+   "desde": 26.34,
+   "hasta": 99,
+   "foco": [
+    0.42,
+    0.4
+   ],
+   "foco_fin": [
+    0.44,
+    0.38
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ]
+  }
+ ],
+ "capas": [
+  {
+   "tipo": "titulo",
+   "desde": 0.0,
+   "hasta": 7.02,
+   "lineas": [
+    [
+     "3 GTA 6",
+     "blanco"
+    ],
+    [
+     "CRIME BOSSES",
+     "amarillo"
+    ]
+   ],
+   "pastilla": "IN 30 SECONDS"
+  },
+  {
+   "tipo": "fact",
+   "desde": 7.02,
+   "hasta": 14.7,
+   "n": 1,
+   "total": 3,
+   "titulo": "BOOBIE IKE"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 11.53,
+   "hasta": 14.7,
+   "items": [
+    {
+     "texto": "REAL ESTATE",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 11.62,
+     "y": 780
+    },
+    {
+     "texto": "STRIP CLUB",
+     "fondo": "rosa",
+     "color": "blanco",
+     "icono": "ok",
+     "desde": 12.52,
+     "y": 920
+    },
+    {
+     "texto": "RECORDING STUDIO",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 13.32,
+     "y": 1060
+    }
+   ]
+  },
+  {
+   "tipo": "fact",
+   "desde": 14.7,
+   "hasta": 20.62,
+   "n": 2,
+   "total": 3,
+   "titulo": "RAUL BAUTISTA"
+  },
+  {
+   "tipo": "fact",
+   "desde": 20.62,
+   "hasta": 26.34,
+   "n": 3,
+   "total": 3,
+   "titulo": "BRIAN HEDER"
+  },
+  {
+   "tipo": "cta",
+   "desde": 26.34,
+   "hasta": 99,
+   "lineas": [
+    "FOLLOW",
+    "FOR MORE GTA 6 SECRETS"
+   ]
+  }
+ ]
+}

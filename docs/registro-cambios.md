@@ -52,3 +52,10 @@
 ## 18/11/2026 (noche) — Prueba de voz gratuita
 - Adam quiere no pagar nada aparte de Claude. Higgsfield: el plan Starter (19 $/mes, 270 créditos) no le aparece mientras dure la prueba de Ultra (hasta el 21/11); lo gratis de sus campañas no funciona desde Claude (MCP) y no incluye voz.
 - Prueba con **Kokoro** (voz de código abierto, gratis, funciona en la sesión con kokoro-onnx y el modelo de Hugging Face). Comparativa `shorts/05-crime-bosses/comparativa_voces.mp3`: Dylan / Michael / Fenrir / Puck. Pendiente de que Adam elija; el sistema sigue con Dylan hasta entonces.
+
+## 19/11/2026 — Investigación diaria nº 1 (día de lanzamiento de GTA 6)
+- **Canal:** 1 suscriptor (+0). 1.560 visualizaciones (+1.232 desde ayer). El Short de Florida ("…Except ONE Place") pasa de 22 a **1.100** visualizaciones: el formato "juego frente a mundo real" es el que mejor funciona. Horarios de lanzamiento: 403 (+105). Jason y Lucia: 57 (+49).
+- **Novedades:** GTA 6 sale hoy (19/11) en PS5 y Xbox Series X|S. Metacritic 99 y "best-reviewed video game ever" según Bloomberg; IGN y GameSpot 10/10. Hasta 212 GB; 79,99 $ / 99,99 $ en EE. UU. (Forbes).
+- **Banco:** ideas 7 (mejor valorado de la historia), 8 (212 GB) y 9 (Real Dimez). Recomendadas para hoy: 7 y 8 (noticias del lanzamiento, caducan rápido).
+- El Newswire de Rockstar se carga con JavaScript: `curl` no ve los artículos. Las novedades se verifican con medios fiables.
+- **Voz gratuita:** `shorts/voz_gratis.py` (Kokoro, voz `am_fenrir`). Short 05 rehecho con ella (`plan_gratis.json`, `final_gratis.mp4`) para que Adam lo compare con Dylan. El sistema sigue con Dylan hasta que Adam decida.

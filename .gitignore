@@ -14,3 +14,5 @@ shorts/*/*.mp4
 shorts/*/ritmo.wav
 shorts/*/fotogramas.jpg
 shorts/*/hoja.jpg
+shorts/.modelos/
+shorts/*/*.crudo.wav

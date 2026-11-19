@@ -1,5 +1,5 @@
 # Banco de ideas — VICECITY DAYS TV
-Lo mantiene Investigación (Jarvis + Nobita). Se actualiza **cada 2 días** con la tarea programada "Investigación GTA 6 cada 2 días" y tras cada Short.
+Lo mantiene Investigación (Jarvis + Nobita). Se actualiza **cada día** con la tarea programada "Investigación GTA 6 y repaso del canal (diario)" y tras cada Short.
 Estados: ✅ datos verificados en fuente primaria · 🟡 falta verificar algún dato · 🎬 producido · ❌ descartado (motivo).
 Regla: no repetir ganchos ya usados (ver "Ganchos usados" al final).
 
@@ -12,6 +12,9 @@ Regla: no repetir ganchos ya usados (ver "Ganchos usados" al final).
 | 4 | ~~Every GTA 6 Gang Leader in 30 Seconds~~ → producido como Short 05 ("3 GTA 6 Crime Bosses": Boobie, Raul, Brian). Dre'Quan y Real Dimez quedan libres para otro Short | "Meet the people Jason and Lucia can't trust." | Boobie Ike (club, estudio y bienes raíces), Dre'Quan Priest (Only Raw Records), Raul Bautista (atracador de bancos) — only-in-leonida | Imágenes de cada personaje en /VI | ✅ |
 | 5 | 5 Things GTA 6 Does That GTA 5 Never Could | — | Pendiente: con el juego ya en la calle, verificar mecánicas en fuentes fiables (análisis de IGN, GameSpot, Eurogamer, Rockstar Newswire) | Galería de lanzamiento | 🟡 (del documento maestro) |
 | 6 | Port Gellhorn = which real town? | — | La prensa no coincide en la ciudad real del Golfo | Port_Gellhorn_01–05 | ❌ por ahora (sin dato claro) |
+| 7 | GTA 6 Just Became the Best-Reviewed Game Ever | "Only one game in history has the score GTA 6 just got." | 1) Metacritic 99 (Vice, Hollywood Reporter India, 18-19/11/2026). 2) Bloomberg (18/11/2026): "the best-reviewed video game ever", el más alto en Metacritic y OpenCritic (98 en OpenCritic según Bloomberg). 3) IGN y GameSpot le dan un 10/10 (recopilaciones de Vice y otros). Ojo: la nota puede moverse; decir "at launch" y no dar el nº de reseñas | Vice_City_15, Vice_City_17, Jason_Lucia (catálogo) | ✅ (dos medios) · URGENTE: noticia del día de lanzamiento |
+| 8 | GTA 6 Needs 212 GB. Will It Fit? | "Before you start GTA 6, check this number." | 1) Rockstar pide hasta 212 GB libres en PS5 y Xbox Series X\|S (Forbes 16/11/2026, RockstarINTEL). 2) Precio en EE. UU.: Standard 79,99 $ y Ultimate 99,99 $ (Forbes). 3) Sale el 19/11/2026 solo en PS5 y Xbox Series X\|S, sin PC (Rockstar Newswire) | Tarjeta con contador 0 → 212 GB; capturas de Vice City del catálogo | ✅ · urgente (lanzamiento) |
+| 9 | GTA 6's Rap Duo Started by Robbing Dealers | "These two shook down drug dealers to pay for their rap career." | 1) Real Dimez: Bae-Luxe y Roxy, amigas desde el instituto, convirtieron "shaking down local dealers" en dinero con "spicy rap tracks and a relentless social media presence". 2) "An early hit single with local rapper DWNPLY took Real Dimez to new heights." 3) Tras cinco años "and a whole lot of trouble" fichan por Only Raw Records, el sello de Dre'Quan y Boobie (rockstargames.com/VI/only-in-leonida, 19/11/2026) | Real_Dimez_01–04 (rockstargames.com/VI/only-in-leonida; no están en el catálogo: bajarlas con curl como en el Short 05) | ✅ (fuente primaria) |
 
 ## Producidos
 | # | Short | Estado |
