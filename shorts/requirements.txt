@@ -1,3 +1,5 @@
 pillow>=10.0
 numpy>=1.26
 faster-whisper>=1.0
+kokoro-onnx
+soundfile
