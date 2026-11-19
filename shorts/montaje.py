@@ -247,7 +247,7 @@ def capa_titulo(fr, c, t):
 def capa_fact(fr, c, t):
     k = ease((t - c["desde"]) / 0.3)
     x_off = (1 - k) * -500
-    p = pastilla(f"FACT {c['n']}/{c['total']}", "rosa", "blanco", 46)
+    p = pastilla(f"{c.get('etiqueta', 'FACT')} {c['n']}/{c['total']}", "rosa", "blanco", 46)
     pegar(fr, p, 60 + p.width / 2 + x_off, SAFE_TOP + 70)
     nombre = texto_img(c["titulo"], "Anton-Regular.ttf", 120, "amarillo", stroke=7)
     pegar(fr, nombre, 54 + nombre.width / 2 + x_off * 1.2, SAFE_TOP + 70 + 110)

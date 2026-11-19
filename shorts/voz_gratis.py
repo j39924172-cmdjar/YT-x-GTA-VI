@@ -4,7 +4,7 @@
 
 - Descarga el modelo la primera vez desde Hugging Face (onnx-community/Kokoro-82M-v1.0-ONNX)
   a shorts/.modelos/ (no se guarda en git).
-- Ajusta la velocidad para que la locución dure unos `duracion_objetivo` segundos (entre 1.0 y 1.35).
+- Ajusta la velocidad para que la locución dure unos `duracion_objetivo` segundos (entre 0.78 y 1.35).
 - Aplica el tratamiento de sonido del canal: limpieza de graves, presencia, compresión y volumen.
 Voces masculinas de EE. UU. probadas: am_fenrir (por defecto), am_michael, am_puck.
 """
@@ -47,7 +47,7 @@ def main(txt: str, salida: str, voz: str = "am_fenrir", objetivo: str = "29") ->
     for _ in range(3):  # acerca la duración al objetivo
         audio, sr = k.create(texto, voice=voz, speed=vel, lang="en-us")
         dur = len(audio) / sr
-        nueva = min(max(vel * dur / float(objetivo), 1.0), 1.35)
+        nueva = min(max(vel * dur / float(objetivo), 0.78), 1.35)
         if abs(dur - float(objetivo)) < 0.8 or abs(nueva - vel) < 0.01:
             break
         vel = nueva

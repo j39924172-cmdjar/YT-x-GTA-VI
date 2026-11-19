@@ -1,7 +1,8 @@
 # Catálogo de vídeos oficiales (planos)
 
 Vídeos que Rockstar publica para descargar en rockstargames.com/VI. Se bajan con `python shorts/clips.py descargar` (no van a git).
-Uso: planos cortos (1-3 s) con nuestra voz y datos encima; nunca cinemáticas enteras ni spoilers; crédito "Footage: Rockstar Games". ❌ = no usar (logo oficial, club, muy oscuro, arma a cámara…).
+Uso: planos cortos (1-3,5 s) con nuestra voz y datos encima; nunca cinemáticas enteras ni spoilers; crédito "Footage: Rockstar Games". ❌ = no usar (logo oficial, club, muy oscuro, arma a cámara…).
+⚠️ La detección automática puede juntar planos: revisa siempre los fotogramas (pasó con el final del Launch Trailer, que acaba con el logo).
 
 | Plano | Vídeo | Segundos | Qué se ve | |
 |---|---|---|---|---|
@@ -36,7 +37,8 @@ Uso: planos cortos (1-3 s) con nuestra voz y datos encima; nunca cinemáticas en
 | LT29 | Launch_Trailer | 67.12–68.48 | Pareja abrazada en un balcón al atardecer | ✅ |
 | LT30 | Launch_Trailer | 68.58–72.72 | Salto desde un helicóptero sobre la ciudad de noche | ✅ |
 | LT31 | Launch_Trailer | 72.82–73.75 | Lucia disparando en una autopista con fuego (arma hacia cámara) | ❌ |
-| LT32 | Launch_Trailer | 73.85–88.62 | Vista nocturna de Vice City; al final, cartel con logos | ✅ |
+| LT32 | Launch_Trailer | 73.85–76.4 | Personas en una piscina iluminada de azul, de noche | ✅ |
+| LT33 | Launch_Trailer | 76.5–88.6 | Logo oficial de GTA VI, fecha, plataformas y logo de Rockstar | ❌ |
 | PL01 | Pre-Load_Now | 0.05–5.15 | Negro | ❌ |
 | PL02 | Pre-Load_Now | 5.25–6.72 | Paseo marítimo con noria y piloto celebrando | ✅ |
 | PL03 | Pre-Load_Now | 6.82–8.98 | Logo oficial de GTA VI | ❌ |

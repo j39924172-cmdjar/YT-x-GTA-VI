@@ -251,9 +251,17 @@
   "id": "LT32",
   "video": "GTAVI_Launch_Trailer",
   "inicio": 73.85,
-  "fin": 88.62,
-  "descripcion": "Vista nocturna de Vice City; al final, cartel con logos",
+  "fin": 76.4,
+  "descripcion": "Personas en una piscina iluminada de azul, de noche",
   "evitar": false
+ },
+ {
+  "id": "LT33",
+  "video": "GTAVI_Launch_Trailer",
+  "inicio": 76.5,
+  "fin": 88.6,
+  "descripcion": "Logo oficial de GTA VI, fecha, plataformas y logo de Rockstar",
+  "evitar": true
  },
  {
   "id": "PL01",

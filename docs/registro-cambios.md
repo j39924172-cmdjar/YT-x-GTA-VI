@@ -134,3 +134,9 @@
 - Investigación de trucos y curiosidades del lanzamiento (sin spoilers). 7 temas ✅ con 2 medios fiables o más: modo Focus (L3+R3), la policía sigue pistas, perder el dinero al morir, el huevo de Pascua de la torre, el piso de Dexter (hallazgo de fans), el perro en moto de agua y el truco de 250.000 $. 4 temas 🟡 esperan un segundo medio (edificios azul oscuro, empujar barcos, viaje rápido por 100 $, ovni). Bigfoot descartado por spoiler. El tope de 20.000 $ en mano no está confirmado: no se dice.
 - Oficina: 13 títulos recomendados, cada uno con traducción al español y etiqueta de tipo (truco, curiosidad, noticia). Se ven hasta 8 en "Nuevo Short" y en la cadena; todos en "Última investigación".
 - La investigación diaria prioriza trucos y curiosidades (mínimo 3 de cada 4-6 ideas) y repasa las 🟡. El examen acepta el formato "truco". 56 pruebas.
+
+## 19/11/2026 — Short 08 (primer truco, primer Short con vídeo y voz gratis)
+- Encargo de la oficina: "Never Die With Cash in Your Pocket in GTA 6" con voz Fenrir. 27,9 s, examen 9,8/10 (APTO). Carpeta `shorts/08-dinero-al-morir/`.
+- Datos (2+ medios): perder el dinero en mano al morir o ser detenido; ingresarlo con la app BuckMe en cualquier cajero (buscador de cajeros); Family Savings no se puede sacar nunca.
+- Primer montaje con clips del Launch Trailer. La revisión de fotogramas pilló el logo oficial al final del tráiler: el plano LT32 se separó en LT32 (piscina, ✅) y LT33 (logo, fecha y plataformas, ❌).
+- `shorts/voz_gratis.py`: la velocidad puede bajar hasta 0,78 (mejor alargar el guion que hablar despacio). `shorts/montaje.py`: la capa "fact" admite `"etiqueta": "TIP"` para los trucos.

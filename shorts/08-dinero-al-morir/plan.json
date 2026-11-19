@@ -1,0 +1,419 @@
+{
+ "voz": "voz.mp3",
+ "palabras": "palabras.json",
+ "salida": "final.mp4",
+ "fuente": "Footage: Rockstar Games · Tips: GameSpot, Game8, PowerPyx, GamesRadar",
+ "marca": "VICECITY DAYS TV",
+ "musica": {
+  "bpm": 124,
+  "volumen": 0.3
+ },
+ "palabras_clave": [
+  "forever",
+  "gone",
+  "wasted",
+  "busted",
+  "lose",
+  "dollar",
+  "pocket",
+  "BuckMe",
+  "ATM",
+  "deposit",
+  "risky",
+  "bank",
+  "safer",
+  "Family",
+  "Savings",
+  "never",
+  "carry",
+  "Follow",
+  "secrets"
+ ],
+ "escenas": [
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 60.1,
+   "desde": 0.0,
+   "hasta": 2.3,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "img": "capturas/VINTAGE_VICE_CITY_WEAPON_PATTERN_01.jpg",
+   "desde": 2.3,
+   "hasta": 3.24,
+   "foco": [
+    0.28,
+    0.55
+   ],
+   "foco_fin": [
+    0.27,
+    0.6
+   ],
+   "zoom": [
+    1.1,
+    1.2
+   ],
+   "etiqueta": {
+    "texto": "YOUR CASH",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.1,
+    "flecha": [
+     0.3,
+     0.68
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 47.05,
+   "desde": 3.24,
+   "hasta": 5.1,
+   "foco": [
+    0.55,
+    0.55
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ],
+   "etiqueta": {
+    "texto": "WASTED OR BUSTED",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.5,
+    "color": "blanco"
+   }
+  },
+  {
+   "img": "capturas/Boobie_Ike_01.jpg",
+   "desde": 5.1,
+   "hasta": 7.86,
+   "foco": [
+    0.55,
+    0.45
+   ],
+   "foco_fin": [
+    0.6,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "etiqueta": {
+    "texto": "POCKET CASH: GONE",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.5,
+    "color": "blanco",
+    "flecha": [
+     0.65,
+     0.62
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 11.95,
+   "desde": 7.86,
+   "hasta": 10.0,
+   "foco": [
+    0.55,
+    0.45
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ],
+   "etiqueta": {
+    "texto": "BUCKME APP",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 1.0,
+    "flecha": [
+     0.5,
+     0.42
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 2.8,
+   "desde": 10.0,
+   "hasta": 12.3,
+   "foco": [
+    0.5,
+    0.45
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ],
+   "etiqueta": {
+    "texto": "ATM FINDER",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.3
+   }
+  },
+  {
+   "img": "capturas/Raul_Bautista_02.jpg",
+   "desde": 12.3,
+   "hasta": 14.46,
+   "foco": [
+    0.42,
+    0.5
+   ],
+   "foco_fin": [
+    0.4,
+    0.55
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ],
+   "etiqueta": {
+    "texto": "DEPOSIT BEFORE THE JOB",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.6
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 74.0,
+   "desde": 14.46,
+   "hasta": 17.24,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 67.15,
+   "desde": 17.24,
+   "hasta": 18.6,
+   "foco": [
+    0.55,
+    0.45
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 26.45,
+   "desde": 18.6,
+   "hasta": 19.95,
+   "foco": [
+    0.45,
+    0.45
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ],
+   "etiqueta": {
+    "texto": "FAMILY SAVINGS",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.2
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 55.25,
+   "desde": 19.95,
+   "hasta": 21.7,
+   "foco": [
+    0.45,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 39.05,
+   "desde": 21.7,
+   "hasta": 23.0,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.7,
+   "desde": 23.0,
+   "hasta": 24.88,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ],
+   "etiqueta": {
+    "texto": "BANK IT. DON'T CARRY IT.",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1060
+    ],
+    "desde": 0.2
+   }
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 24.88,
+   "hasta": 99,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.55,
+    0.45
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ]
+  }
+ ],
+ "capas": [
+  {
+   "tipo": "titulo",
+   "desde": 0.0,
+   "hasta": 3.24,
+   "lineas": [
+    [
+     "NEVER DIE",
+     "blanco"
+    ],
+    [
+     "WITH CASH",
+     "amarillo"
+    ]
+   ],
+   "pastilla": "GTA 6 TIP"
+  },
+  {
+   "tipo": "fact",
+   "etiqueta": "TIP",
+   "desde": 3.24,
+   "hasta": 7.86,
+   "n": 1,
+   "total": 3,
+   "titulo": "DEATH = NO CASH"
+  },
+  {
+   "tipo": "fact",
+   "etiqueta": "TIP",
+   "desde": 7.86,
+   "hasta": 17.24,
+   "n": 2,
+   "total": 3,
+   "titulo": "BANK IT"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 14.46,
+   "hasta": 17.24,
+   "items": [
+    {
+     "texto": "BANK: WAY SAFER",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 14.6,
+     "y": 760
+    },
+    {
+     "texto": "POCKET: LOST",
+     "fondo": "rosa",
+     "color": "blanco",
+     "icono": "no",
+     "desde": 15.9,
+     "y": 900
+    }
+   ]
+  },
+  {
+   "tipo": "fact",
+   "etiqueta": "TIP",
+   "desde": 17.24,
+   "hasta": 24.88,
+   "n": 3,
+   "total": 3,
+   "titulo": "FAMILY SAVINGS"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 21.1,
+   "hasta": 23.0,
+   "items": [
+    {
+     "texto": "CAN'T TAKE IT OUT",
+     "fondo": "rosa",
+     "color": "blanco",
+     "icono": "no",
+     "desde": 21.2,
+     "y": 820
+    }
+   ]
+  },
+  {
+   "tipo": "cta",
+   "desde": 24.88,
+   "hasta": 99,
+   "lineas": [
+    "FOLLOW",
+    "FOR MORE GTA 6 SECRETS"
+   ]
+  }
+ ]
+}
