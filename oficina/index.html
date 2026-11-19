@@ -133,6 +133,10 @@
   .chips .idea .en { font-weight: 600; }
   .es { display: block; font-size: 11.5px; color: var(--muted); font-style: italic; }
   .es::before { content: "ES · "; font-style: normal; color: var(--lilac); font-size: 10.5px; letter-spacing: 0.04em; }
+  .voces { border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; }
+  .voces legend { font-size: 11.5px; color: var(--muted); padding: 0 4px; }
+  .voces label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+  .voces input { accent-color: var(--pink); }
   .go { appearance: none; border: 0; border-radius: 10px; padding: 12px 14px; font-family: var(--font-display); font-weight: 800; font-stretch: 110%; font-size: 15px; letter-spacing: 0.02em; background: var(--pink); color: var(--ink); cursor: pointer; }
   .go:hover { filter: brightness(1.08); }
   .go:disabled { opacity: 0.6; cursor: progress; }
@@ -267,6 +271,10 @@
           <textarea id="titulo" rows="2" maxlength="160" placeholder="Ej.: GTA 6 Just Became the Best-Reviewed Game Ever"></textarea>
         </label>
         <div class="field"><span>Ideas del banco, verificadas</span><div class="chips" id="ideas"></div></div>
+        <fieldset class="voces" id="voces"><legend>Voz</legend>
+          <label><input type="radio" name="voz" id="vozFenrir" value="fenrir" checked> <span><b>Fenrir</b> · gratis</span></label>
+          <label><input type="radio" name="voz" id="vozDylan" value="dylan"> <span><b>Dylan</b> · Higgsfield (~1,6 créditos)</span></label>
+        </fieldset>
         <button class="go" id="goBtn" type="button">Producir Short</button>
         <p class="note" id="capNote">El equipo verifica los datos, pone la voz, monta, pasa el examen y te entrega el vídeo con título y descripción.</p>
         <div id="fallback" hidden>
@@ -671,7 +679,8 @@
   }
   function mostrarAlternativa(t, motivo) {
     $("fallback").hidden = false;
-    const frase = `Produce un Short siguiendo docs/produccion-short.md. TÍTULO: ${t}`;
+    const voz = document.querySelector('input[name="voz"]:checked')?.value || "fenrir";
+    const frase = `Produce un Short siguiendo docs/produccion-short.md. TÍTULO: ${t}. Voz: ${voz === "dylan" ? "Dylan" : "Fenrir"}`;
     $("fallbackTxt").textContent = frase;
     $("fallbackBtn").replaceChildren(copyBtn(() => frase));
     capNote.textContent = motivo; capNote.className = "note warn";
@@ -692,9 +701,10 @@
     goBtn.disabled = true; goBtn.textContent = "Enviando al equipo…";
     let ref = null;
     try {
-      if (db) { ref = db.collection("encargos").doc(); await ref.set({ titulo: t, ts: Date.now(), estado: "enviando", paso: 0 }); }
+      const voz = document.querySelector('input[name="voz"]:checked')?.value || "fenrir";
+      if (db) { ref = db.collection("encargos").doc(); await ref.set({ titulo: t, ts: Date.now(), estado: "enviando", paso: 0, voz }); }
       const anchor = await comments.anchorFor($("nuevo"));
-      await comments.sendToClaude({ anchor, text: `Producir Short — TÍTULO: ${t}` + (ref ? `\nEncargo: ${ref.id}` : "") });
+      await comments.sendToClaude({ anchor, text: `Producir Short — TÍTULO: ${t}\nVoz: ${voz === "dylan" ? "Dylan (Higgsfield)" : "Fenrir (gratis)"}` + (ref ? `\nEncargo: ${ref.id}` : "") });
       if (ref) await ref.update({ estado: "enviado" });
       titulo.value = "";
       capNote.textContent = "Encargo enviado. El equipo lo recoge en menos de un minuto y aquí verás cada paso."; capNote.className = "note";
@@ -704,6 +714,8 @@
       mostrarAlternativa(t, (MOTIVO[code] || "No se pudo enviar el encargo desde la oficina.") + " No se ha encargado nada.");
     } finally { goBtn.disabled = false; goBtn.textContent = "Producir Short"; }
   };
+  try { const v = localStorage.getItem("vcdt-voz"); if (v && $("voz" + v[0].toUpperCase() + v.slice(1))) $("voz" + v[0].toUpperCase() + v.slice(1)).checked = true; } catch {}
+  document.querySelectorAll('input[name="voz"]').forEach(r => r.addEventListener("change", () => { try { localStorage.setItem("vcdt-voz", r.value); } catch {} }));
   async function comprobarEnvio() {
     let st = "off";
     try { st = await comments.canSendToClaude(); } catch { st = "off"; }

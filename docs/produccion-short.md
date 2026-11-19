@@ -3,12 +3,14 @@
 Lo sigue la sesión que se lanza desde la oficina (tarea programada **"Producir Short"**). Recibe el título que escribe Antonio y entrega el vídeo listo para subir.
 Cumple siempre `docs/vicecity-estado.md` (fuente de verdad) y `CLAUDE.md`. Cada trabajador sigue su parte del **manual magistral** `docs/manual-shorts.md`, y el Short solo se entrega si aprueba el examen (`shorts/examen.py`).
 
-**Cómo llega el encargo.** En la oficina (https://claude.ai/artifact/WdZBBpgqbXUEDL1Wk3kFRC), Antonio pulsa "Producir Short" y la página envía un comentario "Send to Claude" con el texto `Producir Short — TÍTULO: … / Encargo: <id>`. Ese comentario despierta a la sesión de producción (la que vigila la oficina). También puede llegar pegado en el chat.
+**Cómo llega el encargo.** En la oficina (https://claude.ai/artifact/WdZBBpgqbXUEDL1Wk3kFRC), Adam elige título y voz y pulsa "Producir Short"; la página envía un comentario "Send to Claude" con el texto `Producir Short — TÍTULO: … / Voz: … / Encargo: <id>`. Ese comentario despierta a la sesión de producción (la que vigila la oficina). También puede llegar pegado en el chat.
 
 **Progreso en la oficina.** Si el encargo trae `<id>`, al empezar cada paso actualiza el documento `encargos/<id>` con ArtifactData (`url` de la oficina, `collection` "encargos", `action` "update" con `if_version`): `{"estado": "en marcha", "paso": n}`. Al terminar: `{"estado": "entregado", "paso": 8, "nota": "<título final o cambio>"}`; si hay que parar (sin saldo, datos imposibles): `{"estado": "error", "nota": "<motivo corto>"}`. La oficina lo muestra al momento. Escribe también en el chat una línea que empiece por `[PASO n/8]`.
 **Registro de actividad.** Al terminar cada paso, añade una entrada a la colección `actividad` de la oficina (ArtifactData `set`, doc_id `aAAAAMMDD-HHMM-n`, sin if_version porque es nueva): `{"ts": <ms>, "quien": ["<ids>"], "texto": "<qué hizo, en pasado y en español, ≤ 90 caracteres>"}`. Los ids son: jarvis, nobita, chapo, torrente, pablito, victillor, nil, cristiano, georgina, guerrero, almudena, taison. La oficina lo enseña en "Actividad" y en la ficha de cada persona.
 **Notas del examen.** Tras el paso 6, ejecuta `python shorts/examen.py --todos --oficina /tmp/estado_equipo.json` y guarda ese archivo en el documento `estado/equipo` (get + set con if_version). La oficina lo usa para "Listos para subir" y para la nota de cada persona.
 Al recibir el encargo, contesta en el hilo del comentario (ArtifactComments `reply`) diciendo que el equipo ha empezado; al terminar, contesta con el título final y márcalo resuelto.
+
+**Si el título ya está preproducido** (carpeta en `shorts/` con "Estado: preproducción"), usa esa carpeta: repasa rápido que los datos sigan vigentes y salta al paso 4 (voz).
 
 ## [PASO 1/8] Investigación y verificación (Jarvis + Nobita)
 1. Prepara el repositorio `j39924172-cmdjar/YT-x-GTA-VI` en la rama `claude/youtube-gta6-automation-team-aua7ki`. Si no está en la sesión, añádelo con `add_repo` y clónalo. Luego `git pull`.
@@ -36,6 +38,9 @@ Al recibir el encargo, contesta en el hilo del comentario (ArtifactComments `rep
 - Evita los clubes, los desnudos, las armas apuntando a cámara y los animales muertos en el primer segundo. Nada de fondos genéricos ni vídeo IA sin dato.
 
 ## [PASO 4/8] Voz (Cristiano)
+**Qué voz:** la que diga el encargo (`Voz: Fenrir (gratis)` o `Voz: Dylan (Higgsfield)`; Adam la elige en la oficina). Si no dice nada, Fenrir.
+- **Fenrir (gratis):** `python shorts/voz_gratis.py shorts/NN-x/voz.txt shorts/NN-x/voz.mp3 am_fenrir 29` y salta al punto 5. No gasta créditos.
+- **Dylan (Higgsfield):** puntos 1-4.
 1. Saldo: `balance` de Higgsfield. Cada voz cuesta unos 1,6 créditos (`estimate_audio_cost`). **Si no hay saldo suficiente, para y avisa a Antonio**; no compres nada.
 2. `generate_audio` con `{"model": "text2speech_v2", "variant": "elevenlabs", "voice_type": "preset", "voice_id": "b847bc29-f184-583a-8ad9-d1f1e16d1a60", "prompt": <voz.txt>}`. Si responde `unlim_choice`, elige `use_unlim: true`, que no gasta créditos.
 3. `jobs_wait` hasta que termine y descarga el mp3 a `voz.mp3` con curl (los CDN de Higgsfield están permitidos).

@@ -128,3 +128,4 @@
 - La sección de títulos recomendados de la oficina ("Nuevo Short", "Cadena de producción" y "Última investigación") se alimenta de `estado/investigacion` e incluye ya los Shorts preproducidos (06 y 07) y las mejores ideas del banco. Cada título va en inglés y, debajo, su traducción al español ("ES · …"), con su estado (p. ej. "Preproducido · Short 06").
 - Las tareas de investigación diaria y de preproducción continua actualizan esa lista cada vez, siempre con la traducción (`es`).
 - `docs/banco-ideas.md`: títulos con su traducción y estado 📝 preproducido. Oficina: 55 pruebas automáticas.
+- Oficina: selector de **voz** en "Nuevo Short" (Fenrir gratis / Dylan de Higgsfield). El encargo lleva `Voz: …` y el procedimiento la respeta; si el título ya está preproducido se salta directamente a la voz.
