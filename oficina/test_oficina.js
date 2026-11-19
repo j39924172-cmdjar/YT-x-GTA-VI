@@ -17,7 +17,12 @@ function mock({ modo }) {
   let n = 0;
   const ref = id => ({ id, set: async d => { window.__docs[id] = { ...d }; emit(); }, update: async d => { Object.assign(window.__docs[id], d); emit(); } });
   const query = { orderBy: () => query, limit: () => query, onSnapshot: f => { subs.push(f); setTimeout(emit, 0); return () => {}; } };
-  const db = { collection: () => ({ ...query, doc: id => ref(id || "enc" + (++n)) }) };
+  window.__estado = {}; const docSubs = {};
+  window.__claudeEstado = (path, d) => { window.__estado[path] = d; (docSubs[path] || []).forEach(f => f({ exists: true, data: () => d, metadata: {} })); };
+  const db = {
+    collection: () => ({ ...query, doc: id => ref(id || "enc" + (++n)) }),
+    doc: path => ({ onSnapshot: f => { (docSubs[path] = docSubs[path] || []).push(f); setTimeout(() => f(path in window.__estado ? { exists: true, data: () => window.__estado[path], metadata: {} } : { exists: false, data: () => undefined, metadata: {} }), 0); return () => {}; } }),
+  };
   const comments = {
     anchorFor: async () => ({ path: "#nuevo", x: 0.5, y: 0.5 }),
     canSendToClaude: async () => (modo === "sin_sesion" ? "no_session" : "available"),
@@ -46,13 +51,13 @@ const docs = page => page.evaluate(() => window.__docs);
     const { page, ctx, errors } = await abrir(browser, "ok");
     ok("Hay 4 ideas del banco", (await page.$$eval("#ideas .idea", e => e.length)) === 4);
     await page.click("#ideas .idea >> nth=0");
-    ok("Tocar una idea rellena el título", /Vercetti/.test(await page.inputValue("#titulo")));
+    ok("Tocar una idea rellena el título", /Best-Reviewed/.test(await page.inputValue("#titulo")));
     await page.click("#goBtn");
     await page.waitForFunction(() => window.__sent.length === 1);
     const sent = await page.evaluate(() => window.__sent[0]);
     const d = await docs(page); const id = Object.keys(d)[0];
-    ok("Guarda el encargo en la base de datos", d[id].titulo === "GTA 6 Just Name-Dropped Tommy Vercetti's Estate" && d[id].estado === "enviado");
-    ok("Lo envía a Claude con título e id del encargo", sent.text === `Producir Short — TÍTULO: GTA 6 Just Name-Dropped Tommy Vercetti's Estate\nEncargo: ${id}` && !!sent.anchor);
+    ok("Guarda el encargo en la base de datos", d[id].titulo === "GTA 6 Just Became the Best-Reviewed Game Ever" && d[id].estado === "enviado");
+    ok("Lo envía a Claude con título e id del encargo", sent.text === `Producir Short — TÍTULO: GTA 6 Just Became the Best-Reviewed Game Ever\nEncargo: ${id}` && !!sent.anchor);
     await page.waitForTimeout(100);
     ok("Aparece como recibido en cola", /recibido, en cola/.test(await page.textContent("#prodChip")));
     await page.evaluate(id => window.__claudeActualiza(id, { estado: "en marcha", paso: 3 }), id);
@@ -114,7 +119,36 @@ const docs = page => page.evaluate(() => window.__docs);
     }
   }
 
-  await browser.close();
+    { // Piloto automático: temporizadores, canal e investigación
+    const { page, ctx, errors } = await abrir(browser, "ok", 1366);
+    const t1 = await page.textContent("#tInvT"); await page.bringToFront(); await page.waitForTimeout(2300); const t2 = await page.textContent("#tInvT");
+    ok("Temporizador de investigación en marcha", /^\d\d:\d\d:\d\d$/.test(t2) && t1 !== t2 || /Trabajando/.test(t2), t1 + " → " + t2);
+    const tc = await page.textContent("#tCanT");
+    const [hh] = tc.split(":").map(Number);
+    ok("Repaso del canal en menos de 6 h", /Trabajando/.test(tc) || hh < 6, tc);
+    const prox = await page.evaluate(() => { const r = window.__vshDebug().proxima({ horas: [10], minuto: 23 }, new Date("2026-11-19T08:00:00Z")); return new Date(r).toISOString(); });
+    ok("Calcula la hora de Madrid (10:23 = 09:23 UTC en invierno)", prox === "2026-11-19T09:23:00.000Z", prox);
+    const prox2 = await page.evaluate(() => new Date(window.__vshDebug().proxima({ horas: [0, 6, 12, 18], minuto: 47 }, new Date("2026-07-01T10:00:00Z"))).toISOString());
+    ok("Cambio de hora: 12:47 Madrid = 10:47 UTC en verano", prox2 === "2026-07-01T10:47:00.000Z", prox2);
+    await page.evaluate(() => window.__claudeEstado("estado/canal", { ts: Date.now(), suscriptores: 12, cambio_suscriptores: 3, visualizaciones: 1660, cambio_visualizaciones: 100, shorts: [{ titulo: "GTA 6's Map Is Real Florida", vistas: 1200, cambio: 100 }] }));
+    await page.waitForTimeout(100);
+    ok("Muestra suscriptores y visualizaciones", (await page.textContent("#kSubs")) === "12" && /1\.660|1660/.test(await page.textContent("#kViews")) && /\+100/.test(await page.textContent("#kViewsC")));
+    ok("Lista los Shorts del canal", /Real Florida/.test(await page.textContent("#canalShorts")));
+    await page.evaluate(() => window.__claudeEstado("estado/investigacion", { ts: Date.now(), resumen: "GTA 6 sale hoy", ideas: [{ titulo: "Idea nueva verificada", recomendada: true, porque: "noticia" }, { titulo: "Otra idea" }] }));
+    await page.waitForTimeout(100);
+    ok("Las ideas del banco se actualizan solas", (await page.$$eval("#ideas .idea", e => e.map(x => x.textContent))).join("|") === "Idea nueva verificada|Otra idea");
+    ok("Marca las ideas para producir hoy", /producir hoy/.test(await page.textContent("#invIdeas")));
+    ok("Piloto automático: sin errores", !errors.length, errors.join(" | "));
+    for (const w of [390, 768]) {
+      await page.setViewportSize({ width: w, height: 1000 }); await page.waitForTimeout(150);
+      ok(`${w}px: temporizadores sin desbordar`, await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+    }
+    await page.setViewportSize({ width: 1366, height: 1000 });
+    await page.screenshot({ path: path.join(SHOTS, "piloto.png") });
+    await ctx.close();
+  }
+
+await browser.close();
   for (const r of results) console.log(`${r.pass ? "✓" : "✗"} ${r.name}${r.pass || !r.detail ? "" : "  → " + r.detail}`);
   const f = results.filter(r => !r.pass).length;
   console.log(`\n${results.length - f}/${results.length} pruebas superadas`);

@@ -1,4 +1,4 @@
-<title>Vice Studio HQ</title>
+<title>VICECITY DAYS HQ</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -220,6 +220,26 @@
   a.ghost { text-decoration: none; display: inline-block; }
   [hidden] { display: none !important; }
   #prodTitulo { font-family: var(--font-display); font-weight: 800; font-size: 18px; color: var(--ink); }
+  /* Piloto automático: dos temporizadores (investigación y repaso del canal) */
+  .top-right { display: grid; gap: 8px; justify-items: end; }
+  .auto { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; min-width: min(100%, 440px); }
+  .timer { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; display: grid; gap: 2px; min-width: 0; }
+  .timer.run { border-color: var(--pink); box-shadow: 0 0 0 1px var(--pink) inset; }
+  .timer .k { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; display: flex; align-items: center; gap: 6px; }
+  .timer .t { font-family: var(--font-mono); font-size: 22px; font-weight: 500; color: var(--sun); line-height: 1.2; font-variant-numeric: tabular-nums; }
+  .timer.run .t { color: var(--pink); font-size: 15px; }
+  .timer .d { font-size: 11.5px; color: var(--muted); overflow-wrap: anywhere; }
+  .auto-note { font-size: 11px; color: var(--muted); text-align: right; }
+  @media (max-width: 700px) { .top-right { justify-items: stretch; width: 100%; } .auto { min-width: 0; } .auto-note { text-align: left; } }
+  /* Panel del canal */
+  .kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .kpi { background: var(--panel-2); border-radius: 12px; padding: 10px 12px; }
+  .kpi b { display: block; font-family: var(--font-display); font-size: 26px; line-height: 1.1; }
+  .kpi span { font-size: 12px; color: var(--muted); }
+  .up { color: var(--cyan); font-family: var(--font-mono); font-size: 12px; }
+  .shorts-tab { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .shorts-tab td { padding: 6px 4px; border-top: 1px solid var(--line); vertical-align: top; }
+  .shorts-tab td.n { text-align: right; font-family: var(--font-mono); white-space: nowrap; }
 </style>
 
 <div class="wrap">
@@ -228,7 +248,14 @@
       <h1>VICECITY DAYS <span>TV</span> · HQ</h1>
       <p>Escribe un título, pulsa Producir y el equipo hace el Short: datos verificados, voz, montaje y entrega.</p>
     </div>
-    <div class="team-pill"><span class="dot" id="teamDot"></span><span id="teamText">Equipo en la oficina</span></div>
+    <div class="top-right">
+      <div class="auto" aria-label="Piloto automático">
+        <div class="timer" id="tInv"><span class="k">🔎 Nueva investigación</span><span class="t" id="tInvT">--:--:--</span><span class="d" id="tInvD">Una vez al día, a las 10:23</span></div>
+        <div class="timer" id="tCan"><span class="k">📈 Repaso del canal</span><span class="t" id="tCanT">--:--:--</span><span class="d" id="tCanD">Cada 6 horas</span></div>
+      </div>
+      <span class="auto-note">Piloto automático: el equipo lo hace solo, sin pedirte permiso.</span>
+      <div class="team-pill"><span class="dot" id="teamDot"></span><span id="teamText">Equipo en la oficina</span></div>
+    </div>
   </header>
 
   <section class="office" aria-label="Oficina virtual del equipo">
@@ -276,6 +303,22 @@
           <button class="ghost" id="refrescar" type="button" hidden>Actualizar</button>
         </div>
         <p class="note">El vídeo llega al chat con Claude y como aviso al móvil, con el título, la descripción y el comentario fijado listos para copiar.</p>
+      </section>
+
+      <section class="stage" id="canal">
+        <div class="stage-top"><h3>Cómo va el canal</h3><span class="chip" id="canalChip">sin datos</span></div>
+        <div class="kpis">
+          <div class="kpi"><b id="kSubs">–</b><span>suscriptores <i class="up" id="kSubsC"></i></span></div>
+          <div class="kpi"><b id="kViews">–</b><span>visualizaciones <i class="up" id="kViewsC"></i></span></div>
+        </div>
+        <table class="shorts-tab"><tbody id="canalShorts"></tbody></table>
+        <p class="note" id="canalNota">Taison (El Observatorio) lo actualiza solo cada 6 horas con los datos públicos de YouTube.</p>
+      </section>
+
+      <section class="stage" id="investigacion">
+        <div class="stage-top"><h3>Última investigación</h3><span class="chip" id="invChip">pendiente</span></div>
+        <p class="note" id="invResumen">Jarvis y Nobita buscan novedades de GTA 6 cada día y añaden ideas verificadas al banco.</p>
+        <ul class="list" id="invIdeas"></ul>
       </section>
 
       <section class="stage">
@@ -501,7 +544,7 @@
   const MAXX = COLS * 6 - 1, MAXY = ROWS * 6 - 1;   // salas de 5 casillas + pasillos de 1
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let W = 0, H = 0, tw = 0, th = 0, ox = 0, oy = 0, hits = [], tags = [];
-  window.__vshDebug = () => ({ hits, tags, status: { ...status }, packets: packets.length });
+  window.__vshDebug = () => ({ hits, tags, status: { ...status }, packets: packets.length, proxima });
 
   function resize() {
     const w = canvas.clientWidth;
@@ -925,12 +968,17 @@
     { n: 7, nombre: "Publicación y SEO", who: ["guerrero"], bubble: "Preparando la ficha" },
     { n: 8, nombre: "Entrega", who: ["almudena"], bubble: "Entregando" },
   ];
-  const IDEAS = [
+  let IDEAS = [   // se sustituyen por las de la última investigación (estado/investigacion) en cuanto llegan
+    "GTA 6 Just Became the Best-Reviewed Game Ever",
+    "GTA 6 Needs 212 GB. Will It Fit?",
+    "GTA 6's Rap Duo Started by Robbing Dealers",
     "GTA 6 Just Name-Dropped Tommy Vercetti's Estate",
-    "The GTA 6 Character Who Thinks Birds Are Fake",
-    "GTA 6's Smuggler Says He Made Leonida Levitate",
-    "Every GTA 6 Gang Leader in 30 Seconds",
   ];
+  // Horarios del piloto automático (hora de Madrid). Deben coincidir con las tareas programadas de Claude Code.
+  const HORARIO = {
+    inv: { horas: [10], minuto: 23 },                 // "Investigación GTA 6 (diaria)"
+    can: { horas: [0, 6, 12, 18], minuto: 47 },       // "Repaso del canal (cada 6 h)"
+  };
   const SERVER = "Claude Code Remote";
   const TRIGGER_ID = "trig_01474VhdtHa3mfx4H2mcy5p8";
   const SESSION_ID = "session_01Ezj41m7rURTutYvC7CDES7";
@@ -979,8 +1027,80 @@
 
   // ================================================================ 6. PANTALLA
   const titulo = document.getElementById("titulo"), goBtn = document.getElementById("goBtn"), capNote = document.getElementById("capNote");
-  document.getElementById("ideas").replaceChildren(...IDEAS.map(t =>
-    h("button", { class: "chip idea", type: "button", onclick: () => { titulo.value = t; titulo.focus(); } }, t)));
+  function renderIdeas() {
+    document.getElementById("ideas").replaceChildren(...IDEAS.map(t =>
+      h("button", { class: "chip idea", type: "button", onclick: () => { titulo.value = t; titulo.focus(); } }, t)));
+  }
+  renderIdeas();
+
+  // ---------------------------------------------------------------- Piloto automático: temporizadores
+  function offsetMadrid(d) {   // minutos que Madrid va por delante de UTC en ese instante
+    const p = Object.fromEntries(new Intl.DateTimeFormat("en-US", { timeZone: "Europe/Madrid", hourCycle: "h23",
+      year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).formatToParts(d).map(x => [x.type, x.value]));
+    return (Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute) - Math.floor(d.getTime() / 60000) * 60000) / 60000;
+  }
+  function proxima({ horas, minuto }, ahora = new Date()) {
+    const off = offsetMadrid(ahora);
+    const hoyMadrid = new Date(ahora.getTime() + off * 60000);
+    let mejor = null;
+    for (let dia = 0; dia < 3; dia++) for (const hh of horas) {
+      const utc = Date.UTC(hoyMadrid.getUTCFullYear(), hoyMadrid.getUTCMonth(), hoyMadrid.getUTCDate() + dia, hh, minuto)
+        - offsetMadrid(new Date(Date.UTC(hoyMadrid.getUTCFullYear(), hoyMadrid.getUTCMonth(), hoyMadrid.getUTCDate() + dia, hh, minuto))) * 60000;
+      if (utc > ahora.getTime() && (mejor === null || utc < mejor)) mejor = utc;
+    }
+    return mejor;
+  }
+  const anterior = (hor, ahora = Date.now()) => {   // la última hora programada que ya pasó
+    const n = proxima(hor, new Date(ahora)), paso = hor.horas.length > 1 ? (24 / hor.horas.length) * 3600e3 : 24 * 3600e3;
+    return n - paso;
+  };
+  const dosDig = n => String(n).padStart(2, "0");
+  const fmtRestante = ms => { const s = Math.max(0, Math.floor(ms / 1000)); return `${dosDig(Math.floor(s / 3600))}:${dosDig(Math.floor(s / 60) % 60)}:${dosDig(s % 60)}`; };
+  const fmtHora = ts => new Date(ts).toLocaleString("es-ES", { timeZone: "Europe/Madrid", weekday: "short", hour: "2-digit", minute: "2-digit" });
+  const fmtNum = n => n == null ? "–" : Number(n).toLocaleString("es-ES");
+  const fmtCambio = n => n == null ? "" : (n >= 0 ? "+" : "") + Number(n).toLocaleString("es-ES");
+  const ESTADO = { inv: null, can: null };   // documentos estado/investigacion y estado/canal
+  const MARGEN = 45 * 60e3;   // tras la hora programada, "trabajando" hasta que llegue el resultado (máx. 45 min)
+
+  function tickTemporizador(clave, idBox, idT, idD, textoBase) {
+    const hor = HORARIO[clave], ahora = Date.now(), doc = ESTADO[clave];
+    const ult = anterior(hor, ahora);
+    const box = document.getElementById(idBox), t = document.getElementById(idT), d = document.getElementById(idD);
+    const trabajando = ahora - ult < MARGEN && !(doc && doc.ts >= ult - 5 * 60e3);
+    box.classList.toggle("run", trabajando);
+    if (trabajando) { t.textContent = "Trabajando ahora…"; d.textContent = "El resultado aparecerá aquí al terminar"; return; }
+    t.textContent = fmtRestante(proxima(hor) - ahora);
+    d.textContent = doc ? `Última: ${fmtHora(doc.ts)}` : textoBase;
+  }
+  function tick() {
+    tickTemporizador("inv", "tInv", "tInvT", "tInvD", "Una vez al día, a las 10:23");
+    tickTemporizador("can", "tCan", "tCanT", "tCanD", "Cada 6 horas");
+  }
+  tick(); setInterval(tick, 1000);
+
+  function renderCanal() {
+    const c = ESTADO.can;
+    if (!c) return;
+    document.getElementById("kSubs").textContent = fmtNum(c.suscriptores);
+    document.getElementById("kSubsC").textContent = fmtCambio(c.cambio_suscriptores);
+    document.getElementById("kViews").textContent = fmtNum(c.visualizaciones);
+    document.getElementById("kViewsC").textContent = fmtCambio(c.cambio_visualizaciones);
+    document.getElementById("canalChip").textContent = "actualizado " + fmtHora(c.ts);
+    document.getElementById("canalShorts").replaceChildren(...(c.shorts || []).slice(0, 8).map(x =>
+      h("tr", {}, h("td", {}, x.titulo), h("td", { class: "n" }, fmtNum(x.vistas), " ", h("i", { class: "up" }, fmtCambio(x.cambio))))));
+    document.getElementById("canalNota").textContent = c.nota || (c.desde ? `Cambios desde el repaso anterior.` : "Primer repaso del canal.");
+  }
+  function renderInvestigacion() {
+    const v = ESTADO.inv;
+    if (!v) return;
+    document.getElementById("invChip").textContent = fmtHora(v.ts);
+    document.getElementById("invResumen").textContent = v.resumen || "";
+    const ideas = Array.isArray(v.ideas) ? v.ideas.filter(i => i && i.titulo) : [];
+    document.getElementById("invIdeas").replaceChildren(...ideas.map(i => h("li", {},
+      h("div", { class: "copyrow" }, h("span", { class: "t" }, i.titulo), i.recomendada ? h("span", { class: "chip ok" }, "producir hoy") : null),
+      i.porque ? h("span", { class: "d" }, i.porque) : null)));
+    if (ideas.length) { IDEAS = ideas.map(i => i.titulo).slice(0, 6); renderIdeas(); }
+  }
 
   function renderPasos() {
     const e = actual() || encargos[0];
@@ -1075,6 +1195,8 @@
         renderTodo();
         if (e && e.paso > antes) sendPacket(PASOS[antes - 1]?.who[0] || "almudena", PASOS[e.paso - 1].who[0]);
       }, () => { document.getElementById("historial").replaceChildren(h("li", {}, h("span", { class: "d" }, "No se pudo leer el historial de encargos."))); });
+      db.doc("estado/canal").onSnapshot(d => { ESTADO.can = d.exists ? d.data() : null; renderCanal(); tick(); }, () => {});
+      db.doc("estado/investigacion").onSnapshot(d => { ESTADO.inv = d.exists ? d.data() : null; renderInvestigacion(); tick(); }, () => {});
     }
     if (!comments) {
       capNote.textContent = "Abre esta página dentro de Claude (claude.ai o la app) para enviar encargos con un botón. Fuera de Claude te daré la frase para pegar en el chat.";

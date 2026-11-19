@@ -14,13 +14,20 @@ Basado en el documento maestro (`docs/vicecity-estado.md`). Las personas son las
 ## Flujo de un Short
 Investigación verifica → Guiones escribe (solo con datos verificados) → Visuales asigna capturas → Montaje pone voz y monta → Publicación prepara la ficha → Estrategia revisa y da luz verde → Antonio aprueba y sube.
 
-## Investigación diaria (Jarvis + Nobita + Taison)
-Tarea programada en Claude Code: **"Investigación GTA 6 y repaso del canal (diario)"** (10:23 hora de Madrid, todos los días). Se ejecuta en la sesión principal de producción, la que tiene permiso para guardar en GitHub. Ritmo de publicación: **2 Shorts al día** (decisión de Adam), así que hacen falta unas 14 ideas por semana. Cada vez:
-1. Lee `CLAUDE.md`, `docs/vicecity-estado.md` y `docs/banco-ideas.md`.
-2. **Repaso del canal** (Taison): `python shorts/canal.py`. Lee los datos públicos de https://www.youtube.com/@vicecitydaystv (suscriptores y visualizaciones de cada Short), los guarda en `docs/canal-estadisticas.json` y compara con el día anterior. Nunca se piden contraseñas: las estadísticas privadas (vistos frente a deslizados, retención) las pasa Adam con capturas de YouTube Studio una vez por semana.
-3. Busca novedades de las últimas 48 h: Rockstar Newswire y web oficial (fuente primaria), medios fiables (IGN, GameSpot, Eurogamer, VGC, Polygon, Forbes) y lo que más se comenta.
-4. Verifica cada dato: fuente primaria, o dos medios fiables que coincidan. Los rumores se marcan como rumores y no se usan como hechos.
-5. Añade 3-5 ideas nuevas a `docs/banco-ideas.md` con gancho NUEVO, 3 datos con fuente e imágenes del catálogo. Da prioridad al tipo de gancho que mejor funciona en el canal.
-6. Actualiza `docs/catalogo-imagenes.md` si Rockstar ha publicado imágenes nuevas.
-7. Anota el resumen en `docs/registro-cambios.md`, hace commit y push, y avisa a Adam con un resumen corto: cómo va el canal y las 2 ideas que producir hoy.
-No produce vídeos ni gasta créditos: eso lo decide Adam.
+## Piloto automático (sin pedir permiso)
+La oficina muestra arriba a la derecha dos temporizadores. Cuando llegan a cero, el equipo trabaja solo en la sesión principal de producción (la que tiene permiso para guardar en GitHub) y el resultado aparece en la oficina (documentos `estado/investigacion` y `estado/canal` de su base de datos, que solo ve Adam).
+
+### Investigación diaria (Jarvis + Nobita) — 10:23 hora de Madrid
+Tarea programada **"Investigación GTA 6 (diaria)"** (`trig_01KUgBNkFNc643SCwefs2Pif`). Ritmo de publicación: **2 Shorts al día**, así que hacen falta unas 14 ideas por semana. Cada vez:
+1. Lee `CLAUDE.md`, `docs/vicecity-estado.md`, `docs/banco-ideas.md` y el último repaso en `docs/canal-estadisticas.json`.
+2. Busca novedades de las últimas 24-48 h: web oficial de Rockstar (fuente primaria) y medios fiables (IGN, GameSpot, Eurogamer, VGC, Polygon, Forbes). El Newswire se carga con JavaScript: `curl` no lo ve.
+3. Verifica cada dato: fuente primaria, o dos medios fiables que coincidan. Los rumores se marcan como rumores y no se usan como hechos.
+4. Añade 3-5 ideas nuevas a `docs/banco-ideas.md` con gancho NUEVO, 3 datos con fuente e imágenes. Da prioridad al formato que mejor funciona en el canal.
+5. Escribe `estado/investigacion` en la oficina: resumen e ideas (las 2 recomendadas primero). Las ideas pasan solas a los botones de "Nuevo Short".
+6. Registro de cambios, commit y push, y resumen corto para Adam.
+
+### Repaso del canal (Taison) — cada 6 h: 00:47, 06:47, 12:47 y 18:47 hora de Madrid
+Tarea programada **"Repaso del canal (cada 6 h)"** (`trig_017hV7C4vxR4x2DuzQiHRZGF`). `python shorts/canal.py --oficina /tmp/estado_canal.json` lee los datos públicos de https://www.youtube.com/@vicecitydaystv, guarda el historial en `docs/canal-estadisticas.json` y prepara `estado/canal` para la oficina. Nunca se piden contraseñas: las estadísticas privadas (vistos frente a deslizados, retención) las pasa Adam con capturas de YouTube Studio una vez por semana.
+
+Si se cambian estos horarios, hay que cambiar también `HORARIO` en `oficina/index.html`.
+Ninguna de las dos tareas produce vídeos ni gasta créditos: eso lo decide Adam.

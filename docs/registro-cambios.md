@@ -59,3 +59,10 @@
 - **Banco:** ideas 7 (mejor valorado de la historia), 8 (212 GB) y 9 (Real Dimez). Recomendadas para hoy: 7 y 8 (noticias del lanzamiento, caducan rápido).
 - El Newswire de Rockstar se carga con JavaScript: `curl` no ve los artículos. Las novedades se verifican con medios fiables.
 - **Voz gratuita:** `shorts/voz_gratis.py` (Kokoro, voz `am_fenrir`). Short 05 rehecho con ella (`plan_gratis.json`, `final_gratis.mp4`) para que Adam lo compare con Dylan. El sistema sigue con Dylan hasta que Adam decida.
+
+## 19/11/2026 — Piloto automático en la oficina
+- Arriba a la derecha de la oficina hay dos **temporizadores**: "Nueva investigación" (cada día a las 10:23, Madrid) y "Repaso del canal" (cada 6 h: 00:47, 06:47, 12:47, 18:47). Al llegar a cero muestran "Trabajando ahora…" y el equipo lo hace solo, sin pedir permiso.
+- Paneles nuevos: **"Cómo va el canal"** (suscriptores, visualizaciones y cada Short, con el cambio desde el repaso anterior) y **"Última investigación"** (resumen e ideas; las ideas recomendadas pasan solas a los botones de "Nuevo Short").
+- Datos en la base de datos de la oficina: `estado/canal` y `estado/investigacion` (solo los ve Adam).
+- Tareas programadas: "Investigación GTA 6 (diaria)" (`trig_01KUgBNkFNc643SCwefs2Pif`) y nueva "Repaso del canal (cada 6 h)" (`trig_017hV7C4vxR4x2DuzQiHRZGF`). `shorts/canal.py --oficina` prepara el documento para la oficina.
+- Oficina: 42 pruebas automáticas, incluido el cambio de hora de verano.

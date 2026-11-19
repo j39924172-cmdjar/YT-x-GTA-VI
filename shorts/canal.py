@@ -1,6 +1,7 @@
 """Repaso diario del canal (datos públicos de YouTube, sin contraseñas ni claves).
 
-  python shorts/canal.py            # lee el canal, lo guarda en docs/canal-estadisticas.json y muestra los cambios
+  python shorts/canal.py                       # lee el canal, lo guarda en docs/canal-estadisticas.json y muestra los cambios
+  python shorts/canal.py --oficina salida.json  # además escribe el resumen para la oficina (documento estado/canal)
 
 Solo usa lo que ve cualquiera en https://www.youtube.com/@vicecitydaystv/shorts:
 suscriptores, número de vídeos y visualizaciones de cada Short. Las estadísticas
@@ -12,6 +13,7 @@ import datetime as dt
 import json
 import re
 import subprocess
+import sys
 from pathlib import Path
 
 CANAL = "https://www.youtube.com/@vicecitydaystv/shorts"
@@ -49,12 +51,30 @@ def leer() -> dict:
             "shorts": shorts}
 
 
+def resumen_oficina(hoy: dict, antes: dict | None) -> dict:
+    previas = {s["titulo"]: s["vistas"] for s in (antes or {}).get("shorts", [])}
+    total = sum(s["vistas"] for s in hoy["shorts"])
+    total_antes = sum(previas.values()) if antes else None
+    shorts = [{"titulo": s["titulo"], "vistas": s["vistas"],
+               "cambio": s["vistas"] - previas[s["titulo"]] if s["titulo"] in previas else None}
+              for s in sorted(hoy["shorts"], key=lambda s: -s["vistas"])]
+    return {"ts": int(dt.datetime.now(dt.timezone.utc).timestamp() * 1000), "fecha": hoy["fecha"],
+            "suscriptores": hoy["suscriptores"],
+            "cambio_suscriptores": (hoy["suscriptores"] - antes["suscriptores"])
+            if antes and antes.get("suscriptores") is not None and hoy["suscriptores"] is not None else None,
+            "visualizaciones": total, "cambio_visualizaciones": total - total_antes if total_antes is not None else None,
+            "desde": antes["fecha"] if antes else None, "shorts": shorts}
+
+
 def main() -> None:
+    oficina = sys.argv[sys.argv.index("--oficina") + 1] if "--oficina" in sys.argv else None
     hoy = leer()
     hist = json.loads(HISTORIAL.read_text()) if HISTORIAL.exists() else []
     antes = hist[-1] if hist else None
     hist.append(hoy)
     HISTORIAL.write_text(json.dumps(hist, indent=1, ensure_ascii=False) + "\n")
+    if oficina:
+        Path(oficina).write_text(json.dumps(resumen_oficina(hoy, antes), ensure_ascii=False))
 
     def delta(a, b):
         return "" if a is None or b is None else f" ({b - a:+d})"
