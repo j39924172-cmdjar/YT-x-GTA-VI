@@ -66,3 +66,11 @@
 - Datos en la base de datos de la oficina: `estado/canal` y `estado/investigacion` (solo los ve Adam).
 - Tareas programadas: "Investigación GTA 6 (diaria)" (`trig_01KUgBNkFNc643SCwefs2Pif`) y nueva "Repaso del canal (cada 6 h)" (`trig_017hV7C4vxR4x2DuzQiHRZGF`). `shorts/canal.py --oficina` prepara el documento para la oficina.
 - Oficina: 42 pruebas automáticas, incluido el cambio de hora de verano.
+
+## 19/11/2026 — Entrenamiento del equipo: manual magistral y examen
+- **Manual magistral** `docs/manual-shorts.md`: las 10 reglas de oro y, para cada uno de los 12 trabajadores, lo que domina, lo que nunca hace y su examen. Incluye la tabla de lecciones con los datos reales del canal: "juego vs real" (Florida, 1.200 visualizaciones) > noticia útil (403) > personajes (57).
+- **Examen automático** `shorts/examen.py` (52 pruebas repartidas entre los 12): `python shorts/examen.py shorts/NN-x` o `--todos`. Con un solo ✗ el Short no se entrega. Probado con un Short malo hecho a propósito: lo suspende (6,2/10, 15 fallos).
+- **Calibrado con datos reales:** el Short de Florida (el que más funciona) suspendía "ritmo de voz" (2,5 palabras/s) y "gancho concreto" (negación). Las reglas se ajustaron a lo que funciona.
+- Resultados: Short 03 9,6 · Short 04 9,4 · Short 05 10. Los tres APTOS. Se añadió `**Formato:**` a sus fichas.
+- `docs/produccion-short.md`: el paso 6 exige aprobar el examen y el paso 7 anota el formato.
+- Oficina: la ficha de cada trabajador tiene sus nuevos conocimientos para Shorts (antes eran de la fase de vídeos largos en español) y su nota en el examen.

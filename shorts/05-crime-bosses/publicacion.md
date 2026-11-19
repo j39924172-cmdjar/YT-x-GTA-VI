@@ -24,3 +24,5 @@ Which boss would you work for first: Boobie, Raul or Brian? 👇
 ```
 
 **Ajustes:** privado → revisar → público · Entretenimiento · Inglés · Contenido alterado: No · Hecho para niños: No.
+
+**Formato:** personajes

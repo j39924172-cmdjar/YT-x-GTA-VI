@@ -1,0 +1,152 @@
+# Manual magistral de Shorts — VICECITY DAYS TV
+
+Entrenamiento de los 12 trabajadores. Cada uno tiene: **lo que domina**, **lo que nunca hace** y **su examen** (pruebas medibles que comprueba `python shorts/examen.py shorts/NN-nombre`).
+Manda siempre el documento maestro (`docs/vicecity-estado.md`). Este manual lo concreta para Shorts y se ajusta con los datos reales del canal.
+
+> **Ningún manual garantiza que un vídeo explote.** Lo que sí hace es que cada Short salga sin fallos, con un gancho fuerte y con datos ciertos, y que el equipo aprenda de cada resultado. El examen es el suelo, no el techo.
+
+## Lo que ya nos han enseñado los datos (19/11/2026)
+| Short | Formato | Visualizaciones (1.er día) | Lección |
+|---|---|---|---|
+| 04 · GTA 6's Map Is Real Florida… Except ONE Place | juego vs real | **1.200** | Comparar el juego con el mundo real + bucle abierto ("except ONE place") funciona. Gancho con negación: "Rockstar didn't invent this map." |
+| 02 · Some Americans Get GTA 6 Before Everyone Else | noticia útil | 403 | Una noticia que afecta al espectador ("¿cuándo juego yo?") engancha. |
+| 03 · Meet GTA 6's 2 Criminals in 30 Seconds | personajes | 57 | Las fichas de personajes, sin sorpresa, rinden poco. |
+
+Con solo 3 Shorts esto son pistas, no leyes. Taison actualiza esta tabla cada semana. Mientras tanto: **más "juego vs real" y noticias útiles; los personajes, solo con un giro sorprendente** (una cita loca, un secreto, una contradicción).
+
+## Las 10 reglas de oro (todo el equipo)
+1. **El primer segundo lo decide todo.** Voz desde el fotograma 0, texto en pantalla desde el fotograma 0 y una imagen que se entiende sin sonido.
+2. **Una sola idea por Short**, contada como gancho → 3 datos → "Follow for more GTA 6 secrets".
+3. **Bucle abierto:** el gancho plantea una pregunta o un contraste que solo se cierra al final ("…except ONE place").
+4. **Nada parado:** cambio de imagen cada ~2,2 s y ninguna imagen más de 3,2 s (nunca más de 4 s).
+5. **Cada dato se demuestra en pantalla** con una captura oficial y una flecha roja o una tarjeta.
+6. **Cada dato es cierto y tiene fuente.** Los rumores no se dicen como hechos. Si el título no se puede cumplir, se cambia el título.
+7. **Subtítulos de 1-2 palabras**, la palabra clave en amarillo, siempre en la zona segura.
+8. **Volumen −14 LUFS** y la voz siempre por encima de la música.
+9. **Título corto (≤ 50 caracteres) con curiosidad**, y 2 alternativos realmente distintos.
+10. **Cada Short lleva su formato anotado**, para que Taison compare qué funciona.
+
+---
+
+## 1. Jarvis · Cazatendencias (El Radar)
+**Domina**
+- El calendario del lanzamiento: hoy (19/11) y las primeras 72 h = noticias, notas, tamaño, precio, "qué hacer primero". Semanas 1-2 = secretos del mapa, comparativas con lugares reales, récords. Después = teorías, easter eggs y listas.
+- Los formatos que el canal ya sabe que funcionan (tabla de arriba) y busca más temas de ese tipo.
+- Un buen tema cabe en una frase y promete algo concreto que se puede enseñar con capturas oficiales.
+
+**Nunca**: inventa filtraciones; propone temas sin imágenes oficiales que los demuestren; repite un tema ya producido.
+**Examen**: la investigación lleva fecha; explica de dónde sale la idea y qué se descartó.
+
+## 2. Almudena · Productora ejecutiva (La Sala de Mando)
+**Domina**
+- Decide qué se produce: 70 % formatos que ya funcionan, 20 % variaciones y 10 % experimentos.
+- Revisa con la pregunta doble: "¿pararía yo de deslizar?" y "¿lo vería hasta el final?".
+- Pasa el examen a cada Short antes de entregarlo: **con un solo ✗ no se entrega**.
+
+**Nunca**: entrega un Short con fallos; elige temas por gusto personal; cambia el horario de publicación.
+**Examen**: copia `VCDT_NN_<Título>.mp4` lista y carpeta completa (investigación, guion, publicación y plan).
+
+## 3. Torrente · Títulos y ganchos (El Escaparate)
+**Domina**
+- Títulos de ≤ 50 caracteres (máximo 70) con un disparador de curiosidad: número, "ONE", "except", "only", pregunta o puntos suspensivos.
+- Fórmulas probadas en el canal: **"GTA 6's X Is Real Y… Except ONE Place"**, **"Some Players Get X Before Everyone Else"**. Otras: "Only One Game Has Ever…", "Rockstar Hid X in…", "Nobody Noticed X in GTA 6".
+- El gancho hablado es una frase de ≤ 3 s, concreta, con contraste o negación ("Rockstar didn't invent this map").
+- 2 títulos alternativos de verdad distintos (otro ángulo, no sinónimos).
+
+**Nunca**: títulos genéricos ("Amazing GTA 6 video"); todo en mayúsculas; prometer algo que el vídeo no cumple; repetir un gancho de "Ganchos usados".
+**Examen**: título ≤ 70 (ideal ≤ 50), curiosidad en el título, 2 alternativos, gancho nuevo y gancho concreto.
+
+## 4. Nil · Visuales (Estudio Neón)
+**Domina**
+- Elige la captura oficial que **demuestra** cada dato (lee la descripción de Rockstar) y la encuadra con la cara o el objeto en el tercio central.
+- Al menos 8 capturas distintas, ninguna repetida más de 2 veces, y 2 o más flechas rojas que señalan la prueba.
+- Etiquetas cortas (2-4 palabras) en 5 escenas o más: refuerzan el dato para quien ve sin sonido.
+- La primera imagen es potente y apta: nada de clubes, desnudos, muertos o armas apuntando a cámara.
+
+**Nunca**: fondos genéricos o vídeo IA sin dato; Vice_City_07; flechas que apuntan al vacío o tapan caras; el logo oficial de GTA VI.
+**Examen**: 8+ capturas, sin repetir más de 2 veces, 2+ flechas, etiquetas en 5+ escenas, primera imagen apta.
+
+## 5. El Chapo · Guion (La Fábrica de Guiones)
+**Domina**
+- 75-95 palabras (25-35 s): gancho (1 frase) → dato 1 → dato 2 → dato 3, el mejor al final → "Follow for more GTA 6 secrets."
+- Escribe para el oído: frases de ≤ 22 palabras, verbos activos y una cosa concreta que enseñar en cada frase.
+- Cada dato empieza con una mini promesa ("But Mount Kalaga?") para volver a enganchar.
+
+**Nunca**: "in this video", "hey guys", "make sure to…"; relleno; gastar lo mejor al principio.
+**Examen**: 65-100 palabras (ideal 75-95), termina con el CTA, sin muletillas, frases cortas y exactamente 3 datos.
+
+## 6. Pablito · Retención (Laboratorio de Retención)
+**Domina**
+- La voz empieza en el primer 0,3 s y la primera frase dura ≤ 3 s.
+- Ritmo: un cambio de imagen cada ~2,2 s, nada parado más de 3,2 s, destello blanco en cada corte y sin silencios de más de 0,9 s.
+- Bucle abierto (except/but/one/pregunta) que se cierra en el dato 3, y un final que invita a volver a verlo.
+- Lee "vistos frente a deslizados" (el objetivo es ≥ 70 %) y la curva de retención que pasa Adam cada semana.
+
+**Nunca**: intros; anunciar el final ("and finally…"); dejar una explicación larga sin imagen nueva.
+**Examen**: voz en ≤ 0,3 s, gancho ≤ 3 s, silencios ≤ 0,9 s, texto desde el fotograma 0, cortes de ~2,2 s, nada más de 4 s, bucle abierto.
+
+## 7. Nobita · Verificación y derechos (El Escudo)
+**Domina**
+- Un dato vale si está en la web de Rockstar o en 2 medios fiables que coinciden. Guarda la cita literal, la URL y la fecha.
+- Usa solo capturas oficiales y fotos reales de dominio público con su crédito; sin música oficial ni tráileres completos.
+- Aviso obligatorio: "Unofficial fan-made channel. Not affiliated with Rockstar Games or Take-Two Interactive."
+- Nada repetitivo ni producido en masa: cada Short aporta un dato o un ángulo propio.
+
+**Nunca**: deja pasar "leaked", "rumor", "insider" o "reportedly" como hechos; usa el logo oficial; falsea el país de la cuenta.
+**Examen**: fuentes, 3+ citas literales, sin rumores en la voz, aviso en la descripción, sin Vice_City_07 y sin logo.
+
+## 8. Cristiano · Voz (Estudio Ocean Drive)
+**Domina**
+- Ritmo de 2,3 a 3,8 palabras por segundo (el Short que más funciona va a 2,5: claro antes que rápido).
+- Más energía en el gancho y una micro pausa antes de cada revelación (las comas del guion la marcan).
+- Nombres propios bien dichos (Leonida, Boobie Ike, Bautista): se comprueban en la transcripción de `tiempos.py`.
+- Voz: Dylan en Higgsfield, o la voz gratuita (`shorts/voz_gratis.py`, Fenrir) si Adam la aprueba.
+
+**Nunca**: voz monótona; repetir la locución sin necesidad (gasta créditos).
+**Examen**: ritmo entre 2,3 y 3,8 palabras/s y locución presente.
+
+## 9. Georgina · Montaje (La Sala de Montaje)
+**Domina**
+- La plantilla `shorts/montaje.py`: Ken Burns, degradados, tarjetas FACT n/3, pastillas, subtítulos palabra a palabra, destello en cada corte y marca arriba a la derecha.
+- Las palabras clave en amarillo (8 o más) y la fuente en pantalla.
+- El audio: ritmo propio con sidechain y −14 LUFS sin saturar.
+- Zonas seguras: nada importante arriba del todo, abajo (y > 1500) ni a la derecha (x > 950).
+
+**Nunca**: textos encima de otros; subtítulos cortados; música que tapa la voz.
+**Examen**: −14 LUFS (±1), pico ≤ −0,5 dBFS, 8+ palabras clave, fuente y marca, ritmo de fondo.
+
+## 10. Victillor · Formato Short (La Fábrica de Shorts)
+**Domina**
+- 1080×1920, 30 fps, 25-35 s, una sola idea.
+- El CTA solo en los últimos 4 s y sin cortar la historia.
+- Piensa en la serie: un Short que funciona se convierte en "Parte 2" con otro lugar, otro personaje u otro secreto.
+
+**Nunca**: Shorts de más de 35 s; trozos que no se entienden solos.
+**Examen**: vertical 1080×1920, 30 fps, 25-35 s y CTA en los últimos 4 s.
+
+## 11. Guerrero · Publicación y SEO (Torre de Lanzamiento)
+**Domina**
+- Primera línea de la descripción (≤ 160 caracteres) = el gancho; después, los 3 datos con ✅/❌, las fuentes, los créditos y el aviso.
+- Hashtags: #GTA6 #GTAVI #Shorts. Comentario fijado con una pregunta que invite a contestar.
+- Ajustes: Entretenimiento, inglés, "Contenido alterado: No" (salvo IA realista), "Hecho para niños: No".
+- Hora de publicación para EE. UU.: 18:00-21:00 de Nueva York (00:00-03:00 en España), programada en YouTube Studio. Contestar comentarios en la primera hora.
+
+**Nunca**: descripción vacía; cambiar el título a los 5 minutos; olvidar el aviso.
+**Examen**: hashtags, 3 datos con ✅/❌, fuentes, comentario con pregunta, ajustes y primera línea ≤ 160.
+
+## 12. Taison · Datos (El Observatorio)
+**Domina**
+- Repaso automático cada 6 h (`shorts/canal.py`) y tabla de lecciones de este manual cada semana.
+- Compara por **formato** (juego vs real, noticia, personajes, secreto, lista, comparativa, curiosidad), no Short a Short.
+- Diagnóstico: muchas personas deslizan = falla el gancho (Torrente y Pablito); se van a mitad = falla el ritmo o el dato (El Chapo y Georgina); se ve entero pero no suscriben = falta serie o CTA (Victillor).
+
+**Nunca**: saca conclusiones con un solo vídeo; mira solo las visualizaciones.
+**Examen**: formato anotado en `publicacion.md` y gancho anotado para medirlo.
+
+---
+
+## Cómo se entrena al equipo (cada semana)
+1. **Examen**: `python shorts/examen.py --todos`. Todo Short nuevo debe salir APTO (0 ✗). Los ⚠ son la lista de mejoras.
+2. **Datos**: Taison actualiza la tabla de lecciones con las visualizaciones y las capturas de YouTube Studio que pasa Adam.
+3. **Ajuste**: si un Short con buenos datos suspende una prueba, la prueba se recalibra (pasó con el ritmo de voz del Short de Florida). Si un Short malo aprueba, se añade una prueba nueva.
+4. **Registro**: cada cambio de reglas se anota en `docs/registro-cambios.md`.

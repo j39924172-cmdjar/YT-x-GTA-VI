@@ -24,3 +24,5 @@ Unofficial fan-made channel. Not affiliated with Rockstar Games or Take-Two Inte
 **Comentario fijado:** Which real Florida spot should we compare next? 🌴👇
 
 **Ajustes de subida:** Privado hasta revisarlo · Entretenimiento · Inglés · Contenido alterado: **No** · Hecho para niños: **No**.
+
+**Formato:** juego vs real

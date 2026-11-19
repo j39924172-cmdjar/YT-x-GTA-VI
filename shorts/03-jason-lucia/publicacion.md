@@ -28,3 +28,5 @@ Unofficial fan-made channel. Not affiliated with Rockstar Games or Take-Two Inte
 - [ ] Ver el vídeo entero en el móvil: subtítulos legibles y nada tapado por los botones de YouTube.
 - [ ] Datos: los 3 están en la fuente oficial (ver `investigacion.md`).
 - [ ] Sin logo oficial de GTA VI.
+
+**Formato:** personajes

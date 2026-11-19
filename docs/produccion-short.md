@@ -1,7 +1,7 @@
 # Procedimiento: producir un Short a partir de un título
 
 Lo sigue la sesión que se lanza desde la oficina (tarea programada **"Producir Short"**). Recibe el título que escribe Antonio y entrega el vídeo listo para subir.
-Cumple siempre `docs/vicecity-estado.md` (fuente de verdad) y `CLAUDE.md`.
+Cumple siempre `docs/vicecity-estado.md` (fuente de verdad) y `CLAUDE.md`. Cada trabajador sigue su parte del **manual magistral** `docs/manual-shorts.md`, y el Short solo se entrega si aprueba el examen (`shorts/examen.py`).
 
 **Cómo llega el encargo.** En la oficina (https://claude.ai/artifact/WdZBBpgqbXUEDL1Wk3kFRC), Antonio pulsa "Producir Short" y la página envía un comentario "Send to Claude" con el texto `Producir Short — TÍTULO: … / Encargo: <id>`. Ese comentario despierta a la sesión de producción (la que vigila la oficina). También puede llegar pegado en el chat.
 
@@ -21,7 +21,8 @@ Al recibir el encargo, contesta en el hilo del comentario (ArtifactComments `rep
 
 ## [PASO 2/8] Guion y gancho (El Chapo + Torrente + Pablito)
 - Inglés, **25–35 s** (unas 75–95 palabras): gancho → 3 datos → "Follow for more GTA 6 secrets".
-- Gancho concreto en el primer segundo, NUEVO: comprueba "Ganchos usados" en `docs/banco-ideas.md`.
+- Gancho concreto en el primer segundo, NUEVO: comprueba "Ganchos usados" en `docs/banco-ideas.md`. Primera frase de 3 s o menos, con contraste, negación, número o pregunta, y un bucle abierto que se cierre en el dato 3.
+- Da prioridad a los formatos que mejor funcionan en el canal (tabla de lecciones de `docs/manual-shorts.md`).
 - Frases cortas para leer en voz alta. Nada de "in this video".
 - Guarda `guion.md` (gancho, voz, textos de pantalla y visual por bloque) y `voz.txt` (solo el texto de la voz, en una línea).
 
@@ -50,13 +51,15 @@ Al recibir el encargo, contesta en el hilo del comentario (ArtifactComments `rep
 - `python shorts/herramientas.py fotogramas shorts/NN-x/final.mp4` saca 12 fotogramas en una hoja: míralos con Read.
 - Comprueba que no haya subtítulos cortados, que nada tape las caras, que las flechas apunten bien, que no haya textos encima de otros y que nada quede en las zonas que tapa YouTube (arriba, abajo y a la derecha).
 - Volumen: `ffmpeg -i final.mp4 -af ebur128=framelog=quiet -f null -` debe dar unos −14 LUFS.
+- **Examen:** `python shorts/examen.py shorts/NN-x`. Tiene que salir **APTO** (0 ✗). Arregla también los ⚠ que se puedan arreglar sin rehacer la voz.
 - Corrige `plan.json` y vuelve a montar hasta que esté bien (máximo 3 vueltas).
 
 ## [PASO 7/8] Publicación y SEO (Guerrero)
 `publicacion.md` con:
 - Título con curiosidad (máx. 70 caracteres) y 2 alternativos.
 - Descripción: datos con ✅/❌, fuentes, créditos de fotos reales, "Unofficial fan-made channel. Not affiliated with Rockstar Games or Take-Two Interactive." y `#GTA6 #GTAVI #Shorts`.
-- Comentario fijado con pregunta. Ajustes: privado, Entretenimiento, inglés, Contenido alterado: No (salvo que se use IA realista), Hecho para niños: No.
+- Comentario fijado con pregunta.
+- `**Formato:**` uno de: juego vs real, noticia, personajes, secreto, lista, comparativa, curiosidad (Taison compara por formato). Ajustes: privado, Entretenimiento, inglés, Contenido alterado: No (salvo que se use IA realista), Hecho para niños: No.
 
 ## [PASO 8/8] Entrega (Almudena)
 1. Copia el vídeo como `shorts/NN-x/VCDT_NN_<Titulo_corto>.mp4`.
