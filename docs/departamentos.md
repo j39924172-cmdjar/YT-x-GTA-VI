@@ -31,4 +31,8 @@ Tarea programada **"Repaso del canal (cada 6 h)"** (`trig_017hV7C4vxR4x2DuzQiHRZ
 
 Si se cambian estos horarios, hay que cambiar también `HORARIO` en `oficina/index.html`.
 Las dos tareas anotan lo que hacen en la colección `actividad` de la oficina (ver `docs/produccion-short.md`).
-Ninguna de las dos tareas produce vídeos ni gasta créditos: eso lo decide Adam.
+### Preproducción continua (todo el equipo) — 09:53, 12:53, 15:53, 18:53 y 21:53 hora de Madrid
+Tarea programada **"Preproducción continua (sin esperar órdenes)"** (`trig_016LhTmQUTHxZPPEQ5trCoJ1`). El equipo no espera órdenes: coge las mejores ideas ✅ del banco y deja preparados hasta 4 Shorts (investigación verificada, guion, títulos, capturas y ficha de publicación, con "Estado: preproducción"). Cuando ya hay 4, repasa y mejora los existentes. Cuando Adam pide uno, solo faltan la voz, el montaje y el examen.
+Cada vez escribe en la oficina `estado/agenda`: la tarea de cada persona y el **contenido real de su pantalla** (el guion, los títulos, las fuentes, las capturas, el plan de montaje…), que la Cámara en directo enseña escribiéndose. Y anota en `actividad` lo que han hecho.
+
+Ninguna de estas tareas genera voz, monta ni gasta créditos: eso lo decide Adam.

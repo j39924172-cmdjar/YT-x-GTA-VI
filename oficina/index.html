@@ -168,7 +168,20 @@
   .nowbox { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 13.5px; }
   .nowbox.busy { border-color: var(--pink); }
 
-  /* Cámara en directo */
+  /* Cámara en directo + pantalla ampliada */
+  .cam-wrap { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 12px; align-items: stretch; }
+  .screen { border-radius: 12px; border: 1px solid var(--line); background: #0A0916; display: grid; grid-template-rows: auto 1fr; min-width: 0; overflow: hidden; }
+  .screen .scr-bar { display: flex; align-items: center; gap: 5px; padding: 7px 10px; background: var(--surface-2); border-bottom: 1px solid var(--line); font-size: 11.5px; color: var(--muted); min-width: 0; }
+  .screen .scr-bar i { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .screen .scr-bar span { flex: 1 1 auto; min-width: 0; margin-left: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .screen .body { padding: 10px 12px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.55; overflow-y: auto; max-height: 300px; min-height: 160px; }
+  .screen .ln { white-space: pre-wrap; overflow-wrap: anywhere; color: var(--ink); }
+  .screen .ln.ok { color: var(--ok); }
+  .screen .ln.h { color: var(--sun); font-weight: 500; }
+  .screen .ln.hot { color: var(--pink); }
+  .screen .ln.num { color: var(--sky); }
+  .screen .cur { display: inline-block; width: 7px; height: 1.1em; vertical-align: text-bottom; background: var(--lilac); animation: pulse 0.9s steps(1) infinite; }
+  @media (max-width: 760px) { .cam-wrap { grid-template-columns: minmax(0, 1fr); } }
   .cam { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: var(--bg); }
   .cam canvas { display: block; width: 100%; aspect-ratio: 16 / 9; max-width: 100%; }
   .cam .rec { position: absolute; top: 10px; left: 10px; display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px; border-radius: 6px; background: rgba(8, 8, 16, 0.72); font-family: var(--font-mono); font-size: 11px; color: var(--ink); }
@@ -215,8 +228,11 @@
       <section class="panel" id="directo" aria-labelledby="hDirecto">
         <div class="ph"><h2 id="hDirecto">Cámara en directo</h2><span class="chip" id="camChip">elige a una persona</span></div>
         <div class="cam-pick" id="camPick" role="group" aria-label="Elegir a quién ver"></div>
-        <div class="cam"><canvas id="camMain" width="1280" height="720" role="img" aria-label="Escena animada de la persona elegida trabajando en su mesa"></canvas>
-          <span class="rec"><i></i>EN DIRECTO</span><div class="lbl"><b id="camName">Almudena</b><span id="camNow"></span></div></div>
+        <div class="cam-wrap">
+          <div class="cam"><canvas id="camMain" width="1280" height="720" role="img" aria-label="Escena animada de la persona elegida trabajando en su mesa"></canvas>
+            <span class="rec"><i></i>EN DIRECTO</span><div class="lbl"><b id="camName">Almudena</b><span id="camNow"></span></div></div>
+          <div class="screen" aria-label="Pantalla del trabajador, ampliada"><div class="scr-bar"><i style="background:var(--bad)"></i><i style="background:var(--sun)"></i><i style="background:var(--ok)"></i><span id="scrTitle">Pantalla</span></div><div class="body" id="scrBody"></div></div>
+        </div>
       </section>
 
       <section class="panel" aria-labelledby="hPlantilla">
@@ -337,56 +353,56 @@
        "Solo capturas oficiales y fotos de dominio público con crédito; nada de música oficial ni tráileres completos.",
        "Aviso de canal no oficial en cada descripción.", "Cada Short aporta algo propio: nada repetitivo ni en masa."],
       ["Dar “leaked”, “rumor” o “insider” como hechos", "Usar el logo oficial", "Falsear el país de la cuenta"],
-      ["Datos con fuente", "3+ citas literales", "Sin rumores en la voz", "Aviso no oficial", "Sin Vice_City_07", "Sin logo"], "18/18", "Revisando fuentes"),
+      ["Datos con fuente", "3+ citas literales", "Sin rumores en la voz", "Aviso no oficial", "Sin Vice_City_07", "Sin logo"], "18/18", "Revisando las fuentes del banco de ideas"),
     P("chapo", "El Chapo", "CH", "gui", "Guionista", "Escribe el guion en inglés de 25-35 s: gancho → 3 datos → “Follow for more GTA 6 secrets”.",
       ["75-95 palabras; el mejor dato, al final.", "Escribe para el oído: frases de 22 palabras o menos y verbos activos.",
        "Cada dato empieza con una mini promesa (“But Mount Kalaga?”)."],
       ["“In this video”, “hey guys”", "Relleno", "Gastar lo mejor al principio"],
-      ["65-100 palabras", "Termina con el CTA", "Sin muletillas", "Frases cortas", "Exactamente 3 datos"], "17/18", "Disponible"),
+      ["65-100 palabras", "Termina con el CTA", "Sin muletillas", "Frases cortas", "Exactamente 3 datos"], "17/18", "Escribiendo borradores de guion"),
     P("torrente", "Torrente", "TO", "gui", "Títulos y ganchos", "Convierte cada tema en un título que da ganas de pulsar y en un gancho de 3 segundos.",
       ["Títulos de 50 caracteres o menos con curiosidad: número, ONE, except, only o pregunta.",
        "Fórmula probada: “GTA 6's X Is Real Y… Except ONE Place”.",
        "Gancho con contraste o negación: “Rockstar didn't invent this map.”", "2 títulos alternativos de verdad distintos."],
       ["Títulos genéricos", "Todo en mayúsculas", "Prometer lo que el vídeo no cumple", "Repetir un gancho"],
-      ["Título ≤ 70 (ideal ≤ 50)", "Curiosidad", "2 alternativos", "Gancho nuevo", "Gancho concreto"], "18/18", "Disponible"),
+      ["Título ≤ 70 (ideal ≤ 50)", "Curiosidad", "2 alternativos", "Gancho nuevo", "Gancho concreto"], "18/18", "Probando títulos para las ideas del banco"),
     P("pablito", "Pablito", "PA", "gui", "Retención", "Que nadie deslice: ritmo, bucles abiertos y nada parado.",
       ["La voz arranca en el primer 0,3 s y la primera frase dura 3 s o menos.", "Cambio de imagen cada ~2,2 s; nada parado más de 3,2 s.",
        "Bucle abierto (except, but, ONE, pregunta) que se cierra en el dato 3.", "Objetivo: 70 % o más de “vistos frente a deslizados”."],
       ["Intros", "Anunciar el final", "Explicaciones largas sin imagen nueva"],
-      ["Voz en ≤ 0,3 s", "Gancho ≤ 3 s", "Silencios ≤ 0,9 s", "Texto desde el fotograma 0", "Cortes de ~2,2 s", "Nada más de 4 s", "Bucle abierto"], "23/24", "Disponible"),
+      ["Voz en ≤ 0,3 s", "Gancho ≤ 3 s", "Silencios ≤ 0,9 s", "Texto desde el fotograma 0", "Cortes de ~2,2 s", "Nada más de 4 s", "Bucle abierto"], "23/24", "Analizando la retención de los Shorts publicados"),
     P("victillor", "Victillor", "VI", "gui", "Formato Short", "Una sola idea, vertical, 25-35 s, y series de lo que funciona.",
       ["1080×1920, 30 fps, 25-35 s.", "CTA solo en los últimos 4 s.", "Lo que funciona se convierte en “Parte 2”."],
       ["Shorts de más de 35 s", "Trozos que no se entienden solos"],
-      ["1080×1920", "30 fps", "25-35 s", "CTA en los últimos 4 s"], "12/12", "Disponible"),
+      ["1080×1920", "30 fps", "25-35 s", "CTA en los últimos 4 s"], "12/12", "Estudiando formatos de Shorts que funcionan"),
     P("nil", "Nil", "NI", "vis", "Directora visual", "Elige las capturas oficiales que DEMUESTRAN cada dato, los encuadres y las flechas rojas.",
       ["La captura que demuestra el dato, con la cara u objeto centrado.", "8 capturas distintas o más y 2 flechas rojas o más.",
        "Etiquetas de 2-4 palabras en 5 escenas o más.", "Primera imagen potente y apta."],
       ["Fondos genéricos o vídeo IA sin dato", "Vice_City_07", "Flechas al vacío o encima de caras", "El logo oficial"],
-      ["8+ capturas", "Sin repetir más de 2 veces", "2+ flechas", "Etiquetas en 5+ escenas", "Primera imagen apta"], "14/15", "Disponible"),
+      ["8+ capturas", "Sin repetir más de 2 veces", "2+ flechas", "Etiquetas en 5+ escenas", "Primera imagen apta"], "14/15", "Eligiendo capturas oficiales para las ideas"),
     P("cristiano", "Cristiano", "CR", "mon", "Locutor", "Pone la voz en inglés: Dylan en Higgsfield, o la voz gratuita Fenrir si Adam la aprueba.",
       ["Ritmo de 2,3 a 3,8 palabras/s; claro antes que rápido.", "Más energía en el gancho y una micro pausa antes de cada revelación.",
        "Comprueba los nombres propios en la transcripción."],
       ["Sonar monótono", "Repetir la locución sin necesidad"],
-      ["Ritmo 2,3-3,8 palabras/s", "Locución presente"], "6/6", "Disponible"),
+      ["Ritmo 2,3-3,8 palabras/s", "Locución presente"], "6/6", "Ensayando la locución"),
     P("georgina", "Georgina", "GE", "mon", "Montadora", "Monta con la plantilla: Ken Burns, FACT n/3, subtítulos palabra a palabra, ritmo propio y −14 LUFS.",
       ["8 palabras clave o más en amarillo y la fuente en pantalla.", "Ritmo con sidechain y −14 LUFS sin saturar.", "Zonas seguras: nada importante arriba, abajo ni a la derecha."],
       ["Textos encima de otros", "Subtítulos cortados", "Música que tape la voz"],
-      ["−14 LUFS", "Sin saturar", "8+ palabras clave", "Fuente y marca", "Ritmo de fondo"], "15/15", "Disponible"),
+      ["−14 LUFS", "Sin saturar", "8+ palabras clave", "Fuente y marca", "Ritmo de fondo"], "15/15", "Preparando planes de montaje"),
     P("guerrero", "Guerrero", "GU", "pub", "Publicación y SEO", "Deja cada Short listo para subir: título, descripción con fuentes y aviso, hashtags, comentario fijado y hora.",
       ["1.ª línea de la descripción = el gancho; después los datos con ✅/❌, fuentes y aviso.",
        "#GTA6 #GTAVI #Shorts y comentario fijado con pregunta.", "Publicar entre las 18:00 y las 21:00 de Nueva York (00:00-03:00 en España)."],
       ["Descripciones vacías", "Cambiar el título a los 5 minutos", "Olvidar el aviso"],
-      ["Hashtags", "3 datos con ✅/❌", "Fuentes", "Comentario con pregunta", "Ajustes", "1.ª línea ≤ 160"], "16/18", "Disponible"),
+      ["Hashtags", "3 datos con ✅/❌", "Fuentes", "Comentario con pregunta", "Ajustes", "1.ª línea ≤ 160"], "16/18", "Redactando fichas de publicación"),
     P("almudena", "Almudena", "AL", "est", "Directora (la jefa)", "Decide qué se produce, revisa cada fotograma y solo entrega lo que aprueba el examen.",
       ["Reparto: 70 % formatos que funcionan, 20 % variaciones, 10 % experimentos.", "“¿Pararía yo de deslizar?” y “¿lo vería hasta el final?”.",
        "Con un solo ✗ en el examen, el Short no se entrega."],
       ["Entregar un Short con fallos", "Elegir temas por gusto personal", "Cambiar el horario de publicación"],
-      ["Copia VCDT lista", "Carpeta completa"], "6/6", "Disponible"),
+      ["Copia VCDT lista", "Carpeta completa"], "6/6", "Ensayando la locución"),
     P("taison", "Taison", "TA", "est", "Analista de datos", "Repasa el canal cada 6 horas y dice al equipo qué formatos repetir y cuáles evitar.",
       ["Compara por formato (juego vs real, noticia, personajes…), no Short a Short.",
        "Muchos deslizan = falla el gancho; se van a mitad = falla el ritmo o el dato.", "Actualiza cada semana la tabla de lecciones del manual."],
       ["Sacar conclusiones con un solo vídeo", "Mirar solo las visualizaciones"],
-      ["Formato anotado", "Gancho anotado"], "6/6", "Vigilando el canal"),
+      ["Formato anotado", "Gancho anotado"], "6/6", "Vigilando las estadísticas del canal"),
   ];
   const person = id => PEOPLE.find(p => p.id === id);
   const deptOf = p => DEPTS.find(d => d.id === p.dept);
@@ -411,7 +427,7 @@
 
   // ================================================================ 3. ESTADO (base de datos de la página)
   let encargos = [], actividad = [];
-  const ESTADO = { inv: null, can: null, equipo: null };
+  const ESTADO = { inv: null, can: null, equipo: null, agenda: null };
   const ACTIVOS = ["enviado", "en marcha"];
   const actual = () => encargos.find(e => ACTIVOS.includes(e.estado));
 
@@ -461,9 +477,21 @@
     } else if (e && id === "almudena") return { busy: true, txt: `Recibiendo el encargo “${e.titulo}”` };
     if (trabajando("inv") && (id === "jarvis" || id === "nobita")) return { busy: true, txt: "Investigando novedades de GTA 6" };
     if (trabajando("can") && id === "taison") return { busy: true, txt: "Repasando las estadísticas del canal" };
-    const ult = actividad.find(a => (a.quien || []).includes(id));
-    if (ult) return { busy: false, txt: `${ult.texto} · ${hace(ult.ts)}` };
-    return { busy: false, txt: person(id).libre };
+    const ag = ESTADO.agenda && ESTADO.agenda.tareas && ESTADO.agenda.tareas[id];
+    if (ag && ag.tarea) return { busy: true, txt: ag.tarea };
+    return { busy: true, txt: person(id).libre };
+  }
+  // Lo que se ve en su pantalla: el trabajo real (agenda que escribe el equipo) o, si está en un encargo, ese encargo
+  function pantallaDe(id) {
+    const e = actual(), ag = ESTADO.agenda && ESTADO.agenda.tareas && ESTADO.agenda.tareas[id];
+    if (e && e.paso > 0 && PASOS[e.paso - 1] && PASOS[e.paso - 1].who.includes(id))
+      return { titulo: `${PASOS[e.paso - 1].nombre} · encargo`, lineas: ["# " + e.titulo, `Paso ${e.paso}/8 · ${PASOS[e.paso - 1].hace}`, ...((ag && ag.pantalla && ag.pantalla.lineas) || []).slice(0, 0)] };
+    if (ag && ag.pantalla && Array.isArray(ag.pantalla.lineas)) return { titulo: ag.pantalla.titulo || ag.tarea, lineas: ag.pantalla.lineas.map(String).slice(0, 14) };
+    return { titulo: person(id).role, lineas: ["# " + person(id).libre, ...person(id).sabe.slice(0, 3)] };
+  }
+  function tecleado(lineas, t) {   // cuántos caracteres van escritos: 30 por segundo, pausa de 6 s y vuelta a empezar
+    const total = lineas.reduce((n, l) => n + l.length + 1, 0), ciclo = total / 30 + 6;
+    return Math.min(total, Math.floor((t % ciclo) * 30));
   }
   const notaDe = id => (ESTADO.equipo && ESTADO.equipo.notas && ESTADO.equipo.notas[id]) || person(id).nota;
   const pct = nota => { const [a, b] = String(nota).split("/").map(Number); return b ? Math.round(100 * a / b) : 0; };
@@ -484,7 +512,7 @@
             h("span", { class: "w-now" }, a.busy ? "● " + a.txt : a.txt)),
           h("span", { class: "score", title: "Pruebas del examen superadas" }, h("b", {}, nota), h("span", { class: "bar" }, h("i", { style: { width: pct(nota) + "%" } }))));
       }))));
-    $("plantillaChip").textContent = ocupados ? `${ocupados} trabajando ahora` : "12 personas · disponibles";
+    $("plantillaChip").textContent = `${ocupados} de 12 trabajando ahora`;
     $("plantillaChip").className = "chip" + (ocupados ? " hot" : "");
     if (typeof renderCamPick === "function" && $("camPick")) renderCamPick();
     if (fichaAbierta) abrirFicha(fichaAbierta, true);
@@ -706,7 +734,8 @@
     taison:    { pant: [["graficas", 262, 100, 176, 108, "monitor"], ["barras", 450, 124, 92, 62, "monitor"]], mesa: [], pared: "tele", ropa: ["gafas"] },
   };
 
-  function pantalla(c, tipo, x, y, w, hh, t, busy) {
+  const TEXTO = new Set(["guion", "titulos", "fuentes", "noticias", "subida"]);
+  function pantalla(c, tipo, x, y, w, hh, t, busy, txt) {
     c.save(); c.beginPath(); c.rect(x, y, w, hh); c.clip();
     const g0 = c.createLinearGradient(x, y, x, y + hh); g0.addColorStop(0, "#14112A"); g0.addColorStop(1, "#0A0916"); c.fillStyle = g0; c.fillRect(x, y, w, hh);
     if (!busy) {   // salvapantallas con la marca
@@ -717,7 +746,22 @@
     }
     // barra de la aplicación
     c.fillStyle = "#1E1938"; c.fillRect(x, y, w, 9); for (const [i, col] of [["0", "#FF5C7A"], ["1", "#FFCE28"], ["2", "#3DDC97"]]) { c.fillStyle = col; c.beginPath(); c.arc(x + 6 + i * 6, y + 4.5, 1.8, 0, 7); c.fill(); }
+    if (txt) { c.fillStyle = "#9D94BE"; c.font = "500 5.5px Inter, sans-serif"; c.textBaseline = "middle"; c.textAlign = "left"; let tt = txt.titulo || ""; while (tt.length > 4 && c.measureText(tt).width > w - 30) tt = tt.slice(0, -2); c.fillText(tt, x + 24, y + 4.8); }
     y += 9; hh -= 9;
+    if (txt && TEXTO.has(tipo)) {   // el texto real de su trabajo, escribiéndose
+      const fs = Math.max(5.5, Math.min(8, hh / 11)), lh = fs * 1.45; c.font = `500 ${fs}px JetBrains Mono, monospace`; c.textBaseline = "top";
+      let resto = txt.chars, fila = 0;
+      const filas = Math.floor((hh - 6) / lh), todas = [];
+      for (const l of txt.lineas) { let linea = l, col = l.startsWith("✓") ? "#3DDC97" : l.startsWith("# ") ? "#FFCE28" : l.startsWith("! ") ? "#FF6FB1" : l.startsWith("= ") ? "#5CC8FF" : "#E6E0FF";
+        linea = linea.replace(/^(# |! |= )/, ""); let trozo = "";
+        for (const ch of linea) { if (c.measureText(trozo + ch).width > w - 14) { todas.push([trozo, col]); trozo = ""; } trozo += ch; } todas.push([trozo, col]); }
+      let escritas = [], n = resto;
+      for (const [tx, col] of todas) { if (n <= 0) break; escritas.push([tx.slice(0, n), col]); n -= tx.length + 1; }
+      const desde = Math.max(0, escritas.length - filas);
+      escritas.slice(desde).forEach(([tx, col], i) => { c.fillStyle = col; c.fillText(tx, x + 7, y + 4 + i * lh); fila = i; });
+      if (Math.floor(t * 3) % 2 && escritas.length) { const [tx] = escritas[escritas.length - 1]; c.fillStyle = "#C77DFF"; c.fillRect(x + 7 + c.measureText(tx).width + 1, y + 4 + Math.min(fila, filas - 1) * lh, fs * 0.55, fs); }
+      c.restore(); return;
+    }
     const L = (i, ww, col = "#3A3360") => { c.fillStyle = col; rr(c, x + 10, y + 8 + i * Math.max(9, hh / 7), Math.max(0, ww * w / 170), Math.max(4, hh / 16), 2); c.fill(); };
     switch (tipo) {
       case "radar": {
@@ -788,10 +832,10 @@
   }
 
   // ---------------------------------------------------------------- piezas de la escena
-  function monitor(c, tipo, x, y, w, hh, clase, t, busy) {
+  function monitor(c, tipo, x, y, w, hh, clase, t, busy, txt) {
     if (clase === "portatil") {
       c.fillStyle = "#2B2645"; rr(c, x - 4, y - 4, w + 8, hh + 8, 5); c.fill();
-      pantalla(c, tipo, x, y, w, hh, t, busy);
+      pantalla(c, tipo, x, y, w, hh, t, busy, txt);
       c.fillStyle = "#3A3460"; c.beginPath(); c.moveTo(x - 10, y + hh + 4); c.lineTo(x + w + 10, y + hh + 4); c.lineTo(x + w + 22, 236); c.lineTo(x - 22, 236); c.fill();
       c.fillStyle = "#4A4478"; for (let r = 0; r < 2; r++) c.fillRect(x - 6 + r * 4, y + hh + 8 + r * 7, w + 12 - r * 8, 3);
       return;
@@ -803,7 +847,7 @@
     c.fillStyle = "#2A2540"; c.fillRect(x + w / 2 - 5, y + hh, 10, 236 - y - hh - 3); c.fillStyle = "#332D52"; rr(c, x + w / 2 - pie * 2, 232, pie * 4, 5, 2); c.fill();
     c.fillStyle = "#1A1630"; rr(c, x - 6, y - 6, w + 12, hh + 12, 6); c.fill();
     c.strokeStyle = "#2E2850"; c.lineWidth = 1; rr(c, x - 6, y - 6, w + 12, hh + 12, 6); c.stroke();
-    pantalla(c, tipo, x, y, w, hh, t, busy);
+    pantalla(c, tipo, x, y, w, hh, t, busy, txt);
     const reflejo = c.createLinearGradient(x, y, x + w, y + hh); reflejo.addColorStop(0, "rgba(255,255,255,0.06)"); reflejo.addColorStop(0.4, "rgba(255,255,255,0)"); c.fillStyle = reflejo; c.fillRect(x, y, w, hh);
     c.fillStyle = "#3DDC97"; c.fillRect(x + w - 6, y + hh + 2, 3, 1.5);
   }
@@ -948,7 +992,8 @@
     c.strokeStyle = "#4A4478"; c.lineWidth = 3; c.beginPath(); c.moveTo(530, 236); c.lineTo(520, 188); c.lineTo(492, 172); c.stroke();
     c.fillStyle = "#4A4478"; c.beginPath(); c.moveTo(480, 166); c.lineTo(500, 168); c.lineTo(494, 182); c.closePath(); c.fill();
     const luz = c.createRadialGradient(488, 200, 2, 488, 225, 70); luz.addColorStop(0, "rgba(255,206,40,0.28)"); luz.addColorStop(1, "rgba(255,206,40,0)"); c.fillStyle = luz; c.fillRect(420, 170, 140, 70);
-    puesto.pant.filter(s => s[5] !== "pared").forEach(s => monitor(c, s[0], s[1], s[2], s[3], s[4], s[5], t, busy));
+    const info = pantallaDe(id), txt = { ...info, chars: tecleado(info.lineas, t) };
+    puesto.pant.filter(s => s[5] !== "pared").forEach((s, i) => monitor(c, s[0], s[1], s[2], s[3], s[4], s[5], t, busy, i === 0 ? txt : null));
     if (puesto.pant.some(s => s[5] === "monitor")) { c.fillStyle = "#2E2850"; rr(c, 268, 228, 78, 7, 2); c.fill(); c.fillStyle = "#3A3460"; for (let i = 0; i < 12; i++) c.fillRect(271 + i * 6, 229.5, 4, 2); c.fillStyle = "#2E2850"; rr(c, 354, 229, 12, 6, 3); c.fill(); }
     // taza de café
     c.fillStyle = "#F4F1FF"; rr(c, 404, 220, 16, 16, 3); c.fill(); c.strokeStyle = "#F4F1FF"; c.lineWidth = 2.5; c.beginPath(); c.arc(421, 228, 4.5, -1.4, 1.4); c.stroke(); c.fillStyle = "#FF2E8C"; c.fillRect(406, 225, 12, 3);
@@ -985,11 +1030,31 @@
     $("camChip").className = "chip" + (a.busy ? " hot" : "");
   }
   CAMS.main = { canvas: $("camMain"), get id() { return camId; } };
+  let ultimaPantalla = "";
+  function pintarPantalla(t) {
+    const info = pantallaDe(camId), n = tecleado(info.lineas, t), clave = camId + "|" + n + "|" + info.titulo;
+    if (clave === ultimaPantalla) return;
+    ultimaPantalla = clave;
+    $("scrTitle").textContent = `${person(camId).name} · ${info.titulo}`;
+    let resto = n; const filas = [];
+    for (const l of info.lineas) {
+      if (resto <= 0) break;
+      const cls = l.startsWith("✓") ? "ok" : l.startsWith("# ") ? "h" : l.startsWith("! ") ? "hot" : l.startsWith("= ") ? "num" : "";
+      const limpio = l.replace(/^(# |! |= )/, "");
+      filas.push(h("div", { class: "ln " + cls }, limpio.slice(0, resto)));
+      resto -= l.length + 1;
+    }
+    (filas[filas.length - 1] || $("scrBody")).append(h("span", { class: "cur" }));
+    $("scrBody").replaceChildren(...filas);
+    if (!filas.length) $("scrBody").append(h("span", { class: "cur" }));
+    $("scrBody").scrollTop = $("scrBody").scrollHeight;
+  }
   let ultimoTexto = 0;
   function bucle(ms) {
     const t = reduceMotion ? 0 : ms / 1000;
     for (const k of ["main", "sheet"]) { const cam = CAMS[k]; if (cam && cam.canvas.isConnected && cam.canvas.offsetParent !== null) escena(cam.canvas, cam.id, t); }
     if (ms - ultimoTexto > 1000) { ultimoTexto = ms; actualizarCamTexto(); }
+    pintarPantalla(reduceMotion ? 1e6 : ms / 1000);
     if (!reduceMotion) requestAnimationFrame(bucle);
   }
 
@@ -1013,6 +1078,7 @@
       }, () => {});
       db.doc("estado/canal").onSnapshot(d => { ESTADO.can = d.exists ? d.data() : null; renderCanal(); renderBoard(); tick(); }, () => {});
       db.doc("estado/investigacion").onSnapshot(d => { ESTADO.inv = d.exists ? d.data() : null; renderInvestigacion(); tick(); }, () => {});
+      db.doc("estado/agenda").onSnapshot(d => { ESTADO.agenda = d.exists ? d.data() : null; renderPlantilla(); }, () => {});
       db.doc("estado/equipo").onSnapshot(d => { ESTADO.equipo = d.exists ? d.data() : null; renderEquipo(); renderBoard(); renderPlantilla(); }, () => {});
     } else { $("actChip").textContent = "abre la oficina en Claude"; }
     if (!comments) {

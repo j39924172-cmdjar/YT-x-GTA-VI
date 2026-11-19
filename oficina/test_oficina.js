@@ -96,13 +96,19 @@ const txt = (page, sel) => page.textContent(sel);
     ok("Estado general: produciendo", /paso 3\/8/.test(await txt(page, "#teamText")));
     await page.evaluate(id => window.__claudeActualiza(id, { estado: "entregado", paso: 8, nota: "listo" }), id);
     await page.waitForTimeout(150);
-    ok("Entregado: los 8 pasos hechos y nadie ocupado por el encargo", (await page.$$eval("#pasos li.hecho", e => e.length)) === 8 && !(await page.$eval('#depts .worker[data-id="nil"]', e => e.classList.contains("busy"))));
+    ok("Entregado: los 8 pasos hechos y Nil vuelve a su tarea propia", (await page.$$eval("#pasos li.hecho", e => e.length)) === 8 && !/Eligiendo las capturas: /.test(await page.$eval('#depts .worker[data-id="nil"]', e => e.textContent)));
+    ok("Nadie está parado: los 12 trabajan", (await page.$$eval("#depts .worker.busy", e => e.length)) === 12);
 
     // Actividad en directo
     await page.evaluate(() => window.__claudeActividad("a1", { ts: Date.now() - 120000, quien: ["taison"], texto: "Repasó el canal: 1.660 visualizaciones" }));
     await page.waitForTimeout(100);
     ok("Actividad: aparece la entrada con su autor", /Taison · Repasó el canal/.test(await txt(page, "#feed")));
-    ok("Plantilla: la última tarea de Taison", /Repasó el canal/.test(await page.$eval('#depts .worker[data-id="taison"]', e => e.textContent)) || /Repasando/.test(await page.$eval('#depts .worker[data-id="taison"]', e => e.textContent)));
+    await page.evaluate(() => window.__claudeEstado("estado/agenda", { ts: Date.now(), tareas: { chapo: { tarea: "Escribiendo el guion del Short 06", pantalla: { titulo: "guion.md · Short 06", lineas: ["# GTA 6 Just Tied the Best Score in History", "Only one game in history ever scored a 99 on Metacritic."] } } } }));
+    await page.waitForTimeout(100);
+    ok("Agenda: El Chapo muestra su tarea real", /Escribiendo el guion del Short 06/.test(await page.$eval('#depts .worker[data-id="chapo"]', e => e.textContent)));
+    await page.click('#camPick button[data-id="chapo"]'); await page.waitForTimeout(2500);
+    await page.waitForFunction(() => /GTA 6 Just Tied/.test(document.getElementById("scrBody").textContent), null, { timeout: 12000 }).catch(() => {});
+    ok("Pantalla ampliada: se escribe el guion real", /guion\.md · Short 06/.test(await txt(page, "#scrTitle")) && /GTA 6 Just Tied/.test(await txt(page, "#scrBody")), (await txt(page, "#scrTitle")) + " / " + (await txt(page, "#scrBody")));
 
     // Canal, examen e investigación
     await page.evaluate(() => window.__claudeEstado("estado/canal", { ts: Date.now(), suscriptores: 12, cambio_suscriptores: 3, visualizaciones: 1660, cambio_visualizaciones: 100,

@@ -109,3 +109,9 @@
   - Guerrero: portátil, monitor y calendario de publicación.
   - Almudena: claqueta y tele.
   - Taison: dos monitores y tele de estadísticas.
+
+## 19/11/2026 — El equipo trabaja siempre y se ve su pantalla real
+- **Preproducción real:** Shorts 06 "GTA 6 Just Tied the Best Score in History" (Metacritic 99 empatado con Ocarina of Time; IGN y GameSpot 10/10; GTA 5 se quedó en 97) y 07 "GTA 6 Needs 212 GB. Will It Fit?" (212 GB; PS5 con 667 GB útiles; 79,99 $ / 99,99 $). Cada uno con investigación verificada, guion, títulos, capturas y ficha. Falta voz y montaje.
+- Verificación: las primeras búsquedas devolvían páginas anteriores a las críticas ("sin nota"); se descartaron y se confirmó el 99 con GameDaily, Vice, Bloomberg y otros.
+- **Nueva tarea "Preproducción continua (sin esperar órdenes)"** 5 veces al día: mantiene hasta 4 Shorts preparados, actualiza la agenda y la actividad. No gasta créditos.
+- **Oficina:** los 12 están siempre trabajando en su tarea real (`estado/agenda`). Su monitor y una **pantalla ampliada** junto a la cámara enseñan el contenido real escribiéndose (guion, títulos, fuentes con ✓, capturas, plan de montaje, ficha, números del canal). 53 pruebas automáticas.
