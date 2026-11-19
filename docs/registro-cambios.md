@@ -123,3 +123,8 @@
 - **Examen**: 3 pruebas nuevas cuando hay vídeo (sin planos prohibidos, crédito "Footage: Rockstar Games", planos ≤ 3,5 s).
 - **Catálogo de imágenes**: +90 oficiales tras el lanzamiento (personajes, Ultimate Edition, fondos en vertical *_phone/*_portrait*). Total 176.
 - Política de Rockstar: permite usar su material en vídeos de fans "no comerciales" y se reserva retirarlo; se mantiene el crédito y el aviso de canal no oficial. No se usan clips de otros creadores ni filtraciones.
+
+## 19/11/2026 — Títulos recomendados con traducción al español
+- La sección de títulos recomendados de la oficina ("Nuevo Short", "Cadena de producción" y "Última investigación") se alimenta de `estado/investigacion` e incluye ya los Shorts preproducidos (06 y 07) y las mejores ideas del banco. Cada título va en inglés y, debajo, su traducción al español ("ES · …"), con su estado (p. ej. "Preproducido · Short 06").
+- Las tareas de investigación diaria y de preproducción continua actualizan esa lista cada vez, siempre con la traducción (`es`).
+- `docs/banco-ideas.md`: títulos con su traducción y estado 📝 preproducido. Oficina: 55 pruebas automáticas.

@@ -75,16 +75,17 @@ const txt = (page, sel) => page.textContent(sel);
 
     ok("Hay 4 ideas en Nuevo Short", (await page.$$eval("#ideas .idea", e => e.length)) === 4);
     await page.click("#ideas .idea >> nth=0");
-    ok("Tocar una idea rellena el título", /Best-Reviewed/.test(await page.inputValue("#titulo")));
+    ok("Tocar una idea rellena el título (en inglés)", /Tied the Best Score/.test(await page.inputValue("#titulo")) && !/ES ·|igualar/.test(await page.inputValue("#titulo")));
+    ok("Los títulos recomendados llevan la traducción al español", /acaba de igualar la mejor nota/.test(await txt(page, "#ideas")) && /acaba de igualar/.test(await txt(page, "#board")));
     await page.click("#goBtn");
     await page.waitForFunction(() => window.__sent.length === 1);
     const sent = await page.evaluate(() => window.__sent[0]);
     const enc = await page.evaluate(() => window.__cols.encargos); const id = Object.keys(enc)[0];
-    ok("Guarda el encargo en la base de datos", enc[id].titulo === "GTA 6 Just Became the Best-Reviewed Game Ever" && enc[id].estado === "enviado");
-    ok("Lo envía a Claude con título e id", sent.text === `Producir Short — TÍTULO: GTA 6 Just Became the Best-Reviewed Game Ever\nEncargo: ${id}` && !!sent.anchor);
+    ok("Guarda el encargo en la base de datos", enc[id].titulo === "GTA 6 Just Tied the Best Score in History" && enc[id].estado === "enviado");
+    ok("Lo envía a Claude con título e id", sent.text === `Producir Short — TÍTULO: GTA 6 Just Tied the Best Score in History\nEncargo: ${id}` && !!sent.anchor);
     await page.waitForTimeout(100);
     ok("Aparece como recibido", /recibido/.test(await txt(page, "#prodChip")));
-    ok("Aparece en la cadena: En producción", /Best-Reviewed/.test(await txt(page, "#board .lane:nth-child(2)")));
+    ok("Aparece en la cadena: En producción", /Tied the Best Score/.test(await txt(page, "#board .lane:nth-child(2)")));
     await page.evaluate(id => window.__claudeActualiza(id, { estado: "en marcha", paso: 3 }), id);
     await page.waitForTimeout(150);
     ok("Lee el paso que anota Claude (3/8)", /paso 3\/8/.test(await txt(page, "#prodChip")));
@@ -115,14 +116,15 @@ const txt = (page, sel) => page.textContent(sel);
       shorts: [{ titulo: "GTA 6's Map Is Real Florida… Except ONE Place", vistas: 1200, cambio: 100 }], serie: [{ ts: Date.now() - 864e5, total: 328 }, { ts: Date.now(), total: 1660 }] }));
     await page.evaluate(() => window.__claudeEstado("estado/equipo", { ts: Date.now(), media: 9.7, notas: { nil: "15/15" },
       shorts: [{ carpeta: "04-florida-real", titulo: "GTA 6's Map Is Real Florida… Except ONE Place", nota: 9.4, apto: true }, { carpeta: "05-crime-bosses", titulo: "3 GTA 6 Crime Bosses in 30 Seconds", nota: 10, apto: true }] }));
-    await page.evaluate(() => window.__claudeEstado("estado/investigacion", { ts: Date.now(), resumen: "GTA 6 sale hoy", ideas: [{ titulo: "Idea nueva verificada", recomendada: true, porque: "noticia" }, { titulo: "Otra idea" }] }));
+    await page.evaluate(() => window.__claudeEstado("estado/investigacion", { ts: Date.now(), resumen: "GTA 6 sale hoy", ideas: [{ titulo: "Idea nueva verificada", es: "Idea nueva en español", recomendada: true, porque: "noticia" }, { titulo: "Otra idea" }] }));
     await page.waitForTimeout(150);
     ok("Indicadores: suscriptores y visualizaciones", (await txt(page, "#kSubs")) === "12" && /1\.660|1660/.test(await txt(page, "#kViews")) && /\+100/.test(await txt(page, "#kViewsC")));
     ok("Indicadores: nota media del examen", /9,7\/10/.test(await txt(page, "#kNota")));
     ok("Gráfico del canal dibujado", (await page.$$eval("#spark polyline", e => e.length)) === 1);
     ok("Cadena: publicados y listos para subir sin duplicar", /Florida/.test(await txt(page, "#board .lane:nth-child(4)")) && /Crime Bosses/.test(await txt(page, "#board .lane:nth-child(3)")) && !/Florida/.test(await txt(page, "#board .lane:nth-child(3)")));
     ok("La nota del equipo llega a la plantilla", /15\/15/.test(await page.$eval('#depts .worker[data-id="nil"]', e => e.textContent)));
-    ok("Las ideas se actualizan solas", (await page.$$eval("#ideas .idea", e => e.map(x => x.textContent))).join("|") === "Idea nueva verificada|Otra idea");
+    ok("Las ideas se actualizan solas", (await page.$$eval("#ideas .idea .en", e => e.map(x => x.textContent))).join("|") === "Idea nueva verificada|Otra idea");
+    ok("La investigación trae la traducción al español", /Idea nueva en español/.test(await txt(page, "#ideas")) && /Idea nueva en español/.test(await txt(page, "#invIdeas")));
     ok("Marca las ideas para producir hoy", /producir hoy/.test(await txt(page, "#invIdeas")));
 
     // Piloto automático
