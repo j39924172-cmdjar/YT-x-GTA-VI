@@ -30,6 +30,7 @@ Al recibir el encargo, contesta en el hilo del comentario (ArtifactComments `rep
 
 ## [PASO 3/8] Visuales (Nil)
 - Elige en `docs/catalogo-imagenes.md` las capturas oficiales que DEMUESTRAN cada dato (lee la descripción de Rockstar).
+- **Clips de vídeo oficiales** (desde el 19/11): `docs/catalogo-videos.md` lista los planos de los tráileres que Rockstar publica para descargar (Launch Trailer, Pre-Load). Si no están en `videos/oficiales/`, `python shorts/clips.py descargar`. En `plan.json` una escena puede ser `{"video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4", "inicio": 47.1, "desde": …, "hasta": …, "foco": [x, y]}`. Reglas: planos de 1-3,5 s que no pasen del final de su plano, nunca los marcados ❌ (logo oficial, club, arma a cámara, muy oscuros), ni cinemáticas enteras ni spoilers; con vídeo, la fuente es "Footage: Rockstar Games". Lo ideal: mezclar clips (movimiento) con capturas (datos con flecha).
 - Descárgalas: `python shorts/herramientas.py descargar shorts/NN-x Grupo_NN Grupo_NN …`.
 - Haz una hoja de contacto (`python shorts/herramientas.py hoja shorts/NN-x/capturas`) y mírala con Read para decidir encuadres (foco x, y entre 0 y 1) y a qué apuntan las flechas rojas.
 - Evita los clubes, los desnudos, las armas apuntando a cámara y los animales muertos en el primer segundo. Nada de fondos genéricos ni vídeo IA sin dato.

@@ -120,7 +120,15 @@ class Examen:
         malas = [w for w in RUMOR if re.search(rf"\b{w}\b", voz_l)]
         self.r("nobita", not malas, "La voz no da rumores como hechos", ", ".join(malas))
         self.r("nobita", AVISO in self.desc, "Aviso de canal no oficial en la descripción")
-        imgs = [e["img"] for e in self.plan.get("escenas", [])]
+        imgs = [e.get("img") or f"{e.get('video')}@{e.get('inicio')}" for e in self.plan.get("escenas", [])]
+        clips = [e for e in self.plan.get("escenas", []) if e.get("video")]
+        if clips:
+            vcat = json.loads((RAIZ / "docs" / "catalogo-videos.json").read_text()) if (RAIZ / "docs" / "catalogo-videos.json").exists() else []
+            malos = [c["id"] for c in vcat if c["evitar"] and any(Path(e["video"]).stem == c["video"] and c["inicio"] - 0.2 <= e.get("inicio", 0) <= c["fin"] for e in clips)]
+            self.r("nobita", not malos, "Ningún plano prohibido (logo oficial, club, arma a cámara…)", ", ".join(malos))
+            self.r("nobita", "footage" in self.plan.get("fuente", "").lower(), "Crédito \"Footage: Rockstar Games\" en pantalla", self.plan.get("fuente", ""))
+            largos = [round(e["hasta"] - e["desde"], 1) for e in clips if e["hasta"] - e["desde"] > 3.5 and e["hasta"] < 90]
+            self.r("nobita", not largos, "Planos de vídeo cortos (≤ 3,5 s): nada de escenas enteras", str(largos))
         self.r("nobita", not any("Vice_City_07" in i for i in imgs), "No usa Vice_City_07")
         self.r("nobita", "logo" not in json.dumps(self.plan).lower(), "Sin logo oficial de GTA VI")
 

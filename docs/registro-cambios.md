@@ -115,3 +115,11 @@
 - Verificación: las primeras búsquedas devolvían páginas anteriores a las críticas ("sin nota"); se descartaron y se confirmó el 99 con GameDaily, Vice, Bloomberg y otros.
 - **Nueva tarea "Preproducción continua (sin esperar órdenes)"** 5 veces al día: mantiene hasta 4 Shorts preparados, actualiza la agenda y la actividad. No gasta créditos.
 - **Oficina:** los 12 están siempre trabajando en su tarea real (`estado/agenda`). Su monitor y una **pantalla ampliada** junto a la cámara enseñan el contenido real escribiéndose (guion, títulos, fuentes con ✓, capturas, plan de montaje, ficha, números del canal). 53 pruebas automáticas.
+
+## 19/11/2026 — Material oficial nuevo: clips de vídeo y 90 imágenes
+- **Vídeos oficiales** que Rockstar publica para descargar en rockstargames.com/VI: Launch Trailer (89 s, 4K), Pre-Load Now (29 s) y Official Cover Art (33 s). `python shorts/clips.py descargar` los baja a `videos/oficiales/` (fuera de git). An Extended Look (14 GB) no cabe: pendiente.
+- **Biblioteca de planos** `docs/catalogo-videos.md/.json`: 45 planos detectados automáticamente, 26 utilizables; 19 marcados ❌ (logo oficial de GTA VI o de Rockstar, clubes, ducha, arma a cámara, planos negros o muy oscuros).
+- **Plantilla de montaje** `shorts/montaje.py`: nueva escena de vídeo (`"video"` + `"inicio"`), recorte vertical 9:16 alrededor del foco con empuje suave. Probada: 13 s en 1 minuto.
+- **Examen**: 3 pruebas nuevas cuando hay vídeo (sin planos prohibidos, crédito "Footage: Rockstar Games", planos ≤ 3,5 s).
+- **Catálogo de imágenes**: +90 oficiales tras el lanzamiento (personajes, Ultimate Edition, fondos en vertical *_phone/*_portrait*). Total 176.
+- Política de Rockstar: permite usar su material en vídeos de fans "no comerciales" y se reserva retirarlo; se mantiene el crédito y el aviso de canal no oficial. No se usan clips de otros creadores ni filtraciones.

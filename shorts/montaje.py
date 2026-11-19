@@ -164,6 +164,70 @@ class Escena:
         return (px * self.im.width - x) * W / cw, (py * self.im.height - y) * H / ch
 
 
+class EscenaVideo:
+    """Escena con un plano de un vídeo oficial: {"video": ruta, "inicio": s, "foco": [x, y], "zoom": [a, b]}.
+    Recorta en vertical 9:16 alrededor del foco y hace un empuje suave (zoom de a a b). Lee los fotogramas en orden."""
+
+    def __init__(self, cfg: dict, base: Path):
+        self.cfg, self.t0, self.t1 = cfg, cfg["desde"], cfg["hasta"]
+        self.ruta = (base / cfg["video"]).resolve()
+        self.f0 = cfg.get("foco", [0.5, 0.5])
+        self.f1 = cfg.get("foco_fin", self.f0)
+        self.z0, self.z1 = cfg.get("zoom", [1.0, 1.06])
+        info = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height",
+                               "-of", "csv=p=0", str(self.ruta)], capture_output=True, text=True).stdout.strip().split(",")
+        self.vw, self.vh = int(info[0]), int(info[1])
+        self.proc, self.idx, self.ultimo = None, -1, None
+        self.alto = 1920   # el vídeo se decodifica a 1920 de alto y se recorta aquí
+
+    def _abrir(self):
+        dur = self.t1 - self.t0 + 1.0
+        self.sw = int(self.vw * self.alto / self.vh) // 2 * 2
+        self.proc = subprocess.Popen(["ffmpeg", "-v", "error", "-ss", f"{self.cfg.get('inicio', 0):.3f}", "-i", str(self.ruta), "-t", f"{dur:.3f}",
+                                      "-vf", f"scale={self.sw}:{self.alto},fps={FPS}", "-f", "rawvideo", "-pix_fmt", "rgb24", "-"],
+                                     stdout=subprocess.PIPE)
+
+    def ventana(self, t: float):
+        k = min(max((t - self.t0) / max(self.t1 - self.t0, 0.01), 0), 1)
+        z = self.z0 + (self.z1 - self.z0) * k
+        fx = self.f0[0] + (self.f1[0] - self.f0[0]) * k
+        fy = self.f0[1] + (self.f1[1] - self.f0[1]) * k
+        sw = int(self.vw * self.alto / self.vh)
+        ch = self.alto / z
+        cw = ch * W / H
+        x = min(max(fx * sw - cw / 2, 0), sw - cw)
+        y = min(max(fy * self.alto - ch / 2, 0), self.alto - ch)
+        return x, y, cw, ch, sw
+
+    def render(self, t: float) -> Image.Image:
+        if self.proc is None:
+            self._abrir()
+        objetivo = int((t - self.t0) * FPS)
+        tam = self.sw * self.alto * 3
+        while self.idx < objetivo:
+            buf = self.proc.stdout.read(tam)
+            if len(buf) < tam:
+                break
+            self.ultimo = Image.frombytes("RGB", (self.sw, self.alto), buf)
+            self.idx += 1
+        if self.ultimo is None:
+            self.ultimo = Image.new("RGB", (self.sw, self.alto), "black")
+        x, y, cw, ch, _ = self.ventana(t)
+        return self.ultimo.resize((W, H), Image.BILINEAR, box=(x, y, x + cw, y + ch)).convert("RGBA")
+
+    def a_pantalla(self, t: float, px: float, py: float):
+        x, y, cw, ch, sw = self.ventana(t)
+        return (px * sw - x) * W / cw, (py * self.alto - y) * H / ch
+
+    def cerrar(self):
+        if self.proc:
+            self.proc.kill()
+
+
+def nueva_escena(cfg: dict, base: Path):
+    return EscenaVideo(cfg, base) if "video" in cfg else Escena(cfg, base)
+
+
 # ------------------------------------------------------------------ capas
 def capa_titulo(fr, c, t):
     k = ease_back((t - c["desde"]) / 0.35)
@@ -402,7 +466,7 @@ def montar(plan_path: str) -> Path:
     voz = base / plan["voz"]
     dur_voz = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(voz)], capture_output=True, text=True).stdout)
     dur = plan.get("duracion") or round(dur_voz + 0.8, 2)
-    escenas = [Escena(e, base) for e in plan["escenas"]]
+    escenas = [nueva_escena(e, base) for e in plan["escenas"]]
     for c in plan.get("capas", []):           # la comparativa lleva su propia foto con Ken Burns
         if c["tipo"] == "comparativa":
             c["_escena"] = Escena({"img": c["img"], "desde": c["desde"], "hasta": c["hasta"], "foco": c.get("foco", [0.5, 0.5]),
@@ -432,6 +496,9 @@ def montar(plan_path: str) -> Path:
         if fi % 90 == 0:
             print(f"  fotograma {fi}/{total}", flush=True)
     ff.stdin.close(); ff.wait()
+    for e in escenas:
+        if hasattr(e, "cerrar"):
+            e.cerrar()
 
     musica = base / "ritmo.wav"
     ritmo(dur, plan.get("musica", {}).get("bpm", 128), musica)

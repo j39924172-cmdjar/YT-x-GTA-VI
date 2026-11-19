@@ -14,7 +14,7 @@ o algo no se puede aplicar, avisa a Antonio ANTES de cambiarlo.
 ## Sistema de producción de un Short (sección 4 del documento maestro)
 1. Guion en inglés, 25–35 s: **gancho → 3 datos verificados → CTA "Follow for more GTA 6 secrets"**. Cada dato con fuente; nada inventado; los rumores no se dan como hechos.
 2. Voz: Dylan en Higgsfield.
-3. Visuales: capturas oficiales 4K `https://www.videogameschronicle.com/files/2025/05/<Nombre>_NN.jpg`. Evitar `Vice_City_07`.
+3. Visuales: clips de los tráileres oficiales de Rockstar (`docs/catalogo-videos.md`, `shorts/clips.py`) y capturas oficiales 4K `https://www.videogameschronicle.com/files/2025/05/<Nombre>_NN.jpg`. Evitar `Vice_City_07`.
 4. Montaje 1080×1920 a 30 fps: Ken Burns con cambio cada ~2,2 s, degradados, tarjetas animadas ("FACT n/3", pastillas rosa/amarillo, flechas rojas), subtítulos palabra a palabra (faster-whisper), destello blanco en cada corte, marca arriba a la derecha, ritmo electrónico con sidechain y loudnorm −14 LUFS. Plantilla: `shorts/montaje.py`.
 5. Publicación: título con curiosidad; descripción con datos, fuente, aviso no oficial y #GTA6 #GTAVI #Shorts; comentario fijado con pregunta; "Contenido alterado: No"; "Hecho para niños: No".
 

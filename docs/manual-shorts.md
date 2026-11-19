@@ -63,7 +63,9 @@ Con solo 3 Shorts esto son pistas, no leyes. Taison actualiza esta tabla cada se
 - Etiquetas cortas (2-4 palabras) en 5 escenas o más: refuerzan el dato para quien ve sin sonido.
 - La primera imagen es potente y apta: nada de clubes, desnudos, muertos o armas apuntando a cámara.
 
-**Nunca**: fondos genéricos o vídeo IA sin dato; Vice_City_07; flechas que apuntan al vacío o tapan caras; el logo oficial de GTA VI.
+- Desde el lanzamiento usa también **clips de los tráileres oficiales** (`docs/catalogo-videos.md`): el movimiento real retiene más que una foto. Planos de 1-3,5 s, alternados con capturas que demuestran el dato.
+
+**Nunca**: fondos genéricos o vídeo IA sin dato; Vice_City_07; flechas que apuntan al vacío o tapan caras; el logo oficial de GTA VI. Ni clips de otros creadores ni grabaciones que circulan por redes: no son nuestros.
 **Examen**: 8+ capturas, sin repetir más de 2 veces, 2+ flechas, etiquetas en 5+ escenas, primera imagen apta.
 
 ## 5. El Chapo · Guion (La Fábrica de Guiones)
