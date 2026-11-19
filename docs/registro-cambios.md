@@ -146,3 +146,4 @@
 - Decisión de Adam: no quiere en los Shorts la línea pequeña de abajo ("Footage: Rockstar Games · Tips: …"). `shorts/montaje.py` ya no la pinta (solo con `"mostrar_fuente": true`). Las fuentes, el crédito de Rockstar y el aviso de canal no oficial siguen en la descripción.
 - Nota para la otra sesión: el documento maestro hablaba de "fuente en pantalla" (sección 3); manda la decisión de Adam. CLAUDE.md, manual, procedimiento y examen actualizados (el examen ahora exige pantalla limpia y el crédito en la descripción).
 - Re-montados sin la línea: Short 08 y Short 05 (las dos voces). Los 03 y 04 ya estaban subidos.
+- 19/11 18:53 · Preproducción continua: ya hay 4 preproducidos (06, 07, 09, 10), no se preparan más. Repaso: datos vigentes; la nota del 06 se vuelve a comprobar justo antes de producir (las búsquedas mezclan páginas previas al lanzamiento).
