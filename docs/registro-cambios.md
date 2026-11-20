@@ -180,3 +180,9 @@
 - Primer bulo detectado: "Rockstar pide perdón y saca un parche el 25 de noviembre" (nota de la comunidad lo desmiente). No usar.
 - Vídeo oficial nuevo en YouTube: "Grand Theft Auto VI Now Available" (19/11); la investigación de mañana lo añade al catálogo de clips.
 - Regla reforzada (Adam): las fuentes, también X y YouTube, van SOLO en la descripción, nunca en pantalla.
+
+## 20/11/2026 — Ideas virales, canales que explotan y «Lo que hemos hablado»
+- `shorts/espia.py` + `docs/referentes.json`: estudia canales de referencia (mediana, Shorts que explotan ×N, formato detectado). Referentes que pasó Adam: @COLETHEMANGTA6 y @GTASixers_Info.
+- Oficina: 💥 Ideas virales (`estado/virales`, botón «🎬 Producir esta»), 🕵️ Canales que explotan (`estado/referentes`, botón «Que lo estudie el equipo» → comentario "Estudiar referente — <url>") y 🗒️ Lo que hemos hablado (`estado/charla`).
+- 6 ideas virales nuevas (31-36 del banco), 5 con datos verificados. Recomendada hoy: «5 Things in GTA 6 That Are TOO Real» (🔥 10).
+- Regla nueva en CLAUDE.md: todo lo hablado con Adam en el chat va siempre a `estado/charla`.

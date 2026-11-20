@@ -215,6 +215,36 @@
   .meta-row .lab b { color: var(--ink); font-weight: 600; font-family: var(--font-mono); }
   .pbar { height: 8px; border-radius: 4px; background: var(--surface-2); overflow: hidden; }
   .pbar i { display: block; height: 100%; background: linear-gradient(90deg, var(--violet), var(--pink)); min-width: 2px; }
+  .virales-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+  .vcard { border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: grid; gap: 6px; background: var(--surface-2); align-content: start; }
+  .vcard .fmt { font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--pink); }
+  .vcard .tt { font-weight: 700; font-size: 15px; line-height: 1.25; }
+  .vcard .es { color: var(--muted); font-size: 12.5px; }
+  .vcard .gancho { font-size: 12.5px; border-left: 3px solid var(--violet); padding-left: 8px; }
+  .vcard .ref { font-size: 12px; color: var(--sun); }
+  .vcard .d { font-size: 12px; color: var(--muted); }
+  .vcard .pie { display: flex; gap: 8px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-top: 4px; }
+  .vcard button { padding: 6px 10px; font-size: 12.5px; }
+  .refs { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+  .refc { border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: grid; gap: 8px; align-content: start; }
+  .refc h3 { margin: 0; font-size: 14px; display: flex; justify-content: space-between; gap: 8px; }
+  .refc h3 a { color: var(--ink); text-decoration: none; }
+  .refc .sub { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); }
+  .refc .nota { font-size: 12.5px; color: var(--muted); }
+  .refc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; }
+  .refc li { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 8px; font-size: 12.5px; align-items: baseline; }
+  .refc .x { font-family: var(--font-mono); color: var(--ok); text-align: right; font-size: 12px; }
+  .refc .x.big { color: var(--pink); font-weight: 700; }
+  .refc li a { color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+  .refc li small { color: var(--muted); display: block; font-size: 11.5px; }
+  .fmt-rank { display: flex; flex-wrap: wrap; gap: 6px; }
+  .addref { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .addref input { flex: 1 1 240px; min-width: 0; }
+  .charla { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .charla li { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 10px; font-size: 13px; align-items: baseline; }
+  .charla .f { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); }
+  .charla .k { font-size: 11px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .04em; margin-right: 6px; }
+  .charla .k.decision { color: var(--ok); } .charla .k.idea { color: var(--pink); } .charla .k.regla { color: var(--sun); } .charla .k.pendiente { color: var(--lilac); }
   .fuentes-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); align-items: start; }
   @media (max-width: 900px) { .fuentes-grid { grid-template-columns: minmax(0, 1fr); } }
   .xlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 12.5px; }
@@ -294,6 +324,12 @@
         </div>
       </section>
 
+      <section class="panel" id="ideasVirales" aria-labelledby="hVirales">
+        <div class="ph"><h2 id="hVirales">💥 Ideas virales del equipo</h2><span class="chip" id="viralesChip">sin ideas todavía</span></div>
+        <p class="note" id="viralesResumen">El equipo estudia los canales que explotan y te propone ideas con datos verificados.</p>
+        <div class="virales-list" id="viralesList"></div>
+      </section>
+
       <section class="panel" aria-labelledby="hPlantilla">
         <div class="ph"><h2 id="hPlantilla">Plantilla</h2><span class="chip" id="plantillaChip">12 personas</span></div>
         <p class="note">Toca a una persona para ver qué hace, lo que domina y su nota en el examen.</p>
@@ -317,6 +353,17 @@
           <div class="field"><span>𝕏 X (Twitter) · lo que se publica</span><ol class="xlist" id="xList"></ol></div>
         </div>
         <p class="note">La nota 🔥 de cada título (0-10) mide cuánto se ven los Shorts de ese tema. Sirve para elegir, nunca para copiar. En X, solo las cuentas oficiales (✅) cuentan como fuente; lo demás es rumor hasta que lo confirmen 2 medios. Las fuentes van solo en la descripción, nunca en el vídeo.</p>
+      </section>
+
+      <section class="panel" id="referentes" aria-labelledby="hRef">
+        <div class="ph"><h2 id="hRef">🕵️ Canales que explotan</h2><span class="chip" id="refChip">sin datos todavía</span></div>
+        <div class="field"><span>Formatos que más superan la media de su canal</span><div class="fmt-rank" id="fmtRank"></div></div>
+        <div class="refs" id="refsList"></div>
+        <div class="addref">
+          <input id="refUrl" type="url" inputmode="url" maxlength="200" placeholder="Pega un Short o un canal que te guste (youtube.com/…)">
+          <button class="ghost" id="refBtn" type="button">🕵️ Que lo estudie el equipo</button>
+        </div>
+        <p class="note" id="refNote">Solo para aprender qué formato funciona. Nunca copiamos títulos, guiones ni imágenes de otros canales.</p>
       </section>
 
       <section class="panel" id="canal" aria-labelledby="hCanal">
@@ -366,6 +413,12 @@
       <section class="panel" aria-labelledby="hAct">
         <div class="ph"><h2 id="hAct">Actividad</h2><span class="chip" id="actChip">en directo</span></div>
         <ul class="feed" id="feed"></ul>
+      </section>
+
+      <section class="panel" id="charla" aria-labelledby="hCharla">
+        <div class="ph"><h2 id="hCharla">🗒️ Lo que hemos hablado</h2><span class="chip" id="charlaChip">—</span></div>
+        <p class="note">Todo lo que Adam decide o pide en el chat con Claude queda apuntado aquí.</p>
+        <ul class="charla" id="charlaList"></ul>
       </section>
 
       <section class="panel" id="investigacion" aria-labelledby="hInv">
@@ -526,7 +579,7 @@
 
   // ================================================================ 3. ESTADO (base de datos de la página)
   let encargos = [], actividad = [];
-  const ESTADO = { inv: null, can: null, equipo: null, agenda: null, tendencias: null, publicar: null };
+  const ESTADO = { inv: null, can: null, equipo: null, agenda: null, tendencias: null, publicar: null, virales: null, referentes: null, charla: null };
   let subidos = {}, opiniones = [];
   const ACTIVOS = ["enviado", "en marcha"];
   const actual = () => encargos.find(e => ACTIVOS.includes(e.estado));
@@ -724,7 +777,7 @@
         /^https:\/\/(x|twitter)\.com\//.test(p.url || "") ? h("a", { href: p.url, target: "_blank", rel: "noopener" }, p.texto) : h("span", {}, p.texto),
         p.nota ? h("span", { class: "xn" }, p.nota) : null);
     }) : [h("li", { class: "muted" }, "Jarvis busca en X en la próxima investigación.")]));
-    renderIdeas(); renderBoard(); renderInvestigacion();
+    renderIdeas(); renderBoard(); renderInvestigacion(); renderVirales();
   }
   function renderMeta() {
     const c = ESTADO.can;
@@ -851,6 +904,47 @@
     $("loteBtn").hidden = !prep.length;
     $("loteBtn").textContent = `⚡ Producir los ${prep.length} preparados de una vez`;
   }
+  const fmtVistas = v => v >= 1e6 ? (v / 1e6).toFixed(1).replace(".", ",") + " M" : v >= 1e3 ? Math.round(v / 1e3) + " mil" : String(v || 0);
+  const ytOk = u => /^https:\/\/(www\.)?youtube\.com\//.test(u || "");
+  function renderVirales() {
+    const v = ESTADO.virales;
+    const ideas = v && Array.isArray(v.ideas) ? v.ideas.filter(i => i && i.titulo) : [];
+    $("viralesChip").textContent = ideas.length ? `${ideas.length} ideas · ${fmtHora(v.ts)}` : "sin ideas todavía";
+    if (v && v.resumen) $("viralesResumen").textContent = v.resumen;
+    $("viralesList").replaceChildren(...(ideas.length ? ideas.map(i => h("article", { class: "vcard" },
+      h("span", { class: "fmt" }, i.formato || "idea"),
+      h("span", { class: "tt" }, i.titulo, " ", fuego(i.titulo)),
+      i.es ? h("span", { class: "es" }, i.es) : null,
+      i.gancho ? h("span", { class: "gancho" }, "🎣 " + i.gancho) : null,
+      i.referencia ? h("span", { class: "ref" }, "📈 " + i.referencia) : null,
+      i.porque ? h("span", { class: "d" }, i.porque) : null,
+      i.comentario ? h("span", { class: "d" }, "📌 Comentario fijado: " + i.comentario) : null,
+      h("div", { class: "pie" },
+        h("span", { class: "chip " + (i.verificado === "✅" ? "ok" : "sun") }, i.verificado === "✅" ? "✅ datos verificados" : "🟡 " + (i.verificado || "por verificar")),
+        h("button", { class: "go", type: "button", onclick: () => { $("titulo").value = i.titulo; $("nuevo").scrollIntoView({ behavior: "smooth", block: "start" }); $("titulo").focus({ preventScroll: true }); } }, "🎬 Producir esta")))) :
+      [h("p", { class: "muted" }, "Las ideas virales aparecen aquí en cuanto el equipo las prepare.")]));
+  }
+  function renderReferentes() {
+    const r = ESTADO.referentes;
+    if (!r) return;
+    $("refChip").textContent = `${(r.canales || []).length} canales · ${fmtHora(r.ts)}`;
+    $("fmtRank").replaceChildren(...(r.formatos || []).filter(f => f.formato !== "Otro").slice(0, 8).map(f => h("span", { class: "chip" }, `${f.formato} ×${String(f.veces).replace(".", ",")}`)));
+    $("refsList").replaceChildren(...(r.canales || []).map(c => h("div", { class: "refc" },
+      h("h3", {}, ytOk(c.url) ? h("a", { href: c.url, target: "_blank", rel: "noopener" }, c.canal) : h("span", {}, c.canal), h("span", { class: "sub" }, `${c.suscriptores} subs`)),
+      h("span", { class: "sub" }, `${c.n} Shorts · lo normal: ${fmtVistas(c.mediana)}`),
+      c.nota ? h("span", { class: "nota" }, c.nota) : null,
+      h("ol", {}, ...(c.shorts || []).slice(0, 5).map(s => h("li", {},
+        h("span", { class: "x" + (s.veces >= 5 ? " big" : "") }, "×" + String(s.veces).replace(".", ",")),
+        h("span", {}, ytOk(s.url) ? h("a", { href: s.url, target: "_blank", rel: "noopener" }, s.titulo) : s.titulo, h("small", {}, `${fmtVistas(s.vistas)} · ${s.formato}`))))))));
+  }
+  function renderCharla() {
+    const c = ESTADO.charla;
+    const items = c && Array.isArray(c.items) ? c.items.filter(i => i && i.texto) : [];
+    $("charlaChip").textContent = items.length ? `${items.length} apuntes · ${fmtHora(c.ts)}` : "—";
+    $("charlaList").replaceChildren(...(items.length ? items.slice(0, 30).map(i => h("li", {},
+      h("span", { class: "f" }, i.fecha || ""),
+      h("span", {}, i.tipo ? h("span", { class: "k " + i.tipo }, i.tipo) : null, i.texto))) : [h("li", { class: "muted" }, "Todavía no hay nada apuntado.")]));
+  }
   function mostrarAlternativa(t, motivo) {
     $("fallback").hidden = false;
     const voz = document.querySelector('input[name="voz"]:checked')?.value || "fenrir";
@@ -885,6 +979,21 @@
       for (const r of refs) { try { await r.update({ estado: "no enviado", nota: "no llegó al equipo" }); } catch {} }
       mostrarAlternativa(prep.map(i => i.titulo).join(" | "), (MOTIVO[e?.code] || "No se pudo enviar el lote.") + " No se ha encargado nada.");
     } finally { btn.disabled = false; renderIdeas(); }
+  };
+  $("refBtn").onclick = async () => {
+    const u = $("refUrl").value.trim();
+    const note = $("refNote");
+    if (!/^(https?:\/\/)?(www\.|m\.)?(youtube\.com|youtu\.be)\//i.test(u)) { note.textContent = "Pega un enlace de YouTube (un Short o un canal)."; note.className = "note warn"; return; }
+    if (!comments) { note.textContent = "Abre la oficina dentro de Claude, o pega el enlace en el chat."; note.className = "note warn"; return; }
+    $("refBtn").disabled = true;
+    try {
+      const anchor = await comments.anchorFor($("referentes"));
+      await comments.sendToClaude({ anchor, text: `Estudiar referente — ${u.slice(0, 200)}` });
+      $("refUrl").value = "";
+      note.textContent = "Enviado. El equipo lo estudia y lo añade aquí con sus formatos e ideas nuevas."; note.className = "note";
+    } catch (e) {
+      note.textContent = (MOTIVO[e?.code] || "No se pudo enviar.") + " Pega el enlace en el chat con Claude."; note.className = "note warn";
+    } finally { $("refBtn").disabled = false; }
   };
   goBtn.onclick = async () => {
     const t = titulo.value.trim().replace(/\s+/g, " ").slice(0, 160);
@@ -1295,6 +1404,9 @@
       db.doc("estado/canal").onSnapshot(d => { ESTADO.can = d.exists ? d.data() : null; renderCanal(); renderBoard(); tick(); }, () => {});
       db.doc("estado/investigacion").onSnapshot(d => { ESTADO.inv = d.exists ? d.data() : null; renderInvestigacion(); tick(); }, () => {});
       db.doc("estado/tendencias").onSnapshot(d => { ESTADO.tendencias = d.exists ? d.data() : null; renderRadar(); }, () => {});
+      db.doc("estado/virales").onSnapshot(d => { ESTADO.virales = d.exists ? d.data() : null; renderVirales(); }, () => {});
+      db.doc("estado/referentes").onSnapshot(d => { ESTADO.referentes = d.exists ? d.data() : null; renderReferentes(); }, () => {});
+      db.doc("estado/charla").onSnapshot(d => { ESTADO.charla = d.exists ? d.data() : null; renderCharla(); }, () => {});
       db.doc("estado/publicar").onSnapshot(d => { ESTADO.publicar = d.exists ? d.data() : null; renderSubir(); }, () => {});
       db.collection("subidos").limit(100).onSnapshot(snap => { subidos = Object.fromEntries(snap.docs.map(d => [d.id, d.data()])); renderSubir(); }, () => {});
       db.collection("opiniones").limit(200).onSnapshot(snap => { opiniones = snap.docs.map(d => ({ id: d.id, ...d.data() })); renderSubir(); }, () => {});

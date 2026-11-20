@@ -183,6 +183,29 @@ const txt = (page, sel) => page.textContent(sel);
     const lote = await page.evaluate(() => window.__sent[0].text);
     const encs = await page.evaluate(() => Object.values(window.__cols.encargos));
     ok("Lote: un solo mensaje con los 2 títulos y sus encargos", /Producir lote — 2 Shorts/.test(lote) && /1\. TÍTULO: Press Both Sticks/.test(lote) && /2\. TÍTULO: GTA 6 Needs 212 GB/.test(lote) && encs.length === 2 && encs.every(e => e.estado === "enviado" && e.lote));
+    await page.evaluate(() => {
+      window.__claudeEstado("estado/virales", { ts: Date.now(), resumen: "Ideas sacadas de los canales que explotan", ideas: [
+        { titulo: "How The Wanted System Works In GTA 6", es: "Cómo funciona la policía", formato: "Cómo funciona", gancho: "The cops in GTA 6 need a witness.", referencia: "@COLETHEMANGTA6 · 1,9 M", verificado: "✅", comentario: "Did you know? 👇" },
+        { titulo: "5 Things GTA 6 Does That GTA 5 Never Could", formato: "GTA 6 contra GTA 5", verificado: "3 de 5 confirmados" }] });
+      window.__claudeEstado("estado/referentes", { ts: Date.now(), formatos: [{ formato: "Gran pregunta", veces: 18.8, n: 3 }, { formato: "Otro", veces: 1, n: 2 }],
+        canales: [{ canal: "@GTASixers_Info", url: "https://www.youtube.com/@GTASixers_Info", suscriptores: "274", n: 15, mediana: 1500, nota: "Pequeño",
+          shorts: [{ titulo: "Will GTA 6 Be the LAST GTA Ever?", vistas: 82000, veces: 54.7, formato: "Gran pregunta", url: "https://www.youtube.com/shorts/0s0t75IKQK8" }] }] });
+      window.__claudeEstado("estado/charla", { ts: Date.now(), items: [{ fecha: "20/11", tipo: "decision", texto: "Solo YouTube" }, { fecha: "20/11", tipo: "regla", texto: "Fuentes nunca en pantalla" }] });
+    });
+    await page.waitForTimeout(150);
+    ok("Ideas virales: tarjetas con formato, gancho, referencia y verificación", (await page.$$("#viralesList .vcard")).length === 2 && /Cómo funciona/i.test(await txt(page, "#viralesList")) && /1,9 M/.test(await txt(page, "#viralesList")) && /✅ datos verificados/.test(await txt(page, "#viralesList")) && /🟡 3 de 5/.test(await txt(page, "#viralesList")));
+    await page.click("#viralesList .vcard >> nth=0 >> text=🎬 Producir esta");
+    ok("Ideas virales: «Producir esta» rellena el título", (await page.inputValue("#titulo")) === "How The Wanted System Works In GTA 6");
+    ok("Canales que explotan: ×N, mediana y ranking sin «Otro»", /×54,7/.test(await txt(page, "#refsList")) && /1500|1,5 mil|2 mil/.test(await txt(page, "#refsList")) && /Gran pregunta ×18,8/.test(await txt(page, "#fmtRank")) && !/Otro/.test(await txt(page, "#fmtRank")));
+    ok("Lo que hemos hablado: apuntes con su tipo", /Solo YouTube/.test(await txt(page, "#charlaList")) && (await page.$$("#charlaList li")).length === 2);
+    const antes = await page.evaluate(() => window.__sent.length);
+    await page.fill("#refUrl", "nada");
+    await page.click("#refBtn");
+    ok("Estudiar referente: rechaza lo que no es YouTube", /Pega un enlace de YouTube/.test(await txt(page, "#refNote")) && (await page.evaluate(() => window.__sent.length)) === antes);
+    await page.fill("#refUrl", "https://youtube.com/shorts/EdwRiJxY4bw");
+    await page.click("#refBtn");
+    await page.waitForFunction(n => window.__sent.length === n + 1, antes);
+    ok("Estudiar referente: envía el enlace al equipo", /Estudiar referente — https:\/\/youtube\.com\/shorts\/EdwRiJxY4bw/.test(await page.evaluate(() => window.__sent[window.__sent.length - 1].text)));
     ok("Funciones nuevas: sin errores", !errors.length, errors.join(" | "));
     await page.screenshot({ path: path.join(SHOTS, "oficina_v3.png"), fullPage: true });
     await ctx.close();

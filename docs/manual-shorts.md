@@ -25,6 +25,17 @@ Con solo 3 Shorts esto son pistas, no leyes. **Desde el lanzamiento (19/11), ade
    - **YouTube:** canal oficial de Rockstar (vídeos nuevos → clips con `shorts/clips.py`) y vídeos de GTA 6 más vistos de la semana (temas que interesan; nunca copiar ni usar sus imágenes).
    - **Las fuentes (también X y YouTube) van SOLO en la descripción del Short, NUNCA en pantalla** (decisión de Adam). El examen suspende el Short si aparece la línea de fuentes en el vídeo.
 
+## Formatos ganadores de canales que explotan (20/11/2026)
+Referentes en `docs/referentes.json` y en la oficina (🕵️ Canales que explotan). Se estudian, NUNCA se copian.
+| Formato | Ejemplo de referencia | Cómo lo hacemos nosotros |
+|---|---|---|
+| **Cómo funciona** («How X Works in GTA 6») | @COLETHEMANGTA6, policía: 1,9 M | Una mecánica explicada en 3 datos verificados, serie «How It Works #N» |
+| **Lista de 5 realista** | @COLETHEMANGTA6, «5 Realistic Things»: 1,6 M y unos 15 mil comentarios | 5 cosas de la Florida real (investigación del Short 04); comentario fijado «1-5 👇» |
+| **GTA 6 contra GTA 5** | @COLETHEMANGTA6: 4,6 M | 5 cosas confirmadas que GTA 5 no tenía |
+| **Gran pregunta** | @GTASixers_Info, «Will GTA 6 Be the LAST GTA Ever?»: ×55 su media | Pregunta que divide + 3 datos; comentario fijado «Yes or no? 👇» |
+| **Secreto del mapa / momento espectacular** | @GTASixers_Info, caza robado: ×25 | Con clips oficiales y datos de 2 medios (no grabamos partidas) |
+Reglas de título que repiten: corto, dice lo que vas a ver, UNA palabra en mayúsculas (TOO, CAN'T, NEED). Comentario fijado que se responda con un número o sí/no.
+
 ## Las 10 reglas de oro (todo el equipo)
 1. **El primer segundo lo decide todo.** Voz desde el fotograma 0, texto en pantalla desde el fotograma 0 y una imagen que se entiende sin sonido.
 2. **Una sola idea por Short**, contada como gancho → 3 datos → "Follow for more GTA 6 secrets".

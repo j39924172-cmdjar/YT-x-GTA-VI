@@ -36,5 +36,10 @@ Fragmentos cortos, voz y datos propios, sin logo oficial, con el aviso "Unoffici
 - Esa sesión sigue `docs/produccion-short.md` y anota el paso en `encargos/<id>` con ArtifactData; la oficina lo muestra en directo.
 - Herramientas: `shorts/herramientas.py` (descargar capturas del catálogo, hoja de contacto, fotogramas, textos de Rockstar), `shorts/tiempos.py` y `shorts/montaje.py`.
 
+## Todo lo hablado va a la oficina (petición de Adam, 20/11/2026)
+- Cada vez que Adam decida, pida o proponga algo en el chat, apúntalo en la oficina: ArtifactData `get` de `estado/charla` y `set` (if_version) con el apunte nuevo DELANTE en `items` = {"fecha": "DD/MM", "tipo": "decision|regla|idea|pendiente", "texto": "<en español, ≤ 160 caracteres>"}. Cuando un pendiente se resuelva, cámbialo a decision.
+- Si Adam pasa un Short o un canal de referencia (en el chat o con el botón «🕵️ Que lo estudie el equipo», que llega como comentario "Estudiar referente — <url>"): añádelo a `docs/referentes.json` con su nota, ejecuta `python shorts/espia.py --oficina /tmp/ref.json` y `set` de `estado/referentes`; saca 2-3 ideas con datos verificados para `estado/virales` y apúntalo en `estado/charla`. Solo para aprender formatos: nunca copiar títulos, guiones ni imágenes.
+- Las ideas virales (`estado/virales`) llevan: titulo, es, formato, gancho, referencia, porque (datos con fuentes), comentario (fijado) y verificado ("✅" o lo que falta).
+
 ## Partes antiguas del repositorio (antes del documento maestro)
 `gta6_studio/` (pipeline en español con ElevenLabs y vídeos largos) es de una fase anterior y **no sigue** el documento maestro: español en vez de inglés, ElevenLabs, prioridad al vídeo largo. No los uses para VICECITY DAYS TV hasta que Antonio decida si se adaptan o se retiran.
