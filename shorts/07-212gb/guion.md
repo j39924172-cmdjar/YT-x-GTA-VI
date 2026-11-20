@@ -14,3 +14,9 @@ Flechas: a la ciudad (dato 1) y a la portada Ultimate (dato 3).
 ## Títulos (Torrente)
 - **GTA 6 Needs 212 GB. Will It Fit?** (31)
 - Alternativos: "GTA 6 Eats a Third of Your PS5" · "Check This Number Before You Play GTA 6"
+
+## Visuales v2 (20/11, regla de Adam: al menos la mitad en vídeo)
+Clips: LT02 (cartel Welcome to The Keys, gancho) → PL06 (yate entre manglares) → LT06 (muelle con hidroavión) → LT21 (Ocean Drive) → LT30 (salto sobre la ciudad de noche: "todo esto ocupa 212 GB").
+Capturas solo para los datos con flecha: Vice_City_03 (ciudad entera, dato 1) y ULTIMATE_EDITION_01 (precio, dato 3).
+Bucle nuevo: "So check that number before you start."
+⚠️ Propuesta pendiente de Adam: cambiar este Short por «5 Things in GTA 6 That Are TOO Real» (🔥 10 frente a 0,4).
