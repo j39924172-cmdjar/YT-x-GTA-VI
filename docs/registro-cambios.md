@@ -194,3 +194,6 @@
 - 20/11 15:55 · Preproducción continua: cola llena (06, 07, 09, 10). Bucle perfecto añadido a los 4 guiones. Propuesta: cambiar el 07 (🔥 0,4) por «5 Things in GTA 6 That Are TOO Real» (🔥 10) y el 06 por «Is GTA 6 the Best Game Ever Made?» (🔥 7,3). Pendiente de Adam.
 - 20/11 18:55 · Preproducción continua: opinión de Adam sobre el 12 (👎 "más escenas reales del juego y que no sea todo tan resumido"). Short 12 rehecho con 10 de 17 escenas en clip (examen 9,5) y nueva vista previa. Regla nueva en el manual y aviso en el examen: al menos la mitad de las escenas en vídeo; datos explicados, no en una línea. Pendiente de Adam: ¿Shorts de 40-45 s?
 - 20/11 21:53 · Preproducción continua: cola llena (06, 07, 09, 10). Visuales de 06 y 07 rehechos con la regla de Adam (mitad o más en clips oficiales); 09 y 10 ya la cumplían. Sin opiniones nuevas.
+
+## 20/11/2026 — Short 13 entregado: «You Can Steal a FIGHTER JET in GTA 6»
+- Encargo de Adam (voz Dylan, Higgsfield; saldo antes 5,35 créditos). 3 datos explicados (dónde, cuándo y cómo entrar, el precio: 5 estrellas), 13 de 18 escenas en clips oficiales (regla de Adam). Examen 9,5 APTO, −14,1 LUFS. Citas literales obtenidas con WebSearch (las webs de BGR/SlashGear no se pueden abrir desde la sesión).

@@ -1,0 +1,475 @@
+{
+ "voz": "voz.mp3",
+ "palabras": "palabras.json",
+ "salida": "final.mp4",
+ "fuente": "Footage: Rockstar Games \u00b7 BGR, SlashGear, GameRant",
+ "marca": "VICECITY DAYS TV",
+ "musica": {
+  "bpm": 128,
+  "volumen": 0.3
+ },
+ "palabras_clave": [
+  "fighter",
+  "jet",
+  "take",
+  "Mile",
+  "Zero",
+  "Goose",
+  "Key",
+  "wait",
+  "early",
+  "ram",
+  "gate",
+  "boat",
+  "five-star",
+  "military",
+  "save",
+  "Follow",
+  "secrets"
+ ],
+ "escenas": [
+  {
+   "img": "capturas/Vice_City_01.jpg",
+   "desde": 0,
+   "hasta": 1.4,
+   "foco": [
+    0.55,
+    0.4
+   ],
+   "foco_fin": [
+    0.55,
+    0.35
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ],
+   "etiqueta": {
+    "texto": "FIGHTER JET",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.1
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 39.05,
+   "desde": 1.4,
+   "hasta": 2.73,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.58,
+   "desde": 2.73,
+   "hasta": 4.38,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 2.72,
+   "desde": 4.38,
+   "hasta": 6.6,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_01.jpg",
+   "desde": 6.6,
+   "hasta": 8.6,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.55,
+    0.45
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "THE KEYS \u00b7 SW LEONIDA",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.6,
+     0.55
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 14.25,
+   "desde": 8.6,
+   "hasta": 9.47,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 10.02,
+   "desde": 9.47,
+   "hasta": 10.52,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 33.68,
+   "desde": 10.52,
+   "hasta": 11.86,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 11.95,
+   "desde": 11.86,
+   "hasta": 13.52,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 27.88,
+   "desde": 13.52,
+   "hasta": 14.99,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Pre-Load_Now.mp4",
+   "inicio": 11.25,
+   "desde": 14.99,
+   "hasta": 16.36,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 47.02,
+   "desde": 16.36,
+   "hasta": 17.5,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 59.95,
+   "desde": 17.5,
+   "hasta": 19.5,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_11.jpg",
+   "desde": 19.5,
+   "hasta": 21.0,
+   "foco": [
+    0.55,
+    0.45
+   ],
+   "foco_fin": [
+    0.6,
+    0.42
+   ],
+   "zoom": [
+    1.05,
+    1.15
+   ],
+   "etiqueta": {
+    "texto": "5 STARS",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.72,
+     0.82
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.58,
+   "desde": 21.0,
+   "hasta": 22.76,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_01.jpg",
+   "desde": 22.76,
+   "hasta": 24.4,
+   "foco": [
+    0.55,
+    0.32
+   ],
+   "foco_fin": [
+    0.55,
+    0.3
+   ],
+   "zoom": [
+    1.2,
+    1.35
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 55.22,
+   "desde": 24.4,
+   "hasta": 25.44,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 25.44,
+   "hasta": 99,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.55,
+    0.45
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ]
+  }
+ ],
+ "capas": [
+  {
+   "tipo": "titulo",
+   "desde": 0,
+   "hasta": 4.38,
+   "lineas": [
+    [
+     "FIGHTER JET",
+     "amarillo"
+    ],
+    [
+     "FREE TO TAKE",
+     "blanco"
+    ]
+   ],
+   "pastilla": "GTA 6 SECRET"
+  },
+  {
+   "tipo": "fact",
+   "desde": 4.38,
+   "hasta": 10.52,
+   "n": 1,
+   "total": 3,
+   "titulo": "WHERE IT IS"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 5.5,
+   "hasta": 6.6,
+   "items": [
+    {
+     "texto": "MILE ZERO AIR STATION",
+     "fondo": "amarillo",
+     "desde": 5.6,
+     "y": 760,
+     "size": 54
+    }
+   ]
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 8.6,
+   "hasta": 10.52,
+   "items": [
+    {
+     "texto": "GOOSE KEY",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 8.6,
+     "y": 760
+    }
+   ]
+  },
+  {
+   "tipo": "fact",
+   "desde": 10.52,
+   "hasta": 17.5,
+   "n": 2,
+   "total": 3,
+   "titulo": "WHEN & HOW"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 12.6,
+   "hasta": 17.5,
+   "items": [
+    {
+     "texto": "OPENS EARLY",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 12.68,
+     "y": 760
+    },
+    {
+     "texto": "RAM THE GATE",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 15.14,
+     "y": 900
+    },
+    {
+     "texto": "OR SNEAK IN BY BOAT",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 16.0,
+     "y": 1040
+    }
+   ]
+  },
+  {
+   "tipo": "fact",
+   "desde": 17.5,
+   "hasta": 22.76,
+   "n": 3,
+   "total": 3,
+   "titulo": "THE CATCH"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 19.2,
+   "hasta": 22.76,
+   "items": [
+    {
+     "texto": "5-STAR WANTED LEVEL",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 19.26,
+     "y": 760
+    },
+    {
+     "texto": "MILITARY ON YOU",
+     "fondo": "amarillo",
+     "desde": 20.86,
+     "y": 900
+    }
+   ]
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 22.76,
+   "hasta": 25.44,
+   "items": [
+    {
+     "texto": "SAVE FIRST",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 22.96,
+     "y": 760
+    }
+   ]
+  },
+  {
+   "tipo": "cta",
+   "desde": 25.44,
+   "hasta": 99,
+   "lineas": [
+    "FOLLOW",
+    "FOR MORE GTA 6 SECRETS"
+   ]
+  }
+ ]
+}
