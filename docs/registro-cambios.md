@@ -168,3 +168,8 @@
 - **Camino a monetizar**: barras de 500/1.000 suscriptores y 3M/10M visualizaciones de Shorts.
 - **Producir los preparados de una vez** (lote): un solo comentario con N encargos.
 - Reglas nuevas en el manual y el procedimiento: series con número y **bucle perfecto** (el examen avisa si la última frase no retoma el gancho).
+
+## 20/11/2026 — Títulos recomendados con lo que más se busca en YouTube (📡)
+- El radar dice que lo más buscado es ganar dinero rápido, cambiar a Lucia, conseguir coches y trucos para empezar. Ideas nuevas verificadas en el banco: 26 "GTA 6 Money Tricks #2: Stop Robbing Stores" ✅, 27 "Money Tricks #3: Dive for Free Treasure" ✅, 28 "You Can't Buy Cars in GTA 6" ✅, 29 "How to Switch to Lucia in GTA 6" ✅, 30 "3 GTA 6 Tips the Game Never Tells You" 🟡.
+- La oficina muestra la etiqueta 📡 tendencia y la búsqueda que lo demuestra (campo `tendencia` en `estado/investigacion`). Recomendadas hoy: 09 Press Both Sticks (🔥 10) y Cómo cambiar a Lucia (🔥 6,9).
+- La investigación diaria empieza ahora por el radar y convierte las 2-3 búsquedas con más demanda en ideas verificadas.

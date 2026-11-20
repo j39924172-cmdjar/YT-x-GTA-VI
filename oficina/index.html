@@ -78,6 +78,8 @@
   .chip.ok { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 40%, transparent); }
   .chip.hot { color: var(--pink); border-color: color-mix(in srgb, var(--pink) 45%, transparent); }
   .chip.sun { color: var(--sun); border-color: color-mix(in srgb, var(--sun) 40%, transparent); }
+  .chip.trend { color: var(--pink); border-color: color-mix(in srgb, var(--pink) 45%, transparent); margin-left: 4px; }
+  .trend-d { color: var(--pink) !important; }
   .note { font-size: 12.5px; color: var(--muted); margin: 0; }
 
   /* Plantilla por departamentos */
@@ -646,7 +648,7 @@
       cards.length ? cards : h("div", { class: "empty" }, vacio));
     $("board").replaceChildren(
       lane("Títulos recomendados", ideas.length, "var(--lilac)", ideas.map(i => h("button", { class: "card idea", type: "button", onclick: () => elegirIdea(i.titulo) },
-        h("span", { class: "t" }, i.tipo ? h("i", { class: "tipo t-" + i.tipo }, i.tipo) : null, i.titulo, fuego(i.titulo)), i.es ? h("span", { class: "es" }, i.es) : null,
+        h("span", { class: "t" }, i.tipo ? h("i", { class: "tipo t-" + i.tipo }, i.tipo) : null, i.titulo, fuego(i.titulo), i.tendencia ? h("span", { class: "chip trend" }, "📡") : null), i.es ? h("span", { class: "es" }, i.es) : null,
         h("span", { class: "m" }, i.estado ? h("span", { class: "chip " + (i.recomendada ? "ok" : "sun") }, i.estado) : (i.recomendada ? h("span", { class: "chip ok" }, "producir hoy") : null), "Toca para encargarla"))), "La investigación diaria trae ideas nuevas."),
       lane("En producción", enCurso.length, "var(--pink)", enCurso.map(e => h("div", { class: "card" },
         h("span", { class: "t" }, e.titulo), h("span", { class: "m" }, h("span", { class: "chip hot" }, e.paso ? `paso ${e.paso}/8` : "recibido"),
@@ -777,8 +779,9 @@
     $("invResumen").textContent = v.resumen || "";
     const ideas = Array.isArray(v.ideas) ? v.ideas.filter(i => i && i.titulo) : [];
     $("invIdeas").replaceChildren(...ideas.map(i => h("li", {},
-      h("span", {}, i.tipo ? h("i", { class: "tipo t-" + i.tipo }, i.tipo) : null, h("b", {}, i.titulo), fuego(i.titulo), " ", i.recomendada ? h("span", { class: "chip ok" }, "producir hoy") : null, i.estado ? h("span", { class: "chip sun" }, i.estado) : null),
+      h("span", {}, i.tipo ? h("i", { class: "tipo t-" + i.tipo }, i.tipo) : null, h("b", {}, i.titulo), fuego(i.titulo), " ", i.recomendada ? h("span", { class: "chip ok" }, "producir hoy") : null, i.estado ? h("span", { class: "chip sun" }, i.estado) : null, i.tendencia ? h("span", { class: "chip trend" }, "📡 tendencia") : null),
       i.es ? h("span", { class: "es" }, i.es) : null,
+      i.tendencia ? h("span", { class: "d trend-d" }, "📡 En YouTube: " + i.tendencia) : null,
       i.porque ? h("span", { class: "d" }, i.porque) : null)));
     if (ideas.length) { IDEAS = ideas.slice(0, 14); renderIdeas(); renderBoard(); }
   }
