@@ -154,3 +154,8 @@
 - Datos con 5 medios (Kotaku, Vice, Screen Rant, GTABase, Beebom): el código ↑ → ↓ ← ↑ ← ↓ →, se desbloquea al acabar la historia y usar trucos desactiva trofeos y guardado en esa sesión (el dinero no pasa a la partida principal).
 - El examen pilló una frase de más de 22 palabras: se partió y se regeneró la voz (gratis). Gancho acortado ("a quarter million") para que dure menos de 3 s.
 - 20/11 09:53 · Preproducción continua: cola llena (06, 07, 09, 10). Con la lección del Short 11 (truco, +801 en 6 h), los trucos pasan a ir primero en los títulos recomendados: 09 "Press Both Sticks" y "The Cops in GTA 6…" marcados para producir hoy.
+
+## 20/11/2026 — Investigación diaria nº 2
+- Lección del canal: el truco de 250.000 $ (Short 11) +801 visualizaciones en 6 h; los trucos de dinero y mecánicas ocultas van primero.
+- Ideas nuevas: 21 "This GTA 6 Parrot Knows Where the Money Is" ✅ (GTABoom, TechWiser, Mashable), 22 "In GTA 6, Your Car Door Is a Weapon" ✅ (GTABase, Yahoo). En espera 🟡: cajas fuertes con cualquier explosión, sentarse en cualquier sitio, peatón que llama a su abogado. Descartado ❌: dar la vuelta al coche (medios contradictorios). Ventas del primer día: aún no hay cifras oficiales (solo previsiones).
+- Recomendadas hoy: el loro (truco de dinero) y el 09 "Press Both Sticks" (ya preproducido).
