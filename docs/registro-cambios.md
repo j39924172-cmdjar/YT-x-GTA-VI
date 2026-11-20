@@ -153,3 +153,4 @@
 - Encargo de la oficina con voz Fenrir. 26,5 s, examen 9,8/10. Carpeta `shorts/11-truco-250k/`.
 - Datos con 5 medios (Kotaku, Vice, Screen Rant, GTABase, Beebom): el código ↑ → ↓ ← ↑ ← ↓ →, se desbloquea al acabar la historia y usar trucos desactiva trofeos y guardado en esa sesión (el dinero no pasa a la partida principal).
 - El examen pilló una frase de más de 22 palabras: se partió y se regeneró la voz (gratis). Gancho acortado ("a quarter million") para que dure menos de 3 s.
+- 20/11 09:53 · Preproducción continua: cola llena (06, 07, 09, 10). Con la lección del Short 11 (truco, +801 en 6 h), los trucos pasan a ir primero en los títulos recomendados: 09 "Press Both Sticks" y "The Cops in GTA 6…" marcados para producir hoy.
