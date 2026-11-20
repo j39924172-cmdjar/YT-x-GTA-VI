@@ -11,6 +11,7 @@ Manda siempre el documento maestro (`docs/vicecity-estado.md`). Este manual lo c
 | 04 · GTA 6's Map Is Real Florida… Except ONE Place | juego vs real | **1.200** | Comparar el juego con el mundo real + bucle abierto ("except ONE place") funciona. Gancho con negación: "Rockstar didn't invent this map." |
 | 02 · Some Americans Get GTA 6 Before Everyone Else | noticia útil | 403 | Una noticia que afecta al espectador ("¿cuándo juego yo?") engancha. |
 | 03 · Meet GTA 6's 2 Criminals in 30 Seconds | personajes | 57 | Las fichas de personajes, sin sorpresa, rinden poco. |
+| 11 · The $250,000 Cheat Code in GTA 6 | truco | **835 en sus primeras 6 h** (20/11) | Los trucos útiles con "catch" (giro) se disparan: +801 en 6 h, casi 5 veces más que el resto. |
 
 Con solo 3 Shorts esto son pistas, no leyes. **Desde el lanzamiento (19/11), además: trucos y curiosidades del juego** (lo que más busca la gente aparte de la historia), siempre sin spoilers de misiones y con 2 medios fiables; un truco que solo cuenta una web se queda en 🟡. Taison actualiza esta tabla cada semana. Mientras tanto: **más "juego vs real" y noticias útiles; los personajes, solo con un giro sorprendente** (una cita loca, un secreto, una contradicción).
 
