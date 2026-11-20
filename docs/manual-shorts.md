@@ -36,6 +36,11 @@ Referentes en `docs/referentes.json` y en la oficina (🕵️ Canales que explot
 | **Secreto del mapa / momento espectacular** | @GTASixers_Info, caza robado: ×25 | Con clips oficiales y datos de 2 medios (no grabamos partidas) |
 Reglas de título que repiten: corto, dice lo que vas a ver, UNA palabra en mayúsculas (TOO, CAN'T, NEED). Comentario fijado que se responda con un número o sí/no.
 
+## Opinión de Adam sobre el Short 12 (20/11/2026) 👎
+"Más escenas reales del juego y que no sea todo tan resumido."
+- **Clips en movimiento:** al menos la mitad de las escenas deben ser clips oficiales (`docs/catalogo-videos.md`); las capturas fijas, solo para el dato que necesita flecha o etiqueta. El 12 pasó de 4 a 10 clips.
+- **Menos resumido:** mejor 3 datos explicados (qué es + por qué te importa) que 5 en una línea cada uno. Las listas de 5 solo si cada punto se entiende sin contexto. Pendiente de Adam: permitir Shorts de 40-45 s.
+
 ## Las 10 reglas de oro (todo el equipo)
 1. **El primer segundo lo decide todo.** Voz desde el fotograma 0, texto en pantalla desde el fotograma 0 y una imagen que se entiende sin sonido.
 2. **Una sola idea por Short**, contada como gancho → 3 datos → "Follow for more GTA 6 secrets".

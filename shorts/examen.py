@@ -129,6 +129,8 @@ class Examen:
             self.r("nobita", "rockstar games" in self.desc.lower(), "Crédito de Rockstar Games en la descripción (footage)")
             largos = [round(e["hasta"] - e["desde"], 1) for e in clips if e["hasta"] - e["desde"] > 3.5 and e["hasta"] < 90]
             self.r("nobita", not largos, "Planos de vídeo cortos (≤ 3,5 s): nada de escenas enteras", str(largos))
+        n_esc = len(self.plan.get("escenas", []))
+        self.r("nil", n_esc and len(clips) / n_esc >= 0.5, "Opinión de Adam: al menos la mitad de las escenas son clips en movimiento", f"{len(clips)} de {n_esc}", aviso=True)
         self.r("nobita", not any("Vice_City_07" in i for i in imgs), "No usa Vice_City_07")
         self.r("nobita", "logo" not in json.dumps(self.plan).lower(), "Sin logo oficial de GTA VI")
 
