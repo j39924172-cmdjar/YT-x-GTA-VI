@@ -160,3 +160,11 @@
 - Ideas nuevas: 21 "This GTA 6 Parrot Knows Where the Money Is" ✅ (GTABoom, TechWiser, Mashable), 22 "In GTA 6, Your Car Door Is a Weapon" ✅ (GTABase, Yahoo). En espera 🟡: cajas fuertes con cualquier explosión, sentarse en cualquier sitio, peatón que llama a su abogado. Descartado ❌: dar la vuelta al coche (medios contradictorios). Ventas del primer día: aún no hay cifras oficiales (solo previsiones).
 - Recomendadas hoy: el loro (truco de dinero) y el 09 "Press Both Sticks" (ya preproducido).
 - 20/11 12:53 · Preproducción continua: cola llena (06, 07, 09, 10). Almudena propone cambiar el 07 (212 GB, noticia que caduca) por el truco del loro (idea 21). Pendiente de Adam.
+
+## 20/11/2026 — Oficina v3 (solo YouTube)
+- **Radar de tendencias** (`shorts/tendencias.py`, `estado/tendencias`): sugerencias reales del buscador de YouTube, Shorts de GTA 6 más vistos ahora (solo para ver formatos, nunca copiar) y nota 🔥 0-10 de demanda en cada título recomendado. La investigación diaria lo actualiza.
+- **Listo para subir** (`shorts/publicar.py`, `estado/publicar`): vista previa del vídeo, botones para copiar título, descripción y comentario fijado, «✅ Ya lo he subido» (`subidos/<carpeta>`). Lo refresca el repaso del canal cada 6 h.
+- **Tu opinión** 👍/👎 + nota por Short (`opiniones/<carpeta>`): las tareas automáticas la leen antes de trabajar.
+- **Camino a monetizar**: barras de 500/1.000 suscriptores y 3M/10M visualizaciones de Shorts.
+- **Producir los preparados de una vez** (lote): un solo comentario con N encargos.
+- Reglas nuevas en el manual y el procedimiento: series con número y **bucle perfecto** (el examen avisa si la última frase no retoma el gancho).

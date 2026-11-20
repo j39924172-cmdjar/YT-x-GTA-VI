@@ -36,3 +36,8 @@ Tarea programada **"Preproducción continua (sin esperar órdenes)"** (`trig_016
 Cada vez escribe en la oficina `estado/agenda`: la tarea de cada persona y el **contenido real de su pantalla** (el guion, los títulos, las fuentes, las capturas, el plan de montaje…), que la Cámara en directo enseña escribiéndose. Y anota en `actividad` lo que han hecho.
 
 Ninguna de estas tareas genera voz, monta ni gasta créditos: eso lo decide Adam.
+
+## Herramientas nuevas de la oficina (v3)
+- **Radar 🔥** (Jarvis, Taison): `python shorts/tendencias.py --oficina t.json --ideas inv.json` → `estado/tendencias`. Nota 7-10 producir ya; 3-6 solo con gancho muy bueno; < 3 no.
+- **Listo para subir** (Cristiano, Almudena): `python shorts/publicar.py --oficina p.json [--previas]` → `estado/publicar` (vista previa subida como asset de la oficina).
+- **Opiniones de Adam** (todos): colección `opiniones`; se leen antes de investigar, preproducir o producir.

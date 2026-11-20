@@ -12,6 +12,10 @@ Al recibir el encargo, contesta en el hilo del comentario (ArtifactComments `rep
 
 **Si el título ya está preproducido** (carpeta en `shorts/` con "Estado: preproducción"), usa esa carpeta: repasa rápido que los datos sigan vigentes y salta al paso 4 (voz).
 
+**Antes de empezar:** lee las opiniones de Adam (ArtifactData `list` de la colección `opiniones` de la oficina) y aplica lo que pida (voz, ritmo, ganchos…). Mira también la nota 🔥 del título en `estado/tendencias`.
+**Lotes:** si el comentario dice `Producir lote — N Shorts`, cada línea trae un título y su encargo: prodúcelos uno detrás de otro con este procedimiento, cada uno con su `encargos/<id>`, y entrega cada vídeo en cuanto esté (no esperes al final).
+**Series y bucle:** si el tema es de una serie que funciona (p. ej. trucos de dinero), ponle su nombre y número ("GTA 6 Money Tricks #2") y haz que la última frase antes del CTA retome el gancho.
+
 ## [PASO 1/8] Investigación y verificación (Jarvis + Nobita)
 1. Prepara el repositorio `j39924172-cmdjar/YT-x-GTA-VI` en la rama `claude/youtube-gta6-automation-team-aua7ki`. Si no está en la sesión, añádelo con `add_repo` y clónalo. Luego `git pull`.
 2. Instala las dependencias si faltan: `pip install -r shorts/requirements.txt` (ffmpeg debe existir).
@@ -70,7 +74,7 @@ Al recibir el encargo, contesta en el hilo del comentario (ArtifactComments `rep
 - `**Formato:**` uno de: juego vs real, noticia, personajes, secreto, lista, comparativa, curiosidad (Taison compara por formato). Ajustes: privado, Entretenimiento, inglés, Contenido alterado: No (salvo que se use IA realista), Hecho para niños: No.
 
 ## [PASO 8/8] Entrega (Almudena)
-1. Copia el vídeo como `shorts/NN-x/VCDT_NN_<Titulo_corto>.mp4`.
+1. Copia el vídeo como `shorts/NN-x/VCDT_NN_<Titulo_corto>.mp4`. **Panel "Listo para subir":** `python shorts/publicar.py --oficina /tmp/publicar.json --previas`; sube la vista previa (`videos/previas/NN.mp4`) a la oficina con Artifact (`asset: true`, `url` de la oficina) y pon su `url` como `video` del Short en ese JSON; después `set` de `estado/publicar` (if_version).
 2. **SendUserFile** con ese mp4 (`status: "proactive"`, `display: "render"`) para que llegue al móvil de Antonio.
 3. Actualiza `docs/banco-ideas.md`: márcalo 🎬 en "Producidos" y añade el gancho a "Ganchos usados". Añade también una entrada a `docs/registro-cambios.md`.
 4. `git add` de todo menos los mp4 y las capturas (ya están en .gitignore), commit y push a `claude/youtube-gta6-automation-team-aua7ki`. Si el push falla, `git pull --no-edit` y vuelve a intentarlo.

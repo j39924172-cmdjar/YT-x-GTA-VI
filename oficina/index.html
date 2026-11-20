@@ -181,6 +181,41 @@
   .nowbox { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 13.5px; }
   .nowbox.busy { border-color: var(--pink); }
 
+  /* Listo para subir, radar, monetización, opiniones */
+  .sube { display: grid; gap: 12px; }
+  .sube-card { border: 1px solid var(--line); border-radius: 12px; background: var(--bg); padding: 12px; display: grid; gap: 10px; }
+  .sube-card.hecho { opacity: 0.6; }
+  .sube-top { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; align-items: start; }
+  .sube-top video { width: 96px; aspect-ratio: 9 / 16; border-radius: 8px; background: #000; object-fit: cover; max-width: 100%; }
+  .sube-top .ph-video { width: 96px; aspect-ratio: 9 / 16; border-radius: 8px; background: var(--surface-2); display: grid; place-items: center; font-size: 11px; color: var(--muted); text-align: center; padding: 6px; }
+  .sube-t { font-weight: 700; font-size: 14px; overflow-wrap: anywhere; }
+  .sube-acc { display: flex; flex-wrap: wrap; gap: 6px; }
+  .sube-acc .ghost { padding: 7px 10px; }
+  .ghost.okb { border-color: color-mix(in srgb, var(--ok) 50%, transparent); color: var(--ok); }
+  .opina { display: grid; gap: 6px; border-top: 1px dashed var(--line); padding-top: 8px; }
+  .opina .row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .opina button[aria-pressed="true"] { border-color: var(--lilac); background: color-mix(in srgb, var(--violet) 25%, var(--surface-2)); }
+  .opina textarea { min-height: 44px; font-size: 13px; }
+  .fuego { display: inline-block; font-family: var(--font-mono); font-size: 10.5px; padding: 1px 6px; border-radius: 5px; margin-left: 6px; vertical-align: 1px; background: color-mix(in srgb, var(--pink) 18%, transparent); color: var(--pink); }
+  .fuego.tibio { background: color-mix(in srgb, var(--sun) 15%, transparent); color: var(--sun); }
+  .fuego.frio { background: var(--surface-2); color: var(--muted); }
+  .radar-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 16px; align-items: start; }
+  .busca { display: flex; flex-wrap: wrap; gap: 6px; }
+  .busca .chip { color: var(--ink); }
+  .viral { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .viral li { display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 10px; font-size: 13px; align-items: baseline; }
+  .viral .v { font-family: var(--font-mono); color: var(--sun); text-align: right; font-size: 12px; }
+  .viral a { color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+  .viral a:hover { color: var(--lilac); text-decoration: underline; }
+  .meta { display: grid; gap: 10px; }
+  .meta-row { display: grid; gap: 4px; font-size: 12.5px; }
+  .meta-row .lab { display: flex; justify-content: space-between; gap: 8px; color: var(--muted); }
+  .meta-row .lab b { color: var(--ink); font-weight: 600; font-family: var(--font-mono); }
+  .pbar { height: 8px; border-radius: 4px; background: var(--surface-2); overflow: hidden; }
+  .pbar i { display: block; height: 100%; background: linear-gradient(90deg, var(--violet), var(--pink)); min-width: 2px; }
+  .lote { justify-self: stretch; justify-content: center; padding: 10px; font-weight: 600; }
+  @media (max-width: 760px) { .radar-grid { grid-template-columns: minmax(0, 1fr); } }
+
   /* Cámara en directo + pantalla ampliada */
   .cam-wrap { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 12px; align-items: stretch; }
   .screen { border-radius: 12px; border: 1px solid var(--line); background: #0A0916; display: grid; grid-template-rows: auto 1fr; min-width: 0; overflow: hidden; }
@@ -259,6 +294,15 @@
         <div class="board" id="board"></div>
       </section>
 
+      <section class="panel" id="radar" aria-labelledby="hRadar">
+        <div class="ph"><h2 id="hRadar">Radar de tendencias</h2><span class="chip" id="radarChip">sin datos todavía</span></div>
+        <div class="radar-grid">
+          <div class="field"><span>Lo que la gente busca en YouTube</span><div class="busca" id="busca"><span class="muted">Jarvis carga aquí las búsquedas en la próxima investigación.</span></div></div>
+          <div class="field"><span>Shorts de GTA 6 que más se ven ahora (otros canales)</span><ol class="viral" id="virales"></ol></div>
+        </div>
+        <p class="note">La nota 🔥 de cada título (0-10) mide cuánto se ven los Shorts de ese tema. Sirve para elegir, nunca para copiar.</p>
+      </section>
+
       <section class="panel" id="canal" aria-labelledby="hCanal">
         <div class="ph"><h2 id="hCanal">Cómo va el canal</h2><span class="chip" id="canalChip">sin datos todavía</span></div>
         <div class="canal-grid">
@@ -266,6 +310,7 @@
           <div class="tabwrap"><table class="tab"><tbody id="canalShorts"><tr><td class="muted">Taison publicará aquí los Shorts del canal en el próximo repaso.</td></tr></tbody></table></div>
         </div>
         <p class="note" id="canalNota">Datos públicos de YouTube; los actualiza Taison cada 6 horas.</p>
+        <div class="meta" id="meta" aria-label="Camino a monetizar"></div>
       </section>
     </div>
 
@@ -281,11 +326,18 @@
           <label><input type="radio" name="voz" id="vozDylan" value="dylan"> <span><b>Dylan</b> · Higgsfield (~1,6 créditos)</span></label>
         </fieldset>
         <button class="go" id="goBtn" type="button">Producir Short</button>
+        <button class="ghost lote" id="loteBtn" type="button" hidden>⚡ Producir los preparados</button>
         <p class="note" id="capNote">El equipo verifica los datos, pone la voz, monta, pasa el examen y te entrega el vídeo con título y descripción.</p>
         <div id="fallback" hidden>
           <p class="note warn">Desde aquí no se puede lanzar el encargo. Copia esta frase y pégala en el chat con Claude:</p>
           <div class="copyrow"><code id="fallbackTxt"></code><span id="fallbackBtn"></span></div>
         </div>
+      </section>
+
+      <section class="panel" id="subir" aria-labelledby="hSubir">
+        <div class="ph"><h2 id="hSubir">Listo para subir</h2><span class="chip" id="subirChip">nada pendiente</span></div>
+        <p class="note" id="subirHora">Mejor hora: de 00:00 a 03:00 (España).</p>
+        <div class="sube" id="subeLista"><p class="note">Cuando el equipo entregue un Short, aparecerá aquí con su título, descripción y comentario listos para copiar.</p></div>
       </section>
 
       <section class="panel" id="produccion" aria-labelledby="hProd">
@@ -338,12 +390,16 @@
     return hrs < 24 ? `hace ${hrs} h` : fmtHora(ts);
   };
   const norm = s => String(s || "").toLowerCase().normalize("NFD").replace(/[^a-z0-9 ]/g, "").replace(/\s+/g, " ").trim();
-  function copyBtn(get) {
-    const b = h("button", { class: "ghost", type: "button" }, "Copiar");
+  function copyBtn(get, etiqueta = "Copiar", nodoSel = null) {
+    const b = h("button", { class: "ghost", type: "button" }, etiqueta);
     b.onclick = async () => {
-      try { await navigator.clipboard.writeText(get()); b.textContent = "Copiado"; }
-      catch { const r = document.createRange(); r.selectNodeContents($("fallbackTxt")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Selecciona y copia"; }
-      setTimeout(() => (b.textContent = "Copiar"), 1800);
+      try { await navigator.clipboard.writeText(get()); b.textContent = "✓ Copiado"; }
+      catch {
+        const n = nodoSel || $("fallbackTxt");
+        if (n) { const r = document.createRange(); r.selectNodeContents(n); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+        b.textContent = "Selecciona y copia";
+      }
+      setTimeout(() => (b.textContent = etiqueta), 1800);
     };
     return b;
   }
@@ -443,12 +499,19 @@
     { titulo: "GTA 6 Hid a Real Easter Egg on Top of a Tower", es: "GTA 6 escondió un huevo de Pascua de verdad en lo alto de una torre", tipo: "curiosidad" },
   ];
   const ideaDe = i => typeof i === "string" ? { titulo: i } : i;
+  function fuego(titulo) {
+    const n = ESTADO.tendencias && ESTADO.tendencias.notas && ESTADO.tendencias.notas[titulo];
+    if (!n || n.nota == null) return null;
+    const v = Number(n.nota);
+    return h("span", { class: "fuego" + (v >= 6 ? "" : v >= 3 ? " tibio" : " frio"), title: `Demanda en YouTube (búsqueda: ${n.busqueda || "?"})` }, `🔥 ${String(v).replace(".", ",")}`);
+  }
   // Horarios del piloto automático (hora de Madrid). Deben coincidir con las tareas programadas de Claude Code.
   const HORARIO = { inv: { horas: [10], minuto: 23 }, can: { horas: [0, 6, 12, 18], minuto: 47 } };
 
   // ================================================================ 3. ESTADO (base de datos de la página)
   let encargos = [], actividad = [];
-  const ESTADO = { inv: null, can: null, equipo: null, agenda: null };
+  const ESTADO = { inv: null, can: null, equipo: null, agenda: null, tendencias: null, publicar: null };
+  let subidos = {}, opiniones = [];
   const ACTIVOS = ["enviado", "en marcha"];
   const actual = () => encargos.find(e => ACTIVOS.includes(e.estado));
 
@@ -583,7 +646,7 @@
       cards.length ? cards : h("div", { class: "empty" }, vacio));
     $("board").replaceChildren(
       lane("Títulos recomendados", ideas.length, "var(--lilac)", ideas.map(i => h("button", { class: "card idea", type: "button", onclick: () => elegirIdea(i.titulo) },
-        h("span", { class: "t" }, i.tipo ? h("i", { class: "tipo t-" + i.tipo }, i.tipo) : null, i.titulo), i.es ? h("span", { class: "es" }, i.es) : null,
+        h("span", { class: "t" }, i.tipo ? h("i", { class: "tipo t-" + i.tipo }, i.tipo) : null, i.titulo, fuego(i.titulo)), i.es ? h("span", { class: "es" }, i.es) : null,
         h("span", { class: "m" }, i.estado ? h("span", { class: "chip " + (i.recomendada ? "ok" : "sun") }, i.estado) : (i.recomendada ? h("span", { class: "chip ok" }, "producir hoy") : null), "Toca para encargarla"))), "La investigación diaria trae ideas nuevas."),
       lane("En producción", enCurso.length, "var(--pink)", enCurso.map(e => h("div", { class: "card" },
         h("span", { class: "t" }, e.titulo), h("span", { class: "m" }, h("span", { class: "chip hot" }, e.paso ? `paso ${e.paso}/8` : "recibido"),
@@ -606,6 +669,7 @@
       h("tr", {}, h("td", {}, x.titulo), h("td", { class: "n mono" }, fmtNum(x.vistas), " ", h("i", { class: "up" }, fmtCambio(x.cambio))))));
     if (c.nota) $("canalNota").textContent = c.nota;
     dibujarSerie(Array.isArray(c.serie) ? c.serie : []);
+    renderMeta();
   }
   function dibujarSerie(serie) {
     const svg = $("spark"), W = 320, H = 120, padT = 12, padB = 12;
@@ -621,6 +685,76 @@
     const last = serie[serie.length - 1];
     svg.append(el("circle", { cx: x(last.ts), cy: y(last.total), r: 3.5, fill: "var(--pink)" }));
     $("sparkNota").textContent = `De ${fmtNum(serie[0].total)} a ${fmtNum(last.total)} visualizaciones (${fmtHora(t0)} → ${fmtHora(t1)}).`;
+  }
+  function renderRadar() {
+    const t = ESTADO.tendencias;
+    if (!t) return;
+    $("radarChip").textContent = "actualizado " + fmtHora(t.ts);
+    const sug = (t.sugerencias || []).slice(0, 16);
+    $("busca").replaceChildren(...(sug.length ? sug.map(x => h("span", { class: "chip" }, "🔎 " + x)) : [h("span", { class: "muted" }, "Sin búsquedas todavía.")]));
+    $("virales").replaceChildren(...(t.virales || []).slice(0, 8).map(v => h("li", {},
+      h("span", { class: "v" }, v.vistas >= 1e6 ? (v.vistas / 1e6).toFixed(1).replace(".", ",") + " M" : v.vistas >= 1e3 ? Math.round(v.vistas / 1e3) + " mil" : String(v.vistas)),
+      /^https:\/\/www\.youtube\.com\//.test(v.url || "") ? h("a", { href: v.url, target: "_blank", rel: "noopener" }, v.titulo) : h("span", {}, v.titulo))));
+    renderIdeas(); renderBoard(); renderInvestigacion();
+  }
+  function renderMeta() {
+    const c = ESTADO.can;
+    if (!c) return;
+    const fila = (lab, val, obj, txt) => h("div", { class: "meta-row" },
+      h("div", { class: "lab" }, h("span", {}, lab), h("b", {}, txt || `${fmtNum(val)} / ${fmtNum(obj)}`)),
+      h("div", { class: "pbar" }, h("i", { style: { width: Math.min(100, (100 * (val || 0)) / obj).toFixed(2) + "%" } })));
+    $("meta").replaceChildren(
+      h("div", { class: "lab muted", style: { fontSize: "11.5px", textTransform: "uppercase", letterSpacing: "0.07em" } }, "💰 Camino a monetizar (visualizaciones de Shorts en 90 días)"),
+      fila("Programa básico · suscriptores", c.suscriptores, 500),
+      fila("Programa básico · visualizaciones", c.visualizaciones, 3e6),
+      fila("Anuncios · suscriptores", c.suscriptores, 1000),
+      fila("Anuncios · visualizaciones", c.visualizaciones, 1e7),
+      h("p", { class: "note" }, "Requisitos de YouTube: 500 suscriptores + 3 M de visualizaciones de Shorts en 90 días (programa básico) o 1.000 + 10 M para cobrar anuncios. Los suscriptores son lo que más falta: el CTA y las series los traen."));
+  }
+  function renderSubir() {
+    const p = ESTADO.publicar;
+    if (!p) return;
+    if (p.hora) $("subirHora").textContent = p.hora;
+    const pendientes = (p.shorts || []).filter(s => !s.publicado && !subidos[s.carpeta]);
+    const hechos = (p.shorts || []).filter(s => s.publicado || subidos[s.carpeta]).slice(-3).reverse();
+    $("subirChip").textContent = pendientes.length ? `${pendientes.length} por subir` : "nada pendiente";
+    $("subirChip").className = "chip" + (pendientes.length ? " sun" : " ok");
+    const tarjeta = (s, pendiente) => {
+      const desc = h("pre", { hidden: true }, s.descripcion), com = h("pre", { hidden: true }, s.comentario), tit = h("pre", { hidden: true }, s.titulo);
+      const mia = opiniones.find(o => o.carpeta === s.carpeta);
+      let voto = mia ? mia.voto : null;
+      const nota = h("textarea", { id: "op-" + s.carpeta, rows: 2, placeholder: "¿Qué cambiarías? (voz, gancho, ritmo, imágenes…)" });
+      if (mia && mia.texto) nota.value = mia.texto;
+      const bb = h("button", { class: "ghost", type: "button", "aria-pressed": voto === "bien" ? "true" : "false" }, "👍 Me gusta");
+      const bm = h("button", { class: "ghost", type: "button", "aria-pressed": voto === "mal" ? "true" : "false" }, "👎 Mejorable");
+      const estado = h("span", { class: "note" }, mia ? "Opinión guardada: el equipo la tendrá en cuenta." : "");
+      const guardar = h("button", { class: "ghost okb", type: "button" }, "Guardar opinión");
+      bb.onclick = () => { voto = "bien"; bb.setAttribute("aria-pressed", "true"); bm.setAttribute("aria-pressed", "false"); };
+      bm.onclick = () => { voto = "mal"; bm.setAttribute("aria-pressed", "true"); bb.setAttribute("aria-pressed", "false"); };
+      guardar.onclick = async () => {
+        if (!voto) { estado.textContent = "Elige 👍 o 👎 primero."; return; }
+        if (!db) { estado.textContent = "Abre la oficina en Claude para guardar opiniones."; return; }
+        try { await db.collection("opiniones").doc(s.carpeta).set({ carpeta: s.carpeta, titulo: s.titulo, voto, texto: nota.value.trim().slice(0, 500), ts: Date.now() }); estado.textContent = "✓ Guardada. El equipo la leerá antes del próximo Short."; }
+        catch { estado.textContent = "No se pudo guardar. Prueba otra vez."; }
+      };
+      const ya = h("button", { class: "ghost okb", type: "button" }, "✅ Ya lo he subido");
+      ya.onclick = async () => {
+        if (!db) return;
+        try { await db.collection("subidos").doc(s.carpeta).set({ carpeta: s.carpeta, titulo: s.titulo, ts: Date.now() }); } catch {}
+      };
+      return h("div", { class: "sube-card" + (pendiente ? "" : " hecho") },
+        h("div", { class: "sube-top" },
+          s.video ? h("video", { src: s.video, controls: true, playsinline: true, preload: "metadata", muted: true }) : h("div", { class: "ph-video" }, s.archivo || "vídeo en el chat"),
+          h("div", { style: { minWidth: "0", display: "grid", gap: "4px" } },
+            h("span", { class: "sube-t" }, `${s.n} · ${s.titulo}`), s.es ? h("span", { class: "es" }, s.es) : null,
+            h("span", { class: "note" }, pendiente ? `Formato: ${s.formato || "—"} · el vídeo bueno es ${s.archivo}, en el chat` : "Publicado en el canal"),
+            (s.alternativos || []).length ? h("span", { class: "note" }, "Alternativos: " + s.alternativos.join(" · ")) : null)),
+        pendiente ? h("div", { class: "sube-acc" }, copyBtn(() => s.titulo, "📋 Título", tit), copyBtn(() => s.descripcion, "📋 Descripción", desc), copyBtn(() => s.comentario, "📋 Comentario", com), ya) : null,
+        tit, desc, com,
+        h("div", { class: "opina" }, h("span", { class: "note" }, "Tu opinión sobre este Short"), h("div", { class: "row" }, bb, bm), nota, h("div", { class: "row" }, guardar, estado)));
+    };
+    $("subeLista").replaceChildren(...(pendientes.length || hechos.length ? [...pendientes.map(s => tarjeta(s, true)), ...hechos.map(s => tarjeta(s, false))]
+      : [h("p", { class: "note" }, "Cuando el equipo entregue un Short, aparecerá aquí con su título, descripción y comentario listos para copiar.")]));
   }
   function renderEquipo() {
     const e = ESTADO.equipo;
@@ -643,7 +777,7 @@
     $("invResumen").textContent = v.resumen || "";
     const ideas = Array.isArray(v.ideas) ? v.ideas.filter(i => i && i.titulo) : [];
     $("invIdeas").replaceChildren(...ideas.map(i => h("li", {},
-      h("span", {}, i.tipo ? h("i", { class: "tipo t-" + i.tipo }, i.tipo) : null, h("b", {}, i.titulo), " ", i.recomendada ? h("span", { class: "chip ok" }, "producir hoy") : null, i.estado ? h("span", { class: "chip sun" }, i.estado) : null),
+      h("span", {}, i.tipo ? h("i", { class: "tipo t-" + i.tipo }, i.tipo) : null, h("b", {}, i.titulo), fuego(i.titulo), " ", i.recomendada ? h("span", { class: "chip ok" }, "producir hoy") : null, i.estado ? h("span", { class: "chip sun" }, i.estado) : null),
       i.es ? h("span", { class: "es" }, i.es) : null,
       i.porque ? h("span", { class: "d" }, i.porque) : null)));
     if (ideas.length) { IDEAS = ideas.slice(0, 14); renderIdeas(); renderBoard(); }
@@ -682,7 +816,10 @@
   function elegirIdea(t) { titulo.value = t; titulo.focus(); }
   function renderIdeas() {
     $("ideas").replaceChildren(...IDEAS.slice(0, 8).map(ideaDe).map(i => h("button", { class: "chip idea", type: "button", onclick: () => elegirIdea(i.titulo) },
-      h("span", { class: "en" }, i.tipo ? h("i", { class: "tipo t-" + i.tipo }, i.tipo) : null, i.titulo), i.es ? h("span", { class: "es" }, i.es) : null)));
+      h("span", { class: "en" }, i.tipo ? h("i", { class: "tipo t-" + i.tipo }, i.tipo) : null, i.titulo, fuego(i.titulo)), i.es ? h("span", { class: "es" }, i.es) : null)));
+    const prep = IDEAS.map(ideaDe).filter(i => /^Preproducido/.test(i.estado || ""));
+    $("loteBtn").hidden = !prep.length;
+    $("loteBtn").textContent = `⚡ Producir los ${prep.length} preparados de una vez`;
   }
   function mostrarAlternativa(t, motivo) {
     $("fallback").hidden = false;
@@ -699,6 +836,25 @@
     forbidden: "Enviar desde la oficina está desactivado para tu cuenta aquí.",
     rate_limited: "Has enviado varios encargos muy seguidos. Espera un minuto.",
     capability_removed: "Tu app de Claude todavía no permite enviar desde la página.",
+  };
+  $("loteBtn").onclick = async () => {
+    const prep = IDEAS.map(ideaDe).filter(i => /^Preproducido/.test(i.estado || ""));
+    if (!prep.length) return;
+    if (!comments) { mostrarAlternativa(prep.map(i => i.titulo).join(" | "), "Abre esta página dentro de Claude para enviar el lote con un botón."); return; }
+    const btn = $("loteBtn"); btn.disabled = true; btn.textContent = "Enviando el lote…";
+    const voz = document.querySelector('input[name="voz"]:checked')?.value || "fenrir";
+    const refs = [];
+    try {
+      if (db) for (const i of prep) { const r = db.collection("encargos").doc(); await r.set({ titulo: i.titulo, ts: Date.now(), estado: "enviando", paso: 0, voz, lote: true }); refs.push(r); }
+      const anchor = await comments.anchorFor($("nuevo"));
+      const lineas = prep.map((i, k) => `${k + 1}. TÍTULO: ${i.titulo}` + (refs[k] ? ` · Encargo: ${refs[k].id}` : ""));
+      await comments.sendToClaude({ anchor, text: `Producir lote — ${prep.length} Shorts preparados\nVoz: ${voz === "dylan" ? "Dylan (Higgsfield)" : "Fenrir (gratis)"}\n` + lineas.join("\n") });
+      for (const r of refs) await r.update({ estado: "enviado" });
+      capNote.textContent = `Lote enviado: el equipo produce los ${prep.length} Shorts uno detrás de otro.`; capNote.className = "note";
+    } catch (e) {
+      for (const r of refs) { try { await r.update({ estado: "no enviado", nota: "no llegó al equipo" }); } catch {} }
+      mostrarAlternativa(prep.map(i => i.titulo).join(" | "), (MOTIVO[e?.code] || "No se pudo enviar el lote.") + " No se ha encargado nada.");
+    } finally { btn.disabled = false; renderIdeas(); }
   };
   goBtn.onclick = async () => {
     const t = titulo.value.trim().replace(/\s+/g, " ").slice(0, 160);
@@ -1108,6 +1264,10 @@
       }, () => {});
       db.doc("estado/canal").onSnapshot(d => { ESTADO.can = d.exists ? d.data() : null; renderCanal(); renderBoard(); tick(); }, () => {});
       db.doc("estado/investigacion").onSnapshot(d => { ESTADO.inv = d.exists ? d.data() : null; renderInvestigacion(); tick(); }, () => {});
+      db.doc("estado/tendencias").onSnapshot(d => { ESTADO.tendencias = d.exists ? d.data() : null; renderRadar(); }, () => {});
+      db.doc("estado/publicar").onSnapshot(d => { ESTADO.publicar = d.exists ? d.data() : null; renderSubir(); }, () => {});
+      db.collection("subidos").limit(100).onSnapshot(snap => { subidos = Object.fromEntries(snap.docs.map(d => [d.id, d.data()])); renderSubir(); }, () => {});
+      db.collection("opiniones").limit(200).onSnapshot(snap => { opiniones = snap.docs.map(d => ({ id: d.id, ...d.data() })); renderSubir(); }, () => {});
       db.doc("estado/agenda").onSnapshot(d => { ESTADO.agenda = d.exists ? d.data() : null; renderPlantilla(); }, () => {});
       db.doc("estado/equipo").onSnapshot(d => { ESTADO.equipo = d.exists ? d.data() : null; renderEquipo(); renderBoard(); renderPlantilla(); }, () => {});
     } else { $("actChip").textContent = "abre la oficina en Claude"; }

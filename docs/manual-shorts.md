@@ -15,6 +15,12 @@ Manda siempre el documento maestro (`docs/vicecity-estado.md`). Este manual lo c
 
 Con solo 3 Shorts esto son pistas, no leyes. **Desde el lanzamiento (19/11), además: trucos y curiosidades del juego** (lo que más busca la gente aparte de la historia), siempre sin spoilers de misiones y con 2 medios fiables; un truco que solo cuenta una web se queda en 🟡. Taison actualiza esta tabla cada semana. Mientras tanto: **más "juego vs real" y noticias útiles; los personajes, solo con un giro sorprendente** (una cita loca, un secreto, una contradicción).
 
+## Reglas nuevas para hacerlo viral (20/11/2026)
+1. **Series.** Lo que funciona se convierte en serie con nombre fijo y número grande en pantalla: "GTA 6 Money Tricks #1, #2…", "GTA 6 Secrets #1…". El primer fotograma lleva el número de la serie. Quien ve uno busca el siguiente.
+2. **Bucle perfecto.** La última frase antes del CTA retoma el gancho (palabras del principio), para que al volver a empezar el Short suene a continuación y se vea dos veces. El examen avisa si no lo hace.
+3. **Radar antes de elegir.** Cada título lleva una nota 🔥 de demanda (`shorts/tendencias.py`): de 7 a 10, producir ya; de 3 a 6, solo si el gancho es muy bueno; menos de 3, no producir salvo noticia del día.
+4. **Opiniones de Adam.** Antes de cada Short, el equipo lee la colección `opiniones` de la oficina (👍/👎 y su nota) y aplica lo que pide.
+
 ## Las 10 reglas de oro (todo el equipo)
 1. **El primer segundo lo decide todo.** Voz desde el fotograma 0, texto en pantalla desde el fotograma 0 y una imagen que se entiende sin sonido.
 2. **Una sola idea por Short**, contada como gancho → 3 datos → "Follow for more GTA 6 secrets".

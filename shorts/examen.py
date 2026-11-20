@@ -173,6 +173,11 @@ class Examen:
             mx = max(cortes[:-1] or cortes)
             self.r("pablito", mx <= 4.0, "Ninguna imagen dura más de 4 s (sin contar el CTA)", f"máx. {mx:.2f} s")
             self.r("pablito", mx <= 3.2, "Ideal: ninguna imagen más de 3,2 s", f"máx. {mx:.2f} s", aviso=True)
+        # bucle perfecto: la última frase antes del CTA retoma palabras del gancho, para que el final enlace con el principio
+        if len(self.frases) >= 3:
+            claves = {w for w in re.findall(r"[a-z']{4,}", gancho.lower())} - {"this", "that", "with", "your", "there", "have", "just"}
+            penultima = self.frases[-2].lower()
+            self.r("pablito", any(w in penultima for w in claves), "Bucle perfecto: la última frase antes del CTA retoma el gancho", self.frases[-2][:60], aviso=True)
         bucle = bool(re.search(r"\b(except|but|one|which|who|guess|wait)\b|\?", gancho + " " + t, re.I))
         self.r("pablito", bucle, "Abre un bucle que se cierra al final (except/but/one/pregunta)", aviso=True)
 

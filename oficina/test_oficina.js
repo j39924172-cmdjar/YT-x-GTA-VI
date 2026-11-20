@@ -140,6 +140,48 @@ const txt = (page, sel) => page.textContent(sel);
     await ctx.close();
   }
 
+  { // 1b. Funciones nuevas: radar, listo para subir, opiniones, monetización y lote
+    const { page, ctx, errors } = await abrir(browser, "ok");
+    await page.evaluate(() => {
+      window.__claudeEstado("estado/investigacion", { ts: Date.now(), resumen: "x", ideas: [
+        { titulo: "Press Both Sticks in GTA 6 Right Now", es: "Pulsa los dos sticks", tipo: "truco", estado: "Preproducido · Short 09", recomendada: true },
+        { titulo: "GTA 6 Needs 212 GB. Will It Fit?", es: "212 GB", tipo: "noticia", estado: "Preproducido · Short 07" },
+        { titulo: "This GTA 6 Parrot Knows Where the Money Is", es: "El loro", tipo: "truco" }] });
+      window.__claudeEstado("estado/tendencias", { ts: Date.now(), sugerencias: ["gta 6 how to make money", "gta 6 tips"],
+        virales: [{ titulo: "Most Useful Tips for GTA 6!", vistas: 1200000, url: "https://www.youtube.com/shorts/abc" }],
+        notas: { "Press Both Sticks in GTA 6 Right Now": { nota: 10, busqueda: "gta 6 press both sticks" }, "GTA 6 Needs 212 GB. Will It Fit?": { nota: 0.4, busqueda: "gta 6 212gb" } } });
+      window.__claudeEstado("estado/publicar", { ts: Date.now(), hora: "Mejor hora: de 00:00 a 03:00 (España)", shorts: [
+        { carpeta: "08-dinero-al-morir", n: "08", titulo: "Never Die With Cash in Your Pocket in GTA 6", es: "Nunca mueras con dinero", descripcion: "Die in GTA 6...", comentario: "How much cash? 👇", formato: "truco", publicado: false, archivo: "VCDT_08.mp4" },
+        { carpeta: "11-truco-250k", n: "11", titulo: "The $250,000 Cheat Code in GTA 6", descripcion: "x", comentario: "y", publicado: true, archivo: "VCDT_11.mp4" }] });
+      window.__claudeEstado("estado/canal", { ts: Date.now(), suscriptores: 250, visualizaciones: 1500000, shorts: [] });
+    });
+    await page.waitForTimeout(200);
+    ok("Radar: búsquedas de YouTube", /how to make money/.test(await txt(page, "#busca")));
+    ok("Radar: Shorts virales con visualizaciones", /Most Useful Tips/.test(await txt(page, "#virales")) && /1,2 M/.test(await txt(page, "#virales")));
+    ok("Radar: nota 🔥 en los títulos", /🔥 10/.test(await txt(page, "#ideas")) && /🔥 0,4/.test(await txt(page, "#ideas")));
+    ok("Listo para subir: el 08 pendiente con sus botones de copiar", /1 por subir/.test(await txt(page, "#subirChip")) && (await page.$$eval("#subeLista .sube-card:not(.hecho) .sube-acc button", e => e.length)) === 4);
+    await page.click("#subeLista .sube-card:not(.hecho) .sube-acc button >> text=✅ Ya lo he subido");
+    await page.waitForTimeout(150);
+    ok("Ya lo he subido: guarda y lo quita de pendientes", (await page.evaluate(() => Object.keys(window.__cols.subidos || {}))).includes("08-dinero-al-morir") && /nada pendiente/.test(await txt(page, "#subirChip")));
+    const card08 = page.locator("#subeLista .sube-card", { hasText: "Never Die With Cash" });
+    await card08.locator("text=👎 Mejorable").click();
+    await page.fill("#op-08-dinero-al-morir", "La voz va un poco lenta");
+    await card08.locator("text=Guardar opinión").click();
+    await page.waitForTimeout(150);
+    const op = await page.evaluate(() => window.__cols.opiniones && window.__cols.opiniones["08-dinero-al-morir"]);
+    ok("Opinión guardada para el equipo", op && op.voto === "mal" && /lenta/.test(op.texto));
+    ok("Camino a monetizar: 4 barras con los requisitos", (await page.$$eval("#meta .pbar", e => e.length)) === 4 && /250 \/ 500/.test(await txt(page, "#meta")));
+    ok("Botón de lote con los 2 preparados", (await page.isVisible("#loteBtn")) && /2 preparados/.test(await txt(page, "#loteBtn")));
+    await page.click("#loteBtn");
+    await page.waitForFunction(() => window.__sent.length === 1);
+    const lote = await page.evaluate(() => window.__sent[0].text);
+    const encs = await page.evaluate(() => Object.values(window.__cols.encargos));
+    ok("Lote: un solo mensaje con los 2 títulos y sus encargos", /Producir lote — 2 Shorts/.test(lote) && /1\. TÍTULO: Press Both Sticks/.test(lote) && /2\. TÍTULO: GTA 6 Needs 212 GB/.test(lote) && encs.length === 2 && encs.every(e => e.estado === "enviado" && e.lote));
+    ok("Funciones nuevas: sin errores", !errors.length, errors.join(" | "));
+    await page.screenshot({ path: path.join(SHOTS, "oficina_v3.png"), fullPage: true });
+    await ctx.close();
+  }
+
   { // 2. Sin sesión de producción escuchando
     const { page, ctx, errors } = await abrir(browser, "sin_sesion");
     ok("Avisa al cargar de que la sesión no escucha", /no está escuchando/.test(await txt(page, "#capNote")));
