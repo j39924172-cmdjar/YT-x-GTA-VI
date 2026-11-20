@@ -191,3 +191,4 @@
 - Encargo de Adam desde la oficina (idea viral, formato GTA 6 contra GTA 5 de @COLETHEMANGTA6). 5 datos verificados: puerta del coche como arma, gimnasio, sin testigo ni alarma no hay policía, 6 estrellas, Lucia primera mujer protagonista de un GTA en 3D. Descartados gasolina y límite de armas (🟡).
 - Voz Fenrir (28,7 s), examen 9,7 APTO, −14,2 LUFS. Vista previa en «Listo para subir».
 - `shorts/examen.py`: las listas («5 Things…») llevan tantos datos como diga el título (3 a 5).
+- 20/11 15:55 · Preproducción continua: cola llena (06, 07, 09, 10). Bucle perfecto añadido a los 4 guiones. Propuesta: cambiar el 07 (🔥 0,4) por «5 Things in GTA 6 That Are TOO Real» (🔥 10) y el 06 por «Is GTA 6 the Best Game Ever Made?» (🔥 7,3). Pendiente de Adam.
