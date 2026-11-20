@@ -1,0 +1,469 @@
+{
+ "voz": "voz.mp3",
+ "palabras": "palabras.json",
+ "salida": "final.mp4",
+ "fuente": "Footage: Rockstar Games \u00b7 Vice, SVG, PC Gamer, GTABase",
+ "marca": "VICECITY DAYS TV",
+ "musica": {
+  "bpm": 126,
+  "volumen": 0.3
+ },
+ "palabras_clave": [
+  "never",
+  "three",
+  "five",
+  "only",
+  "door",
+  "biker",
+  "gym",
+  "body",
+  "lose",
+  "witness",
+  "alarm",
+  "cops",
+  "six",
+  "stars",
+  "Lucia",
+  "woman",
+  "Follow",
+  "secrets"
+ ],
+ "escenas": [
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 40.48,
+   "desde": 0.0,
+   "hasta": 1.8,
+   "foco": [
+    0.68,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_11.jpg",
+   "desde": 1.8,
+   "hasta": 3.86,
+   "foco": [
+    0.55,
+    0.45
+   ],
+   "foco_fin": [
+    0.58,
+    0.42
+   ],
+   "zoom": [
+    1.05,
+    1.15
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 26.42,
+   "desde": 3.86,
+   "hasta": 5.22,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "img": "capturas/Jason_and_Lucia_17.jpg",
+   "desde": 5.22,
+   "hasta": 7.3,
+   "foco": [
+    0.55,
+    0.5
+   ],
+   "foco_fin": [
+    0.6,
+    0.55
+   ],
+   "zoom": [
+    1.05,
+    1.15
+   ]
+  },
+  {
+   "img": "capturas/Jason_and_Lucia_17.jpg",
+   "desde": 7.3,
+   "hasta": 8.96,
+   "foco": [
+    0.62,
+    0.72
+   ],
+   "foco_fin": [
+    0.66,
+    0.76
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ],
+   "etiqueta": {
+    "texto": "CAR DOOR",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.66,
+     0.92
+    ]
+   }
+  },
+  {
+   "img": "capturas/Jason_Duval_15.jpg",
+   "desde": 8.96,
+   "hasta": 11.06,
+   "foco": [
+    0.47,
+    0.45
+   ],
+   "foco_fin": [
+    0.47,
+    0.4
+   ],
+   "zoom": [
+    1.05,
+    1.15
+   ],
+   "etiqueta": {
+    "texto": "GYM",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.45,
+     0.72
+    ]
+   }
+  },
+  {
+   "img": "capturas/Jason_Duval_15.jpg",
+   "desde": 11.06,
+   "hasta": 13.6,
+   "foco": [
+    0.48,
+    0.38
+   ],
+   "foco_fin": [
+    0.5,
+    0.35
+   ],
+   "zoom": [
+    1.25,
+    1.4
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_18.jpg",
+   "desde": 13.6,
+   "hasta": 16.2,
+   "foco": [
+    0.78,
+    0.5
+   ],
+   "foco_fin": [
+    0.72,
+    0.5
+   ],
+   "zoom": [
+    1.05,
+    1.15
+   ],
+   "etiqueta": {
+    "texto": "COPS BEHIND",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 1.6,
+    "flecha": [
+     0.3,
+     0.75
+    ]
+   }
+  },
+  {
+   "img": "capturas/Grassrivers_04.jpg",
+   "desde": 16.2,
+   "hasta": 18.06,
+   "foco": [
+    0.45,
+    0.4
+   ],
+   "foco_fin": [
+    0.5,
+    0.35
+   ],
+   "zoom": [
+    1.1,
+    1.25
+   ],
+   "etiqueta": {
+    "texto": "POLICE",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1580
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.5,
+     0.47
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.58,
+   "desde": 18.06,
+   "hasta": 20.06,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.07
+   ]
+  },
+  {
+   "img": "capturas/VINTAGE_VICE_CITY_PACK_EXCLUSIVE_LOOKS_02.jpg",
+   "desde": 20.06,
+   "hasta": 21.8,
+   "foco": [
+    0.5,
+    0.45
+   ],
+   "foco_fin": [
+    0.5,
+    0.42
+   ],
+   "zoom": [
+    1.0,
+    1.1
+   ]
+  },
+  {
+   "img": "capturas/VINTAGE_VICE_CITY_PACK_EXCLUSIVE_LOOKS_02.jpg",
+   "desde": 21.8,
+   "hasta": 23.6,
+   "foco": [
+    0.5,
+    0.42
+   ],
+   "foco_fin": [
+    0.5,
+    0.4
+   ],
+   "zoom": [
+    1.0,
+    1.06
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_01.jpg",
+   "desde": 23.6,
+   "hasta": 26.48,
+   "foco": [
+    0.38,
+    0.45
+   ],
+   "foco_fin": [
+    0.42,
+    0.42
+   ],
+   "zoom": [
+    1.05,
+    1.15
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_01.jpg",
+   "desde": 26.48,
+   "hasta": 99,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.55,
+    0.45
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ]
+  }
+ ],
+ "capas": [
+  {
+   "tipo": "titulo",
+   "desde": 0.0,
+   "hasta": 5.82,
+   "lineas": [
+    [
+     "GTA 5",
+     "blanco"
+    ],
+    [
+     "COULD NEVER",
+     "amarillo"
+    ]
+   ],
+   "pastilla": "GTA 6 vs GTA 5"
+  },
+  {
+   "tipo": "fact",
+   "etiqueta": "THING",
+   "desde": 5.82,
+   "hasta": 8.96,
+   "n": 1,
+   "total": 5,
+   "titulo": "CAR DOOR = WEAPON"
+  },
+  {
+   "tipo": "fact",
+   "etiqueta": "THING",
+   "desde": 8.96,
+   "hasta": 13.6,
+   "n": 2,
+   "total": 5,
+   "titulo": "A REAL GYM"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 10.0,
+   "hasta": 13.6,
+   "items": [
+    {
+     "texto": "BODY CHANGES",
+     "fondo": "amarillo",
+     "desde": 10.34,
+     "y": 760
+    },
+    {
+     "texto": "SKIP IT = LOSE IT",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 12.28,
+     "y": 900
+    }
+   ]
+  },
+  {
+   "tipo": "fact",
+   "etiqueta": "THING",
+   "desde": 13.6,
+   "hasta": 16.2,
+   "n": 3,
+   "total": 5,
+   "titulo": "NO WITNESS, NO COPS"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 14.0,
+   "hasta": 16.2,
+   "items": [
+    {
+     "texto": "NO WITNESS",
+     "fondo": "rosa",
+     "color": "blanco",
+     "icono": "no",
+     "desde": 14.06,
+     "y": 760
+    },
+    {
+     "texto": "NO ALARM",
+     "fondo": "rosa",
+     "color": "blanco",
+     "icono": "no",
+     "desde": 14.72,
+     "y": 900
+    },
+    {
+     "texto": "NO COPS",
+     "fondo": "amarillo",
+     "desde": 15.4,
+     "y": 1040
+    }
+   ]
+  },
+  {
+   "tipo": "fact",
+   "etiqueta": "THING",
+   "desde": 16.2,
+   "hasta": 20.06,
+   "n": 4,
+   "total": 5,
+   "titulo": "6 WANTED STARS"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 16.6,
+   "hasta": 20.06,
+   "items": [
+    {
+     "texto": "GTA 6: 6 STARS",
+     "fondo": "amarillo",
+     "desde": 16.66,
+     "y": 760
+    },
+    {
+     "texto": "GTA 5: ONLY 5",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 18.06,
+     "y": 900
+    }
+   ]
+  },
+  {
+   "tipo": "fact",
+   "etiqueta": "THING",
+   "desde": 20.06,
+   "hasta": 23.6,
+   "n": 5,
+   "total": 5,
+   "titulo": "LUCIA"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 21.1,
+   "hasta": 23.6,
+   "items": [
+    {
+     "texto": "FIRST WOMAN TO LEAD A 3D GTA",
+     "fondo": "amarillo",
+     "desde": 21.18,
+     "y": 1500,
+     "size": 50
+    }
+   ]
+  },
+  {
+   "tipo": "cta",
+   "desde": 26.48,
+   "hasta": 99,
+   "lineas": [
+    "FOLLOW",
+    "FOR MORE GTA 6 SECRETS"
+   ]
+  }
+ ]
+}

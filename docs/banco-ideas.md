@@ -48,7 +48,7 @@ Lo que más busca la gente además de la historia. Sin spoilers de misiones. Vis
 | 33 | 5 Things in GTA 6 That Are TOO Real<br>*ES: 5 cosas de GTA 6 que son DEMASIADO reales* | lista · realismo · serie | "Number 5 actually exists in Florida." | Datos del Short 04 (lugares reales de Florida). 📡 @COLETHEMANGTA6 «5 Realistic Things» 1,6 M | ✅ (20/11) |
 | 34 | Is GTA 6 the Best Game Ever Made?<br>*ES: ¿Es GTA 6 el mejor juego de la historia?* | gran pregunta | "Only one other game ever scored this high." | Reconvierte el Short 06 (99 en Metacritic; volver a comprobar). 📡 @GTASixers_Info ×55 | ✅ (20/11) |
 | 35 | How Money Works in GTA 6<br>*ES: Cómo funciona el dinero en GTA 6* | cómo funciona · serie | "Half the money in GTA 6 isn't real money." | 1) Banco, efectivo y botín (GTABase). 2) El efectivo se pierde al morir (GTABase, Vice). 3) El botín vale cuando lo vendes (AlcastHQ, VGC). | ✅ (20/11) |
-| 36 | 5 Things GTA 6 Does That GTA 5 Never Could<br>*ES: 5 cosas que hace GTA 6 y GTA 5 nunca pudo* | GTA 6 contra GTA 5 | "GTA 5 could never do number 3." | ✅ 6 estrellas, Lucia primera protagonista femenina de la saga principal, gimnasios. 🟡 gasolina, límite de armas. 📡 @COLETHEMANGTA6 4,6 M | 🟡 3/5 |
+| 36 | 🎬 5 Things GTA 6 Does That GTA 5 Never Could (Short 12)<br>*ES: 5 cosas que hace GTA 6 y GTA 5 nunca pudo* | GTA 6 contra GTA 5 | "GTA 5 could never do number 3." | ✅ 6 estrellas, Lucia primera protagonista femenina de la saga principal, gimnasios. 🟡 gasolina, límite de armas. 📡 @COLETHEMANGTA6 4,6 M | 🎬 Short 12 (5/5 verificados: puerta, gimnasio, testigos, 6 estrellas, Lucia) |
 | — | Dar la vuelta al coche tú mismo | — | — | Los medios se contradicen (Yahoo dice que sí; PC Games dice que esa función de GTA 5 ya no está) | ❌ contradictorio |
 
 ## Producidos
@@ -62,6 +62,7 @@ Lo que más busca la gente además de la historia. Sin spoilers de misiones. Vis
 | 11 | The $250,000 Cheat Code in GTA 6 (truco, voz Fenrir) | 🎬 19/11 |
 
 ## Ganchos usados (no repetir)
+- "GTA 5 could never do number three." (Short 12)
 - "Who plays GTA 6 first?" / unlock por zonas horarias
 - "One's an Army vet running drugs. The other just walked out of prison."
 - "Rockstar didn't invent this map. Their own website calls Leonida 'the sunshine state.'"

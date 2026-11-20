@@ -154,7 +154,10 @@ class Examen:
         largas = [f for f in self.frases if len(f.split()) > 22]
         self.r("chapo", not largas, "Frases cortas para leer en voz alta (≤ 22 palabras)", largas[0][:60] if largas else "")
         facts = [c for c in self.plan.get("capas", []) if c.get("tipo") == "fact"]
-        self.r("chapo", len(facts) == 3, "Estructura gancho → 3 datos → CTA (FACT 1/3, 2/3, 3/3)", f"{len(facts)} datos")
+        # Las listas («5 Things…», formato de los canales que explotan) llevan tantos datos como diga el título (3 a 5).
+        n_lista = re.match(r"\s*([3-5])\s", t)
+        esperados = int(n_lista.group(1)) if n_lista else 3
+        self.r("chapo", len(facts) == esperados, f"Estructura gancho → {esperados} datos → CTA", f"{len(facts)} datos")
 
         # Pablito · retención
         if self.pal:

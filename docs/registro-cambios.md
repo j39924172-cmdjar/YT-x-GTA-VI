@@ -186,3 +186,8 @@
 - Oficina: 💥 Ideas virales (`estado/virales`, botón «🎬 Producir esta»), 🕵️ Canales que explotan (`estado/referentes`, botón «Que lo estudie el equipo» → comentario "Estudiar referente — <url>") y 🗒️ Lo que hemos hablado (`estado/charla`).
 - 6 ideas virales nuevas (31-36 del banco), 5 con datos verificados. Recomendada hoy: «5 Things in GTA 6 That Are TOO Real» (🔥 10).
 - Regla nueva en CLAUDE.md: todo lo hablado con Adam en el chat va siempre a `estado/charla`.
+
+## 20/11/2026 — Short 12 entregado: «5 Things GTA 6 Does That GTA 5 Never Could»
+- Encargo de Adam desde la oficina (idea viral, formato GTA 6 contra GTA 5 de @COLETHEMANGTA6). 5 datos verificados: puerta del coche como arma, gimnasio, sin testigo ni alarma no hay policía, 6 estrellas, Lucia primera mujer protagonista de un GTA en 3D. Descartados gasolina y límite de armas (🟡).
+- Voz Fenrir (28,7 s), examen 9,7 APTO, −14,2 LUFS. Vista previa en «Listo para subir».
+- `shorts/examen.py`: las listas («5 Things…») llevan tantos datos como diga el título (3 a 5).
