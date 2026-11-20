@@ -149,7 +149,11 @@ const txt = (page, sel) => page.textContent(sel);
         { titulo: "This GTA 6 Parrot Knows Where the Money Is", es: "El loro", tipo: "truco" }] });
       window.__claudeEstado("estado/tendencias", { ts: Date.now(), sugerencias: ["gta 6 how to make money", "gta 6 tips"],
         virales: [{ titulo: "Most Useful Tips for GTA 6!", vistas: 1200000, url: "https://www.youtube.com/shorts/abc" }],
-        notas: { "Press Both Sticks in GTA 6 Right Now": { nota: 10, busqueda: "gta 6 press both sticks" }, "GTA 6 Needs 212 GB. Will It Fit?": { nota: 0.4, busqueda: "gta 6 212gb" } } });
+        notas: { "Press Both Sticks in GTA 6 Right Now": { nota: 10, busqueda: "gta 6 press both sticks" }, "GTA 6 Needs 212 GB. Will It Fit?": { nota: 0.4, busqueda: "gta 6 212gb" } },
+        rockstar_yt: [{ titulo: "Grand Theft Auto VI Now Available", fecha: "2026-11-19", url: "https://www.youtube.com/watch?v=abc" }],
+        youtube_semana: [{ titulo: "MY FIRST DAY IN VICE CITY", vistas: 15900000, url: "https://www.youtube.com/watch?v=def" }],
+        x: [{ cuenta: "@RockstarGames", texto: "Out now on PlayStation 5.", url: "https://x.com/RockstarGames/status/1", oficial: true },
+            { cuenta: "@GoofysExe", texto: "Patch on November 25", url: "http://evil.example/x", oficial: false, nota: "❌ FALSO: no usar" }] });
       window.__claudeEstado("estado/publicar", { ts: Date.now(), hora: "Mejor hora: de 00:00 a 03:00 (España)", shorts: [
         { carpeta: "08-dinero-al-morir", n: "08", titulo: "Never Die With Cash in Your Pocket in GTA 6", es: "Nunca mueras con dinero", descripcion: "Die in GTA 6...", comentario: "How much cash? 👇", formato: "truco", publicado: false, archivo: "VCDT_08.mp4" },
         { carpeta: "11-truco-250k", n: "11", titulo: "The $250,000 Cheat Code in GTA 6", descripcion: "x", comentario: "y", publicado: true, archivo: "VCDT_11.mp4" }] });
@@ -158,6 +162,8 @@ const txt = (page, sel) => page.textContent(sel);
     await page.waitForTimeout(200);
     ok("Radar: búsquedas de YouTube", /how to make money/.test(await txt(page, "#busca")));
     ok("Radar: Shorts virales con visualizaciones", /Most Useful Tips/.test(await txt(page, "#virales")) && /1,2 M/.test(await txt(page, "#virales")));
+    ok("Fuentes: YouTube de Rockstar y lo más visto de la semana", /Now Available/.test(await txt(page, "#rockYT")) && /19\/11/.test(await txt(page, "#rockYT")) && /15,9 M/.test(await txt(page, "#ytSemana")));
+    ok("Fuentes: X con oficial ✅ y rumor falso ❌ tachado", /✅@RockstarGames/.test(await txt(page, "#xList")) && (await page.$$("#xList li.falso")).length === 1 && (await page.$$('#xList a[href*="evil"]')).length === 0);
     ok("Radar: nota 🔥 en los títulos", /🔥 10/.test(await txt(page, "#ideas")) && /🔥 0,4/.test(await txt(page, "#ideas")));
     ok("Listo para subir: el 08 pendiente con sus botones de copiar", /1 por subir/.test(await txt(page, "#subirChip")) && (await page.$$eval("#subeLista .sube-card:not(.hecho) .sube-acc button", e => e.length)) === 4);
     await page.click("#subeLista .sube-card:not(.hecho) .sube-acc button >> text=✅ Ya lo he subido");

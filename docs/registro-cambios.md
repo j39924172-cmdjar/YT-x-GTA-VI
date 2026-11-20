@@ -173,3 +173,10 @@
 - El radar dice que lo más buscado es ganar dinero rápido, cambiar a Lucia, conseguir coches y trucos para empezar. Ideas nuevas verificadas en el banco: 26 "GTA 6 Money Tricks #2: Stop Robbing Stores" ✅, 27 "Money Tricks #3: Dive for Free Treasure" ✅, 28 "You Can't Buy Cars in GTA 6" ✅, 29 "How to Switch to Lucia in GTA 6" ✅, 30 "3 GTA 6 Tips the Game Never Tells You" 🟡.
 - La oficina muestra la etiqueta 📡 tendencia y la búsqueda que lo demuestra (campo `tendencia` en `estado/investigacion`). Recomendadas hoy: 09 Press Both Sticks (🔥 10) y Cómo cambiar a Lucia (🔥 6,9).
 - La investigación diaria empieza ahora por el radar y convierte las 2-3 búsquedas con más demanda en ideas verificadas.
+
+## 20/11/2026 — X (Twitter) y YouTube como fuentes
+- `shorts/tendencias.py` añade el canal oficial de Rockstar en YouTube (RSS), los vídeos de GTA 6 más vistos de la semana y las publicaciones de X (`--x x.json`, que la investigación rellena con WebSearch en x.com porque la red no deja entrar en x.com directamente).
+- La oficina muestra en el Radar tres listas nuevas: ▶ Rockstar en YouTube, ▶ lo más visto de la semana y 𝕏 X con ✅ oficial / 🟡 rumor / ❌ bulo tachado.
+- Primer bulo detectado: "Rockstar pide perdón y saca un parche el 25 de noviembre" (nota de la comunidad lo desmiente). No usar.
+- Vídeo oficial nuevo en YouTube: "Grand Theft Auto VI Now Available" (19/11); la investigación de mañana lo añade al catálogo de clips.
+- Regla reforzada (Adam): las fuentes, también X y YouTube, van SOLO en la descripción, nunca en pantalla.

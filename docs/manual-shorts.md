@@ -20,6 +20,10 @@ Con solo 3 Shorts esto son pistas, no leyes. **Desde el lanzamiento (19/11), ade
 2. **Bucle perfecto.** La última frase antes del CTA retoma el gancho (palabras del principio), para que al volver a empezar el Short suene a continuación y se vea dos veces. El examen avisa si no lo hace.
 3. **Radar antes de elegir.** Cada título lleva una nota 🔥 de demanda (`shorts/tendencias.py`): de 7 a 10, producir ya; de 3 a 6, solo si el gancho es muy bueno; menos de 3, no producir salvo noticia del día.
 4. **Opiniones de Adam.** Antes de cada Short, el equipo lee la colección `opiniones` de la oficina (👍/👎 y su nota) y aplica lo que pide.
+5. **Fuentes X y YouTube (desde el 20/11/2026, petición de Adam).**
+   - **X (Twitter):** la investigación busca con WebSearch (`allowed_domains: ["x.com"]`). Cuentas oficiales (@RockstarGames, @RockstarSupport, @PlayStation, @Xbox) = fuente primaria ✅. Insiders, medios y fans = 🟡 rumor hasta que lo confirmen 2 medios fiables. Si una publicación tiene nota de la comunidad que la desmiente = ❌, no se usa.
+   - **YouTube:** canal oficial de Rockstar (vídeos nuevos → clips con `shorts/clips.py`) y vídeos de GTA 6 más vistos de la semana (temas que interesan; nunca copiar ni usar sus imágenes).
+   - **Las fuentes (también X y YouTube) van SOLO en la descripción del Short, NUNCA en pantalla** (decisión de Adam). El examen suspende el Short si aparece la línea de fuentes en el vídeo.
 
 ## Las 10 reglas de oro (todo el equipo)
 1. **El primer segundo lo decide todo.** Voz desde el fotograma 0, texto en pantalla desde el fotograma 0 y una imagen que se entiende sin sonido.

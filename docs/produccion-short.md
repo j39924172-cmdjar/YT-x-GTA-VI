@@ -12,6 +12,7 @@ Al recibir el encargo, contesta en el hilo del comentario (ArtifactComments `rep
 
 **Si el título ya está preproducido** (carpeta en `shorts/` con "Estado: preproducción"), usa esa carpeta: repasa rápido que los datos sigan vigentes y salta al paso 4 (voz).
 
+**X y YouTube como fuentes:** se pueden usar publicaciones de X (oficiales = fuente primaria; el resto, rumor 🟡 hasta 2 medios) y vídeos oficiales de Rockstar en YouTube. Se citan en la descripción («Source: Rockstar Games on X» + enlace), NUNCA en pantalla.
 **Antes de empezar:** lee las opiniones de Adam (ArtifactData `list` de la colección `opiniones` de la oficina) y aplica lo que pida (voz, ritmo, ganchos…). Mira también la nota 🔥 del título en `estado/tendencias`.
 **Lotes:** si el comentario dice `Producir lote — N Shorts`, cada línea trae un título y su encargo: prodúcelos uno detrás de otro con este procedimiento, cada uno con su `encargos/<id>`, y entrega cada vídeo en cuanto esté (no esperes al final).
 **Series y bucle:** si el tema es de una serie que funciona (p. ej. trucos de dinero), ponle su nombre y número ("GTA 6 Money Tricks #2") y haz que la última frase antes del CTA retome el gancho.

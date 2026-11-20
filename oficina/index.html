@@ -215,6 +215,15 @@
   .meta-row .lab b { color: var(--ink); font-weight: 600; font-family: var(--font-mono); }
   .pbar { height: 8px; border-radius: 4px; background: var(--surface-2); overflow: hidden; }
   .pbar i { display: block; height: 100%; background: linear-gradient(90deg, var(--violet), var(--pink)); min-width: 2px; }
+  .fuentes-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); align-items: start; }
+  @media (max-width: 900px) { .fuentes-grid { grid-template-columns: minmax(0, 1fr); } }
+  .xlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 12.5px; }
+  .xlist li { display: grid; gap: 2px; }
+  .xlist .cta { display: flex; gap: 6px; align-items: center; font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); }
+  .xlist a { color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+  .xlist a:hover { color: var(--lilac); text-decoration: underline; }
+  .xlist .xn { color: var(--muted); font-size: 12px; }
+  .xlist li.falso a { text-decoration: line-through; color: var(--muted); }
   .lote { justify-self: stretch; justify-content: center; padding: 10px; font-weight: 600; }
   @media (max-width: 760px) { .radar-grid { grid-template-columns: minmax(0, 1fr); } }
 
@@ -302,7 +311,12 @@
           <div class="field"><span>Lo que la gente busca en YouTube</span><div class="busca" id="busca"><span class="muted">Jarvis carga aquí las búsquedas en la próxima investigación.</span></div></div>
           <div class="field"><span>Shorts de GTA 6 que más se ven ahora (otros canales)</span><ol class="viral" id="virales"></ol></div>
         </div>
-        <p class="note">La nota 🔥 de cada título (0-10) mide cuánto se ven los Shorts de ese tema. Sirve para elegir, nunca para copiar.</p>
+        <div class="fuentes-grid">
+          <div class="field"><span>▶ YouTube · canal oficial de Rockstar</span><ol class="viral" id="rockYT"></ol></div>
+          <div class="field"><span>▶ YouTube · vídeos de GTA 6 más vistos esta semana</span><ol class="viral" id="ytSemana"></ol></div>
+          <div class="field"><span>𝕏 X (Twitter) · lo que se publica</span><ol class="xlist" id="xList"></ol></div>
+        </div>
+        <p class="note">La nota 🔥 de cada título (0-10) mide cuánto se ven los Shorts de ese tema. Sirve para elegir, nunca para copiar. En X, solo las cuentas oficiales (✅) cuentan como fuente; lo demás es rumor hasta que lo confirmen 2 medios. Las fuentes van solo en la descripción, nunca en el vídeo.</p>
       </section>
 
       <section class="panel" id="canal" aria-labelledby="hCanal">
@@ -697,6 +711,19 @@
     $("virales").replaceChildren(...(t.virales || []).slice(0, 8).map(v => h("li", {},
       h("span", { class: "v" }, v.vistas >= 1e6 ? (v.vistas / 1e6).toFixed(1).replace(".", ",") + " M" : v.vistas >= 1e3 ? Math.round(v.vistas / 1e3) + " mil" : String(v.vistas)),
       /^https:\/\/www\.youtube\.com\//.test(v.url || "") ? h("a", { href: v.url, target: "_blank", rel: "noopener" }, v.titulo) : h("span", {}, v.titulo))));
+    const yt = (lista, id, vacio) => $(id).replaceChildren(...(lista && lista.length ? lista.slice(0, 6).map(v => h("li", {},
+      h("span", { class: "v" }, v.fecha ? v.fecha.slice(8, 10) + "/" + v.fecha.slice(5, 7) : v.vistas >= 1e6 ? (v.vistas / 1e6).toFixed(1).replace(".", ",") + " M" : v.vistas >= 1e3 ? Math.round(v.vistas / 1e3) + " mil" : String(v.vistas || "")),
+      /^https:\/\/www\.youtube\.com\//.test(v.url || "") ? h("a", { href: v.url, target: "_blank", rel: "noopener" }, v.titulo) : h("span", {}, v.titulo))) : [h("li", { class: "muted" }, vacio)]));
+    yt(t.rockstar_yt, "rockYT", "Sin vídeos todavía.");
+    yt(t.youtube_semana, "ytSemana", "Sin vídeos todavía.");
+    const xs = Array.isArray(t.x) ? t.x.filter(p => p && p.texto) : [];
+    $("xList").replaceChildren(...(xs.length ? xs.slice(0, 8).map(p => {
+      const falso = /❌|falso/i.test(p.nota || "");
+      return h("li", { class: falso ? "falso" : "" },
+        h("span", { class: "cta" }, p.oficial ? "✅" : falso ? "❌" : "🟡", h("b", {}, p.cuenta || "X"), p.fecha ? " · " + p.fecha.slice(8, 10) + "/" + p.fecha.slice(5, 7) : ""),
+        /^https:\/\/(x|twitter)\.com\//.test(p.url || "") ? h("a", { href: p.url, target: "_blank", rel: "noopener" }, p.texto) : h("span", {}, p.texto),
+        p.nota ? h("span", { class: "xn" }, p.nota) : null);
+    }) : [h("li", { class: "muted" }, "Jarvis busca en X en la próxima investigación.")]));
     renderIdeas(); renderBoard(); renderInvestigacion();
   }
   function renderMeta() {
