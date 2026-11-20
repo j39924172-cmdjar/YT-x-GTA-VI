@@ -159,3 +159,4 @@
 - Lección del canal: el truco de 250.000 $ (Short 11) +801 visualizaciones en 6 h; los trucos de dinero y mecánicas ocultas van primero.
 - Ideas nuevas: 21 "This GTA 6 Parrot Knows Where the Money Is" ✅ (GTABoom, TechWiser, Mashable), 22 "In GTA 6, Your Car Door Is a Weapon" ✅ (GTABase, Yahoo). En espera 🟡: cajas fuertes con cualquier explosión, sentarse en cualquier sitio, peatón que llama a su abogado. Descartado ❌: dar la vuelta al coche (medios contradictorios). Ventas del primer día: aún no hay cifras oficiales (solo previsiones).
 - Recomendadas hoy: el loro (truco de dinero) y el 09 "Press Both Sticks" (ya preproducido).
+- 20/11 12:53 · Preproducción continua: cola llena (06, 07, 09, 10). Almudena propone cambiar el 07 (212 GB, noticia que caduca) por el truco del loro (idea 21). Pendiente de Adam.
