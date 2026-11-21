@@ -206,3 +206,6 @@
 - Recomendadas hoy: «GTA 6 Took Away These 5 Things From GTA 5» (🔥 9,6) e «Is GTA 6 the Best Game Ever Made?» (🔥 7,6, reconvierte el 06). La nota 🔥 de Press Both Sticks bajó de 10 a 3,6 (el radar varía según los Shorts del día).
 - 21/11 12:53 · Preproducción continua: cola llena (06, 07, 09, 10), sin opiniones nuevas. Propuesta actualizada: cambiar el 07 (🔥 0,4) por «GTA 6 Took Away These 5 Things From GTA 5» (🔥 9,6) y el 06 por «Is GTA 6 the Best Game Ever Made?» (🔥 7,6).
 - 21/11 15:53 · Preproducción continua: cola llena, sin opiniones nuevas. Al re-verificar la idea 37 («Took Away These 5 Things») solo 2 de 5 datos tienen segundo medio → pasa a 🟡 y deja de recomendarse; hoy se recomiendan «Is GTA 6 the Best Game Ever Made?» y «5 Things TOO Real».
+
+## 21/11/2026 — Duración de los Shorts según formato (Adam)
+- Adam pregunta por qué siempre ~30 s. Nueva regla: trucos 25-35 s; listas de 5, «cómo funciona» y GTA 6 contra GTA 5 40-55 s (95-150 palabras); gran pregunta 35-45 s. Cambiado en manual, procedimiento, CLAUDE.md y examen (rango de palabras y duración según título/Formato).

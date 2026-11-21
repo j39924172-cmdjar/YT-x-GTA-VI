@@ -148,8 +148,12 @@ class Examen:
                "Gancho concreto (número, contraste, negación o pregunta)", gancho[:70])
 
         # El Chapo · guion
-        self.r("chapo", 65 <= len(palabras) <= 100, "Guion de 65 a 100 palabras (25-35 s)", f"{len(palabras)} palabras")
-        self.r("chapo", 75 <= len(palabras) <= 95, "Guion ideal de 75 a 95 palabras", f"{len(palabras)} palabras", aviso=True)
+        # Duración según formato (decisión de Adam, 21/11/2026): trucos 25-35 s; listas, «cómo funciona» y GTA 6 contra GTA 5 hasta 55 s.
+        fmt_pub = (re.search(r"\*\*Formato:\*\*\s*(.+)", self.pub or "") or [None, ""])[1].lower()
+        largo = bool(re.match(r"\s*[3-5]\s", t)) or any(k in fmt_pub for k in ("lista", "comparativa", "cómo funciona", "como funciona", "gran pregunta"))
+        lo, hi, ilo, ihi, txt = (65, 165, 95, 150, "25-55 s, formato largo") if largo else (65, 100, 75, 95, "25-35 s")
+        self.r("chapo", lo <= len(palabras) <= hi, f"Guion de {lo} a {hi} palabras ({txt})", f"{len(palabras)} palabras")
+        self.r("chapo", ilo <= len(palabras) <= ihi, f"Guion ideal de {ilo} a {ihi} palabras", f"{len(palabras)} palabras", aviso=True)
         self.r("chapo", voz_l.rstrip(". !").endswith(CTA), "Termina con 'Follow for more GTA 6 secrets'")
         mul = [m for m in MULETILLAS if m in voz_l]
         self.r("chapo", not mul, "Sin muletillas ('in this video', 'hey guys'…)", ", ".join(mul))
@@ -190,7 +194,8 @@ class Examen:
         if v:
             self.r("victillor", v["w"] == 1080 and v["h"] == 1920, "Vertical 1080×1920", f"{v['w']}×{v['h']}")
             self.r("victillor", abs(v["fps"] - 30) < 0.5, "30 fotogramas por segundo", f"{v['fps']:.1f}")
-            self.r("victillor", 25 <= v["dur"] <= 35, "Dura entre 25 y 35 s", f"{v['dur']:.1f} s")
+            dmax = 55 if largo else 35
+            self.r("victillor", 25 <= v["dur"] <= dmax, f"Dura entre 25 y {dmax} s", f"{v['dur']:.1f} s")
         else:
             self.r("victillor", False, "Existe el vídeo final", "falta final.mp4")
         cta = [c for c in self.plan.get("capas", []) if c.get("tipo") == "cta"]

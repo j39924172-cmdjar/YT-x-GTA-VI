@@ -29,7 +29,7 @@ Al recibir el encargo, contesta en el hilo del comentario (ArtifactComments `rep
 6. Crea `shorts/NN-<nombre>/investigacion.md` con las citas literales, las URL, la fecha y lo descartado. NN es el siguiente número libre en `shorts/`.
 
 ## [PASO 2/8] Guion y gancho (El Chapo + Torrente + Pablito)
-- Inglés, **25–35 s** (unas 75–95 palabras): gancho → 3 datos → "Follow for more GTA 6 secrets".
+- Inglés. **Duración según formato** (Adam, 21/11): trucos 25–35 s (75–95 palabras); listas de 5, «cómo funciona» y GTA 6 contra GTA 5 40–55 s (95–150); gran pregunta 35–45 s. Gancho → datos explicados → "Follow for more GTA 6 secrets".
 - Gancho concreto en el primer segundo, NUEVO: comprueba "Ganchos usados" en `docs/banco-ideas.md`. Primera frase de 3 s o menos, con contraste, negación, número o pregunta, y un bucle abierto que se cierre en el dato 3.
 - Da prioridad a los formatos que mejor funcionan en el canal (tabla de lecciones de `docs/manual-shorts.md`).
 - Frases cortas para leer en voz alta. Nada de "in this video".
