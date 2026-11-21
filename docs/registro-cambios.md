@@ -204,3 +204,4 @@
 - Ideas nuevas: 37 «GTA 6 Took Away These 5 Things From GTA 5» ✅ (🔥 9,6), 38 «Is GTA 6 Worth $80?» ✅ (reconvierte el 07), 39 coche verde en una villa 🟡, 40 600.000 animaciones 🟡.
 - X: sigue circulando el bulo del «parche del 25/11» (❌). Nada oficial nuevo de Rockstar.
 - Recomendadas hoy: «GTA 6 Took Away These 5 Things From GTA 5» (🔥 9,6) e «Is GTA 6 the Best Game Ever Made?» (🔥 7,6, reconvierte el 06). La nota 🔥 de Press Both Sticks bajó de 10 a 3,6 (el radar varía según los Shorts del día).
+- 21/11 12:53 · Preproducción continua: cola llena (06, 07, 09, 10), sin opiniones nuevas. Propuesta actualizada: cambiar el 07 (🔥 0,4) por «GTA 6 Took Away These 5 Things From GTA 5» (🔥 9,6) y el 06 por «Is GTA 6 the Best Game Ever Made?» (🔥 7,6).
