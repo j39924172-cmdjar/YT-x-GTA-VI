@@ -216,3 +216,8 @@
 - Short 08 rehecho en modo show (examen 9,7) y nueva vista previa en «Listo para subir».
 - 21/11 18:53 · Preproducción continua: cola llena. Guiones 06, 09 y 10 reescritos con la regla de entretenimiento (hablan a 'you', giro 'here's the crazy part' / 'wait for it'), mismos datos verificados. Sin opiniones nuevas.
 - 21/11 21:53 · Preproducción continua: cola llena (06, 07, 09, 10), ya revisada a las 18:53 (personalidad, bucle, clips). Sin opiniones nuevas: sin cambios.
+
+## 21/11/2026 — Recomendaciones sin repetir (Adam)
+- Adam: "no quiero que me pongas siempre los mismos títulos recomendados". Regla nueva en el manual + historial `docs/recomendadas.json` (3 días sin repetir, 2 ideas nuevas al día, los preproducidos no se repiten como "producir hoy").
+- 4 ideas nuevas verificadas: 41 coche de Paul Walker (Jalopnik, Insider Gaming, Gfinity), 42 3.790 millones en un día (Take-Two, SEC), 43 modo primera persona escondido (GamingBible, LibertyCity), 44 localizadores amarillo/rojo (NoobFeed, PC Gamer; 🔥 10 en el radar).
+- Recomendadas: «Yellow or Red? GTA 6's Car Tracker Trick» y «GTA 6 Hid Paul Walker's Car in a Garage».

@@ -59,6 +59,12 @@ Adam: "los veo muy secos y con poca actividad". Desde hoy todo Short lleva:
 4. **Primer fotograma = lo más espectacular del Short** (explosión, persecución, avión), nunca un plano tranquilo.
 5. **Voz:** Dylan (Higgsfield) es la más expresiva para los Shorts importantes; con Fenrir, velocidad 1,1 como mínimo.
 
+## No repetir recomendaciones (Adam, 21/11/2026)
+"No quiero que me pongas siempre los mismos títulos recomendados." Historial en `docs/recomendadas.json`:
+- Un título recomendado ("producir hoy") no se vuelve a recomendar en los 3 días siguientes.
+- Cada investigación diaria trae al menos 2 ideas nuevas que nunca se hayan recomendado.
+- Los Shorts preproducidos aparecen en su sección («Preproducido · Short NN»), pero no se repiten como "producir hoy" en cada resumen. Los mensajes de la preproducción solo nombran títulos cuando algo cambia.
+
 ## Las 10 reglas de oro (todo el equipo)
 1. **El primer segundo lo decide todo.** Voz desde el fotograma 0, texto en pantalla desde el fotograma 0 y una imagen que se entiende sin sonido.
 2. **Una sola idea por Short**, contada como gancho → 3 datos → "Follow for more GTA 6 secrets".
