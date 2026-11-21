@@ -215,3 +215,4 @@
 - Manual: sección «Entretenimiento: que no sea seco». Examen: aviso «Guion con personalidad» (you ×3 + giro). Procedimiento: no desactivar el modo show.
 - Short 08 rehecho en modo show (examen 9,7) y nueva vista previa en «Listo para subir».
 - 21/11 18:53 · Preproducción continua: cola llena. Guiones 06, 09 y 10 reescritos con la regla de entretenimiento (hablan a 'you', giro 'here's the crazy part' / 'wait for it'), mismos datos verificados. Sin opiniones nuevas.
+- 21/11 21:53 · Preproducción continua: cola llena (06, 07, 09, 10), ya revisada a las 18:53 (personalidad, bucle, clips). Sin opiniones nuevas: sin cambios.
