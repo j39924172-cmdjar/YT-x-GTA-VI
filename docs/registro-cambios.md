@@ -205,3 +205,4 @@
 - X: sigue circulando el bulo del «parche del 25/11» (❌). Nada oficial nuevo de Rockstar.
 - Recomendadas hoy: «GTA 6 Took Away These 5 Things From GTA 5» (🔥 9,6) e «Is GTA 6 the Best Game Ever Made?» (🔥 7,6, reconvierte el 06). La nota 🔥 de Press Both Sticks bajó de 10 a 3,6 (el radar varía según los Shorts del día).
 - 21/11 12:53 · Preproducción continua: cola llena (06, 07, 09, 10), sin opiniones nuevas. Propuesta actualizada: cambiar el 07 (🔥 0,4) por «GTA 6 Took Away These 5 Things From GTA 5» (🔥 9,6) y el 06 por «Is GTA 6 the Best Game Ever Made?» (🔥 7,6).
+- 21/11 15:53 · Preproducción continua: cola llena, sin opiniones nuevas. Al re-verificar la idea 37 («Took Away These 5 Things») solo 2 de 5 datos tienen segundo medio → pasa a 🟡 y deja de recomendarse; hoy se recomiendan «Is GTA 6 the Best Game Ever Made?» y «5 Things TOO Real».
