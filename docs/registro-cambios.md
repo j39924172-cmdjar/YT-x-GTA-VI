@@ -221,3 +221,6 @@
 - Adam: "no quiero que me pongas siempre los mismos títulos recomendados". Regla nueva en el manual + historial `docs/recomendadas.json` (3 días sin repetir, 2 ideas nuevas al día, los preproducidos no se repiten como "producir hoy").
 - 4 ideas nuevas verificadas: 41 coche de Paul Walker (Jalopnik, Insider Gaming, Gfinity), 42 3.790 millones en un día (Take-Two, SEC), 43 modo primera persona escondido (GamingBible, LibertyCity), 44 localizadores amarillo/rojo (NoobFeed, PC Gamer; 🔥 10 en el radar).
 - Recomendadas: «Yellow or Red? GTA 6's Car Tracker Trick» y «GTA 6 Hid Paul Walker's Car in a Garage».
+
+## 21/11/2026 — Short 14 entregado: «GTA 6 Hid Paul Walker's Car in a Garage»
+- Encargo de Adam (voz Fenrir). Primer Short producido desde cero con modo show + guion con personalidad. 14 de 18 escenas en clips oficiales; el coche no aparece en imágenes oficiales, así que no se dice que ningún coche en pantalla sea ese. Examen 9,7 APTO, −14,2 LUFS.

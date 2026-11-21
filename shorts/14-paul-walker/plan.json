@@ -1,0 +1,473 @@
+{
+ "voz": "voz.mp3",
+ "palabras": "palabras.json",
+ "salida": "final.mp4",
+ "fuente": "Footage: Rockstar Games \u00b7 Jalopnik, Insider Gaming, Gfinity, Critical Hits",
+ "marca": "VICECITY DAYS TV",
+ "musica": {
+  "bpm": 130,
+  "volumen": 0.3
+ },
+ "palabras_clave": [
+  "Paul",
+  "Walker's",
+  "drive",
+  "green",
+  "Maibatsu",
+  "Penumbra",
+  "Eclipse",
+  "Fast",
+  "Furious",
+  "villa",
+  "garage",
+  "Vespucci",
+  "early",
+  "register",
+  "crazy",
+  "trunk",
+  "snake",
+  "Toy",
+  "Story",
+  "Follow",
+  "secrets"
+ ],
+ "escenas": [
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 39.05,
+   "desde": 0,
+   "hasta": 1.4,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 47.02,
+   "desde": 1.4,
+   "hasta": 2.54,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_24.jpg",
+   "desde": 2.54,
+   "hasta": 4.14,
+   "foco": [
+    0.7,
+    0.6
+   ],
+   "foco_fin": [
+    0.72,
+    0.62
+   ],
+   "zoom": [
+    1.05,
+    1.15
+   ],
+   "etiqueta": {
+    "texto": "TUNER CARS",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.68,
+     0.78
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 40.48,
+   "desde": 4.14,
+   "hasta": 5.94,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_02.jpg",
+   "desde": 5.94,
+   "hasta": 7.6,
+   "foco": [
+    0.3,
+    0.6
+   ],
+   "foco_fin": [
+    0.25,
+    0.7
+   ],
+   "zoom": [
+    1.05,
+    1.2
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 26.42,
+   "desde": 7.6,
+   "hasta": 8.96,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_22.jpg",
+   "desde": 8.96,
+   "hasta": 11.2,
+   "foco": [
+    0.6,
+    0.65
+   ],
+   "foco_fin": [
+    0.58,
+    0.72
+   ],
+   "zoom": [
+    1.05,
+    1.2
+   ],
+   "etiqueta": {
+    "texto": "VICE CITY NIGHTS",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.3,
+    "flecha": [
+     0.6,
+     0.82
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Pre-Load_Now.mp4",
+   "inicio": 5.25,
+   "desde": 11.2,
+   "hasta": 12.67,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 67.12,
+   "desde": 12.67,
+   "hasta": 14.03,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 73.85,
+   "desde": 14.03,
+   "hasta": 16.4,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 10.02,
+   "desde": 16.4,
+   "hasta": 18.18,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 27.88,
+   "desde": 18.18,
+   "hasta": 19.65,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 33.68,
+   "desde": 19.65,
+   "hasta": 20.32,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 59.95,
+   "desde": 20.32,
+   "hasta": 22.32,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 58.55,
+   "desde": 22.32,
+   "hasta": 23.62,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 63.22,
+   "desde": 23.62,
+   "hasta": 24.38,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.58,
+   "desde": 24.38,
+   "hasta": 26.84,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 26.84,
+   "hasta": 99,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.55,
+    0.45
+   ],
+   "zoom": [
+    1.0,
+    1.12
+   ]
+  }
+ ],
+ "capas": [
+  {
+   "tipo": "titulo",
+   "desde": 0,
+   "hasta": 4.14,
+   "lineas": [
+    [
+     "PAUL WALKER'S",
+     "amarillo"
+    ],
+    [
+     "CAR IS IN GTA 6",
+     "blanco"
+    ]
+   ],
+   "pastilla": "GTA 6 SECRET"
+  },
+  {
+   "tipo": "fact",
+   "desde": 4.14,
+   "hasta": 11.2,
+   "n": 1,
+   "total": 3,
+   "titulo": "THE CAR"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 5.0,
+   "hasta": 11.2,
+   "items": [
+    {
+     "texto": "GREEN MAIBATSU PENUMBRA",
+     "fondo": "amarillo",
+     "desde": 5.02,
+     "y": 760,
+     "size": 50
+    },
+    {
+     "texto": "= 1995 ECLIPSE",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 7.22,
+     "y": 900
+    },
+    {
+     "texto": "FAST & FURIOUS",
+     "fondo": "amarillo",
+     "desde": 9.58,
+     "y": 1040
+    }
+   ]
+  },
+  {
+   "tipo": "fact",
+   "desde": 11.2,
+   "hasta": 18.18,
+   "n": 2,
+   "total": 3,
+   "titulo": "WHERE IT IS"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 12.5,
+   "hasta": 15.9,
+   "items": [
+    {
+     "texto": "VILLA GARAGE",
+     "fondo": "amarillo",
+     "desde": 12.58,
+     "y": 760
+    },
+    {
+     "texto": "VESPUCCI ISLAND",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 13.44,
+     "y": 900
+    },
+    {
+     "texto": "GRAB IT EARLY",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 14.82,
+     "y": 1040
+    }
+   ]
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 15.9,
+   "hasta": 18.18,
+   "items": [
+    {
+     "texto": "REGISTER IT TO KEEP IT",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 16.14,
+     "y": 760,
+     "size": 50
+    }
+   ]
+  },
+  {
+   "tipo": "fact",
+   "desde": 18.18,
+   "hasta": 23.92,
+   "n": 3,
+   "total": 3,
+   "titulo": "THE TRUNK"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 20.2,
+   "hasta": 23.92,
+   "items": [
+    {
+     "texto": "OPEN THE TRUNK",
+     "fondo": "amarillo",
+     "desde": 20.32,
+     "y": 760
+    },
+    {
+     "texto": "SNAKE ATTACK!",
+     "fondo": "rosa",
+     "color": "blanco",
+     "icono": "no",
+     "desde": 21.28,
+     "y": 900
+    },
+    {
+     "texto": "TOY STORY JOKE",
+     "fondo": "amarillo",
+     "desde": 22.66,
+     "y": 1040
+    }
+   ]
+  },
+  {
+   "tipo": "cta",
+   "desde": 26.84,
+   "hasta": 99,
+   "lineas": [
+    "FOLLOW",
+    "FOR MORE GTA 6 SECRETS"
+   ]
+  }
+ ]
+}
