@@ -51,6 +51,14 @@ Reglas de título que repiten: corto, dice lo que vas a ver, UNA palabra en may�
 | Gran pregunta con debate | 35-45 s | 95-125 |
 Más largo solo si cada segundo aporta (explicar el dato, no rellenar). El gancho sigue en el primer segundo y el bucle al final.
 
+## Entretenimiento: que no sea seco (Adam, 21/11/2026)
+Adam: "los veo muy secos y con poca actividad". Desde hoy todo Short lleva:
+1. **Modo show en el montaje (automático en `shorts/montaje.py`):** whoosh en cada corte, golpe y sacudida de cámara al revelar cada dato, "pop" y zoom de golpe en las palabras clave, "ding" en las pastillas, subida de tensión y **pausa dramática** de la música justo antes del último dato, y microcortes: ninguna foto fija más de ~2 s sin cambio de plano.
+2. **Guion con personalidad (El Chapo + Torrente):** hablarle a "you" (3 veces o más), reacciones cortas ("Wait.", "No joke.", "Here's the crazy part."), un giro en cada dato ("but", "the catch", "actually") y una pregunta al espectador. Frases de 3-8 palabras. Cero tono de enciclopedia.
+3. **Cambio cada 3 segundos como mucho:** plano nuevo, texto que entra, efecto o zoom. Si en 3 s no pasa nada, el espectador se va.
+4. **Primer fotograma = lo más espectacular del Short** (explosión, persecución, avión), nunca un plano tranquilo.
+5. **Voz:** Dylan (Higgsfield) es la más expresiva para los Shorts importantes; con Fenrir, velocidad 1,1 como mínimo.
+
 ## Las 10 reglas de oro (todo el equipo)
 1. **El primer segundo lo decide todo.** Voz desde el fotograma 0, texto en pantalla desde el fotograma 0 y una imagen que se entiende sin sonido.
 2. **Una sola idea por Short**, contada como gancho → 3 datos → "Follow for more GTA 6 secrets".

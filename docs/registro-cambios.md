@@ -209,3 +209,8 @@
 
 ## 21/11/2026 — Duración de los Shorts según formato (Adam)
 - Adam pregunta por qué siempre ~30 s. Nueva regla: trucos 25-35 s; listas de 5, «cómo funciona» y GTA 6 contra GTA 5 40-55 s (95-150 palabras); gran pregunta 35-45 s. Cambiado en manual, procedimiento, CLAUDE.md y examen (rango de palabras y duración según título/Formato).
+
+## 21/11/2026 — Modo show: Shorts con más entretenimiento (Adam: "los veo muy secos")
+- `shorts/montaje.py`: modo show por defecto (`"show": true`): efectos de sonido sintetizados propios (whoosh en cortes, golpe en cada dato, pop en palabras clave, ding en pastillas, subida de tensión), zoom de golpe en palabras clave, sacudida de cámara al revelar datos, pausa dramática de la música antes del último dato, microcortes (ninguna foto fija > ~2 s) y palabras clave más grandes. Efectos a 0,35 del volumen para no tapar la voz.
+- Manual: sección «Entretenimiento: que no sea seco». Examen: aviso «Guion con personalidad» (you ×3 + giro). Procedimiento: no desactivar el modo show.
+- Short 08 rehecho en modo show (examen 9,7) y nueva vista previa en «Listo para subir».

@@ -155,6 +155,9 @@ class Examen:
         self.r("chapo", lo <= len(palabras) <= hi, f"Guion de {lo} a {hi} palabras ({txt})", f"{len(palabras)} palabras")
         self.r("chapo", ilo <= len(palabras) <= ihi, f"Guion ideal de {ilo} a {ihi} palabras", f"{len(palabras)} palabras", aviso=True)
         self.r("chapo", voz_l.rstrip(". !").endswith(CTA), "Termina con 'Follow for more GTA 6 secrets'")
+        tu = len(re.findall(r"\byou(r|'re|'ll)?\b", voz_l))
+        giro = bool(re.search(r"\b(but|catch|actually|wait|crazy|no joke|here's the)\b", voz_l))
+        self.r("chapo", tu >= 3 and giro, "Guion con personalidad: habla a 'you' (3+) y tiene un giro (but, catch, wait…)", f"you×{tu}, giro: {'sí' if giro else 'no'}", aviso=True)
         mul = [m for m in MULETILLAS if m in voz_l]
         self.r("chapo", not mul, "Sin muletillas ('in this video', 'hey guys'…)", ", ".join(mul))
         largas = [f for f in self.frases if len(f.split()) > 22]

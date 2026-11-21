@@ -53,6 +53,7 @@ Al recibir el encargo, contesta en el hilo del comentario (ArtifactComments `rep
 5. Tiempos palabra a palabra: `HF_HUB_DISABLE_XET=1 python shorts/tiempos.py voz.mp3 voz.txt palabras.json "<nombres propios>"`.
 
 ## [PASO 5/8] Montaje (Georgina)
+- **Modo show (Adam, 21/11):** activado por defecto en `montaje.py` (efectos de sonido, zooms, sacudidas, pausa dramática, microcortes). No lo desactives (`"show": false`) salvo que Adam lo pida. Guion con personalidad: ver "Entretenimiento" en el manual.
 - Escribe `plan.json` siguiendo los de `shorts/03-jason-lucia/` y `shorts/04-florida-real/`:
   - Cortes cada ~2,2 s, cuadrados con los tiempos de `palabras.json`.
   - Capa "titulo" en el gancho; "fact" n/3 por cada dato; "tarjeta" para cifras (con "contar"); "pastillas" ✅/❌; "cta" al final; "comparativa" si hay foto real de dominio público.

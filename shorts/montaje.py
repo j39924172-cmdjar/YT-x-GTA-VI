@@ -403,7 +403,7 @@ def subtitulos(fr, palabras, t, clave):
             for w in g:
                 limpio = w["w"].strip(".,?!\"“”").upper()
                 es_clave = any(limpio.startswith(k.upper()) for k in clave)
-                im = texto_img(limpio, "Montserrat-Black.ttf", 112, "amarillo" if es_clave else "blanco", stroke=10)
+                im = texto_img(limpio, "Montserrat-Black.ttf", 128 if es_clave else 112, "amarillo" if es_clave else "blanco", stroke=11 if es_clave else 10)
                 piezas.append(im); x_total += im.width - 30
             k = ease_back((t - g[0]["s"] + 0.05) / 0.16)
             ajuste = min(1.0, 940 / max(x_total, 1))          # si no cabe a lo ancho, se encoge
@@ -458,6 +458,128 @@ def ritmo(segundos: float, bpm: int, salida: Path, sr: int = 44100) -> None:
         w.setnchannels(2); w.setsampwidth(2); w.setframerate(sr); w.writeframes(estereo.tobytes())
 
 
+# ------------------------------------------------------------------ modo show: efectos de sonido propios (sin derechos de terceros)
+def _env(L, sr, ataque=0.01):
+    t = np.arange(L) / sr
+    return t, np.minimum(1, t / max(ataque, 1e-4))
+
+
+def _lp(x, k):
+    return np.convolve(x, np.ones(k) / k, mode="same") if k > 1 else x
+
+
+def sfx_whoosh(sr):
+    L = int(0.38 * sr); t, _ = _env(L, sr)
+    rng = np.random.default_rng(1)
+    ruido = _lp(rng.standard_normal(L), 6) - _lp(rng.standard_normal(L), 60) * 0.5
+    env = np.sin(np.pi * np.clip(t / 0.38, 0, 1)) ** 2
+    return ruido * env * 0.55
+
+
+def sfx_golpe(sr):
+    L = int(0.7 * sr); t, a = _env(L, sr, 0.003)
+    bombo = np.sin(2 * np.pi * (40 + 120 * np.exp(-t * 18)) * t) * np.exp(-t * 5.5)
+    rng = np.random.default_rng(2)
+    chas = _lp(rng.standard_normal(L), 3) * np.exp(-t * 30) * 0.5
+    return np.tanh((bombo + chas) * 1.6) * a * 0.9
+
+
+def sfx_pop(sr):
+    L = int(0.08 * sr); t, a = _env(L, sr, 0.002)
+    f = 950 - 5000 * t
+    return np.sin(2 * np.pi * np.cumsum(f) / sr) * np.exp(-t * 45) * a * 0.45
+
+
+def sfx_ding(sr):
+    L = int(0.5 * sr); t, a = _env(L, sr, 0.002)
+    return (np.sin(2 * np.pi * 1568 * t) + 0.5 * np.sin(2 * np.pi * 2352 * t)) * np.exp(-t * 9) * a * 0.32
+
+
+def sfx_subida(sr, dur=0.9):
+    L = int(dur * sr); t, _ = _env(L, sr)
+    rng = np.random.default_rng(3)
+    ruido = _lp(rng.standard_normal(L), 4)
+    tono = np.sin(2 * np.pi * np.cumsum(300 + 900 * (t / dur) ** 2) / sr)
+    return (ruido * 0.35 + tono * 0.25) * (t / dur) ** 2
+
+
+def pista_sfx(dur, eventos, salida, sr=44100):
+    """eventos: lista de (segundo, tipo). Escribe un wav estéreo con todos los efectos."""
+    n = int((dur + 1) * sr)
+    out = np.zeros(n)
+    banco = {"whoosh": sfx_whoosh(sr), "golpe": sfx_golpe(sr), "pop": sfx_pop(sr), "ding": sfx_ding(sr), "subida": sfx_subida(sr)}
+    for seg, tipo in eventos:
+        x = banco[tipo]
+        i = int(max(0, seg) * sr)
+        if tipo == "subida":
+            i = int(max(0, seg - len(x) / sr) * sr)   # la subida TERMINA en el momento indicado
+        j = min(n, i + len(x))
+        out[i:j] += x[: j - i]
+    out = np.tanh(out * 1.2) / 1.2
+    est = (np.stack([out, out], 1) * 32767 * 0.9).astype(np.int16)
+    import wave
+    with wave.open(str(salida), "wb") as w:
+        w.setnchannels(2); w.setsampwidth(2); w.setframerate(sr); w.writeframes(est.tobytes())
+
+
+def pausa_dramatica(wav: Path, t_reveal: float, sr=44100, hueco=0.45):
+    """Silencia la música justo antes del dato fuerte (la voz sigue) para que el golpe se note."""
+    import wave
+    with wave.open(str(wav), "rb") as w:
+        data = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).reshape(-1, 2).astype(np.float64)
+    i0, i1 = int(max(0, t_reveal - hueco) * sr), int(t_reveal * sr)
+    data[i0:i1] = 0
+    with wave.open(str(wav), "wb") as w:
+        w.setnchannels(2); w.setsampwidth(2); w.setframerate(sr); w.writeframes(data.astype(np.int16).tobytes())
+
+
+def eventos_show(plan, palabras, cortes):
+    """Qué sonido va en cada momento y dónde dar golpes de cámara."""
+    clave = [k.upper() for k in plan.get("palabras_clave", [])]
+    ev, golpes, zooms = [], [], []
+    for c in cortes:
+        ev.append((c - 0.12, "whoosh"))
+    for c in plan.get("capas", []):
+        if c["tipo"] in ("titulo", "fact", "cta", "tarjeta", "comparativa"):
+            ev.append((c["desde"], "golpe")); golpes.append(c["desde"])
+        if c["tipo"] == "pastillas":
+            for it in c.get("items", []):
+                ev.append((it.get("desde", c["desde"]), "ding"))
+    facts = [c for c in plan.get("capas", []) if c["tipo"] == "fact"]
+    if facts:
+        ev.append((facts[-1]["desde"], "subida"))       # tensión antes del último dato
+    vistos = 0
+    for w in palabras:
+        limpio = w["w"].strip(".,?!\"“”:").upper()
+        if any(limpio.startswith(k) for k in clave) and w["s"] - vistos > 0.6:
+            ev.append((w["s"], "pop")); zooms.append(w["s"]); vistos = w["s"]
+    return ev, golpes, zooms, (facts[-1]["desde"] if facts else None)
+
+
+def efecto_camara(fr: Image.Image, t: float, golpes, zooms) -> Image.Image:
+    """Zoom de golpe en las palabras clave y sacudida al revelar cada dato."""
+    p, dx, dy = 0.0, 0.0, 0.0
+    for z in zooms:
+        a = (t - z) / 0.28
+        if 0 <= a < 1:
+            p = max(p, 0.07 * (1 - a) ** 2)
+    for g in golpes:
+        a = (t - g) / 0.32
+        if 0 <= a < 1:
+            k = (1 - a) ** 2
+            rng = np.random.default_rng(int(t * 1000))
+            dx += rng.uniform(-1, 1) * 22 * k; dy += rng.uniform(-1, 1) * 22 * k
+            p = max(p, 0.05 * k)
+    if p == 0 and dx == 0 and dy == 0:
+        return fr
+    s = 1 + p + (abs(dx) + abs(dy)) / W
+    nw, nh = int(W * s), int(H * s)
+    big = fr.resize((nw, nh), Image.BILINEAR)
+    x0 = int((nw - W) / 2 + dx); y0 = int((nh - H) / 2 + dy)
+    x0 = min(max(0, x0), nw - W); y0 = min(max(0, y0), nh - H)
+    return big.crop((x0, y0, x0 + W, y0 + H))
+
+
 # ------------------------------------------------------------------ render
 def montar(plan_path: str) -> Path:
     plan_path = Path(plan_path)
@@ -467,6 +589,20 @@ def montar(plan_path: str) -> Path:
     voz = base / plan["voz"]
     dur_voz = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(voz)], capture_output=True, text=True).stdout)
     dur = plan.get("duracion") or round(dur_voz + 0.8, 2)
+    if plan.get("show", True) and plan.get("microcortes", True):   # ritmo: ninguna foto fija más de ~2 s sin cambio de plano
+        nuevas = []
+        for e in plan["escenas"]:
+            largo = e["hasta"] - e["desde"]
+            if "img" in e and 2.0 < largo and e["hasta"] < 90:
+                m = round(e["desde"] + largo / 2, 2)
+                z = e.get("zoom", [1.05, 1.15]); f = e.get("foco_fin", e.get("foco", [0.5, 0.5]))
+                a1 = dict(e, hasta=m)
+                a2 = dict(e, desde=m, foco=f, foco_fin=f, zoom=[z[-1] + 0.12, z[-1] + 0.2])
+                a2.pop("etiqueta", None)
+                nuevas += [a1, a2]
+            else:
+                nuevas.append(e)
+        plan["escenas"] = nuevas
     escenas = [nueva_escena(e, base) for e in plan["escenas"]]
     for c in plan.get("capas", []):           # la comparativa lleva su propia foto con Ken Burns
         if c["tipo"] == "comparativa":
@@ -474,6 +610,8 @@ def montar(plan_path: str) -> Path:
                                    "foco_fin": c.get("foco_fin", c.get("foco", [0.5, 0.5])), "zoom": c.get("zoom", [1.0, 1.1])}, base)
     escenas[-1].t1 = max(escenas[-1].t1, dur)
     cortes = [e.t0 for e in escenas[1:]]
+    show = plan.get("show", True)           # modo show (Adam, 21/11/2026): efectos de sonido, zooms de golpe y sacudidas
+    eventos, golpes, zooms, t_reveal = eventos_show(plan, palabras, cortes) if show else ([], [], [], None)
     salida_mudo = base / "render_mudo.mp4"
     ff = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
                            "-c:v", "libx264", "-preset", "medium", "-crf", "17", "-pix_fmt", "yuv420p", str(salida_mudo)], stdin=subprocess.PIPE)
@@ -482,6 +620,8 @@ def montar(plan_path: str) -> Path:
         t = fi / FPS
         esc = next((e for e in escenas if e.t0 <= t < e.t1), escenas[-1])
         fr = esc.render(t)
+        if show:
+            fr = efecto_camara(fr, t, golpes, zooms)
         fr.alpha_composite(degradados())
         for c in plan.get("capas", []):
             if c["desde"] <= t < c["hasta"]:
@@ -505,10 +645,16 @@ def montar(plan_path: str) -> Path:
     ritmo(dur, plan.get("musica", {}).get("bpm", 128), musica)
     vol = plan.get("musica", {}).get("volumen", 0.32)
     final = base / plan.get("salida", "final.mp4")
+    sfx = base / "sfx.wav"
+    if show and t_reveal:
+        pausa_dramatica(musica, t_reveal)
+    pista_sfx(dur, eventos, sfx)
+    vsfx = plan.get("efectos", {}).get("volumen", 0.35) if show else 0
     filtro = (f"[1:a]aresample=44100,aformat=channel_layouts=stereo,asplit=2[v1][v2];"
               f"[2:a]volume={vol}[m];[m][v1]sidechaincompress=threshold=0.04:ratio=9:attack=8:release=300[mc];"
-              f"[v2][mc]amix=inputs=2:duration=longest:normalize=0,apad,atrim=0:{dur},loudnorm=I=-14:TP=-1.0:LRA=9[a]")
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(salida_mudo), "-i", str(voz), "-i", str(musica), "-filter_complex", filtro,
+              f"[3:a]volume={vsfx}[fx];"
+              f"[v2][mc][fx]amix=inputs=3:duration=longest:normalize=0,apad,atrim=0:{dur},loudnorm=I=-14:TP=-1.0:LRA=9[a]")
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(salida_mudo), "-i", str(voz), "-i", str(musica), "-i", str(sfx), "-filter_complex", filtro,
                     "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-movflags", "+faststart", "-shortest", str(final)], check=True)
     salida_mudo.unlink()
     print("Listo:", final)
