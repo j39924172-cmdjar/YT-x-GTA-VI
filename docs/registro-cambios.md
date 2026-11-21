@@ -198,3 +198,9 @@
 ## 20/11/2026 — Short 13 entregado: «You Can Steal a FIGHTER JET in GTA 6»
 - Encargo de Adam (voz Dylan, Higgsfield; saldo antes 5,35 créditos). 3 datos explicados (dónde, cuándo y cómo entrar, el precio: 5 estrellas), 13 de 18 escenas en clips oficiales (regla de Adam). Examen 9,5 APTO, −14,1 LUFS. Citas literales obtenidas con WebSearch (las webs de BGR/SlashGear no se pueden abrir desde la sesión).
 - 21/11 09:53 · Preproducción continua: cola llena (06, 07, 09, 10). Lecciones del manual actualizadas: el 12 (1.100) y el 13 (1.000) son los que más rápido crecen → priorizar series «GTA 6 contra GTA 5» y «secretos del mapa». Sin opiniones nuevas.
+
+## 21/11/2026 — Investigación diaria nº 3
+- Referentes: la gran pregunta de @GTASixers_Info pasó de 81 mil a 552 mil (×345); @COLETHEMANGTA6 «5 CRAZY THINGS…» 5,1 M. Nuestros 12 y 13 pasan de 1.000 en horas.
+- Ideas nuevas: 37 «GTA 6 Took Away These 5 Things From GTA 5» ✅ (🔥 9,6), 38 «Is GTA 6 Worth $80?» ✅ (reconvierte el 07), 39 coche verde en una villa 🟡, 40 600.000 animaciones 🟡.
+- X: sigue circulando el bulo del «parche del 25/11» (❌). Nada oficial nuevo de Rockstar.
+- Recomendadas hoy: «GTA 6 Took Away These 5 Things From GTA 5» (🔥 9,6) e «Is GTA 6 the Best Game Ever Made?» (🔥 7,6, reconvierte el 06). La nota 🔥 de Press Both Sticks bajó de 10 a 3,6 (el radar varía según los Shorts del día).
