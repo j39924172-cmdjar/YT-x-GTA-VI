@@ -230,3 +230,4 @@
 - Short 14 rehecho: 41 s, 135 palabras con más explicación (sin misión ni dinero, registro en el capítulo 2 en un Pay 'n' Spray, chiste de Toy Story), 25 de 30 escenas en clips. Quitado un clip con un deportivo verde para no dar a entender que es el coche de Paul Walker. Examen 9,7.
 - `shorts/montaje.py`: cierra los clips ya usados (con 25 clips se agotaba la memoria).
 - Los preproducidos (06, 07, 09, 10) tienen guiones de ~85 palabras: hay que alargarlos a 120-160 antes de producirlos.
+- 22/11 · Adam aprueba el Short 14 v2 («esto es otra cosa, así sí»): queda como Short modelo en la tabla de lecciones del manual.
