@@ -231,3 +231,6 @@
 - `shorts/montaje.py`: cierra los clips ya usados (con 25 clips se agotaba la memoria).
 - Los preproducidos (06, 07, 09, 10) tienen guiones de ~85 palabras: hay que alargarlos a 120-160 antes de producirlos.
 - 22/11 · Adam aprueba el Short 14 v2 («esto es otra cosa, así sí»): queda como Short modelo en la tabla de lecciones del manual.
+
+## 22/11/2026 — Short 15 entregado: «GTA 6 Made $3.79 BILLION in One Day»
+- Encargo de Adam (voz Dylan, 2,4 créditos; quedan 1,45). 49 s, receta del 14 (modo show, 31/36 escenas en clip, contadores animados $3,790,000,000 y 32,500,000). Fuente primaria: nota de Rockstar/Take-Two (Business Wire, Take-Two IR) + Forbes, Motley Fool, Engadget 2013, Fox 5. Giro: son ventas minoristas, no ingresos de Take-Two. Examen 9,7.
