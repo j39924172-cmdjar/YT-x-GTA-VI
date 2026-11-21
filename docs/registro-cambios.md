@@ -214,3 +214,4 @@
 - `shorts/montaje.py`: modo show por defecto (`"show": true`): efectos de sonido sintetizados propios (whoosh en cortes, golpe en cada dato, pop en palabras clave, ding en pastillas, subida de tensión), zoom de golpe en palabras clave, sacudida de cámara al revelar datos, pausa dramática de la música antes del último dato, microcortes (ninguna foto fija > ~2 s) y palabras clave más grandes. Efectos a 0,35 del volumen para no tapar la voz.
 - Manual: sección «Entretenimiento: que no sea seco». Examen: aviso «Guion con personalidad» (you ×3 + giro). Procedimiento: no desactivar el modo show.
 - Short 08 rehecho en modo show (examen 9,7) y nueva vista previa en «Listo para subir».
+- 21/11 18:53 · Preproducción continua: cola llena. Guiones 06, 09 y 10 reescritos con la regla de entretenimiento (hablan a 'you', giro 'here's the crazy part' / 'wait for it'), mismos datos verificados. Sin opiniones nuevas.
