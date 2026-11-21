@@ -197,3 +197,4 @@
 
 ## 20/11/2026 — Short 13 entregado: «You Can Steal a FIGHTER JET in GTA 6»
 - Encargo de Adam (voz Dylan, Higgsfield; saldo antes 5,35 créditos). 3 datos explicados (dónde, cuándo y cómo entrar, el precio: 5 estrellas), 13 de 18 escenas en clips oficiales (regla de Adam). Examen 9,5 APTO, −14,1 LUFS. Citas literales obtenidas con WebSearch (las webs de BGR/SlashGear no se pueden abrir desde la sesión).
+- 21/11 09:53 · Preproducción continua: cola llena (06, 07, 09, 10). Lecciones del manual actualizadas: el 12 (1.100) y el 13 (1.000) son los que más rápido crecen → priorizar series «GTA 6 contra GTA 5» y «secretos del mapa». Sin opiniones nuevas.

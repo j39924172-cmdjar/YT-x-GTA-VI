@@ -12,6 +12,8 @@ Manda siempre el documento maestro (`docs/vicecity-estado.md`). Este manual lo c
 | 02 · Some Americans Get GTA 6 Before Everyone Else | noticia útil | 403 | Una noticia que afecta al espectador ("¿cuándo juego yo?") engancha. |
 | 03 · Meet GTA 6's 2 Criminals in 30 Seconds | personajes | 57 | Las fichas de personajes, sin sorpresa, rinden poco. |
 | 11 · The $250,000 Cheat Code in GTA 6 | truco | **835 en sus primeras 6 h** (20/11) | Los trucos útiles con "catch" (giro) se disparan: +801 en 6 h, casi 5 veces más que el resto. |
+| 12 · 5 Things GTA 6 Does That GTA 5 Never Could | lista · GTA 6 contra GTA 5 | **1.100 en ~12 h** (21/11) | Formato copiado de @COLETHEMANGTA6 (4,6 M): funciona también en nuestro canal. Hacer serie. Adam pidió más clips y menos resumen (v2). |
+| 13 · You Can Steal a FIGHTER JET in GTA 6 | secreto del mapa | **1.000 en ~8 h** (21/11) | 3 datos explicados + 13/18 escenas en vídeo + voz Dylan. Tema de tendencia (caza 6,5 M en YouTube). Hacer serie de secretos del mapa. |
 
 Con solo 3 Shorts esto son pistas, no leyes. **Desde el lanzamiento (19/11), además: trucos y curiosidades del juego** (lo que más busca la gente aparte de la historia), siempre sin spoilers de misiones y con 2 medios fiables; un truco que solo cuenta una web se queda en 🟡. Taison actualiza esta tabla cada semana. Mientras tanto: **más "juego vs real" y noticias útiles; los personajes, solo con un giro sorprendente** (una cita loca, un secreto, una contradicción).
 
