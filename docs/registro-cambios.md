@@ -224,3 +224,9 @@
 
 ## 21/11/2026 — Short 14 entregado: «GTA 6 Hid Paul Walker's Car in a Garage»
 - Encargo de Adam (voz Fenrir). Primer Short producido desde cero con modo show + guion con personalidad. 14 de 18 escenas en clips oficiales; el coche no aparece en imágenes oficiales, así que no se dice que ningún coche en pantalla sea ese. Examen 9,7 APTO, −14,2 LUFS.
+
+## 22/11/2026 — TODOS los Shorts de 40 a 60 s (Adam: "estoy harto de máximo 30 s")
+- Examen: guion 110-175 palabras (ideal 120-160) y vídeo de 40-60 s para todos los formatos. Manual, procedimiento y CLAUDE.md actualizados.
+- Short 14 rehecho: 41 s, 135 palabras con más explicación (sin misión ni dinero, registro en el capítulo 2 en un Pay 'n' Spray, chiste de Toy Story), 25 de 30 escenas en clips. Quitado un clip con un deportivo verde para no dar a entender que es el coche de Paul Walker. Examen 9,7.
+- `shorts/montaje.py`: cierra los clips ya usados (con 25 clips se agotaba la memoria).
+- Los preproducidos (06, 07, 09, 10) tienen guiones de ~85 palabras: hay que alargarlos a 120-160 antes de producirlos.

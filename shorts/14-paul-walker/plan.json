@@ -2,7 +2,7 @@
  "voz": "voz.mp3",
  "palabras": "palabras.json",
  "salida": "final.mp4",
- "fuente": "Footage: Rockstar Games \u00b7 Jalopnik, Insider Gaming, Gfinity, Critical Hits",
+ "fuente": "Footage: Rockstar Games",
  "marca": "VICECITY DAYS TV",
  "musica": {
   "bpm": 130,
@@ -18,16 +18,21 @@
   "Eclipse",
   "Fast",
   "Furious",
+  "tribute",
   "villa",
   "garage",
   "Vespucci",
-  "early",
-  "register",
+  "mission",
+  "money",
+  "take",
+  "keep",
+  "Pay",
   "crazy",
   "trunk",
   "snake",
   "Toy",
   "Story",
+  "boot",
   "Follow",
   "secrets"
  ],
@@ -35,8 +40,8 @@
   {
    "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
    "inicio": 39.05,
-   "desde": 0,
-   "hasta": 1.4,
+   "desde": 0.0,
+   "hasta": 1.28,
    "foco": [
     0.5,
     0.5
@@ -48,9 +53,9 @@
   },
   {
    "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
-   "inicio": 47.02,
-   "desde": 1.4,
-   "hasta": 2.54,
+   "inicio": 39.05,
+   "desde": 1.28,
+   "hasta": 2.2,
    "foco": [
     0.5,
     0.5
@@ -62,8 +67,8 @@
   },
   {
    "img": "capturas/Vice_City_24.jpg",
-   "desde": 2.54,
-   "hasta": 4.14,
+   "desde": 2.2,
+   "hasta": 3.8,
    "foco": [
     0.7,
     0.6
@@ -93,10 +98,24 @@
   {
    "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
    "inicio": 40.48,
-   "desde": 4.14,
-   "hasta": 5.94,
+   "desde": 3.8,
+   "hasta": 5.5,
    "foco": [
-    0.6,
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 26.42,
+   "desde": 5.5,
+   "hasta": 5.6,
+   "foco": [
+    0.5,
     0.5
    ],
    "zoom": [
@@ -106,8 +125,8 @@
   },
   {
    "img": "capturas/ULTIMATE_EDITION_02.jpg",
-   "desde": 5.94,
-   "hasta": 7.6,
+   "desde": 5.6,
+   "hasta": 7.2,
    "foco": [
     0.3,
     0.6
@@ -122,10 +141,24 @@
    ]
   },
   {
+   "video": "../../videos/oficiales/GTAVI_Pre-Load_Now.mp4",
+   "inicio": 5.25,
+   "desde": 7.2,
+   "hasta": 8.62,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
    "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
-   "inicio": 26.42,
-   "desde": 7.6,
-   "hasta": 8.96,
+   "inicio": 67.12,
+   "desde": 8.62,
+   "hasta": 9.0,
    "foco": [
     0.5,
     0.5
@@ -137,8 +170,8 @@
   },
   {
    "img": "capturas/Vice_City_22.jpg",
-   "desde": 8.96,
-   "hasta": 11.2,
+   "desde": 9.0,
+   "hasta": 10.9,
    "foco": [
     0.6,
     0.65
@@ -166,38 +199,10 @@
    }
   },
   {
-   "video": "../../videos/oficiales/GTAVI_Pre-Load_Now.mp4",
-   "inicio": 5.25,
-   "desde": 11.2,
-   "hasta": 12.67,
-   "foco": [
-    0.5,
-    0.5
-   ],
-   "zoom": [
-    1.0,
-    1.08
-   ]
-  },
-  {
-   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
-   "inicio": 67.12,
-   "desde": 12.67,
-   "hasta": 14.03,
-   "foco": [
-    0.5,
-    0.5
-   ],
-   "zoom": [
-    1.0,
-    1.08
-   ]
-  },
-  {
    "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
    "inicio": 73.85,
-   "desde": 14.03,
-   "hasta": 16.4,
+   "desde": 10.9,
+   "hasta": 12.6,
    "foco": [
     0.5,
     0.5
@@ -210,8 +215,8 @@
   {
    "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
    "inicio": 10.02,
-   "desde": 16.4,
-   "hasta": 18.18,
+   "desde": 12.6,
+   "hasta": 14.3,
    "foco": [
     0.5,
     0.5
@@ -223,9 +228,40 @@
   },
   {
    "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 11.95,
+   "desde": 14.3,
+   "hasta": 16.2,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_03.jpg",
+   "desde": 16.2,
+   "hasta": 17.9,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.55,
+    0.45
+   ],
+   "zoom": [
+    1.1,
+    1.25
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
    "inicio": 27.88,
-   "desde": 18.18,
-   "hasta": 19.65,
+   "desde": 17.9,
+   "hasta": 19.32,
    "foco": [
     0.5,
     0.5
@@ -238,8 +274,8 @@
   {
    "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
    "inicio": 33.68,
-   "desde": 19.65,
-   "hasta": 20.32,
+   "desde": 19.32,
+   "hasta": 20.61,
    "foco": [
     0.5,
     0.5
@@ -252,8 +288,8 @@
   {
    "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
    "inicio": 59.95,
-   "desde": 20.32,
-   "hasta": 22.32,
+   "desde": 20.61,
+   "hasta": 22.31,
    "foco": [
     0.5,
     0.5
@@ -266,22 +302,8 @@
   {
    "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
    "inicio": 58.55,
-   "desde": 22.32,
-   "hasta": 23.62,
-   "foco": [
-    0.5,
-    0.5
-   ],
-   "zoom": [
-    1.0,
-    1.08
-   ]
-  },
-  {
-   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
-   "inicio": 63.22,
-   "desde": 23.62,
-   "hasta": 24.38,
+   "desde": 22.31,
+   "hasta": 23.56,
    "foco": [
     0.5,
     0.5
@@ -294,8 +316,162 @@
   {
    "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
    "inicio": 68.58,
-   "desde": 24.38,
-   "hasta": 26.84,
+   "desde": 23.56,
+   "hasta": 25.26,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 55.22,
+   "desde": 25.26,
+   "hasta": 26.55,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 2.72,
+   "desde": 26.55,
+   "hasta": 28.25,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Pre-Load_Now.mp4",
+   "inicio": 11.25,
+   "desde": 28.25,
+   "hasta": 29.57,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 35.12,
+   "desde": 29.57,
+   "hasta": 30.82,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 57.12,
+   "desde": 30.82,
+   "hasta": 32.1,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Pre-Load_Now.mp4",
+   "inicio": 10.15,
+   "desde": 32.1,
+   "hasta": 33.05,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 63.22,
+   "desde": 33.05,
+   "hasta": 33.76,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 14.25,
+   "desde": 33.76,
+   "hasta": 34.58,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 7.02,
+   "desde": 34.58,
+   "hasta": 35.86,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.58,
+   "desde": 35.86,
+   "hasta": 37.56,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 40.48,
+   "desde": 37.56,
+   "hasta": 38.04,
    "foco": [
     0.5,
     0.5
@@ -307,7 +483,7 @@
   },
   {
    "img": "capturas/Vice_City_08.jpg",
-   "desde": 26.84,
+   "desde": 38.04,
    "hasta": 99,
    "foco": [
     0.5,
@@ -327,7 +503,7 @@
   {
    "tipo": "titulo",
    "desde": 0,
-   "hasta": 4.14,
+   "hasta": 4.78,
    "lineas": [
     [
      "PAUL WALKER'S",
@@ -342,106 +518,120 @@
   },
   {
    "tipo": "fact",
-   "desde": 4.14,
-   "hasta": 11.2,
+   "desde": 4.78,
+   "hasta": 14.98,
    "n": 1,
    "total": 3,
    "titulo": "THE CAR"
   },
   {
    "tipo": "pastillas",
-   "desde": 5.0,
-   "hasta": 11.2,
+   "desde": 5.5,
+   "hasta": 14.98,
    "items": [
     {
      "texto": "GREEN MAIBATSU PENUMBRA",
      "fondo": "amarillo",
-     "desde": 5.02,
+     "desde": 5.62,
      "y": 760,
      "size": 50
     },
     {
-     "texto": "= 1995 ECLIPSE",
+     "texto": "= 1995 MITSUBISHI ECLIPSE",
      "fondo": "rosa",
      "color": "blanco",
-     "desde": 7.22,
-     "y": 900
+     "desde": 8.7,
+     "y": 900,
+     "size": 50
     },
     {
-     "texto": "FAST & FURIOUS",
+     "texto": "A TRIBUTE TO PAUL WALKER",
      "fondo": "amarillo",
-     "desde": 9.58,
-     "y": 1040
+     "desde": 13.26,
+     "y": 1040,
+     "size": 50
     }
    ]
   },
   {
    "tipo": "fact",
-   "desde": 11.2,
-   "hasta": 18.18,
+   "desde": 14.98,
+   "hasta": 28.16,
    "n": 2,
    "total": 3,
-   "titulo": "WHERE IT IS"
+   "titulo": "WHERE & HOW"
   },
   {
    "tipo": "pastillas",
-   "desde": 12.5,
-   "hasta": 15.9,
+   "desde": 16.1,
+   "hasta": 21.0,
    "items": [
     {
      "texto": "VILLA GARAGE",
      "fondo": "amarillo",
-     "desde": 12.58,
+     "desde": 16.24,
      "y": 760
     },
     {
      "texto": "VESPUCCI ISLAND",
      "fondo": "rosa",
      "color": "blanco",
-     "desde": 13.44,
+     "desde": 17.14,
      "y": 900
     },
     {
-     "texto": "GRAB IT EARLY",
+     "texto": "NO MISSION \u00b7 NO MONEY",
      "fondo": "amarillo",
      "icono": "ok",
-     "desde": 14.82,
-     "y": 1040
-    }
-   ]
-  },
-  {
-   "tipo": "pastillas",
-   "desde": 15.9,
-   "hasta": 18.18,
-   "items": [
-    {
-     "texto": "REGISTER IT TO KEEP IT",
-     "fondo": "rosa",
-     "color": "blanco",
-     "desde": 16.14,
-     "y": 760,
+     "desde": 19.42,
+     "y": 1040,
      "size": 50
     }
    ]
   },
   {
+   "tipo": "pastillas",
+   "desde": 21.0,
+   "hasta": 28.16,
+   "items": [
+    {
+     "texto": "JUST TAKE IT",
+     "fondo": "amarillo",
+     "desde": 21.14,
+     "y": 760
+    },
+    {
+     "texto": "KEEP IT: CHAPTER 2",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 23.76,
+     "y": 900
+    },
+    {
+     "texto": "PAY 'N' SPRAY",
+     "fondo": "amarillo",
+     "desde": 26.94,
+     "y": 1040
+    }
+   ]
+  },
+  {
    "tipo": "fact",
-   "desde": 18.18,
-   "hasta": 23.92,
+   "desde": 28.16,
+   "hasta": 35.02,
    "n": 3,
    "total": 3,
    "titulo": "THE TRUNK"
   },
   {
    "tipo": "pastillas",
-   "desde": 20.2,
-   "hasta": 23.92,
+   "desde": 30.1,
+   "hasta": 35.02,
    "items": [
     {
      "texto": "OPEN THE TRUNK",
      "fondo": "amarillo",
-     "desde": 20.32,
+     "desde": 30.24,
      "y": 760
     },
     {
@@ -449,20 +639,20 @@
      "fondo": "rosa",
      "color": "blanco",
      "icono": "no",
-     "desde": 21.28,
+     "desde": 30.76,
      "y": 900
     },
     {
      "texto": "TOY STORY JOKE",
      "fondo": "amarillo",
-     "desde": 22.66,
+     "desde": 32.26,
      "y": 1040
     }
    ]
   },
   {
    "tipo": "cta",
-   "desde": 26.84,
+   "desde": 38.04,
    "hasta": 99,
    "lineas": [
     "FOLLOW",

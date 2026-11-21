@@ -11,7 +11,7 @@
 Paul Walker's car is hiding in GTA 6. And you can drive it.
 
 ✅ The car: a green Maibatsu Penumbra FF, a tribute to the 1995 Mitsubishi Eclipse Brian O'Conner drove in the first Fast & Furious.
-✅ Where: a villa garage on Vespucci Island, in Vice City. You can grab it early; register it later to keep it.
+✅ Where: a villa garage on Vespucci Island, in Vice City. No mission, no money: just slip into the garage and take it. To keep it, register it at a Pay 'n' Spray once registering unlocks in Chapter 2.
 ✅ The trunk: open it and a snake attacks you. A Toy Story joke.
 
 Sources: Jalopnik, Insider Gaming, Gfinity, games.gg, Critical Hits (launch-week guides; details can change with patches).

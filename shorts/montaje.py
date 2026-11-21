@@ -222,6 +222,11 @@ class EscenaVideo:
     def cerrar(self):
         if self.proc:
             self.proc.kill()
+            try:
+                self.proc.wait(timeout=5)
+            except Exception:
+                pass
+        self.proc, self.ultimo = None, None
 
 
 def nueva_escena(cfg: dict, base: Path):
@@ -619,6 +624,9 @@ def montar(plan_path: str) -> Path:
     for fi in range(total):
         t = fi / FPS
         esc = next((e for e in escenas if e.t0 <= t < e.t1), escenas[-1])
+        for e in escenas:                    # libera memoria: cierra los clips que ya han pasado
+            if isinstance(e, EscenaVideo) and e.proc is not None and t > e.t1 + 0.2:
+                e.cerrar()
         fr = esc.render(t)
         if show:
             fr = efecto_camara(fr, t, golpes, zooms)

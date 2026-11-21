@@ -43,13 +43,9 @@ Reglas de título que repiten: corto, dice lo que vas a ver, UNA palabra en may�
 - **Clips en movimiento:** al menos la mitad de las escenas deben ser clips oficiales (`docs/catalogo-videos.md`); las capturas fijas, solo para el dato que necesita flecha o etiqueta. El 12 pasó de 4 a 10 clips.
 - **Menos resumido:** mejor 3 datos explicados (qué es + por qué te importa) que 5 en una línea cada uno. Las listas de 5 solo si cada punto se entiende sin contexto. Pendiente de Adam: permitir Shorts de 40-45 s.
 
-## Duración según el formato (decisión de Adam, 21/11/2026)
-| Tipo de Short | Duración | Palabras |
-|---|---|---|
-| Truco rápido o un solo dato | 25-35 s | 75-95 |
-| Listas de 5, «cómo funciona», GTA 6 contra GTA 5 | 40-55 s | 95-150 |
-| Gran pregunta con debate | 35-45 s | 95-125 |
-Más largo solo si cada segundo aporta (explicar el dato, no rellenar). El gancho sigue en el primer segundo y el bucle al final.
+## Duración: TODOS de 40 a 60 segundos (Adam, 22/11/2026)
+Adam: "Estoy harto de que me lo hagas de máximo 30 seg". Desde hoy **todos** los Shorts duran **40-60 s** (120-160 palabras), sea cual sea el formato. Nunca menos de 40 s.
+Más tiempo = datos explicados (qué es, cómo se hace, por qué importa) y más momentos de show; nunca relleno. Gancho en el primer segundo, un cambio cada 3 s como mucho y bucle al final.
 
 ## Entretenimiento: que no sea seco (Adam, 21/11/2026)
 Adam: "los veo muy secos y con poca actividad". Desde hoy todo Short lleva:
