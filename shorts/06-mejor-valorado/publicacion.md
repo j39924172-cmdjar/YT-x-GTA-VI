@@ -1,6 +1,7 @@
 # Short 06 — Ficha de publicación (borrador de preproducción)
 
-**Título recomendado:** GTA 6 Just Tied the Best Score in History
+**Título recomendado:** Is GTA 6 the Best Game Ever Made?
+*ES: ¿Es GTA 6 el mejor juego de la historia?*
 **Alternativos para probar:**
 - Only ONE Game Ever Scored This… Until GTA 6
 - GTA 6 Beat GTA 5's Score (99 vs 97)
@@ -21,8 +22,8 @@ Unofficial fan-made channel. Not affiliated with Rockstar Games or Take-Two Inte
 #GTA6 #GTAVI #Shorts
 ```
 
-**Comentario fijado:** What would you give GTA 6 out of 10? 👇
+**Comentario fijado:** Yes or no: is GTA 6 the best game ever made? 👇
 
 **Ajustes de subida:** Privado hasta revisarlo · Entretenimiento · Inglés · Contenido alterado: **No** · Hecho para niños: **No**.
 
-**Formato:** noticia
+**Formato:** curiosidad

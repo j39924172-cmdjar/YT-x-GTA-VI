@@ -240,3 +240,4 @@
 - Referentes: la gran pregunta de @GTASixers_Info va por 710 mil (×444). Nuestros 14 y 15 (40-60 s, modo show) superan 1.000 en 6 h.
 - Ideas nuevas: 45 «Will We Wait 13 Years for GTA 7?» ✅ (Rockstar a Bloomberg vía VGC, Dexerto, SVG), 46 «How to Make Money in Every Chapter of GTA 6» ✅ (PC Gamer, Insider Gaming, GamerFuzion; 🔥 8,3), 47 mapa gratis 🟡, 48 misterio del monte Chiliad 🟡.
 - Recomendadas hoy (nuevas, no repetidas): 45 y 46. X: sigue el bulo del parche del 25/11 (❌).
+- 22/11 12:53 · Preproducción continua: el 06 se reconvierte en gran pregunta «Is GTA 6 the Best Game Ever Made?» (🔥 7,6; 134 palabras, 40-60 s) con datos re-comprobados (118/147 notas perfectas, GTA 4 98, GTA 5 97). Pendiente alargar 09 y 10 a 120-160 palabras.

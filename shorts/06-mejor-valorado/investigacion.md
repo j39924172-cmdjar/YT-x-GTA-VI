@@ -13,3 +13,11 @@ Estado: **preproducción** (falta voz y montaje). Fecha: 19/11/2026. Origen: ide
 - La nota y el número de reseñas cambian con el tiempo: decir "at launch" y no dar el número de reseñas.
 - No decir que es "el único 99" sin Ocarina: está empatado.
 - Algunas páginas antiguas (previas al 18/11) decían que no había nota; se descartan por ser anteriores a las críticas.
+
+
+## v2 (22/11/2026): reconvertido en gran pregunta, 40-60 s
+Nuevo título: **Is GTA 6 the Best Game Ever Made?** (ES: ¿Es GTA 6 el mejor juego de la historia?) · 🔥 7,6 · formato gran pregunta (referente @GTASixers_Info: 710 mil, ×444).
+Datos añadidos (re-comprobados el 22/11):
+- 118 notas perfectas de 147 críticas en PS5 — TechPowerUp: “99 on Metacritic and 118 perfect scores” — https://www.techpowerup.com/354998/gta-6-review-roundup-99-on-metacritic-and-118-perfect-scores
+- GTA 4 tenía 98 y GTA 5 97: GTA 6 es el mejor valorado de Rockstar — Notebookcheck: “topping GTA 4 to become Rockstar's top-rated” — https://www.notebookcheck.net/GTA-6-reviews-award-99-Metacritic-score-topping-GTA-4-to-become-Rockstar-s-top-rated.1453363.0.html
+- Empate con Ocarina of Time (1998): Dexerto “joint best reviewed game of all time” — https://www.dexerto.com/gta/gta-6-is-the-joint-best-reviewed-game-of-the-all-time-3429300/ ; Digital Trends.
