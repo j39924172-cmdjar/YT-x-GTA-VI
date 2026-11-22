@@ -1,0 +1,2964 @@
+{
+ "voz": "voz.mp3",
+ "palabras": "palabras.json",
+ "salida": "VCDT_L01_18_Secrets.mp4",
+ "duracion": 742.92,
+ "bpm": 98,
+ "musica": 0.09,
+ "escenas": [
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.58,
+   "desde": 0,
+   "hasta": 3.6,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_27.jpg",
+   "desde": 3.6,
+   "hasta": 8.8,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_01.jpg",
+   "desde": 8.8,
+   "hasta": 14.0,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Ambrosia_02.jpg",
+   "desde": 14.0,
+   "hasta": 19.2,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.44,
+    0.4
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 55.22,
+   "desde": 19.2,
+   "hasta": 21.0,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.58,
+   "desde": 21.0,
+   "hasta": 24.6,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_27.jpg",
+   "desde": 24.6,
+   "hasta": 29.8,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.6599999999999999,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_01.jpg",
+   "desde": 29.8,
+   "hasta": 36.12,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.56,
+    0.4
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_GROTTI_CHEETAH_01.jpg",
+   "desde": 36.12,
+   "hasta": 41.32,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.44,
+    0.4
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_GROTTI_CHEETAH_01.jpg",
+   "desde": 41.32,
+   "hasta": 45.17,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.56,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/VINTAGE_VICE_CITY_WEAPON_PATTERN_01.jpg",
+   "desde": 45.17,
+   "hasta": 50.37,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.44,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Boobie_Ike_01.jpg",
+   "desde": 50.37,
+   "hasta": 55.57,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Raul_Bautista_02.jpg",
+   "desde": 55.57,
+   "hasta": 60.77,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_GROTTI_CHEETAH_01.jpg",
+   "desde": 60.77,
+   "hasta": 65.97,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.44,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/VINTAGE_VICE_CITY_WEAPON_PATTERN_01.jpg",
+   "desde": 65.97,
+   "hasta": 71.17,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.56,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Boobie_Ike_01.jpg",
+   "desde": 71.17,
+   "hasta": 76.37,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.46,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Raul_Bautista_02.jpg",
+   "desde": 76.37,
+   "hasta": 81.57,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.6599999999999999,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_GROTTI_CHEETAH_01.jpg",
+   "desde": 81.57,
+   "hasta": 84.51,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.56,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_02.jpg",
+   "desde": 84.51,
+   "hasta": 89.71,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.44,
+    0.4
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 26.42,
+   "desde": 89.71,
+   "hasta": 91.07,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Lucia_Caminos_12.jpg",
+   "desde": 91.07,
+   "hasta": 96.27,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.44,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_19.jpg",
+   "desde": 96.27,
+   "hasta": 101.47,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_04.jpg",
+   "desde": 101.47,
+   "hasta": 106.67,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_02.jpg",
+   "desde": 106.67,
+   "hasta": 111.87,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.51,
+    0.55
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 26.42,
+   "desde": 111.87,
+   "hasta": 113.23,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Lucia_Caminos_12.jpg",
+   "desde": 113.23,
+   "hasta": 119.73,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.46,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_03.jpg",
+   "desde": 119.73,
+   "hasta": 124.93,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 63.22,
+   "desde": 124.93,
+   "hasta": 125.69,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_27.jpg",
+   "desde": 125.69,
+   "hasta": 130.89,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.44,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Mount_Kalaga_National_Park_02.jpg",
+   "desde": 130.89,
+   "hasta": 136.09,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.39,
+    0.55
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 136.09,
+   "hasta": 141.29,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.44,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_03.jpg",
+   "desde": 141.29,
+   "hasta": 146.49,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.6599999999999999,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 63.22,
+   "desde": 146.49,
+   "hasta": 147.25,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_27.jpg",
+   "desde": 147.25,
+   "hasta": 152.45,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.46,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Mount_Kalaga_National_Park_02.jpg",
+   "desde": 152.45,
+   "hasta": 157.65,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.56,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 157.65,
+   "hasta": 159.87,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.46,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.58,
+   "desde": 159.87,
+   "hasta": 163.47,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_27.jpg",
+   "desde": 163.47,
+   "hasta": 168.67,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 39.05,
+   "desde": 168.67,
+   "hasta": 170.0,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.58,
+   "desde": 170.0,
+   "hasta": 173.6,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_27.jpg",
+   "desde": 173.6,
+   "hasta": 178.8,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.56,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 39.05,
+   "desde": 178.8,
+   "hasta": 180.13,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.58,
+   "desde": 180.13,
+   "hasta": 182.2,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_WYMAN_CAR_COLLECTION_03.jpg",
+   "desde": 182.2,
+   "hasta": 187.4,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.44,
+    0.4
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_WYMAN_CAR_COLLECTION_03.jpg",
+   "desde": 187.4,
+   "hasta": 192.6,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.56,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_WYMAN_CAR_COLLECTION_03.jpg",
+   "desde": 192.6,
+   "hasta": 194.29,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_02.jpg",
+   "desde": 194.29,
+   "hasta": 199.49,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_24.jpg",
+   "desde": 199.49,
+   "hasta": 204.69,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_WYMAN_CAR_COLLECTION_01.jpg",
+   "desde": 204.69,
+   "hasta": 209.89,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.44,
+    0.4
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 40.48,
+   "desde": 209.89,
+   "hasta": 211.69,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_WYMAN_CAR_COLLECTION_03.jpg",
+   "desde": 211.69,
+   "hasta": 216.89,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.56,
+    0.4
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_02.jpg",
+   "desde": 216.89,
+   "hasta": 222.09,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.6599999999999999,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_24.jpg",
+   "desde": 222.09,
+   "hasta": 227.29,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.56,
+    0.4
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_WYMAN_CAR_COLLECTION_01.jpg",
+   "desde": 227.29,
+   "hasta": 231.89,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.51,
+    0.55
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Grassrivers_07.jpg",
+   "desde": 231.89,
+   "hasta": 237.09,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.39,
+    0.55
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_02.jpg",
+   "desde": 237.09,
+   "hasta": 242.29,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Grassrivers_03.jpg",
+   "desde": 242.29,
+   "hasta": 247.49,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Grassrivers_07.jpg",
+   "desde": 247.49,
+   "hasta": 252.69,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.56,
+    0.4
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_02.jpg",
+   "desde": 252.69,
+   "hasta": 257.89,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.46,
+    0.45
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Grassrivers_03.jpg",
+   "desde": 257.89,
+   "hasta": 263.09,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.56,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Grassrivers_07.jpg",
+   "desde": 263.09,
+   "hasta": 269.33,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_02.jpg",
+   "desde": 269.33,
+   "hasta": 274.53,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_26.jpg",
+   "desde": 274.53,
+   "hasta": 279.73,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_15.jpg",
+   "desde": 279.73,
+   "hasta": 284.93,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.44,
+    0.4
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 73.85,
+   "desde": 284.93,
+   "hasta": 287.48,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_02.jpg",
+   "desde": 287.48,
+   "hasta": 289.13,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.46,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_15.jpg",
+   "desde": 289.13,
+   "hasta": 294.33,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.6599999999999999,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Pre-Load_Now.mp4",
+   "inicio": 11.25,
+   "desde": 294.33,
+   "hasta": 295.7,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Raul_Bautista_03.jpg",
+   "desde": 295.7,
+   "hasta": 300.9,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.44,
+    0.4
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Grassrivers_02.jpg",
+   "desde": 300.9,
+   "hasta": 306.1,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.39,
+    0.55
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_15.jpg",
+   "desde": 306.1,
+   "hasta": 311.3,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Pre-Load_Now.mp4",
+   "inicio": 11.25,
+   "desde": 311.3,
+   "hasta": 312.67,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Raul_Bautista_03.jpg",
+   "desde": 312.67,
+   "hasta": 317.87,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.56,
+    0.4
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Grassrivers_02.jpg",
+   "desde": 317.87,
+   "hasta": 322.38,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.51,
+    0.55
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Brian_Heder_01.jpg",
+   "desde": 322.38,
+   "hasta": 327.58,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.39,
+    0.55
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Brian_Heder_01.jpg",
+   "desde": 327.58,
+   "hasta": 331.61,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.46,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 7.02,
+   "desde": 331.61,
+   "hasta": 334.51,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Brian_Heder_04.jpg",
+   "desde": 334.51,
+   "hasta": 339.71,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Brian_Heder_02.jpg",
+   "desde": 339.71,
+   "hasta": 344.91,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.44,
+    0.4
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 11.95,
+   "desde": 344.91,
+   "hasta": 347.11,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Brian_Heder_01.jpg",
+   "desde": 347.11,
+   "hasta": 352.31,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 7.02,
+   "desde": 352.31,
+   "hasta": 355.21,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Brian_Heder_04.jpg",
+   "desde": 355.21,
+   "hasta": 360.41,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.56,
+    0.4
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Brian_Heder_02.jpg",
+   "desde": 360.41,
+   "hasta": 365.61,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.51,
+    0.55
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 11.95,
+   "desde": 365.61,
+   "hasta": 367.81,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Brian_Heder_01.jpg",
+   "desde": 367.81,
+   "hasta": 373.01,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.56,
+    0.4
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 7.02,
+   "desde": 373.01,
+   "hasta": 375.91,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Brian_Heder_04.jpg",
+   "desde": 375.91,
+   "hasta": 376.99,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.39,
+    0.55
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/VINTAGE_VICE_CITY_WEAPON_PATTERN_01.jpg",
+   "desde": 376.99,
+   "hasta": 382.19,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.44,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Raul_Bautista_02.jpg",
+   "desde": 382.19,
+   "hasta": 387.39,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Boobie_Ike_01.jpg",
+   "desde": 387.39,
+   "hasta": 392.59,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/VINTAGE_VICE_CITY_WEAPON_PATTERN_01.jpg",
+   "desde": 392.59,
+   "hasta": 397.79,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.51,
+    0.55
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Raul_Bautista_02.jpg",
+   "desde": 397.79,
+   "hasta": 402.15,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.56,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_05.jpg",
+   "desde": 402.15,
+   "hasta": 407.35,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.44,
+    0.4
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Grassrivers_02.jpg",
+   "desde": 407.35,
+   "hasta": 412.55,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_01.jpg",
+   "desde": 412.55,
+   "hasta": 417.75,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 32.85,
+   "desde": 417.75,
+   "hasta": 418.48,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_05.jpg",
+   "desde": 418.48,
+   "hasta": 423.68,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.56,
+    0.4
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Grassrivers_02.jpg",
+   "desde": 423.68,
+   "hasta": 426.67,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.46,
+    0.45
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_HAWK_AND_LITTLE_MORGAN_REVOLVERS_01.jpg",
+   "desde": 426.67,
+   "hasta": 431.87,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.39,
+    0.55
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/VINTAGE_VICE_CITY_PACK_01.jpg",
+   "desde": 431.87,
+   "hasta": 437.07,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.44,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_HAWK_AND_LITTLE_MORGAN_REVOLVERS_02.jpg",
+   "desde": 437.07,
+   "hasta": 442.27,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/VINTAGE_VICE_CITY_PACK_02.jpg",
+   "desde": 442.27,
+   "hasta": 447.47,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_HAWK_AND_LITTLE_MORGAN_REVOLVERS_01.jpg",
+   "desde": 447.47,
+   "hasta": 452.67,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.51,
+    0.55
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/VINTAGE_VICE_CITY_PACK_01.jpg",
+   "desde": 452.67,
+   "hasta": 457.87,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.56,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_HAWK_AND_LITTLE_MORGAN_REVOLVERS_02.jpg",
+   "desde": 457.87,
+   "hasta": 463.07,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.46,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/VINTAGE_VICE_CITY_PACK_02.jpg",
+   "desde": 463.07,
+   "hasta": 466.69,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.6599999999999999,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 58.55,
+   "desde": 466.69,
+   "hasta": 467.99,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Cal_Hampton_03.jpg",
+   "desde": 467.99,
+   "hasta": 473.19,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.44,
+    0.4
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Brian_Heder_02.jpg",
+   "desde": 473.19,
+   "hasta": 478.39,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Real_Dimez_04.jpg",
+   "desde": 478.39,
+   "hasta": 483.59,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.44,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 58.55,
+   "desde": 483.59,
+   "hasta": 484.89,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Cal_Hampton_03.jpg",
+   "desde": 484.89,
+   "hasta": 490.72,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.56,
+    0.4
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Mount_Kalaga_National_Park_02.jpg",
+   "desde": 490.72,
+   "hasta": 495.92,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.44,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Mount_Kalaga_National_Park_02.jpg",
+   "desde": 495.92,
+   "hasta": 500.67,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.6599999999999999,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_01.jpg",
+   "desde": 500.67,
+   "hasta": 505.87,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.44,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 39.05,
+   "desde": 505.87,
+   "hasta": 507.2,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_11.jpg",
+   "desde": 507.2,
+   "hasta": 512.4,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Mount_Kalaga_National_Park_02.jpg",
+   "desde": 512.4,
+   "hasta": 517.6,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_01.jpg",
+   "desde": 517.6,
+   "hasta": 522.8,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.56,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 39.05,
+   "desde": 522.8,
+   "hasta": 524.13,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_11.jpg",
+   "desde": 524.13,
+   "hasta": 529.33,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.6599999999999999,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Mount_Kalaga_National_Park_02.jpg",
+   "desde": 529.33,
+   "hasta": 534.53,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.6599999999999999,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_01.jpg",
+   "desde": 534.53,
+   "hasta": 537.93,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.44,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_01.jpg",
+   "desde": 537.93,
+   "hasta": 543.13,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.6599999999999999,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 14.25,
+   "desde": 543.13,
+   "hasta": 544.0,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_19.jpg",
+   "desde": 544.0,
+   "hasta": 549.2,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_05.jpg",
+   "desde": 549.2,
+   "hasta": 554.4,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.39,
+    0.55
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_04.jpg",
+   "desde": 554.4,
+   "hasta": 559.6,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.44,
+    0.4
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_01.jpg",
+   "desde": 559.6,
+   "hasta": 564.8,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.44,
+    0.4
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 14.25,
+   "desde": 564.8,
+   "hasta": 565.67,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_19.jpg",
+   "desde": 565.67,
+   "hasta": 571.35,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.6599999999999999,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Grassrivers_08.jpg",
+   "desde": 571.35,
+   "hasta": 576.55,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 27.88,
+   "desde": 576.55,
+   "hasta": 578.02,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Mount_Kalaga_National_Park_05.jpg",
+   "desde": 578.02,
+   "hasta": 583.22,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.39,
+    0.55
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Grassrivers_03.jpg",
+   "desde": 583.22,
+   "hasta": 588.42,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Mount_Kalaga_National_Park_03.jpg",
+   "desde": 588.42,
+   "hasta": 593.62,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Grassrivers_08.jpg",
+   "desde": 593.62,
+   "hasta": 598.82,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.56,
+    0.4
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 27.88,
+   "desde": 598.82,
+   "hasta": 600.29,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Mount_Kalaga_National_Park_05.jpg",
+   "desde": 600.29,
+   "hasta": 605.49,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.56,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Grassrivers_03.jpg",
+   "desde": 605.49,
+   "hasta": 609.46,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.56,
+    0.4
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Port_Gellhorn_02.jpg",
+   "desde": 609.46,
+   "hasta": 614.69,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Ambrosia_02.jpg",
+   "desde": 614.69,
+   "hasta": 619.89,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.56,
+    0.4
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Raul_Bautista_01.jpg",
+   "desde": 619.89,
+   "hasta": 625.09,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.44,
+    0.4
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Mount_Kalaga_National_Park_04.jpg",
+   "desde": 625.09,
+   "hasta": 630.29,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.39,
+    0.55
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Port_Gellhorn_02.jpg",
+   "desde": 630.29,
+   "hasta": 635.49,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.46,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Ambrosia_02.jpg",
+   "desde": 635.49,
+   "hasta": 640.69,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.44,
+    0.4
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Raul_Bautista_01.jpg",
+   "desde": 640.69,
+   "hasta": 645.89,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.56,
+    0.4
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Mount_Kalaga_National_Park_04.jpg",
+   "desde": 645.89,
+   "hasta": 651.09,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.51,
+    0.55
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Port_Gellhorn_02.jpg",
+   "desde": 651.09,
+   "hasta": 656.29,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Ambrosia_02.jpg",
+   "desde": 656.29,
+   "hasta": 662.21,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.56,
+    0.4
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Port_Gellhorn_01.jpg",
+   "desde": 662.21,
+   "hasta": 667.41,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Ambrosia_02.jpg",
+   "desde": 667.41,
+   "hasta": 672.61,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Port_Gellhorn_05.jpg",
+   "desde": 672.61,
+   "hasta": 677.81,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.44,
+    0.4
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Mount_Kalaga_National_Park_04.jpg",
+   "desde": 677.81,
+   "hasta": 683.01,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Port_Gellhorn_01.jpg",
+   "desde": 683.01,
+   "hasta": 688.21,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.46,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Ambrosia_02.jpg",
+   "desde": 688.21,
+   "hasta": 693.41,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.46,
+    0.45
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Port_Gellhorn_05.jpg",
+   "desde": 693.41,
+   "hasta": 698.61,
+   "foco": [
+    0.5,
+    0.4
+   ],
+   "foco_fin": [
+    0.56,
+    0.4
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Mount_Kalaga_National_Park_04.jpg",
+   "desde": 698.61,
+   "hasta": 703.81,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.46,
+    0.45
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Port_Gellhorn_01.jpg",
+   "desde": 703.81,
+   "hasta": 707.7,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.34,
+    0.45
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Jason_and_Lucia_16.jpg",
+   "desde": 707.7,
+   "hasta": 712.9,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.44,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 67.12,
+   "desde": 712.9,
+   "hasta": 714.26,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_01.jpg",
+   "desde": 714.26,
+   "hasta": 719.46,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.54,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 719.46,
+   "hasta": 724.66,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.44,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
+   "img": "capturas/Jason_and_Lucia_16.jpg",
+   "desde": 724.66,
+   "hasta": 729.86,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.56,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 67.12,
+   "desde": 729.86,
+   "hasta": 731.22,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_01.jpg",
+   "desde": 731.22,
+   "hasta": 736.42,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.6599999999999999,
+    0.5
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 736.42,
+   "hasta": 742.92,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.56,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  }
+ ],
+ "secretos": [
+  {
+   "n": 1,
+   "titulo": "THE $250K CHEAT",
+   "desde": 45.17,
+   "hasta": 84.51,
+   "color": "morado"
+  },
+  {
+   "n": 2,
+   "titulo": "SECRET FIRST-PERSON",
+   "desde": 84.51,
+   "hasta": 119.73,
+   "color": "morado"
+  },
+  {
+   "n": 3,
+   "titulo": "A LITERAL EASTER EGG",
+   "desde": 119.73,
+   "hasta": 159.87,
+   "color": "morado"
+  },
+  {
+   "n": 4,
+   "titulo": "THE WAY DOWN",
+   "desde": 159.87,
+   "hasta": 182.2,
+   "color": "morado"
+  },
+  {
+   "n": 5,
+   "titulo": "PAUL WALKER'S CAR",
+   "desde": 194.29,
+   "hasta": 231.89,
+   "color": "rosa"
+  },
+  {
+   "n": 6,
+   "titulo": "THE SNAKE IN THE TRUNK",
+   "desde": 231.89,
+   "hasta": 269.33,
+   "color": "rosa"
+  },
+  {
+   "n": 7,
+   "titulo": "DEXTER'S APARTMENT",
+   "desde": 269.33,
+   "hasta": 289.13,
+   "color": "rosa"
+  },
+  {
+   "n": 8,
+   "titulo": "THE KILL KIT & THE BOAT",
+   "desde": 289.13,
+   "hasta": 322.38,
+   "color": "rosa"
+  },
+  {
+   "n": 9,
+   "titulo": "MICHAEL'S BOAT?",
+   "desde": 331.61,
+   "hasta": 376.99,
+   "color": "amarillo"
+  },
+  {
+   "n": 10,
+   "titulo": "RED DEAD MONEY",
+   "desde": 376.99,
+   "hasta": 402.15,
+   "color": "amarillo"
+  },
+  {
+   "n": 11,
+   "titulo": "A BOAT CALLED LEONIDA",
+   "desde": 402.15,
+   "hasta": 426.67,
+   "color": "amarillo"
+  },
+  {
+   "n": 12,
+   "titulo": "THE VERCETTI ESTATE",
+   "desde": 426.67,
+   "hasta": 466.69,
+   "color": "amarillo"
+  },
+  {
+   "n": 13,
+   "titulo": "GAMES INSIDE THE GAME",
+   "desde": 466.69,
+   "hasta": 490.72,
+   "color": "amarillo"
+  },
+  {
+   "n": 14,
+   "titulo": "THE FIGHTER JET",
+   "desde": 500.67,
+   "hasta": 537.93,
+   "color": "lila"
+  },
+  {
+   "n": 15,
+   "titulo": "COOL DOG",
+   "desde": 537.93,
+   "hasta": 571.35,
+   "color": "lila"
+  },
+  {
+   "n": 16,
+   "titulo": "SKUNK APE",
+   "desde": 571.35,
+   "hasta": 609.46,
+   "color": "lila"
+  },
+  {
+   "n": 17,
+   "titulo": "HE KNOWS IT'S A GAME",
+   "desde": 614.69,
+   "hasta": 662.21,
+   "color": "rosa"
+  },
+  {
+   "n": 18,
+   "titulo": "THE UFO",
+   "desde": 662.21,
+   "hasta": 707.7,
+   "color": "rosa"
+  }
+ ],
+ "capitulos": [
+  {
+   "num": 1,
+   "titulo": "Hidden in plain sight",
+   "desde": 36.12
+  },
+  {
+   "num": 2,
+   "titulo": "Movie & TV tributes",
+   "desde": 182.2
+  },
+  {
+   "num": 3,
+   "titulo": "Rockstar's own history",
+   "desde": 322.38
+  },
+  {
+   "num": 4,
+   "titulo": "Leonida's wild side",
+   "desde": 490.72
+  },
+  {
+   "num": 5,
+   "titulo": "The truth is out there",
+   "desde": 609.46
+  }
+ ],
+ "tarjetas": [
+  {
+   "tipo": "lista",
+   "titulo": "The money cheat",
+   "lineas": [
+    "UP · RIGHT · DOWN · LEFT",
+    "UP · LEFT · DOWN · RIGHT",
+    "= $250,000",
+    "Only after you finish the story"
+   ],
+   "desde": 50.28,
+   "hasta": 67.96
+  },
+  {
+   "tipo": "pastilla",
+   "texto": "PLAYER WORKAROUND · NOT OFFICIAL",
+   "fondo": "amarillo",
+   "desde": 95.2,
+   "hasta": 100.2
+  },
+  {
+   "tipo": "pastilla",
+   "texto": "CLIMB: 6-7 MINUTES",
+   "fondo": "amarillo",
+   "desde": 125.5,
+   "hasta": 130.5
+  },
+  {
+   "tipo": "lista",
+   "titulo": "A literal Easter egg",
+   "lineas": [
+    "GTA Vice City · 2002",
+    "GTA 6 · 2026",
+    "24 years later, same joke"
+   ],
+   "desde": 147.5,
+   "hasta": 158.42
+  },
+  {
+   "tipo": "pastilla",
+   "texto": "VESPUCCI ISLAND · VICE CITY",
+   "fondo": "amarillo",
+   "desde": 196.98,
+   "hasta": 201.98
+  },
+  {
+   "tipo": "lista",
+   "titulo": "Two movie references",
+   "lineas": [
+    "Fast & Furious (2001): the green Eclipse",
+    "Toy Story: \"There's a snake in my boot!\""
+   ],
+   "desde": 252.3,
+   "hasta": 258.3
+  },
+  {
+   "tipo": "pastilla",
+   "texto": "WASHINGTON ISLAND · VICE CITY",
+   "fondo": "amarillo",
+   "desde": 273.38,
+   "hasta": 278.38
+  },
+  {
+   "tipo": "pastilla",
+   "texto": "FAN THEORY · NOT CONFIRMED",
+   "fondo": "amarillo",
+   "desde": 365.44,
+   "hasta": 370.44
+  },
+  {
+   "tipo": "lista",
+   "titulo": "On Leonida's cash",
+   "lineas": [
+    "President Hardin",
+    "President Thaddeus Waxman",
+    "Both from the Red Dead Redemption series"
+   ],
+   "desde": 381.72,
+   "hasta": 391.56
+  },
+  {
+   "tipo": "lista",
+   "titulo": "Red Dead Redemption 2 files",
+   "lineas": [
+    "Unused boat texture (2018 game)",
+    "Ship names include...",
+    "\"THE LEONIDA\""
+   ],
+   "desde": 412.1,
+   "hasta": 418.06
+  },
+  {
+   "tipo": "lista",
+   "titulo": "Rockstar's own words",
+   "lineas": [
+    "Ultimate Edition revolvers with",
+    "\"Vice City stylings sourced from",
+    "the Vercetti Estate\""
+   ],
+   "desde": 436.88,
+   "hasta": 443.54
+  },
+  {
+   "tipo": "pastilla",
+   "texto": "MILE ZERO AIR STATION · GOOSE KEY",
+   "fondo": "amarillo",
+   "desde": 510.82,
+   "hasta": 515.8199999999999
+  },
+  {
+   "tipo": "pastilla",
+   "texto": "5 STARS + 2 JETS ON YOUR TAIL",
+   "fondo": "rosa",
+   "desde": 523.74,
+   "hasta": 528.74
+  },
+  {
+   "tipo": "pastilla",
+   "texto": "REWARD: ABOUT $1,200",
+   "fondo": "amarillo",
+   "desde": 557.2,
+   "hasta": 562.2
+  },
+  {
+   "tipo": "pastilla",
+   "texto": "SOUTH OF COTTONMOUTH LAKE · BELOW HAMLET",
+   "fondo": "amarillo",
+   "desde": 583.34,
+   "hasta": 588.34
+  },
+  {
+   "tipo": "pastilla",
+   "texto": "BELVILLE · LEONARD COUNTY",
+   "fondo": "amarillo",
+   "desde": 632.76,
+   "hasta": 637.76
+  },
+  {
+   "tipo": "lista",
+   "titulo": "His notes",
+   "lineas": [
+    "People who look identical",
+    "Neighbors who can't get into their homes",
+    "People glitching through walls",
+    "Locked doors with nothing behind them"
+   ],
+   "desde": 643.02,
+   "hasta": 652.26
+  },
+  {
+   "tipo": "pastilla",
+   "texto": "KELLY COUNTY · AT NIGHT (CHAPTER 2+)",
+   "fondo": "amarillo",
+   "desde": 669.7,
+   "hasta": 675.7
+  },
+  {
+   "tipo": "lista",
+   "titulo": "Trophy unlocked",
+   "lineas": [
+    "\"The Truth Is Out There\"",
+    "Hidden trophy"
+   ],
+   "desde": 693.76,
+   "hasta": 697.06
+  }
+ ]
+}

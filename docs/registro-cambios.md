@@ -1,5 +1,10 @@
 # Registro de cambios (para pasar a la otra sesión de Claude)
 
+## 22/11/2026 · Largo 01 producido con un clic
+- Regla de Adam: vídeos largos con UN CLIC (el equipo hace todo). Anotado en `docs/prompt-largos.md`, `docs/produccion-largo.md` y `CLAUDE.md`.
+- Nuevo `shorts/voz_larga.py` (Kokoro por párrafos con pausas) y `shorts/montaje_largo.py` (horizontal 1920×1080, contador redondo, pastillas, tarjetas de capítulo y de lista, render en paralelo, .srt, −14 LUFS).
+- `largos/01-secretos-semana/`: guion de 18 secretos verificados (`voz.txt`), `construir_plan.py`, `plan.json`, `capitulos.txt`, `publicacion.md`, `miniatura-prompt.md`. Vídeo de 12:22.
+
 ## 22/11/2026 · Largo 01: FASE 1 v2 con las capturas de Adam
 - `largos/01-secretos-semana/fase1-estilo.md` rehecho con 9 capturas de transcripción y 6 fotogramas de la referencia (T5G, «30 Secrets & Easter Eggs In GTA 6!»): observado vs inferido, esencial vs tema, guía de estilo propia (contador redondo con anillo, gancho 7 s, capítulos).
 - Problema: la referencia usa partidas grabadas; opciones A/B/C para Adam. Apuntado en `estado/charla` y en el encargo.

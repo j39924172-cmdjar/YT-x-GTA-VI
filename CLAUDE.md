@@ -21,6 +21,7 @@ o algo no se puede aplicar, avisa a Antonio ANTES de cambiarlo.
 ## Vídeos largos (Adam, 22/11/2026)
 - Además de Shorts, vídeos de **12-20 min** (horizontal 1920×1080). Encargo desde la oficina: «Producir vídeo largo — TÍTULO: … / Duración: 12-20 min / Referencia: …».
 - **Todo vídeo largo sigue el PROMPT MAESTRO de Adam: `docs/prompt-largos.md`** (FASE 1 guía de estilo de la referencia → ESPERAR título, guion y narración de Adam → FASE 2-3 escena por escena → montaje → prompt de miniatura para ChatGPT). Si Adam no pasa referencia, el equipo la busca con `python shorts/largos.py` y lo dice. No afirmar haber visto un vídeo que no se ha podido inspeccionar.
+- **Un clic (Adam, 22/11/2026):** Adam solo pulsa «Producir»; el equipo hace todo (guion, voz, montaje, publicación, miniatura) sin esperarle. Plantilla: `shorts/montaje_largo.py`; voz larga: `shorts/voz_larga.py`.
 - Procedimiento: `docs/produccion-largo.md`. Radar de largos → `estado/largos` en la oficina.
 
 ## Patrones que funcionan (sección 3)

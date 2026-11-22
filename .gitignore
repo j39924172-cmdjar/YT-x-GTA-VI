@@ -20,3 +20,6 @@ videos/oficiales/*.mp4
 videos/clips/
 videos/hojas/
 videos/previas/
+largos/*/capturas/
+largos/*/*.mp4
+largos/*/_*/

@@ -1,7 +1,7 @@
 # Procedimiento: producir un VÍDEO LARGO (12-20 min)
 
 Petición de Adam (22/11/2026): además de Shorts, vídeos de 12-20 minutos. Llegan desde la oficina como `Producir vídeo largo — TÍTULO: … / Duración: 12-20 min / Voz: … / Encargo: <id>`.
-**OBLIGATORIO: seguir el PROMPT MAESTRO de Adam en `docs/prompt-largos.md` (fases 1-3, espera de materiales y prompt de miniatura).**
+**OBLIGATORIO: seguir el PROMPT MAESTRO de Adam en `docs/prompt-largos.md` (fases 1-3 y prompt de miniatura). Regla de un clic (22/11): el equipo hace todo sin esperar a Adam.**
 Mismas reglas que los Shorts (datos verificados, nada inventado, sin spoilers de misiones, sin logo oficial, fuentes solo en la descripción, aviso no oficial), más estas:
 
 ## 1. Investigación (Jarvis + Nobita)

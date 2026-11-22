@@ -52,6 +52,10 @@ ADEMAS me pasará después de pasarme el vídeo completo, un prompt para ChatGPT
 
 ## Cómo lo aplica el equipo (lectura de Claude, 22/11/2026)
 
+### ⚡ Regla de Adam (22/11/2026): UN CLIC
+Adam solo pulsa «Producir» en la oficina. **El equipo lo hace TODO sin esperar**: referencia, FASE 1, guion y narración (datos verificados), voz, FASE 2-3, montaje, ficha de publicación y prompt de miniatura. Las esperas del prompt original («espera a mi guion») quedan sustituidas por esta regla, salvo que Adam mande él su guion en el encargo o en el chat.
+Si la referencia vive de partidas grabadas y no las tenemos, el equipo elige solo la opción B (material oficial de Rockstar + gráficos propios) y lo dice.
+
 ### Flujo de un vídeo largo con este prompt
 1. **Referencia.**
    - **A) Adam pasa el vídeo** (archivo adjunto en el chat o enlace en el encargo de la oficina, campo «Vídeo de referencia»).

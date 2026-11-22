@@ -110,6 +110,9 @@ Para 12-16 min hacen falta **20-30 secretos verificados**, cada uno con fuente p
 **Los secretos que cuenta T5G no son una fuente:** solo se usan si un medio fiable los confirma, y con nuestras propias palabras.
 
 ## 7. Estado
+**Actualización 22/11:** Adam pidió que el equipo lo haga todo (un clic). Elegida la **opción B** (material oficial + gráficos propios). Guion propio de 18 secretos verificados (`voz.txt`), voz Fenrir, montaje con `shorts/montaje_largo.py`.
+
+Texto anterior:
 FASE 1 entregada. **Se espera a Adam** para dos cosas:
 1. **Elegir la opción A, B o C** del punto 4.
 2. **Su guion y su narración,** o su permiso para que el equipo investigue los secretos que faltan y le proponga un guion para aprobar.
