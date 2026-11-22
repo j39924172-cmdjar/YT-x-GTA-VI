@@ -37,7 +37,7 @@ SECRETOS = [  # título, capítulo, visuales
     ("COOL DOG", 4, ["Leonida_Keys_01", "LT06", "Vice_City_19", "Leonida_Keys_05", "Leonida_Keys_04"]),
     ("SKUNK APE", 4, ["Grassrivers_08", "LT10", "Mount_Kalaga_National_Park_05", "Grassrivers_03", "Mount_Kalaga_National_Park_03"]),
     ("HE KNOWS IT'S A GAME", 5, ["Ambrosia_02", "Raul_Bautista_01", "Mount_Kalaga_National_Park_04", "Port_Gellhorn_02"]),
-    ("THE UFO", 5, ["Port_Gellhorn_01", "Ambrosia_02", "Port_Gellhorn_05", "Mount_Kalaga_National_Park_04"]),
+    ("THE UFO", 5, ["Port_Gellhorn_01", "Ambrosia_02", "Port_Gellhorn_05", "LT10", "Vice_City_08"]),
 ]
 CAPITULOS = ["Hidden in plain sight", "Movie & TV tributes", "Rockstar's own history", "Leonida's wild side", "The truth is out there"]
 GANCHO = ["LT30", "Vice_City_27", "Leonida_Keys_01", "Ambrosia_02", "LT23"]

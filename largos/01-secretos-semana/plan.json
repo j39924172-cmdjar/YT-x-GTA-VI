@@ -2415,33 +2415,26 @@
    ]
   },
   {
-   "img": "capturas/Mount_Kalaga_National_Park_04.jpg",
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 27.88,
    "desde": 677.81,
-   "hasta": 683.01,
-   "foco": [
-    0.4,
-    0.45
-   ],
-   "foco_fin": [
-    0.34,
-    0.45
-   ],
+   "hasta": 679.28,
    "zoom": [
-    1.04,
-    1.16
+    1.0,
+    1.0
    ]
   },
   {
-   "img": "capturas/Port_Gellhorn_01.jpg",
-   "desde": 683.01,
-   "hasta": 688.21,
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 679.28,
+   "hasta": 684.48,
    "foco": [
-    0.4,
-    0.45
+    0.6,
+    0.5
    ],
    "foco_fin": [
-    0.46,
-    0.45
+    0.54,
+    0.5
    ],
    "zoom": [
     1.16,
@@ -2449,16 +2442,16 @@
    ]
   },
   {
-   "img": "capturas/Ambrosia_02.jpg",
-   "desde": 688.21,
-   "hasta": 693.41,
+   "img": "capturas/Port_Gellhorn_01.jpg",
+   "desde": 684.48,
+   "hasta": 689.68,
    "foco": [
-    0.4,
-    0.45
+    0.6,
+    0.5
    ],
    "foco_fin": [
-    0.46,
-    0.45
+    0.6599999999999999,
+    0.5
    ],
    "zoom": [
     1.04,
@@ -2466,9 +2459,53 @@
    ]
   },
   {
+   "img": "capturas/Ambrosia_02.jpg",
+   "desde": 689.68,
+   "hasta": 694.88,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.6599999999999999,
+    0.5
+   ],
+   "zoom": [
+    1.16,
+    1.04
+   ]
+  },
+  {
    "img": "capturas/Port_Gellhorn_05.jpg",
-   "desde": 693.41,
-   "hasta": 698.61,
+   "desde": 694.88,
+   "hasta": 700.08,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.51,
+    0.55
+   ],
+   "zoom": [
+    1.04,
+    1.16
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 27.88,
+   "desde": 700.08,
+   "hasta": 701.55,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 701.55,
+   "hasta": 707.7,
    "foco": [
     0.5,
     0.4
@@ -2478,31 +2515,14 @@
     0.4
    ],
    "zoom": [
-    1.16,
-    1.04
-   ]
-  },
-  {
-   "img": "capturas/Mount_Kalaga_National_Park_04.jpg",
-   "desde": 698.61,
-   "hasta": 703.81,
-   "foco": [
-    0.4,
-    0.45
-   ],
-   "foco_fin": [
-    0.46,
-    0.45
-   ],
-   "zoom": [
     1.04,
     1.16
    ]
   },
   {
-   "img": "capturas/Port_Gellhorn_01.jpg",
-   "desde": 703.81,
-   "hasta": 707.7,
+   "img": "capturas/Jason_and_Lucia_16.jpg",
+   "desde": 707.7,
+   "hasta": 712.9,
    "foco": [
     0.4,
     0.45
@@ -2514,23 +2534,6 @@
    "zoom": [
     1.16,
     1.04
-   ]
-  },
-  {
-   "img": "capturas/Jason_and_Lucia_16.jpg",
-   "desde": 707.7,
-   "hasta": 712.9,
-   "foco": [
-    0.5,
-    0.5
-   ],
-   "foco_fin": [
-    0.44,
-    0.5
-   ],
-   "zoom": [
-    1.04,
-    1.16
    ]
   },
   {
@@ -2548,16 +2551,16 @@
    "desde": 714.26,
    "hasta": 719.46,
    "foco": [
-    0.6,
-    0.5
+    0.5,
+    0.4
    ],
    "foco_fin": [
-    0.54,
-    0.5
+    0.44,
+    0.4
    ],
    "zoom": [
-    1.04,
-    1.16
+    1.16,
+    1.04
    ]
   },
   {
@@ -2566,15 +2569,15 @@
    "hasta": 724.66,
    "foco": [
     0.5,
-    0.5
+    0.4
    ],
    "foco_fin": [
     0.44,
-    0.5
+    0.4
    ],
    "zoom": [
-    1.16,
-    1.04
+    1.04,
+    1.16
    ]
   },
   {
@@ -2582,16 +2585,16 @@
    "desde": 724.66,
    "hasta": 729.86,
    "foco": [
-    0.5,
-    0.5
+    0.4,
+    0.45
    ],
    "foco_fin": [
-    0.56,
-    0.5
+    0.46,
+    0.45
    ],
    "zoom": [
-    1.04,
-    1.16
+    1.16,
+    1.04
    ]
   },
   {
@@ -2609,16 +2612,16 @@
    "desde": 731.22,
    "hasta": 736.42,
    "foco": [
-    0.6,
-    0.5
+    0.5,
+    0.4
    ],
    "foco_fin": [
-    0.6599999999999999,
-    0.5
+    0.56,
+    0.4
    ],
    "zoom": [
-    1.04,
-    1.16
+    1.16,
+    1.04
    ]
   },
   {
@@ -2627,15 +2630,15 @@
    "hasta": 742.92,
    "foco": [
     0.5,
-    0.5
+    0.4
    ],
    "foco_fin": [
     0.56,
-    0.5
+    0.4
    ],
    "zoom": [
-    1.16,
-    1.04
+    1.04,
+    1.16
    ]
   }
  ],
