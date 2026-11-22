@@ -1,5 +1,9 @@
 # Registro de cambios (para pasar a la otra sesión de Claude)
 
+## 22/11/2026 · Largo 01: FASE 1 v2 con las capturas de Adam
+- `largos/01-secretos-semana/fase1-estilo.md` rehecho con 9 capturas de transcripción y 6 fotogramas de la referencia (T5G, «30 Secrets & Easter Eggs In GTA 6!»): observado vs inferido, esencial vs tema, guía de estilo propia (contador redondo con anillo, gancho 7 s, capítulos).
+- Problema: la referencia usa partidas grabadas; opciones A/B/C para Adam. Apuntado en `estado/charla` y en el encargo.
+
 ## 18/11/2026 — Sesión de Claude Code
 - Documento maestro guardado en `docs/vicecity-estado.md` y resumen en `CLAUDE.md`.
 - Reparto por departamentos en `docs/departamentos.md`.
