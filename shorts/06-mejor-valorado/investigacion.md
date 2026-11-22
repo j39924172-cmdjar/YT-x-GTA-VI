@@ -21,3 +21,7 @@ Datos añadidos (re-comprobados el 22/11):
 - 118 notas perfectas de 147 críticas en PS5 — TechPowerUp: “99 on Metacritic and 118 perfect scores” — https://www.techpowerup.com/354998/gta-6-review-roundup-99-on-metacritic-and-118-perfect-scores
 - GTA 4 tenía 98 y GTA 5 97: GTA 6 es el mejor valorado de Rockstar — Notebookcheck: “topping GTA 4 to become Rockstar's top-rated” — https://www.notebookcheck.net/GTA-6-reviews-award-99-Metacritic-score-topping-GTA-4-to-become-Rockstar-s-top-rated.1453363.0.html
 - Empate con Ocarina of Time (1998): Dexerto “joint best reviewed game of all time” — https://www.dexerto.com/gta/gta-6-is-the-joint-best-reviewed-game-of-the-all-time-3429300/ ; Digital Trends.
+
+## Repaso 22/11 17:53 (Nobita)
+- Sigue en 99. El número de críticas ha subido (otros medios ya hablan de 150-168), así que el 118/147 es una foto del lanzamiento: el guion ahora dice «at launch».
+- Dot Esports dice que Metacritic coloca a GTA 6 primero de su lista histórica, por delante de Ocarina, por sus cálculos internos (https://dotesports.com/gta/news/gta-6-review-roundup). Es una sola fuente: no se usa hasta que lo confirme un segundo medio.
