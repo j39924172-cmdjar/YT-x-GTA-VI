@@ -6,7 +6,7 @@ o algo no se puede aplicar, avisa a Antonio ANTES de cambiarlo.
 
 ## Resumen del proyecto
 - Canal: **VICECITY DAYS TV**. YouTube Shorts de **GTA VI**, en **inglés** (EE. UU., Reino Unido, Canadá, Australia). Faceless.
-- Prioridad: Shorts. Vídeos largos más adelante. Un solo canal hasta que funcione.
+- Prioridad: Shorts y, desde el 22/11/2026, también vídeos largos de 12-20 min (decisión de Adam). Un solo canal hasta que funcione.
 - Antonio no juega ni graba: los visuales los consigue el equipo (capturas oficiales de Rockstar de la galería de VGC).
 - Presupuesto 30–100 €/mes. No se usan InVideo, CapCut ni ElevenLabs directamente. La voz es Higgsfield (`text2speech_v2`, variante `elevenlabs`, voz preset "Dylan", `b847bc29-f184-583a-8ad9-d1f1e16d1a60`).
 - Marca: negro y morado/rosa neón. #080810, #8B35FF, #C77DFF, #F4F1FF, más #FF2E8C y #FFCE28 en los Shorts. Marca "VICECITY DAYS TV". Nunca el logo oficial de GTA VI.

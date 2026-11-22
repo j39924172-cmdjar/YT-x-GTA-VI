@@ -245,6 +245,23 @@
   .charla .f { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); }
   .charla .k { font-size: 11px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .04em; margin-right: 6px; }
   .charla .k.decision { color: var(--ok); } .charla .k.idea { color: var(--pink); } .charla .k.regla { color: var(--sun); } .charla .k.pendiente { color: var(--lilac); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .tipo-sel { display: flex; gap: 10px; flex-wrap: wrap; border: 0; padding: 0; margin: 0 0 6px; }
+  .tipo-sel label { display: flex; align-items: center; gap: 6px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 10px; cursor: pointer; font-size: 13.5px; }
+  .tipo-sel label:has(input:checked) { border-color: var(--pink); background: color-mix(in srgb, var(--pink) 12%, transparent); }
+  .largos-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+  @media (max-width: 860px) { .largos-grid { grid-template-columns: minmax(0, 1fr); } }
+  .lcard { border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: grid; gap: 6px; background: var(--surface-2); margin-bottom: 10px; }
+  .lcard .tt { font-weight: 700; font-size: 15px; }
+  .lcard .es, .lcard .d { color: var(--muted); font-size: 12.5px; }
+  .lcard .ref { font-size: 12px; color: var(--sun); }
+  .lcard ol { margin: 0; padding-left: 18px; font-size: 12.5px; display: grid; gap: 2px; }
+  .lcard .pie { display: flex; gap: 8px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .lvid { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; font-size: 12.5px; }
+  .lvid li { display: grid; grid-template-columns: 62px minmax(0, 1fr); gap: 8px; align-items: baseline; }
+  .lvid .v { font-family: var(--font-mono); color: var(--sun); text-align: right; font-size: 12px; }
+  .lvid a { color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+  .lvid small { display: block; color: var(--muted); font-size: 11.5px; }
   .fuentes-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); align-items: start; }
   @media (max-width: 900px) { .fuentes-grid { grid-template-columns: minmax(0, 1fr); } }
   .xlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 12.5px; }
@@ -330,6 +347,16 @@
         <div class="virales-list" id="viralesList"></div>
       </section>
 
+      <section class="panel" id="largos" aria-labelledby="hLargos">
+        <div class="ph"><h2 id="hLargos">🎬 Vídeos largos (12-20 min)</h2><span class="chip" id="largosChip">sin datos todavía</span></div>
+        <p class="note" id="largosResumen">Ideas de vídeos largos con datos verificados y lo que está funcionando en otros canales.</p>
+        <div class="largos-grid">
+          <div class="field"><span>Ideas para nuestro canal</span><div id="largosIdeas"></div></div>
+          <div class="field"><span>Vídeos largos de GTA 6 que más funcionan ahora (otros canales)</span><ol class="lvid" id="largosVideos"></ol>
+            <span style="margin-top:10px">Formatos (✅ los podemos hacer sin grabar partidas)</span><div class="fmt-rank" id="largosFmt"></div></div>
+        </div>
+      </section>
+
       <section class="panel" aria-labelledby="hPlantilla">
         <div class="ph"><h2 id="hPlantilla">Plantilla</h2><span class="chip" id="plantillaChip">12 personas</span></div>
         <p class="note">Toca a una persona para ver qué hace, lo que domina y su nota en el examen.</p>
@@ -379,7 +406,11 @@
 
     <aside class="col side">
       <section class="panel" id="nuevo" aria-labelledby="hNuevo">
-        <div class="ph"><h2 id="hNuevo">Nuevo Short</h2></div>
+        <div class="ph"><h2 id="hNuevo">Nuevo vídeo</h2></div>
+        <fieldset class="tipo-sel" id="tipos"><legend class="sr-only">Tipo de vídeo</legend>
+          <label><input type="radio" name="tipo" id="tipoShort" value="short" checked> <span><b>Short</b> · 40-60 s</span></label>
+          <label><input type="radio" name="tipo" id="tipoLargo" value="largo"> <span><b>Vídeo largo</b> · 12-20 min</span></label>
+        </fieldset>
         <label class="field" for="titulo">Título del vídeo (en inglés o en español)
           <textarea id="titulo" rows="2" maxlength="160" placeholder="Ej.: GTA 6 Just Became the Best-Reviewed Game Ever"></textarea>
         </label>
@@ -388,7 +419,7 @@
           <label><input type="radio" name="voz" id="vozFenrir" value="fenrir" checked> <span><b>Fenrir</b> · gratis</span></label>
           <label><input type="radio" name="voz" id="vozDylan" value="dylan"> <span><b>Dylan</b> · Higgsfield (~1,6 créditos)</span></label>
         </fieldset>
-        <button class="go" id="goBtn" type="button">Producir Short</button>
+        <button class="go" id="goBtn" type="button">Producir</button>
         <button class="ghost lote" id="loteBtn" type="button" hidden>⚡ Producir los preparados</button>
         <p class="note" id="capNote">El equipo verifica los datos, pone la voz, monta, pasa el examen y te entrega el vídeo con título y descripción.</p>
         <div id="fallback" hidden>
@@ -579,7 +610,7 @@
 
   // ================================================================ 3. ESTADO (base de datos de la página)
   let encargos = [], actividad = [];
-  const ESTADO = { inv: null, can: null, equipo: null, agenda: null, tendencias: null, publicar: null, virales: null, referentes: null, charla: null };
+  const ESTADO = { inv: null, can: null, equipo: null, agenda: null, tendencias: null, publicar: null, virales: null, referentes: null, charla: null, largos: null };
   let subidos = {}, opiniones = [];
   const ACTIVOS = ["enviado", "en marcha"];
   const actual = () => encargos.find(e => ACTIVOS.includes(e.estado));
@@ -937,6 +968,28 @@
         h("span", { class: "x" + (s.veces >= 5 ? " big" : "") }, "×" + String(s.veces).replace(".", ",")),
         h("span", {}, ytOk(s.url) ? h("a", { href: s.url, target: "_blank", rel: "noopener" }, s.titulo) : s.titulo, h("small", {}, `${fmtVistas(s.vistas)} · ${s.formato}`))))))));
   }
+  function renderLargos() {
+    const L = ESTADO.largos;
+    if (!L) return;
+    $("largosChip").textContent = "actualizado " + fmtHora(L.ts);
+    if (L.resumen) $("largosResumen").textContent = L.resumen;
+    const ideas = (L.ideas || []).filter(i => i && i.titulo);
+    $("largosIdeas").replaceChildren(...(ideas.length ? ideas.map(i => h("article", { class: "lcard" },
+      h("span", { class: "tt" }, i.titulo), i.es ? h("span", { class: "es" }, i.es) : null,
+      h("span", { class: "d" }, `⏱ ${i.duracion || "12-20 min"} · ${i.formato || ""}`),
+      i.capitulos && i.capitulos.length ? h("ol", {}, ...i.capitulos.slice(0, 8).map(c => h("li", {}, c))) : null,
+      i.referencia ? h("span", { class: "ref" }, "📈 " + i.referencia) : null,
+      i.porque ? h("span", { class: "d" }, i.porque) : null,
+      h("div", { class: "pie" },
+        h("span", { class: "chip " + (i.verificado === "✅" ? "ok" : "sun") }, i.verificado === "✅" ? "✅ datos verificados" : "🟡 " + (i.verificado || "por verificar")),
+        h("button", { class: "go", type: "button", onclick: () => { $("titulo").value = i.titulo; $("tipoLargo").checked = true; $("nuevo").scrollIntoView({ behavior: "smooth", block: "start" }); } }, "🎬 Producir este vídeo largo")))) :
+      [h("p", { class: "muted" }, "Sin ideas todavía.")]));
+    $("largosVideos").replaceChildren(...(L.videos || []).slice(0, 10).map(v => h("li", {},
+      h("span", { class: "v" }, fmtVistas(v.vistas)),
+      h("span", {}, ytOk(v.url) ? h("a", { href: v.url, target: "_blank", rel: "noopener" }, (v.sin_partida ? "✅ " : "🎮 ") + v.titulo) : v.titulo,
+        h("small", {}, `${v.canal ? "@" + v.canal : ""} · ${v.duracion || ""} · ${v.formato || ""}`)))));
+    $("largosFmt").replaceChildren(...(L.formatos || []).slice(0, 8).map(f => h("span", { class: "chip" }, `${f.sin_partida ? "✅" : "🎮"} ${f.formato} · ${fmtVistas(f.vistas)}`)));
+  }
   function renderCharla() {
     const c = ESTADO.charla;
     const items = c && Array.isArray(c.items) ? c.items.filter(i => i && i.texto) : [];
@@ -1004,9 +1057,11 @@
     let ref = null;
     try {
       const voz = document.querySelector('input[name="voz"]:checked')?.value || "fenrir";
-      if (db) { ref = db.collection("encargos").doc(); await ref.set({ titulo: t, ts: Date.now(), estado: "enviando", paso: 0, voz }); }
+      const tipo = document.querySelector('input[name="tipo"]:checked')?.value || "short";
+      if (db) { ref = db.collection("encargos").doc(); await ref.set({ titulo: t, ts: Date.now(), estado: "enviando", paso: 0, voz, tipo }); }
       const anchor = await comments.anchorFor($("nuevo"));
-      await comments.sendToClaude({ anchor, text: `Producir Short — TÍTULO: ${t}\nVoz: ${voz === "dylan" ? "Dylan (Higgsfield)" : "Fenrir (gratis)"}` + (ref ? `\nEncargo: ${ref.id}` : "") });
+      const cab = tipo === "largo" ? `Producir vídeo largo — TÍTULO: ${t}\nDuración: 12-20 min` : `Producir Short — TÍTULO: ${t}`;
+      await comments.sendToClaude({ anchor, text: `${cab}\nVoz: ${voz === "dylan" ? "Dylan (Higgsfield)" : "Fenrir (gratis)"}` + (ref ? `\nEncargo: ${ref.id}` : "") });
       if (ref) await ref.update({ estado: "enviado" });
       titulo.value = "";
       capNote.textContent = "Encargo enviado. El equipo lo recoge en menos de un minuto y aquí verás cada paso."; capNote.className = "note";
@@ -1014,7 +1069,7 @@
       const code = e?.code || "upstream_error";
       if (ref) { try { await ref.update({ estado: "no enviado", nota: "no llegó al equipo" }); } catch {} }
       mostrarAlternativa(t, (MOTIVO[code] || "No se pudo enviar el encargo desde la oficina.") + " No se ha encargado nada.");
-    } finally { goBtn.disabled = false; goBtn.textContent = "Producir Short"; }
+    } finally { goBtn.disabled = false; goBtn.textContent = "Producir"; }
   };
   try { const v = localStorage.getItem("vcdt-voz"); if (v && $("voz" + v[0].toUpperCase() + v.slice(1))) $("voz" + v[0].toUpperCase() + v.slice(1)).checked = true; } catch {}
   document.querySelectorAll('input[name="voz"]').forEach(r => r.addEventListener("change", () => { try { localStorage.setItem("vcdt-voz", r.value); } catch {} }));
@@ -1406,6 +1461,7 @@
       db.doc("estado/tendencias").onSnapshot(d => { ESTADO.tendencias = d.exists ? d.data() : null; renderRadar(); }, () => {});
       db.doc("estado/virales").onSnapshot(d => { ESTADO.virales = d.exists ? d.data() : null; renderVirales(); }, () => {});
       db.doc("estado/referentes").onSnapshot(d => { ESTADO.referentes = d.exists ? d.data() : null; renderReferentes(); }, () => {});
+      db.doc("estado/largos").onSnapshot(d => { ESTADO.largos = d.exists ? d.data() : null; renderLargos(); }, () => {});
       db.doc("estado/charla").onSnapshot(d => { ESTADO.charla = d.exists ? d.data() : null; renderCharla(); }, () => {});
       db.doc("estado/publicar").onSnapshot(d => { ESTADO.publicar = d.exists ? d.data() : null; renderSubir(); }, () => {});
       db.collection("subidos").limit(100).onSnapshot(snap => { subidos = Object.fromEntries(snap.docs.map(d => [d.id, d.data()])); renderSubir(); }, () => {});

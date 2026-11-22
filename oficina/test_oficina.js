@@ -206,6 +206,20 @@ const txt = (page, sel) => page.textContent(sel);
     await page.click("#refBtn");
     await page.waitForFunction(n => window.__sent.length === n + 1, antes);
     ok("Estudiar referente: envía el enlace al equipo", /Estudiar referente — https:\/\/youtube\.com\/shorts\/EdwRiJxY4bw/.test(await page.evaluate(() => window.__sent[window.__sent.length - 1].text)));
+    await page.evaluate(() => window.__claudeEstado("estado/largos", { ts: Date.now(), resumen: "Largos", ideas: [
+      { titulo: "The GTA 6 Situation Is Insane: Every Record It Broke", es: "Todos los récords", duracion: "14-16 min", formato: "Noticia", capitulos: ["Intro", "Ventas"], verificado: "✅", referencia: "@WestJett 1,6 M" }],
+      videos: [{ titulo: "Testing Everything In GTA 6", vistas: 5900000, canal: "LazarBeam", duracion: "14:01", formato: "Partida grabada", sin_partida: false, url: "https://www.youtube.com/watch?v=x" }],
+      formatos: [{ formato: "Guía de consejos", vistas: 4000000, n: 3, sin_partida: true }] }));
+    await page.waitForTimeout(120);
+    ok("Vídeos largos: ideas con capítulos, vídeos de referencia y formatos", /Every Record It Broke/.test(await txt(page, "#largosIdeas")) && (await page.$$("#largosIdeas ol li")).length === 2 && /5,9 M/.test(await txt(page, "#largosVideos")) && /🎮/.test(await txt(page, "#largosVideos")) && /✅ Guía de consejos/.test(await txt(page, "#largosFmt")));
+    await page.click("#largosIdeas >> text=🎬 Producir este vídeo largo");
+    ok("Vídeos largos: «Producir» rellena el título y marca Vídeo largo", (await page.inputValue("#titulo")) === "The GTA 6 Situation Is Insane: Every Record It Broke" && await page.isChecked("#tipoLargo"));
+    const nAntes = await page.evaluate(() => window.__sent.length);
+    await page.click("#goBtn");
+    await page.waitForFunction(n => window.__sent.length === n + 1, nAntes);
+    const tl = await page.evaluate(() => window.__sent[window.__sent.length - 1].text);
+    ok("Vídeo largo: el encargo dice «Producir vídeo largo» y la duración", /^Producir vídeo largo — TÍTULO: The GTA 6 Situation/.test(tl) && /Duración: 12-20 min/.test(tl));
+    await page.check("#tipoShort");
     ok("Funciones nuevas: sin errores", !errors.length, errors.join(" | "));
     await page.screenshot({ path: path.join(SHOTS, "oficina_v3.png"), fullPage: true });
     await ctx.close();
