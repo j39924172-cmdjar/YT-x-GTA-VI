@@ -235,3 +235,8 @@
 ## 22/11/2026 — Short 15 entregado: «GTA 6 Made $3.79 BILLION in One Day»
 - Encargo de Adam (voz Dylan, 2,4 créditos; quedan 1,45). 49 s, receta del 14 (modo show, 31/36 escenas en clip, contadores animados $3,790,000,000 y 32,500,000). Fuente primaria: nota de Rockstar/Take-Two (Business Wire, Take-Two IR) + Forbes, Motley Fool, Engadget 2013, Fox 5. Giro: son ventas minoristas, no ingresos de Take-Two. Examen 9,7.
 - 22/11 09:53 · Preproducción continua: el 07 (212 GB, 🔥 0,4) pasa a shorts/_archivo/ y entra el 16 «Yellow or Red? GTA 6's Car Tracker Trick» (🔥 10, 140 palabras, 40-60 s). Sin opiniones nuevas.
+
+## 22/11/2026 — Investigación diaria nº 4
+- Referentes: la gran pregunta de @GTASixers_Info va por 710 mil (×444). Nuestros 14 y 15 (40-60 s, modo show) superan 1.000 en 6 h.
+- Ideas nuevas: 45 «Will We Wait 13 Years for GTA 7?» ✅ (Rockstar a Bloomberg vía VGC, Dexerto, SVG), 46 «How to Make Money in Every Chapter of GTA 6» ✅ (PC Gamer, Insider Gaming, GamerFuzion; 🔥 8,3), 47 mapa gratis 🟡, 48 misterio del monte Chiliad 🟡.
+- Recomendadas hoy (nuevas, no repetidas): 45 y 46. X: sigue el bulo del parche del 25/11 (❌).
