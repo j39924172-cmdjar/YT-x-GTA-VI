@@ -15,3 +15,6 @@ Estado: **preproducción** (falta voz y montaje). Fecha: 19/11/2026. Origen: pre
 ## Cuidado (Nobita)
 - Con el gatillo pulsado, los dos sticks abren otra vista (primera persona): decir "both sticks" sin más.
 - Los colores pueden cambiar con parches o ajustes de accesibilidad: "by default".
+
+## Guion v2 (22/11): 137 palabras, 40-60 s
+Mismos 3 datos, explicados con ejemplos (cartera en el suelo, enemigo tras un coche) y bucle final «Press both sticks». Colores "by default" (aviso de Nobita). Versión anterior en `voz_v1.txt`.

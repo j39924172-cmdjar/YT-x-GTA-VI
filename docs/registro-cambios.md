@@ -264,3 +264,4 @@
 
 ## 22/11/2026 — Vídeo largo 01 (FASE 1)
 - Encargo «Every Secret Players Found in GTA 6's First Week» (referencia buscada por el equipo). Referencia: @T5G2 «30 Secrets & Easter Eggs In GTA 6!». YouTube bloquea ver la página (anti-robots) y las miniaturas: FASE 1 hecha solo con metadatos, dicho claramente. Guía de estilo propia en largos/01-secretos-semana/fase1-estilo.md. Faltan 10-20 secretos verificados. Esperando a Adam.
+- 22/11 14:53 · Preproducción continua: 09 (137 palabras) y 10 (148 palabras, +3 datos verificados) alargados a 40-60 s; versiones anteriores en voz_v1.txt. Los 4 preproducidos (06, 09, 10, 16) ya cumplen 40-60 s.

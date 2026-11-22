@@ -9,3 +9,5 @@ ES: Pulsa los dos sticks en GTA 6 ahora mismo · Tipo: truco · Formato: truco
 
 Visuales (Nil): clips LT13 (figura bajo el puente con luces), LT10 (siluetas en el pantano), LT06 (muelle), LT21 (Ocean Drive), LT23 (playa), PL06 (yate); capturas Grassrivers_08 (ojo del caimán brillando: "algo te observa"), Vice_City_08 (cierre).
 Títulos: **Press Both Sticks in GTA 6 Right Now** (ES: Pulsa los dos sticks en GTA 6 ahora mismo) · alternativos: "GTA 6's Hidden Button Nobody Told You About" (ES: El botón oculto de GTA 6 que nadie te contó) · "The GTA 6 Trick That Shows You Everything" (ES: El truco de GTA 6 que te lo enseña todo).
+
+> **Guion v2 (22/11/2026):** `voz.txt` alargado a 40-60 s (regla de Adam). Al montar, repartir escenas para ~50 s: mitad o más clips, microcortes ≤ 2 s.

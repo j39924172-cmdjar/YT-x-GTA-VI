@@ -13,3 +13,8 @@ Estado: **preproducción** (falta voz y montaje). Fecha: 19/11/2026. Origen: pre
 - Las fuentes no coinciden en el tipo de torre (radio, comunicaciones o televisión): decir "a giant tower".
 - No dar la ubicación exacta como dato (varía entre fuentes).
 - Es un hallazgo de jugadores: decirlo ("players found it on launch day").
+
+## Ampliación 22/11 (guion v2, 148 palabras, 40-60 s)
+4. **La subida dura unos 6-7 minutos.** GamingBible: "secret cutscene hidden behind ridiculous seven-minute climb" — https://www.gamingbible.com/news/gta-6-secret-cutscene-seven-minute-tower-easter-egg-795530-20261119 · games.gg: "over six minutes for the ascent" — https://games.gg/grand-theft-auto-vi/guides/grand-theft-auto-6-easter-eggs-and-secrets-known-clues/
+5. **En la escena, el huevo cae sobre el parabrisas de un coche.** IBTimes UK (enlace de arriba).
+6. **Guiño al huevo de Pascua literal de GTA Vice City (2002).** GamingBible (mismo artículo): "a callback to the literal Easter egg hidden in 2002's GTA: Vice City".
