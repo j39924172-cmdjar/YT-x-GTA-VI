@@ -252,3 +252,6 @@
 ## 22/11/2026 — PROMPT MAESTRO de vídeos largos (Adam)
 - Guardado literal en `docs/prompt-largos.md` con el flujo del equipo, los límites reales (análisis por fotogramas si Adam adjunta el archivo; con solo un enlace no se descarga el vídeo de otro canal) y el prompt de miniatura para ChatGPT. Referenciado en CLAUDE.md y `docs/produccion-largo.md`.
 - Oficina: el prompt completo se ve en el panel 🎬 Vídeos largos; campo «Vídeo de referencia (opcional)» al elegir Vídeo largo (el encargo dice "Referencia: <url>" o "que la busque el equipo"). 80/80 pruebas.
+
+## 22/11/2026 — Vídeo largo 01 (FASE 1)
+- Encargo «Every Secret Players Found in GTA 6's First Week» (referencia buscada por el equipo). Referencia: @T5G2 «30 Secrets & Easter Eggs In GTA 6!». YouTube bloquea ver la página (anti-robots) y las miniaturas: FASE 1 hecha solo con metadatos, dicho claramente. Guía de estilo propia en largos/01-secretos-semana/fase1-estilo.md. Faltan 10-20 secretos verificados. Esperando a Adam.
