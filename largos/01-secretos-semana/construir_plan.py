@@ -84,7 +84,38 @@ def tramo(desde, hasta, lista):
         t += d
 
 
-tramo(0, ini_cap[0], GANCHO)
+# ---------- GANCHO (v2, 22/11): cortes de ~1 s, golpes de zoom, destellos, textos grandes y título de golpe
+g_dog, g_man, g_rock = buscar("A dog that saves"), buscar("And a man who"), buscar("Rockstar never told")
+g_play, g_here, g_18 = buscar("Players found them"), buscar("Here are eighteen"), buscar("And number eighteen")
+def img(v, a, b, foco=(0.5, 0.5), z=(1.0, 1.12), **kw):
+    escenas.append({"img": f"capturas/{v}.jpg", "desde": round(a, 3), "hasta": round(b, 3), "foco": list(foco), "foco_fin": [foco[0] + 0.03, foco[1]], "zoom": list(z), **kw})
+def clip(v, a, b, **kw):
+    ruta, i, f = CL[v]
+    escenas.append({"video": ruta, "inicio": i, "desde": round(a, 3), "hasta": round(min(b, a + f - i), 3), "zoom": [1.0, 1.0], **kw})
+    if a + f - i < b:
+        escenas.append({"video": ruta, "inicio": i, "desde": round(a + f - i, 3), "hasta": round(b, 3), "zoom": [1.0, 1.0]})
+img("Vice_City_27", 0, 1.15, (0.55, 0.45), (1.0, 1.18), golpe=True, flash=True)
+img("Vice_City_03", 1.15, g_dog - 0.05, (0.6, 0.35), (1.25, 1.05), golpe=True)
+clip("LT06", g_dog - 0.05, g_dog + 0.8, golpe=True, flash=True)
+img("Leonida_Keys_01", g_dog + 0.8, g_man - 0.05, (0.7, 0.6), (1.05, 1.25), golpe=True)
+img("Raul_Bautista_01", g_man - 0.05, g_rock - 1.3, (0.5, 0.45), (1.0, 1.2), golpe=True, flash=True)
+clip("LT25", g_rock - 1.3, g_rock - 0.05, golpe=True)
+clip("LT21", g_rock - 0.05, g_rock + 0.9, golpe=True, flash=True)
+clip("LT17", g_rock + 0.9, g_play - 0.05, golpe=True)
+clip("LT30", g_play - 0.05, g_play + 1.0, golpe=True, flash=True)
+clip("LT23", g_play + 1.0, g_play + 1.9, golpe=True)
+clip("PL02", g_play + 1.9, g_here - 0.05, golpe=True)
+img("Vice_City_08", g_here - 0.05, g_18 - 0.05, (0.5, 0.5), (1.1, 1.0), golpe=True, flash=True)
+img("Port_Gellhorn_01", g_18 - 0.05, ini_cap[0], (0.5, 0.5), (1.0, 1.22), golpe=True, flash=True)
+GANCHO_T = [
+    {"tipo": "grande", "texto": "A LITERAL EASTER EGG", "desde": 0.05, "hasta": g_dog - 0.1},
+    {"tipo": "grande", "texto": "A DOG ON A JET SKI", "color": "amarillo", "desde": g_dog, "hasta": g_man - 0.1},
+    {"tipo": "grande", "texto": "HE KNOWS IT'S A GAME", "color": "rosa", "desde": g_man + 0.3, "hasta": g_rock - 0.1},
+    {"tipo": "grande", "texto": "ROCKSTAR NEVER TOLD US", "desde": g_rock + 0.1, "hasta": g_play - 0.1},
+    {"tipo": "titulo", "texto": "18 SECRETS", "sub": "PLAYERS ALREADY FOUND IN GTA 6", "desde": g_here + 0.05, "hasta": g_18 - 0.1},
+    {"tipo": "grande", "texto": "#18 · OUT OF THIS WORLD", "color": "amarillo", "desde": g_18 + 0.8, "hasta": ini_cap[0] - 0.05},
+]
+SFX = [[e["desde"], "whoosh"] for e in escenas] + [[c["desde"], "golpe"] for c in GANCHO_T] + [[g_here, "subida"]]
 secretos = []
 for i, (tit, cap, vis) in enumerate(SECRETOS):
     a = ini_sec[i]
@@ -99,7 +130,7 @@ for i, (tit, cap, vis) in enumerate(SECRETOS):
 tramo(fin_ultimo, fin, FINAL)
 
 T = lambda f, d=0: round(buscar(f, d), 3)
-tarjetas = [
+tarjetas = GANCHO_T + [
     {"tipo": "lista", "titulo": "The money cheat", "lineas": ["UP · RIGHT · DOWN · LEFT", "UP · LEFT · DOWN · RIGHT", "= $250,000", "Only after you finish the story"],
      "desde": T("Press up, right"), "hasta": T("Other cheats are earned")},
     {"tipo": "pastilla", "texto": "PLAYER WORKAROUND · NOT OFFICIAL", "fondo": "amarillo", "desde": T("One player found a way"), "hasta": T("One player found a way") + 5},
@@ -128,7 +159,7 @@ tarjetas = [
     {"tipo": "lista", "titulo": "Trophy unlocked", "lineas": ["\"The Truth Is Out There\"", "Hidden trophy"],
      "desde": T("Your reward is a hidden trophy"), "hasta": T("GTA 5 had its Mount Chiliad")},
 ]
-plan = {"voz": "voz.mp3", "palabras": "palabras.json", "salida": "VCDT_L01_18_Secrets.mp4", "duracion": round(fin, 2), "bpm": 98, "musica": 0.09,
+plan = {"voz": "voz.mp3", "palabras": "palabras.json", "salida": "VCDT_L01_18_Secrets.mp4", "duracion": round(fin, 2), "bpm": 98, "musica": 0.09, "musica_gancho": 0.26, "gancho_hasta": round(ini_cap[0], 2), "sfx": SFX,
         "escenas": escenas, "secretos": secretos,
         "capitulos": [{"num": i + 1, "titulo": c, "desde": round(ini_cap[i], 3)} for i, c in enumerate(CAPITULOS)],
         "tarjetas": tarjetas}

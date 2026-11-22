@@ -185,6 +185,38 @@ def tarjeta_lista(fr, c, t):
     fr.alpha_composite(capa)
 
 
+def texto_grande(fr, c, t):
+    """Texto enorme del gancho que entra de golpe (escala 1.5 → 1 con rebote)."""
+    k = t - c["desde"]
+    if not 0 <= k <= c["hasta"] - c["desde"]:
+        return
+    a = min(1.0, M.ease((c["hasta"] - t) / 0.2))
+    esc = 1 + 0.3 * (1 - M.ease_back(k / 0.22))
+    im = M.texto_img(c["texto"], "Anton-Regular.ttf", c.get("size", 120), c.get("color", "blanco"), 8, "negro", True)
+    if esc != 1:
+        im = im.resize((max(1, int(im.width * esc)), max(1, int(im.height * esc))), Image.BILINEAR)
+    if a < 1:
+        im = im.copy(); im.putalpha(im.getchannel("A").point(lambda v: int(v * a)))
+    y = c.get("y", H * 0.74)
+    fr.alpha_composite(im, (int(W / 2 - im.width / 2), int(y - im.height / 2)))
+
+
+def titulo_golpe(fr, c, t):
+    k = t - c["desde"]
+    if not 0 <= k <= c["hasta"] - c["desde"]:
+        return
+    fr.alpha_composite(Image.new("RGBA", (W, H), (8, 8, 16, 120)))
+    esc = 1 + 1.2 * (1 - M.ease(k / 0.18))
+    t1 = M.texto_img(c["texto"], "Anton-Regular.ttf", 270, "amarillo", 10, "negro", True)
+    t1 = t1.resize((int(t1.width * esc), int(t1.height * esc)), Image.BILINEAR) if esc != 1 else t1
+    fr.alpha_composite(t1, (int(W / 2 - t1.width / 2), int(H * 0.44 - t1.height / 2)))
+    b = M.ease((k - 0.25) / 0.25)
+    if b > 0:
+        t2 = M.texto_img(c["sub"], "Montserrat-Black.ttf", 58, "blanco", 4, "negro", True).copy()
+        t2.putalpha(t2.getchannel("A").point(lambda v: int(v * b)))
+        fr.alpha_composite(t2, (int(W / 2 - t2.width / 2), int(H * 0.66 + (1 - b) * 30)))
+
+
 @lru_cache(None)
 def marca_img():
     return M.texto_img("VICECITY DAYS TV", "Montserrat-Black.ttf", 30, "blanco", 0, "negro", True)
@@ -205,6 +237,10 @@ def componer(plan, fondo, t):
     for c in plan.get("tarjetas", []):
         if c["tipo"] == "lista":
             tarjeta_lista(fr, c, t)
+        elif c["tipo"] == "grande":
+            texto_grande(fr, c, t)
+        elif c["tipo"] == "titulo":
+            titulo_golpe(fr, c, t)
         elif c["tipo"] == "pastilla":
             pastilla(fr, c["texto"], c.get("fondo", "amarillo"), t, c["desde"], c["hasta"], x=c.get("x", 60), y=c.get("y", H - 240), size=c.get("size", 40))
     for c in plan.get("capitulos", []):
@@ -232,7 +268,16 @@ def render_trozo(args):
                 obj.cerrar()
             act = e
             obj = Clip(e, base) if "video" in e else Imagen(e, base)
-        enc.stdin.write(componer(plan, obj.frame(t), t).tobytes())
+        base_fr = obj.frame(t)
+        k = (t - e["desde"]) * FPS
+        if e.get("golpe") and k < 7:          # golpe de zoom al entrar
+            z = 1 + 0.14 * (1 - k / 7) ** 2
+            cw, ch = W / z, H / z
+            base_fr = base_fr.resize((W, H), Image.BILINEAR, box=((W - cw) / 2, (H - ch) / 2, (W + cw) / 2, (H + ch) / 2))
+        fr = componer(plan, base_fr, t)
+        if e.get("flash") and k < 5:          # destello blanco en el corte
+            fr = Image.blend(fr, Image.new("RGB", (W, H), (255, 255, 255)), 0.75 * (1 - k / 5))
+        enc.stdin.write(fr.tobytes())
     if isinstance(obj, Clip):
         obj.cerrar()
     enc.stdin.close(); enc.wait()
@@ -245,12 +290,13 @@ def audio(plan, base, dur):
     M.ritmo(dur + 1, plan.get("bpm", 100), ritmo)
     eventos = [(s["desde"], "pop") for s in plan["secretos"]] + [(c["desde"], "whoosh") for c in plan.get("capitulos", [])]
     eventos += [(c["desde"] + 0.4, "ding") for c in plan.get("tarjetas", []) if c["tipo"] == "lista"]
+    eventos += [tuple(x) for x in plan.get("sfx", [])]
     sfx = base / "_sfx.wav"
     M.pista_sfx(dur, eventos, sfx)
     mezcla = base / "_mezcla.wav"
     vol = plan.get("musica", 0.10)
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(voz), "-i", str(ritmo), "-i", str(sfx), "-filter_complex",
-                    f"[0:a]aformat=channel_layouts=stereo,asplit[v][vs];[1:a]volume={vol}[m];"
+                    f"[0:a]aformat=channel_layouts=stereo,asplit[v][vs];[1:a]volume='if(lt(t,{plan.get('gancho_hasta', 0)}),{plan.get('musica_gancho', vol)},{vol})':eval=frame[m];"
                     f"[m][vs]sidechaincompress=threshold=0.05:ratio=6:attack=20:release=400[md];"
                     f"[2:a]volume=0.30[fx];[v][md][fx]amix=inputs=3:duration=first:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11",
                     "-ar", "48000", str(mezcla)], check=True)

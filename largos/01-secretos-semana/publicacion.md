@@ -1,6 +1,6 @@
 # Vídeo largo 01 · Publicación (YouTube, vídeo normal horizontal)
 
-**Archivo:** `VCDT_L01_18_Secrets.mp4` (1920×1080, 30 fps, ~12:25) · **Subtítulos:** `subtitulos.srt` (subirlo en «Subtítulos» → inglés)
+**Archivo:** `VCDT_L01_18_Secrets.mp4` (1920×1080, 30 fps, 12:03) · **Subtítulos:** `subtitulos.srt` (subirlo en «Subtítulos» → inglés)
 **Miniatura:** ver `miniatura-prompt.md` (prompt para ChatGPT)
 
 ## Título (elige uno)
@@ -16,12 +16,12 @@
 
 CHAPTERS
 0:00 Intro
-0:36 Part 1: Hidden in plain sight
-3:02 Part 2: Movie & TV tributes
-5:22 Part 3: Rockstar's own history
-8:10 Part 4: Leonida's wild side
-10:09 Part 5: The truth is out there
-11:47 Final
+0:16 Part 1: Hidden in plain sight
+2:42 Part 2: Movie & TV tributes
+5:02 Part 3: Rockstar's own history
+7:51 Part 4: Leonida's wild side
+9:49 Part 5: The truth is out there
+11:28 Final
 
 SOURCES
 Cheat code: Screen Rant, Gamer Tweak
