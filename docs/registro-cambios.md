@@ -247,3 +247,4 @@
 - `shorts/largos.py`: radar de vídeos largos de GTA 6 (4-20 min) con formato detectado y si se puede hacer sin grabar partidas (✅/🎮).
 - 4 ideas largas con datos ya verificados: récords de GTA 6, 25 consejos, mapa contra Florida real, secretos de la primera semana.
 - `docs/produccion-largo.md`. Pendiente: plantilla horizontal `shorts/montaje_largo.py` (con el primer encargo).
+- 22/11 · Oficina: al elegir «Vídeo largo» las ideas de debajo del título cambian a ideas de vídeo largo (con duración); con «Short», vuelven las de Short. 79/79 pruebas.

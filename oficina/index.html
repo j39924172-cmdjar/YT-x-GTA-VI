@@ -246,6 +246,7 @@
   .charla .k { font-size: 11px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .04em; margin-right: 6px; }
   .charla .k.decision { color: var(--ok); } .charla .k.idea { color: var(--pink); } .charla .k.regla { color: var(--sun); } .charla .k.pendiente { color: var(--lilac); }
   .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .tipo.t-largo { background: color-mix(in srgb, var(--violet) 22%, transparent); color: var(--lilac); }
   .tipo-sel { display: flex; gap: 10px; flex-wrap: wrap; border: 0; padding: 0; margin: 0 0 6px; }
   .tipo-sel label { display: flex; align-items: center; gap: 6px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 10px; cursor: pointer; font-size: 13.5px; }
   .tipo-sel label:has(input:checked) { border-color: var(--pink); background: color-mix(in srgb, var(--pink) 12%, transparent); }
@@ -414,7 +415,7 @@
         <label class="field" for="titulo">Título del vídeo (en inglés o en español)
           <textarea id="titulo" rows="2" maxlength="160" placeholder="Ej.: GTA 6 Just Became the Best-Reviewed Game Ever"></textarea>
         </label>
-        <div class="field"><span>Ideas del banco, verificadas</span><div class="chips" id="ideas"></div></div>
+        <div class="field"><span id="ideasLabel">Ideas del banco, verificadas</span><div class="chips" id="ideas"></div></div>
         <fieldset class="voces" id="voces"><legend>Voz</legend>
           <label><input type="radio" name="voz" id="vozFenrir" value="fenrir" checked> <span><b>Fenrir</b> · gratis</span></label>
           <label><input type="radio" name="voz" id="vozDylan" value="dylan"> <span><b>Dylan</b> · Higgsfield (~1,6 créditos)</span></label>
@@ -929,6 +930,17 @@
   const titulo = $("titulo"), goBtn = $("goBtn"), capNote = $("capNote");
   function elegirIdea(t) { titulo.value = t; titulo.focus(); }
   function renderIdeas() {
+    const largo = $("tipoLargo") && $("tipoLargo").checked;
+    $("ideasLabel").textContent = largo ? "Ideas de vídeo largo (12-20 min), verificadas" : "Ideas de Short (40-60 s), verificadas";
+    $("titulo").placeholder = largo ? "Ej.: The GTA 6 Situation Is Insane: Every Record It Broke" : "Ej.: GTA 6 Just Became the Best-Reviewed Game Ever";
+    if (largo) {
+      const L = (ESTADO.largos && Array.isArray(ESTADO.largos.ideas) ? ESTADO.largos.ideas : []).filter(i => i && i.titulo);
+      $("ideas").replaceChildren(...(L.length ? L.slice(0, 8).map(i => h("button", { class: "chip idea", type: "button", onclick: () => elegirIdea(i.titulo) },
+        h("span", { class: "en" }, h("i", { class: "tipo t-largo" }, "⏱ " + (i.duracion || "12-20 min")), i.titulo), i.es ? h("span", { class: "es" }, i.es) : null)) :
+        [h("span", { class: "muted" }, "Las ideas de vídeo largo aparecen aquí en cuanto el equipo las prepare.")]));
+      $("loteBtn").hidden = true;
+      return;
+    }
     $("ideas").replaceChildren(...IDEAS.slice(0, 8).map(ideaDe).map(i => h("button", { class: "chip idea", type: "button", onclick: () => elegirIdea(i.titulo) },
       h("span", { class: "en" }, i.tipo ? h("i", { class: "tipo t-" + i.tipo }, i.tipo) : null, i.titulo, fuego(i.titulo)), i.es ? h("span", { class: "es" }, i.es) : null)));
     const prep = IDEAS.map(ideaDe).filter(i => /^Preproducido/.test(i.estado || ""));
@@ -982,7 +994,7 @@
       i.porque ? h("span", { class: "d" }, i.porque) : null,
       h("div", { class: "pie" },
         h("span", { class: "chip " + (i.verificado === "✅" ? "ok" : "sun") }, i.verificado === "✅" ? "✅ datos verificados" : "🟡 " + (i.verificado || "por verificar")),
-        h("button", { class: "go", type: "button", onclick: () => { $("titulo").value = i.titulo; $("tipoLargo").checked = true; $("nuevo").scrollIntoView({ behavior: "smooth", block: "start" }); } }, "🎬 Producir este vídeo largo")))) :
+        h("button", { class: "go", type: "button", onclick: () => { $("titulo").value = i.titulo; $("tipoLargo").checked = true; renderIdeas(); $("nuevo").scrollIntoView({ behavior: "smooth", block: "start" }); } }, "🎬 Producir este vídeo largo")))) :
       [h("p", { class: "muted" }, "Sin ideas todavía.")]));
     $("largosVideos").replaceChildren(...(L.videos || []).slice(0, 10).map(v => h("li", {},
       h("span", { class: "v" }, fmtVistas(v.vistas)),
@@ -1071,6 +1083,7 @@
       mostrarAlternativa(t, (MOTIVO[code] || "No se pudo enviar el encargo desde la oficina.") + " No se ha encargado nada.");
     } finally { goBtn.disabled = false; goBtn.textContent = "Producir"; }
   };
+  document.querySelectorAll('input[name="tipo"]').forEach(r => r.addEventListener("change", () => renderIdeas()));
   try { const v = localStorage.getItem("vcdt-voz"); if (v && $("voz" + v[0].toUpperCase() + v.slice(1))) $("voz" + v[0].toUpperCase() + v.slice(1)).checked = true; } catch {}
   document.querySelectorAll('input[name="voz"]').forEach(r => r.addEventListener("change", () => { try { localStorage.setItem("vcdt-voz", r.value); } catch {} }));
   async function comprobarEnvio() {
@@ -1461,7 +1474,7 @@
       db.doc("estado/tendencias").onSnapshot(d => { ESTADO.tendencias = d.exists ? d.data() : null; renderRadar(); }, () => {});
       db.doc("estado/virales").onSnapshot(d => { ESTADO.virales = d.exists ? d.data() : null; renderVirales(); }, () => {});
       db.doc("estado/referentes").onSnapshot(d => { ESTADO.referentes = d.exists ? d.data() : null; renderReferentes(); }, () => {});
-      db.doc("estado/largos").onSnapshot(d => { ESTADO.largos = d.exists ? d.data() : null; renderLargos(); }, () => {});
+      db.doc("estado/largos").onSnapshot(d => { ESTADO.largos = d.exists ? d.data() : null; renderLargos(); renderIdeas(); }, () => {});
       db.doc("estado/charla").onSnapshot(d => { ESTADO.charla = d.exists ? d.data() : null; renderCharla(); }, () => {});
       db.doc("estado/publicar").onSnapshot(d => { ESTADO.publicar = d.exists ? d.data() : null; renderSubir(); }, () => {});
       db.collection("subidos").limit(100).onSnapshot(snap => { subidos = Object.fromEntries(snap.docs.map(d => [d.id, d.data()])); renderSubir(); }, () => {});
