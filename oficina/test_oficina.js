@@ -209,7 +209,7 @@ const txt = (page, sel) => page.textContent(sel);
     await page.evaluate(() => window.__claudeEstado("estado/largos", { ts: Date.now(), resumen: "Largos", ideas: [
       { titulo: "The GTA 6 Situation Is Insane: Every Record It Broke", es: "Todos los récords", duracion: "14-16 min", formato: "Noticia", capitulos: ["Intro", "Ventas"], verificado: "✅", referencia: "@WestJett 1,6 M" }],
       videos: [{ titulo: "Testing Everything In GTA 6", vistas: 5900000, canal: "LazarBeam", duracion: "14:01", formato: "Partida grabada", sin_partida: false, url: "https://www.youtube.com/watch?v=x" }],
-      formatos: [{ formato: "Guía de consejos", vistas: 4000000, n: 3, sin_partida: true }] }));
+      formatos: [{ formato: "Guía de consejos", vistas: 4000000, n: 3, sin_partida: true }], prompt: "Actúa como un director creativo… FASE 1", prompt_flujo: "Flujo de prueba" }));
     await page.waitForTimeout(120);
     ok("Vídeos largos: ideas con capítulos, vídeos de referencia y formatos", /Every Record It Broke/.test(await txt(page, "#largosIdeas")) && (await page.$$("#largosIdeas ol li")).length === 2 && /5,9 M/.test(await txt(page, "#largosVideos")) && /🎮/.test(await txt(page, "#largosVideos")) && /✅ Guía de consejos/.test(await txt(page, "#largosFmt")));
     await page.click("#largosIdeas >> text=🎬 Producir este vídeo largo");
@@ -219,6 +219,7 @@ const txt = (page, sel) => page.textContent(sel);
     await page.waitForFunction(n => window.__sent.length === n + 1, nAntes);
     const tl = await page.evaluate(() => window.__sent[window.__sent.length - 1].text);
     ok("Vídeo largo: el encargo dice «Producir vídeo largo» y la duración", /^Producir vídeo largo — TÍTULO: The GTA 6 Situation/.test(tl) && /Duración: 12-20 min/.test(tl));
+    ok("Vídeo largo: sin referencia, pide que la busque el equipo; el prompt maestro se ve en el panel", /Referencia: que la busque el equipo/.test(tl) && /director creativo/.test(await txt(page, "#promptTexto")));
     ok("Vídeo largo: las ideas de debajo del título pasan a ser de vídeo largo", /vídeo largo/.test(await txt(page, "#ideasLabel")) && /Every Record It Broke/.test(await txt(page, "#ideas")) && /14-16 min/.test(await txt(page, "#ideas")) && !(await page.isVisible("#loteBtn")));
     await page.check("#tipoShort");
     await page.waitForTimeout(80);

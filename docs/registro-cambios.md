@@ -248,3 +248,7 @@
 - 4 ideas largas con datos ya verificados: récords de GTA 6, 25 consejos, mapa contra Florida real, secretos de la primera semana.
 - `docs/produccion-largo.md`. Pendiente: plantilla horizontal `shorts/montaje_largo.py` (con el primer encargo).
 - 22/11 · Oficina: al elegir «Vídeo largo» las ideas de debajo del título cambian a ideas de vídeo largo (con duración); con «Short», vuelven las de Short. 79/79 pruebas.
+
+## 22/11/2026 — PROMPT MAESTRO de vídeos largos (Adam)
+- Guardado literal en `docs/prompt-largos.md` con el flujo del equipo, los límites reales (análisis por fotogramas si Adam adjunta el archivo; con solo un enlace no se descarga el vídeo de otro canal) y el prompt de miniatura para ChatGPT. Referenciado en CLAUDE.md y `docs/produccion-largo.md`.
+- Oficina: el prompt completo se ve en el panel 🎬 Vídeos largos; campo «Vídeo de referencia (opcional)» al elegir Vídeo largo (el encargo dice "Referencia: <url>" o "que la busque el equipo"). 80/80 pruebas.

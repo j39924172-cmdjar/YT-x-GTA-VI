@@ -18,6 +18,11 @@ o algo no se puede aplicar, avisa a Antonio ANTES de cambiarlo.
 4. Montaje 1080×1920 a 30 fps: Ken Burns con cambio cada ~2,2 s, degradados, tarjetas animadas ("FACT n/3", pastillas rosa/amarillo, flechas rojas), subtítulos palabra a palabra (faster-whisper), destello blanco en cada corte, marca arriba a la derecha, ritmo electrónico con sidechain y loudnorm −14 LUFS. Plantilla: `shorts/montaje.py`.
 5. Publicación: título con curiosidad; descripción con datos, fuente, aviso no oficial y #GTA6 #GTAVI #Shorts; comentario fijado con pregunta; "Contenido alterado: No"; "Hecho para niños: No".
 
+## Vídeos largos (Adam, 22/11/2026)
+- Además de Shorts, vídeos de **12-20 min** (horizontal 1920×1080). Encargo desde la oficina: «Producir vídeo largo — TÍTULO: … / Duración: 12-20 min / Referencia: …».
+- **Todo vídeo largo sigue el PROMPT MAESTRO de Adam: `docs/prompt-largos.md`** (FASE 1 guía de estilo de la referencia → ESPERAR título, guion y narración de Adam → FASE 2-3 escena por escena → montaje → prompt de miniatura para ChatGPT). Si Adam no pasa referencia, el equipo la busca con `python shorts/largos.py` y lo dice. No afirmar haber visto un vídeo que no se ha podido inspeccionar.
+- Procedimiento: `docs/produccion-largo.md`. Radar de largos → `estado/largos` en la oficina.
+
 ## Patrones que funcionan (sección 3)
 Gancho concreto en el primer segundo; formato de lista o datos con contador (las fuentes van en la descripción, nunca en pantalla: decisión de Adam, 19/11/2026); imágenes reales del juego que demuestran el dato; subtítulos de 1–2 palabras con la palabra clave en color; gráficos animados para los datos sin imagen.
 **No repetir:** fondos synthwave o genéricos sin imágenes del juego, vídeo de IA "bonito" sin dato, ganchos ya usados.

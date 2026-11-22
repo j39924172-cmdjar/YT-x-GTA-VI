@@ -247,6 +247,10 @@
   .charla .k.decision { color: var(--ok); } .charla .k.idea { color: var(--pink); } .charla .k.regla { color: var(--sun); } .charla .k.pendiente { color: var(--lilac); }
   .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .tipo.t-largo { background: color-mix(in srgb, var(--violet) 22%, transparent); color: var(--lilac); }
+  .prompt-box { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; margin-top: 12px; background: var(--surface-2); }
+  .prompt-box summary { cursor: pointer; font-weight: 700; }
+  .prompt-box pre { white-space: pre-wrap; font-family: var(--font-mono); font-size: 12px; line-height: 1.5; max-height: 420px; overflow: auto; margin: 10px 0 0; }
+  .prompt-box .d { color: var(--muted); font-size: 12.5px; }
   .tipo-sel { display: flex; gap: 10px; flex-wrap: wrap; border: 0; padding: 0; margin: 0 0 6px; }
   .tipo-sel label { display: flex; align-items: center; gap: 6px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 10px; cursor: pointer; font-size: 13.5px; }
   .tipo-sel label:has(input:checked) { border-color: var(--pink); background: color-mix(in srgb, var(--pink) 12%, transparent); }
@@ -356,6 +360,11 @@
           <div class="field"><span>Vídeos largos de GTA 6 que más funcionan ahora (otros canales)</span><ol class="lvid" id="largosVideos"></ol>
             <span style="margin-top:10px">Formatos (✅ los podemos hacer sin grabar partidas)</span><div class="fmt-rank" id="largosFmt"></div></div>
         </div>
+        <details class="prompt-box" id="promptBox">
+          <summary>📜 Prompt maestro de vídeos largos (de Adam) · se aplica a TODOS</summary>
+          <p class="d" id="promptFlujo">FASE 1 guía de estilo de la referencia → esperar título, guion y narración de Adam → FASE 2-3 escena por escena → montaje → prompt de miniatura para ChatGPT.</p>
+          <pre id="promptTexto">Cargando…</pre>
+        </details>
       </section>
 
       <section class="panel" aria-labelledby="hPlantilla">
@@ -414,6 +423,9 @@
         </fieldset>
         <label class="field" for="titulo">Título del vídeo (en inglés o en español)
           <textarea id="titulo" rows="2" maxlength="160" placeholder="Ej.: GTA 6 Just Became the Best-Reviewed Game Ever"></textarea>
+        </label>
+        <label class="field" for="refLargo" id="refLargoWrap" hidden>Vídeo de referencia (opcional: enlace; si no hay, el equipo busca uno)
+          <input id="refLargo" type="url" inputmode="url" maxlength="200" placeholder="https://youtube.com/…">
         </label>
         <div class="field"><span id="ideasLabel">Ideas del banco, verificadas</span><div class="chips" id="ideas"></div></div>
         <fieldset class="voces" id="voces"><legend>Voz</legend>
@@ -931,6 +943,7 @@
   function elegirIdea(t) { titulo.value = t; titulo.focus(); }
   function renderIdeas() {
     const largo = $("tipoLargo") && $("tipoLargo").checked;
+    if ($("refLargoWrap")) $("refLargoWrap").hidden = !largo;
     $("ideasLabel").textContent = largo ? "Ideas de vídeo largo (12-20 min), verificadas" : "Ideas de Short (40-60 s), verificadas";
     $("titulo").placeholder = largo ? "Ej.: The GTA 6 Situation Is Insane: Every Record It Broke" : "Ej.: GTA 6 Just Became the Best-Reviewed Game Ever";
     if (largo) {
@@ -1000,6 +1013,8 @@
       h("span", { class: "v" }, fmtVistas(v.vistas)),
       h("span", {}, ytOk(v.url) ? h("a", { href: v.url, target: "_blank", rel: "noopener" }, (v.sin_partida ? "✅ " : "🎮 ") + v.titulo) : v.titulo,
         h("small", {}, `${v.canal ? "@" + v.canal : ""} · ${v.duracion || ""} · ${v.formato || ""}`)))));
+    if (L.prompt) $("promptTexto").textContent = L.prompt;
+    if (L.prompt_flujo) $("promptFlujo").textContent = L.prompt_flujo;
     $("largosFmt").replaceChildren(...(L.formatos || []).slice(0, 8).map(f => h("span", { class: "chip" }, `${f.sin_partida ? "✅" : "🎮"} ${f.formato} · ${fmtVistas(f.vistas)}`)));
   }
   function renderCharla() {
@@ -1072,7 +1087,8 @@
       const tipo = document.querySelector('input[name="tipo"]:checked')?.value || "short";
       if (db) { ref = db.collection("encargos").doc(); await ref.set({ titulo: t, ts: Date.now(), estado: "enviando", paso: 0, voz, tipo }); }
       const anchor = await comments.anchorFor($("nuevo"));
-      const cab = tipo === "largo" ? `Producir vídeo largo — TÍTULO: ${t}\nDuración: 12-20 min` : `Producir Short — TÍTULO: ${t}`;
+      const refL = ($("refLargo")?.value || "").trim().slice(0, 200);
+      const cab = tipo === "largo" ? `Producir vídeo largo — TÍTULO: ${t}\nDuración: 12-20 min\nReferencia: ${/^https?:\/\//.test(refL) ? refL : "que la busque el equipo"}` : `Producir Short — TÍTULO: ${t}`;
       await comments.sendToClaude({ anchor, text: `${cab}\nVoz: ${voz === "dylan" ? "Dylan (Higgsfield)" : "Fenrir (gratis)"}` + (ref ? `\nEncargo: ${ref.id}` : "") });
       if (ref) await ref.update({ estado: "enviado" });
       titulo.value = "";
