@@ -1,5 +1,5 @@
 # 16 · Yellow or Red? GTA 6's Car Tracker Trick — investigación (Jarvis + Nobita)
-Estado: **preproducción** (falta voz y montaje). Fecha: 22/11/2026. Origen: preproducción continua; sustituye al 07 (212 GB, 🔥 0,4), que pasa a shorts/_archivo/. Idea 44 del banco (🔥 10: «gta 6 how to remove tracker» y «key cloner» en las búsquedas). Formato: cómo funciona. 40-60 s (regla de Adam).
+Estado: **producido** (22/11/2026, encargo i22jjposbqdvz89d9lho, voz Fenrir). Fecha: 22/11/2026. Origen: preproducción continua; sustituye al 07 (212 GB, 🔥 0,4), que pasa a shorts/_archivo/. Idea 44 del banco (🔥 10: «gta 6 how to remove tracker» y «key cloner» en las búsquedas). Formato: cómo funciona. 40-60 s (regla de Adam).
 
 ## Datos verificados (2 medios o más)
 1. **La app Waink escanea el coche y muestra su sistema de seguridad; con localizador amarillo, se registra en un Pay 'n' Spray y es tuyo.**

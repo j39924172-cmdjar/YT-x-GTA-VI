@@ -268,3 +268,4 @@
 - 22/11 · Largo 01: gancho rehecho a petición de Adam (16 s en vez de 36, voz más rápida, cortes de ~1 s con golpe de zoom y destello, textos grandes, título «18 SECRETS» de golpe, música más fuerte y efectos). Nuevas capas en montaje_largo.py: grande, titulo, golpe, flash, sfx y música del gancho. Vídeo: 12:03.
 - 22/11 17:53 · Preproducción continua: 06 re-comprobado (sigue en 99; «at launch» para el 118/147 porque las críticas han subido). Sin opiniones nuevas; 4 preproducidos en 40-60 s.
 - 22/11 20:53 · Preproducción continua: repaso de los 4 preproducidos, sin cambios (sin opiniones nuevas).
+- 22/11 23:06 · Short 16 producido (encargo i22jjposbqdvz89d9lho): gancho «Yellow or red?», voz Fenrir 48 s, 19/30 escenas en clips, examen APTO 9,8. En «Listo para subir» con vista previa.
