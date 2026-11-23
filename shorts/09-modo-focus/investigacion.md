@@ -18,3 +18,6 @@ Estado: **preproducción** (falta voz y montaje). Fecha: 19/11/2026. Origen: pre
 
 ## Guion v2 (22/11): 137 palabras, 40-60 s
 Mismos 3 datos, explicados con ejemplos (cartera en el suelo, enemigo tras un coche) y bucle final «Press both sticks». Colores "by default" (aviso de Nobita). Versión anterior en `voz_v1.txt`.
+
+## Repaso 23/11 (Nobita)
+- En X (@TheRealZephryss) dicen que los objetos interactivos salen en BLANCO, no amarillo: el guion ya solo dice rojo (enemigos) y verde (dinero), que coinciden en todas las fuentes.

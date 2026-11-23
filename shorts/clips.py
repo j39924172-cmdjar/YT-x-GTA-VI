@@ -24,7 +24,7 @@ HOJAS = RAIZ / "videos" / "hojas"
 CATALOGO = RAIZ / "docs" / "catalogo-videos.json"
 FONT = Path(__file__).parent / "fuentes" / "Montserrat-ExtraBold.ttf"
 BASE = "https://media-rockstargames-com.akamaized.net/VI/downloads/videos/{0}/{0}.mp4"
-OFICIALES = ["GTAVI_Launch_Trailer", "GTAVI_Pre-Load_Now", "GTAVI_Official_Cover_Art_Landscape"]   # An_Extended_Look pesa 14 GB
+OFICIALES = ["GTAVI_Launch_Trailer", "GTAVI_Pre-Load_Now", "GTAVI_Official_Cover_Art_Landscape", "GTAVI_Out_Now"]   # An_Extended_Look pesa 14 GB
 
 
 def descargar() -> None:
@@ -85,7 +85,7 @@ def indexar() -> None:
             continue
         dur = duracion(v)
         marcas = [0.0] + [t for t in cortes(v) if 0.3 < t < dur - 0.3] + [dur]
-        corto = {"GTAVI_Launch_Trailer": "LT", "GTAVI_Pre-Load_Now": "PL", "GTAVI_Official_Cover_Art_Landscape": "CA"}[n]
+        corto = {"GTAVI_Launch_Trailer": "LT", "GTAVI_Pre-Load_Now": "PL", "GTAVI_Official_Cover_Art_Landscape": "CA", "GTAVI_Out_Now": "ON"}[n]
         k = 0
         for a, b in zip(marcas, marcas[1:]):
             if b - a < 0.5:

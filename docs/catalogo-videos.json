@@ -251,17 +251,9 @@
   "id": "LT32",
   "video": "GTAVI_Launch_Trailer",
   "inicio": 73.85,
-  "fin": 76.4,
+  "fin": 88.62,
   "descripcion": "Personas en una piscina iluminada de azul, de noche",
   "evitar": false
- },
- {
-  "id": "LT33",
-  "video": "GTAVI_Launch_Trailer",
-  "inicio": 76.5,
-  "fin": 88.6,
-  "descripcion": "Logo oficial de GTA VI, fecha, plataformas y logo de Rockstar",
-  "evitar": true
  },
  {
   "id": "PL01",
@@ -365,6 +357,102 @@
   "inicio": 0.05,
   "fin": 32.62,
   "descripcion": "Portada oficial animada (lleva el logo)",
+  "evitar": true
+ },
+ {
+  "id": "ON01",
+  "video": "GTAVI_Out_Now",
+  "inicio": 0.05,
+  "fin": 5.15,
+  "descripcion": "Negro",
+  "evitar": true
+ },
+ {
+  "id": "ON02",
+  "video": "GTAVI_Out_Now",
+  "inicio": 5.25,
+  "fin": 6.72,
+  "descripcion": "Paseo marítimo con noria y piloto celebrando (= PL02)",
+  "evitar": false
+ },
+ {
+  "id": "ON03",
+  "video": "GTAVI_Out_Now",
+  "inicio": 6.82,
+  "fin": 8.98,
+  "descripcion": "Logo oficial de GTA VI",
+  "evitar": true
+ },
+ {
+  "id": "ON04",
+  "video": "GTAVI_Out_Now",
+  "inicio": 9.08,
+  "fin": 10.05,
+  "descripcion": "Hombre con gorro y gafas de sol en una tienda (= PL04)",
+  "evitar": false
+ },
+ {
+  "id": "ON05",
+  "video": "GTAVI_Out_Now",
+  "inicio": 10.15,
+  "fin": 11.15,
+  "descripcion": "Pelea dentro de una casa con luz rosa (= PL05)",
+  "evitar": false
+ },
+ {
+  "id": "ON06",
+  "video": "GTAVI_Out_Now",
+  "inicio": 11.25,
+  "fin": 12.62,
+  "descripcion": "Yate a toda velocidad entre manglares (= PL06)",
+  "evitar": false
+ },
+ {
+  "id": "ON07",
+  "video": "GTAVI_Out_Now",
+  "inicio": 12.72,
+  "fin": 14.08,
+  "descripcion": "Club con luces de neón",
+  "evitar": true
+ },
+ {
+  "id": "ON08",
+  "video": "GTAVI_Out_Now",
+  "inicio": 14.18,
+  "fin": 15.32,
+  "descripcion": "Escalera exterior de noche (oscura)",
+  "evitar": true
+ },
+ {
+  "id": "ON09",
+  "video": "GTAVI_Out_Now",
+  "inicio": 15.42,
+  "fin": 17.52,
+  "descripcion": "Texto 'PLAY NOW' sobre un plano nocturno",
+  "evitar": true
+ },
+ {
+  "id": "ON10",
+  "video": "GTAVI_Out_Now",
+  "inicio": 17.62,
+  "fin": 18.52,
+  "descripcion": "Brian con camiseta de tirantes en su casa (= PL10)",
+  "evitar": false
+ },
+ {
+  "id": "ON11",
+  "video": "GTAVI_Out_Now",
+  "inicio": 18.62,
+  "fin": 28.58,
+  "descripcion": "Logo, 'OUT NOW' y plataformas",
+  "evitar": true
+ },
+ {
+  "id": "ON12",
+  "video": "GTAVI_Out_Now",
+  "inicio": 28.68,
+  "fin": 29.08,
+  "descripcion": "Negro",
   "evitar": true
  }
 ]

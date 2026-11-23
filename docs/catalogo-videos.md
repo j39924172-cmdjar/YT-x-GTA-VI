@@ -52,3 +52,17 @@ Uso: planos cortos (1-3,5 s) con nuestra voz y datos encima; nunca cinemáticas 
 | PL11 | Pre-Load_Now | 18.62–28.58 | Logo, fecha y plataformas | ❌ |
 | PL12 | Pre-Load_Now | 28.68–29.08 | Negro | ❌ |
 | CA01 | Official_Cover_Art_Landscape | 0.05–32.62 | Portada oficial animada (lleva el logo) | ❌ |
+| ON01 | Out_Now | 0.05–5.15 | Negro | ❌ |
+| ON02 | Out_Now | 5.25–6.72 | Paseo marítimo con noria y piloto celebrando (= PL02) | ✅ |
+| ON03 | Out_Now | 6.82–8.98 | Logo oficial de GTA VI | ❌ |
+| ON04 | Out_Now | 9.08–10.05 | Hombre con gorro y gafas de sol en una tienda (= PL04) | ✅ |
+| ON05 | Out_Now | 10.15–11.15 | Pelea dentro de una casa con luz rosa (= PL05) | ✅ |
+| ON06 | Out_Now | 11.25–12.62 | Yate a toda velocidad entre manglares (= PL06) | ✅ |
+| ON07 | Out_Now | 12.72–14.08 | Club con luces de neón | ❌ |
+| ON08 | Out_Now | 14.18–15.32 | Escalera exterior de noche (oscura) | ❌ |
+| ON09 | Out_Now | 15.42–17.52 | Texto 'PLAY NOW' sobre un plano nocturno | ❌ |
+| ON10 | Out_Now | 17.62–18.52 | Brian con camiseta de tirantes en su casa (= PL10) | ✅ |
+| ON11 | Out_Now | 18.62–28.58 | Logo, 'OUT NOW' y plataformas | ❌ |
+| ON12 | Out_Now | 28.68–29.08 | Negro | ❌ |
+
+> Out_Now (descargado el 23/11/2026 de rockstargames.com) usa el mismo metraje que Pre-Load_Now con otro final: no aporta planos nuevos.

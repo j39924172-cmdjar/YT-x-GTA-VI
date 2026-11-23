@@ -270,3 +270,4 @@
 - 22/11 20:53 · Preproducción continua: repaso de los 4 preproducidos, sin cambios (sin opiniones nuevas).
 - 22/11 23:06 · Short 16 producido (encargo i22jjposbqdvz89d9lho): gancho «Yellow or red?», voz Fenrir 48 s, 19/30 escenas en clips, examen APTO 9,8. En «Listo para subir» con vista previa.
 - 23/11 08:53 · Preproducción continua: el 16 ya está producido → entra el 17 «In GTA 6, a Dog on a Jet Ski Can Save You» (Cool Dog, formato secreto, 150 palabras, 3 datos con 2+ medios).
+- 23/11 09:23 · Investigación diaria: 5 ideas nuevas (49-53: Pie Grande, el hombre que sabe que está en un videojuego, el ovni, billetes de Red Dead, «The Leonida» en RDR2). Recomendadas: billetes de Red Dead (🔥 7,8) y cómo funciona el dinero (🔥 7,8). Largo nuevo: GTA 6 vs GTA 5, 25 cosas. Out_Now de Rockstar añadido al catálogo (mismo metraje que Pre-Load). Bulo: GTA 6 en Steam/PC. Short 09: solo colores rojo y verde.
