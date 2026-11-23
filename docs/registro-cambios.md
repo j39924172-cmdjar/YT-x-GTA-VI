@@ -269,3 +269,4 @@
 - 22/11 17:53 · Preproducción continua: 06 re-comprobado (sigue en 99; «at launch» para el 118/147 porque las críticas han subido). Sin opiniones nuevas; 4 preproducidos en 40-60 s.
 - 22/11 20:53 · Preproducción continua: repaso de los 4 preproducidos, sin cambios (sin opiniones nuevas).
 - 22/11 23:06 · Short 16 producido (encargo i22jjposbqdvz89d9lho): gancho «Yellow or red?», voz Fenrir 48 s, 19/30 escenas en clips, examen APTO 9,8. En «Listo para subir» con vista previa.
+- 23/11 08:53 · Preproducción continua: el 16 ya está producido → entra el 17 «In GTA 6, a Dog on a Jet Ski Can Save You» (Cool Dog, formato secreto, 150 palabras, 3 datos con 2+ medios).
