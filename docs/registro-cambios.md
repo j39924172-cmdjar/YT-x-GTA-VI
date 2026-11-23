@@ -275,3 +275,4 @@
 - 23/11 14:53 · Preproducción continua: sin cambios (4 preproducidos, sin opiniones nuevas).
 - 23/11 17:53 · Preproducción continua: sin cambios.
 - 23/11 20:53 · Preproducción continua: sin cambios.
+- 23/11 22:30 · Short 18 producido (encargo g5vhd0um56b0gxfzu28z): «Red Dead 2 Hid GTA 6's Secret in 2018», 52 s, APTO 9,7. Voz pedida Dylan pero Higgsfield sin saldo (1,45 de 2,55): Fenrir.

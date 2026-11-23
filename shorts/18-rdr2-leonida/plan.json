@@ -1,0 +1,762 @@
+{
+ "voz": "voz.mp3",
+ "palabras": "palabras.json",
+ "salida": "final.mp4",
+ "fuente": "Footage: Rockstar Games",
+ "marca": "VICECITY DAYS TV",
+ "musica": {
+  "bpm": 130,
+  "volumen": 0.3
+ },
+ "palabras_clave": [
+  "Red",
+  "Dead",
+  "secret.",
+  "Five",
+  "texture",
+  "never",
+  "Leonida.",
+  "crazy.",
+  "2018.",
+  "Leonida",
+  "December",
+  "2023,",
+  "hidden",
+  "cash",
+  "presidents,",
+  "Hardin",
+  "Waxman.",
+  "tease,",
+  "coincidence?",
+  "decide.",
+  "Follow",
+  "secrets."
+ ],
+ "escenas": [
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 10.02,
+   "desde": 0,
+   "hasta": 1.3,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_05.jpg",
+   "desde": 1.3,
+   "hasta": 2.6,
+   "foco": [
+    0.5,
+    0.55
+   ],
+   "foco_fin": [
+    0.52,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.2,
+    1.05
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 7.02,
+   "desde": 2.6,
+   "hasta": 3.9,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 32.85,
+   "desde": 3.9,
+   "hasta": 4.6,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_15.jpg",
+   "desde": 4.6,
+   "hasta": 6.4,
+   "foco": [
+    0.6,
+    0.6
+   ],
+   "foco_fin": [
+    0.62,
+    0.62
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "RED DEAD 2 FILES",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.62,
+     0.7
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Pre-Load_Now.mp4",
+   "inicio": 11.25,
+   "desde": 6.4,
+   "hasta": 7.7,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Raul_Bautista_03.jpg",
+   "desde": 7.7,
+   "hasta": 9.5,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ],
+   "etiqueta": {
+    "texto": "UNUSED BOAT TEXTURE",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.45,
+     0.6
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 11.95,
+   "desde": 9.5,
+   "hasta": 11.3,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 14.25,
+   "desde": 11.3,
+   "hasta": 12.1,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Grassrivers_02.jpg",
+   "desde": 12.1,
+   "hasta": 13.9,
+   "foco": [
+    0.5,
+    0.55
+   ],
+   "foco_fin": [
+    0.52,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_01.jpg",
+   "desde": 13.9,
+   "hasta": 15.0,
+   "foco": [
+    0.55,
+    0.55
+   ],
+   "foco_fin": [
+    0.5700000000000001,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.2,
+    1.05
+   ],
+   "etiqueta": {
+    "texto": "\"THE LEONIDA\"",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.15,
+    "flecha": [
+     0.6,
+     0.62
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 2.72,
+   "desde": 15.0,
+   "hasta": 17.2,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 17.2,
+   "hasta": 19.0,
+   "foco": [
+    0.5,
+    0.55
+   ],
+   "foco_fin": [
+    0.52,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "RED DEAD 2: 2018",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.5,
+     0.7
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 55.22,
+   "desde": 19.0,
+   "hasta": 20.8,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_27.jpg",
+   "desde": 20.8,
+   "hasta": 22.9,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ],
+   "etiqueta": {
+    "texto": "LEONIDA REVEALED: DEC 2023",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.5,
+     0.62
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 4.92,
+   "desde": 22.9,
+   "hasta": 24.9,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 47.02,
+   "desde": 24.9,
+   "hasta": 26.4,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_03.jpg",
+   "desde": 26.4,
+   "hasta": 28.4,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "5 YEARS HIDDEN",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.55,
+     0.65
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.58,
+   "desde": 28.4,
+   "hasta": 30.5,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 59.95,
+   "desde": 30.5,
+   "hasta": 32.3,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/VINTAGE_VICE_CITY_WEAPON_PATTERN_01.jpg",
+   "desde": 32.3,
+   "hasta": 34.3,
+   "foco": [
+    0.4,
+    0.6
+   ],
+   "foco_fin": [
+    0.42000000000000004,
+    0.62
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "THE CASH",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.35,
+     0.72
+    ]
+   }
+  },
+  {
+   "img": "capturas/Raul_Bautista_02.jpg",
+   "desde": 34.3,
+   "hasta": 36.3,
+   "foco": [
+    0.55,
+    0.6
+   ],
+   "foco_fin": [
+    0.5700000000000001,
+    0.62
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ],
+   "etiqueta": {
+    "texto": "RED DEAD PRESIDENTS",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.6,
+     0.7
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 40.48,
+   "desde": 36.3,
+   "hasta": 38.1,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Boobie_Ike_01.jpg",
+   "desde": 38.1,
+   "hasta": 39.9,
+   "foco": [
+    0.5,
+    0.55
+   ],
+   "foco_fin": [
+    0.52,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "HARDIN & WAXMAN",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.45,
+     0.65
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 70.48,
+   "desde": 39.9,
+   "hasta": 41.8,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 26.42,
+   "desde": 41.8,
+   "hasta": 43.1,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Jason_and_Lucia_16.jpg",
+   "desde": 43.1,
+   "hasta": 45.5,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ],
+   "etiqueta": {
+    "texto": "YOU DECIDE",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.5,
+     0.6
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 10.02,
+   "desde": 45.5,
+   "hasta": 47.3,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_05.jpg",
+   "desde": 47.3,
+   "hasta": 49.7,
+   "foco": [
+    0.4,
+    0.5
+   ],
+   "foco_fin": [
+    0.42000000000000004,
+    0.52
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 49.7,
+   "hasta": 52.7,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ]
+  }
+ ],
+ "capas": [
+  {
+   "tipo": "titulo",
+   "desde": 0,
+   "hasta": 4.6,
+   "lineas": [
+    [
+     "RED DEAD 2 KNEW",
+     "amarillo"
+    ],
+    [
+     "GTA 6'S SECRET",
+     "blanco"
+    ]
+   ],
+   "pastilla": "5 YEARS EARLY"
+  },
+  {
+   "tipo": "fact",
+   "desde": 4.6,
+   "hasta": 15.0,
+   "n": 1,
+   "total": 3,
+   "titulo": "THE LEONIDA"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 5.2,
+   "hasta": 15.0,
+   "items": [
+    {
+     "texto": "RED DEAD 2 FILES",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 5.3,
+     "y": 760
+    },
+    {
+     "texto": "UNUSED BOAT TEXTURE",
+     "fondo": "amarillo",
+     "desde": 8.0,
+     "y": 900
+    },
+    {
+     "texto": "\"THE LEONIDA\"",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 14.1,
+     "y": 1040,
+     "size": 56
+    }
+   ]
+  },
+  {
+   "tipo": "fact",
+   "desde": 15.0,
+   "hasta": 30.5,
+   "n": 2,
+   "total": 3,
+   "titulo": "2018 TO 2023"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 17.2,
+   "hasta": 30.5,
+   "items": [
+    {
+     "texto": "RED DEAD 2: 2018",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 18.3,
+     "y": 760
+    },
+    {
+     "texto": "LEONIDA: DEC 2023",
+     "fondo": "amarillo",
+     "desde": 21.3,
+     "y": 900
+    },
+    {
+     "texto": "5 YEARS HIDDEN",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 28.7,
+     "y": 1040
+    }
+   ]
+  },
+  {
+   "tipo": "fact",
+   "desde": 30.5,
+   "hasta": 45.5,
+   "n": 3,
+   "total": 3,
+   "titulo": "RED DEAD CASH"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 32.5,
+   "hasta": 45.5,
+   "items": [
+    {
+     "texto": "TRAILER 2 CASH",
+     "fondo": "amarillo",
+     "desde": 32.8,
+     "y": 760
+    },
+    {
+     "texto": "HARDIN & WAXMAN",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 37.8,
+     "y": 900
+    },
+    {
+     "texto": "TEASE OR COINCIDENCE?",
+     "fondo": "amarillo",
+     "desde": 39.6,
+     "y": 1040,
+     "size": 48
+    }
+   ]
+  },
+  {
+   "tipo": "cta",
+   "desde": 49.76,
+   "hasta": 99,
+   "lineas": [
+    "FOLLOW",
+    "FOR MORE GTA 6 SECRETS"
+   ]
+  }
+ ]
+}
