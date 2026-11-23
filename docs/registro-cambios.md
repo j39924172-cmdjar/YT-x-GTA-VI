@@ -273,3 +273,4 @@
 - 23/11 09:23 · Investigación diaria: 5 ideas nuevas (49-53: Pie Grande, el hombre que sabe que está en un videojuego, el ovni, billetes de Red Dead, «The Leonida» en RDR2). Recomendadas: billetes de Red Dead (🔥 7,8) y cómo funciona el dinero (🔥 7,8). Largo nuevo: GTA 6 vs GTA 5, 25 cosas. Out_Now de Rockstar añadido al catálogo (mismo metraje que Pre-Load). Bulo: GTA 6 en Steam/PC. Short 09: solo colores rojo y verde.
 - 23/11 11:53 · Preproducción continua: 4 preproducidos (06, 09, 10, 17), todos con 🔥 ≥ 3; sin cambios.
 - 23/11 14:53 · Preproducción continua: sin cambios (4 preproducidos, sin opiniones nuevas).
+- 23/11 17:53 · Preproducción continua: sin cambios.
