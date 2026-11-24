@@ -279,3 +279,4 @@
 - 24/11 08:53 · Preproducción continua: 4 preproducidos (🔥 ≥ 3), sin sustituciones. Idea 28 marcada como candidata a «GTA 6 Car Tricks #2» por el éxito del 16.
 - 24/11 09:24 · Investigación diaria: 5 ideas nuevas (54-58: Car Tricks #3 quién compra tu coche, WAINK, fin del puente de un botón, Perfil Criminal, barco de Michael). Recomendadas: barco de Michael (🔥 9,8) y Car Tricks #3 (🔥 9,7). Largo nuevo: todo sobre robar coches. Bulo: GTA 6 en Steam/PC.
 - 24/11 11:53 · Preproducción continua: sin cambios (09 con 🔥 3,1, en el límite).
+- 24/11 14:53 · Preproducción continua: sin cambios.
