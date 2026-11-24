@@ -282,3 +282,4 @@
 - 24/11 14:53 · Preproducción continua: sin cambios.
 - 24/11 17:53 · Preproducción continua: sin cambios.
 - 24/11 20:38 · Short 17 producido (encargo ryyq1oqi1wrqhpziiyc3): Cool Dog, gancho «A dog can save your life in GTA 6. Seriously.», 43 s, Fenrir, APTO 9,8.
+- 24/11 20:53 · Preproducción continua: el 17 ya está producido → entra el 19 «GTA 6 Car Tricks #2: Check THIS App Before Stealing a Car» (WAINK, serie de coches tras el 16; 159 palabras; 3 datos con 2+ medios).
