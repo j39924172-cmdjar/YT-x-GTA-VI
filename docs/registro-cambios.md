@@ -281,3 +281,4 @@
 - 24/11 11:53 · Preproducción continua: sin cambios (09 con 🔥 3,1, en el límite).
 - 24/11 14:53 · Preproducción continua: sin cambios.
 - 24/11 17:53 · Preproducción continua: sin cambios.
+- 24/11 20:38 · Short 17 producido (encargo ryyq1oqi1wrqhpziiyc3): Cool Dog, gancho «A dog can save your life in GTA 6. Seriously.», 43 s, Fenrir, APTO 9,8.

@@ -1,0 +1,711 @@
+{
+ "voz": "voz.mp3",
+ "palabras": "palabras.json",
+ "salida": "final.mp4",
+ "fuente": "Footage: Rockstar Games",
+ "marca": "VICECITY DAYS TV",
+ "musica": {
+  "bpm": 130,
+  "volumen": 0.3
+ },
+ "palabras_clave": [
+  "dog",
+  "life",
+  "Seriously.",
+  "swim",
+  "far",
+  "barking,",
+  "goggles",
+  "jacket",
+  "jet",
+  "ski.",
+  "Cool",
+  "Dog.",
+  "Praise",
+  "scold",
+  "secret",
+  "island.",
+  "dogs",
+  "toys.",
+  "twelve",
+  "hundred",
+  "dollars.",
+  "Paying",
+  "Follow",
+  "secrets."
+ ],
+ "escenas": [
+  {
+   "img": "capturas/Vice_City_19.jpg",
+   "desde": 0,
+   "hasta": 1.3,
+   "foco": [
+    0.5,
+    0.55
+   ],
+   "foco_fin": [
+    0.52,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.2,
+    1.05
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 32.85,
+   "desde": 1.3,
+   "hasta": 1.95,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_01.jpg",
+   "desde": 1.95,
+   "hasta": 2.97,
+   "foco": [
+    0.6,
+    0.6
+   ],
+   "foco_fin": [
+    0.62,
+    0.62
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Pre-Load_Now.mp4",
+   "inicio": 11.25,
+   "desde": 2.97,
+   "hasta": 4.17,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_01.jpg",
+   "desde": 4.17,
+   "hasta": 5.79,
+   "foco": [
+    0.4,
+    0.5
+   ],
+   "foco_fin": [
+    0.42000000000000004,
+    0.52
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ],
+   "etiqueta": {
+    "texto": "SWIM FAR OUT",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.45,
+     0.55
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 14.25,
+   "desde": 5.79,
+   "hasta": 6.52,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_07.jpg",
+   "desde": 6.52,
+   "hasta": 8.27,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "LISTEN FOR BARKING",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.5,
+     0.4
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 55.22,
+   "desde": 8.27,
+   "hasta": 9.94,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_05.jpg",
+   "desde": 9.94,
+   "hasta": 11.99,
+   "foco": [
+    0.5,
+    0.55
+   ],
+   "foco_fin": [
+    0.52,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "ON A JET SKI",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.45,
+     0.5
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 11.95,
+   "desde": 11.99,
+   "hasta": 13.6,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_03.jpg",
+   "desde": 13.6,
+   "hasta": 14.8,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 2.72,
+   "desde": 14.8,
+   "hasta": 16.36,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Cal_Hampton_03.jpg",
+   "desde": 16.36,
+   "hasta": 18.18,
+   "foco": [
+    0.5,
+    0.45
+   ],
+   "foco_fin": [
+    0.52,
+    0.47000000000000003
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "PRAISE OR SCOLD?",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.5,
+     0.45
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 4.52,
+   "desde": 18.18,
+   "hasta": 20.07,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_05.jpg",
+   "desde": 20.07,
+   "hasta": 21.7,
+   "foco": [
+    0.6,
+    0.5
+   ],
+   "foco_fin": [
+    0.62,
+    0.52
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ],
+   "etiqueta": {
+    "texto": "PRAISE HIM",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.6,
+     0.5
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 73.85,
+   "desde": 21.7,
+   "hasta": 23.72,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_04.jpg",
+   "desde": 23.72,
+   "hasta": 25.86,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "SECRET ISLAND",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.5,
+     0.55
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 67.12,
+   "desde": 25.86,
+   "hasta": 26.86,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Grassrivers_02.jpg",
+   "desde": 26.86,
+   "hasta": 28.64,
+   "foco": [
+    0.5,
+    0.55
+   ],
+   "foco_fin": [
+    0.52,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Pre-Load_Now.mp4",
+   "inicio": 5.25,
+   "desde": 28.64,
+   "hasta": 29.99,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_26.jpg",
+   "desde": 29.99,
+   "hasta": 31.84,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "DOGS + TOYS",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.5,
+     0.55
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 40.48,
+   "desde": 31.84,
+   "hasta": 33.51,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Jason_and_Lucia_16.jpg",
+   "desde": 33.51,
+   "hasta": 35.29,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ],
+   "etiqueta": {
+    "texto": "~ $1,200",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.5,
+     0.55
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 26.42,
+   "desde": 35.29,
+   "hasta": 36.41,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 11.95,
+   "desde": 36.41,
+   "hasta": 37.84,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_27.jpg",
+   "desde": 37.84,
+   "hasta": 39.14,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Pre-Load_Now.mp4",
+   "inicio": 11.25,
+   "desde": 39.14,
+   "hasta": 40.29,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 40.29,
+   "hasta": 43.63,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ]
+  }
+ ],
+ "capas": [
+  {
+   "tipo": "titulo",
+   "desde": 0,
+   "hasta": 4.17,
+   "lineas": [
+    [
+     "A DOG SAVES YOU",
+     "amarillo"
+    ],
+    [
+     "IN GTA 6",
+     "blanco"
+    ]
+   ],
+   "pastilla": "GTA 6 SECRET"
+  },
+  {
+   "tipo": "fact",
+   "desde": 4.17,
+   "hasta": 14.8,
+   "n": 1,
+   "total": 3,
+   "titulo": "SWIM & LISTEN"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 4.64,
+   "hasta": 14.8,
+   "items": [
+    {
+     "texto": "TOO FAR FROM SHORE",
+     "fondo": "amarillo",
+     "desde": 4.81,
+     "y": 760
+    },
+    {
+     "texto": "BARKING = HE'S COMING",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 8.02,
+     "y": 900
+    },
+    {
+     "texto": "COOL DOG",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 13.8,
+     "y": 1040,
+     "size": 56
+    }
+   ]
+  },
+  {
+   "tipo": "fact",
+   "desde": 14.8,
+   "hasta": 28.64,
+   "n": 2,
+   "total": 3,
+   "titulo": "PRAISE HIM"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 19.16,
+   "hasta": 28.64,
+   "items": [
+    {
+     "texto": "PRAISE",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 19.28,
+     "y": 760
+    },
+    {
+     "texto": "SCOLD",
+     "fondo": "rosa",
+     "color": "blanco",
+     "icono": "no",
+     "desde": 20.02,
+     "y": 900
+    },
+    {
+     "texto": "SECRET ISLAND",
+     "fondo": "amarillo",
+     "desde": 25.14,
+     "y": 1040
+    }
+   ]
+  },
+  {
+   "tipo": "fact",
+   "desde": 28.64,
+   "hasta": 39.02,
+   "n": 3,
+   "total": 3,
+   "titulo": "DOG ISLAND"
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 30.13,
+   "hasta": 39.02,
+   "items": [
+    {
+     "texto": "DOGS + TOYS",
+     "fondo": "amarillo",
+     "desde": 30.22,
+     "y": 760
+    },
+    {
+     "texto": "~ $1,200",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 32.86,
+     "y": 900,
+     "size": 60
+    },
+    {
+     "texto": "ONLY IN LEONIDA",
+     "fondo": "amarillo",
+     "desde": 35.29,
+     "y": 1040
+    }
+   ]
+  },
+  {
+   "tipo": "cta",
+   "desde": 41.04,
+   "hasta": 99,
+   "lineas": [
+    "FOLLOW",
+    "FOR MORE GTA 6 SECRETS"
+   ]
+  }
+ ]
+}

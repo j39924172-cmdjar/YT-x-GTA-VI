@@ -1,5 +1,5 @@
 # 17 · Cool Dog: el perro de la moto de agua — investigación (Jarvis + Nobita)
-Estado: **preproducción** (falta voz y montaje). Fecha: 23/11/2026. Origen: preproducción continua, idea 15 del banco (formato secreto del mapa, el que mejor funciona: caza 1,2 mil, Paul Walker 1,2 mil). Formato: secreto. 40-60 s. Sin spoilers.
+Estado: **producido** (24/11/2026, encargo ryyq1oqi1wrqhpziiyc3, voz Fenrir). Fecha: 23/11/2026. Origen: preproducción continua, idea 15 del banco (formato secreto del mapa, el que mejor funciona: caza 1,2 mil, Paul Walker 1,2 mil). Formato: secreto. 40-60 s. Sin spoilers.
 
 ## Datos verificados (2 medios o más; descubrimiento de jugadores)
 1. **Si nadas mar adentro (o te quedas tirado en el agua), oyes ladridos y aparece un perro con gafas y chaleco salvavidas en una moto de agua que te rescata. Los jugadores lo llaman «Cool Dog».**
