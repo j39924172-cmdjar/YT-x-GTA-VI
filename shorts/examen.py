@@ -141,11 +141,13 @@ class Examen:
         self.r("torrente", bool(CURIOSIDAD.search(t)), "El título abre curiosidad (número, ONE, except, ?, …)")
         self.r("torrente", len(self.alternativos) >= 2, "2 títulos alternativos para probar", f"{len(self.alternativos)}")
         gancho = self.frases[0] if self.frases else ""
+        # Interjección de arranque («Stop.», «Wait.»): el gancho de contenido es la frase siguiente.
+        gancho_contenido = (gancho + " " + self.frases[1]) if len(gancho.split()) <= 2 and len(self.frases) > 1 else gancho
         usados = self.leer_ganchos_usados()
         repetido = [u for u in usados if gancho and similar(gancho, u) > 0.8 and not self.es_propio(u)]
         self.r("torrente", not repetido, "Gancho nuevo (no está en Ganchos usados)", repetido[0] if repetido else "")
-        self.r("torrente", bool(re.search(r"\d|\b(one|only|never|real|secret|just|didn't|isn't|wasn't|not|no|nobody|every)\b|\?", gancho, re.I)),
-               "Gancho concreto (número, contraste, negación o pregunta)", gancho[:70])
+        self.r("torrente", bool(re.search(r"\d|\b(one|only|never|real|secret|just|didn't|isn't|wasn't|not|no|nobody|every)\b|\?", gancho_contenido, re.I)),
+               "Gancho concreto (número, contraste, negación o pregunta)", gancho_contenido[:70])
 
         # El Chapo · guion
         # Duración (Adam, 22/11/2026: "estoy harto de máximo 30 s"): TODOS los Shorts de 40 a 60 s.

@@ -1,0 +1,671 @@
+{
+ "voz": "voz.mp3",
+ "palabras": "palabras.json",
+ "salida": "final.mp4",
+ "fuente": "Footage: Rockstar Games",
+ "marca": "VICECITY DAYS TV",
+ "musica": {
+  "bpm": 130,
+  "volumen": 0.3
+ },
+ "palabras_clave": [
+  "Stop.",
+  "Never",
+  "steal",
+  "app.",
+  "WAINK",
+  "scan",
+  "locked,",
+  "alarm",
+  "tracker",
+  "worth,",
+  "register",
+  "jackpot,",
+  "waste",
+  "big",
+  "brain",
+  "cheap",
+  "sedan",
+  "beat",
+  "cops",
+  "quietly,",
+  "window",
+  "yellow",
+  "red",
+  "Follow",
+  "secrets."
+ ],
+ "escenas": [
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 47.02,
+   "desde": 0,
+   "hasta": 1.81,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 40.48,
+   "desde": 1.81,
+   "hasta": 3.6,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_04.jpg",
+   "desde": 3.6,
+   "hasta": 5.26,
+   "foco": [
+    0.5,
+    0.45
+   ],
+   "foco_fin": [
+    0.52,
+    0.47000000000000003
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "THE WAINK APP",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.55,
+     0.55
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 26.42,
+   "desde": 5.26,
+   "hasta": 6.6,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_24.jpg",
+   "desde": 6.6,
+   "hasta": 8.65,
+   "foco": [
+    0.6,
+    0.6
+   ],
+   "foco_fin": [
+    0.62,
+    0.62
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "LOCKED? ALARM?",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.62,
+     0.7
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 11.95,
+   "desde": 8.65,
+   "hasta": 10.56,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_18.jpg",
+   "desde": 10.56,
+   "hasta": 12.56,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.47000000000000003,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "TRACKER INSIDE?",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.42,
+     0.68
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 33.68,
+   "desde": 12.56,
+   "hasta": 13.88,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_GROTTI_CHEETAH_02.jpg",
+   "desde": 13.88,
+   "hasta": 16.2,
+   "foco": [
+    0.5,
+    0.55
+   ],
+   "foco_fin": [
+    0.52,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "WHAT IT'S WORTH",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.5,
+     0.6
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 55.22,
+   "desde": 16.2,
+   "hasta": 18.02,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_RIDEOUT_CUSTOMS_01.jpg",
+   "desde": 18.02,
+   "hasta": 20.33,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ],
+   "etiqueta": {
+    "texto": "COST TO REGISTER",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.5,
+     0.6
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 26.42,
+   "desde": 20.33,
+   "hasta": 21.73,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_22.jpg",
+   "desde": 21.73,
+   "hasta": 23.85,
+   "foco": [
+    0.55,
+    0.65
+   ],
+   "foco_fin": [
+    0.5700000000000001,
+    0.67
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "JACKPOT OR WASTE?",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.58,
+     0.8
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.58,
+   "desde": 23.85,
+   "hasta": 25.95,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_02.jpg",
+   "desde": 25.95,
+   "hasta": 28.18,
+   "foco": [
+    0.5,
+    0.6
+   ],
+   "foco_fin": [
+    0.52,
+    0.62
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "NO TRACKER",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.45,
+     0.7
+    ]
+   }
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_GROTTI_CHEETAH_01.jpg",
+   "desde": 28.18,
+   "hasta": 30.44,
+   "foco": [
+    0.5,
+    0.55
+   ],
+   "foco_fin": [
+    0.52,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ],
+   "etiqueta": {
+    "texto": "TRACKER = COPS",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.5,
+     0.62
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 47.02,
+   "desde": 30.44,
+   "hasta": 32.25,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_18.jpg",
+   "desde": 32.25,
+   "hasta": 34.52,
+   "foco": [
+    0.55,
+    0.5
+   ],
+   "foco_fin": [
+    0.5700000000000001,
+    0.52
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 39.05,
+   "desde": 34.52,
+   "hasta": 35.83,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_02.jpg",
+   "desde": 35.83,
+   "hasta": 38.16,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "LOCKPICK OR BREAK IN",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.55,
+     0.55
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 59.95,
+   "desde": 38.16,
+   "hasta": 40.23,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_24.jpg",
+   "desde": 40.23,
+   "hasta": 42.4,
+   "foco": [
+    0.4,
+    0.55
+   ],
+   "foco_fin": [
+    0.42000000000000004,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ],
+   "etiqueta": {
+    "texto": "YELLOW OR RED?",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.45,
+     0.7
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 40.48,
+   "desde": 42.4,
+   "hasta": 43.82,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 11.95,
+   "desde": 43.82,
+   "hasta": 46.0,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 46.0,
+   "hasta": 50.2,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ]
+  }
+ ],
+ "capas": [
+  {
+   "tipo": "titulo",
+   "desde": 0,
+   "hasta": 4.04,
+   "lineas": [
+    [
+     "CAR TRICKS #2",
+     "amarillo"
+    ],
+    [
+     "CHECK THIS APP",
+     "blanco"
+    ]
+   ],
+   "pastilla": "GTA 6"
+  },
+  {
+   "tipo": "golpe",
+   "texto": "SCAN IT",
+   "desde": 6.48,
+   "hasta": 7.91,
+   "color": "amarillo",
+   "giro": false
+  },
+  {
+   "tipo": "golpe",
+   "texto": "TRACKER?",
+   "desde": 10.8,
+   "hasta": 12.14,
+   "color": "rosa",
+   "giro": false
+  },
+  {
+   "tipo": "golpe",
+   "texto": "WORTH IT?",
+   "desde": 17.07,
+   "hasta": 18.45,
+   "color": "amarillo",
+   "giro": false
+  },
+  {
+   "tipo": "golpe",
+   "texto": "JACKPOT",
+   "desde": 21.73,
+   "hasta": 23.14,
+   "color": "amarillo",
+   "giro": false
+  },
+  {
+   "tipo": "golpe",
+   "texto": "CHEAP CAR WINS",
+   "desde": 28.94,
+   "hasta": 30.44,
+   "color": "rosa",
+   "giro": true
+  },
+  {
+   "tipo": "golpe",
+   "texto": "COPS",
+   "desde": 32.26,
+   "hasta": 33.61,
+   "color": "rosa",
+   "giro": false
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 7.33,
+   "hasta": 12.46,
+   "items": [
+    {
+     "texto": "LOCKED?",
+     "fondo": "amarillo",
+     "desde": 8.44,
+     "y": 760
+    },
+    {
+     "texto": "ALARM?",
+     "fondo": "amarillo",
+     "desde": 9.18,
+     "y": 880
+    }
+   ]
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 35.9,
+   "hasta": 38.75,
+   "items": [
+    {
+     "texto": "PICK THE LOCK",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 36.0,
+     "y": 760
+    },
+    {
+     "texto": "BREAK THE WINDOW",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 37.54,
+     "y": 880
+    }
+   ]
+  },
+  {
+   "tipo": "cta",
+   "desde": 47.1,
+   "hasta": 99,
+   "lineas": [
+    "FOLLOW",
+    "FOR MORE GTA 6 SECRETS"
+   ]
+  }
+ ]
+}

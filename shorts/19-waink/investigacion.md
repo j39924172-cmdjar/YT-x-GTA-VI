@@ -1,5 +1,5 @@
 # 19 · GTA 6 Car Tricks #2: Check THIS App Before Stealing a Car — investigación (Jarvis + Nobita)
-Estado: **preproducción** (falta voz y montaje). Fecha: 24/11/2026. Origen: preproducción continua; idea 55 del banco (🔥 7,6, no recomendada en los últimos 3 días). Serie de coches tras el éxito del 16 (+1.182 en 6 h). Formato: truco · serie. 40-60 s. Sin spoilers.
+Estado: **producido** (24/11/2026, encargo 4g0k9ltiwf75kh9025h1, voz Fenrir, formato historia con giro). Fecha: 24/11/2026. Origen: preproducción continua; idea 55 del banco (🔥 7,6, no recomendada en los últimos 3 días). Serie de coches tras el éxito del 16 (+1.182 en 6 h). Formato: truco · serie. 40-60 s. Sin spoilers.
 
 ## Datos verificados (2 medios o más)
 1. **La app WAINK escanea el coche antes de robarlo: cerradura, alarma, localizador y nivel de seguridad.**
