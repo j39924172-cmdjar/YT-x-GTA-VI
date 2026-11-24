@@ -283,3 +283,4 @@
 - 24/11 17:53 · Preproducción continua: sin cambios.
 - 24/11 20:38 · Short 17 producido (encargo ryyq1oqi1wrqhpziiyc3): Cool Dog, gancho «A dog can save your life in GTA 6. Seriously.», 43 s, Fenrir, APTO 9,8.
 - 24/11 20:53 · Preproducción continua: el 17 ya está producido → entra el 19 «GTA 6 Car Tricks #2: Check THIS App Before Stealing a Car» (WAINK, serie de coches tras el 16; 159 palabras; 3 datos con 2+ medios).
+- 24/11 · FORMATO NUEVO «historia con giro» (Adam: basta de Fact 1/2/3): manual, CLAUDE.md y produccion-short.md actualizados; capa «golpe» en montaje.py; el examen suspende si hay «Fact one…» o tarjetas FACT. Guiones de 06, 09, 10 y 19 reescritos (versión anterior en voz_factN.txt).

@@ -19,6 +19,17 @@ Manda siempre el documento maestro (`docs/vicecity-estado.md`). Este manual lo c
 
 Con solo 3 Shorts esto son pistas, no leyes. **Desde el lanzamiento (19/11), además: trucos y curiosidades del juego** (lo que más busca la gente aparte de la historia), siempre sin spoilers de misiones y con 2 medios fiables; un truco que solo cuenta una web se queda en 🟡. Taison actualiza esta tabla cada semana. Mientras tanto: **más "juego vs real" y noticias útiles; los personajes, solo con un giro sorprendente** (una cita loca, un secreto, una contradicción).
 
+
+## FORMATO NUEVO: «historia con giro» (Adam, 24/11/2026) — OBLIGATORIO
+Adam: «estoy cansado de que pongas siempre lo de fact 1, fact 2, fact 3». Desde hoy:
+1. **Prohibido** decir «Fact one / two / three» y prohibidas las tarjetas «FACT n/3» en pantalla.
+2. **Gancho de 1-2 s** que choque: una orden («Never steal a car in GTA 6 without this»), algo imposible («A dog can save your life in GTA 6») o una pregunta.
+3. **Los 3 datos verificados se cuentan como UNA historia** que va subiendo, con transiciones naturales: «But here's the thing…», «And it gets crazier…», «Now watch this…», «Wait for it…». Cada dato engancha con el siguiente.
+4. **El dato más fuerte, al final (el giro)**, con una pausa antes; después, la frase del gancho otra vez (bucle) y «Follow for more GTA 6 secrets».
+5. **En pantalla, «golpes»**: 3-5 palabras ENORMES que entran de golpe en los momentos clave (capa `golpe` de `shorts/montaje.py`, la última con `"giro": true`). Siguen las pastillas pequeñas, las flechas y los subtítulos palabra a palabra.
+6. Hablar a «you», reacciones («No joke.», «Seriously.») y frases muy cortas.
+El examen (`shorts/examen.py`) suspende si la voz dice «Fact one…» o si el plan lleva tarjetas FACT.
+
 ## Reglas nuevas para hacerlo viral (20/11/2026)
 1. **Series.** Lo que funciona se convierte en serie con nombre fijo y número grande en pantalla: "GTA 6 Money Tricks #1, #2…", "GTA 6 Secrets #1…". El primer fotograma lleva el número de la serie. Quien ve uno busca el siguiente.
 2. **Bucle perfecto.** La última frase antes del CTA retoma el gancho (palabras del principio), para que al volver a empezar el Short suene a continuación y se vea dos veces. El examen avisa si no lo hace.

@@ -161,11 +161,13 @@ class Examen:
         self.r("chapo", not mul, "Sin muletillas ('in this video', 'hey guys'…)", ", ".join(mul))
         largas = [f for f in self.frases if len(f.split()) > 22]
         self.r("chapo", not largas, "Frases cortas para leer en voz alta (≤ 22 palabras)", largas[0][:60] if largas else "")
+        # Formato «historia con giro» (Adam, 24/11/2026): sin «Fact one/two/three» ni tarjetas «FACT n/3».
+        self.r("chapo", not re.search(r"\bfact (one|two|three|four|five|1|2|3)\b", voz_l), "Sin «Fact one/two/three» en la voz (formato historia con giro)")
+        golpes = [c for c in self.plan.get("capas", []) if c.get("tipo") == "golpe"]
         facts = [c for c in self.plan.get("capas", []) if c.get("tipo") == "fact"]
-        # Las listas («5 Things…», formato de los canales que explotan) llevan tantos datos como diga el título (3 a 5).
-        n_lista = re.match(r"\s*([3-5])\s", t)
-        esperados = int(n_lista.group(1)) if n_lista else 3
-        self.r("chapo", len(facts) == esperados, f"Estructura gancho → {esperados} datos → CTA", f"{len(facts)} datos")
+        if self.plan:
+            self.r("chapo", not facts and len(golpes) >= 3 and any(c.get("giro") for c in golpes),
+                   "Historia con giro: 3+ golpes en pantalla, uno marcado como giro, sin tarjetas FACT", f"{len(golpes)} golpes, {len(facts)} FACT")
 
         # Pablito · retención
         if self.pal:

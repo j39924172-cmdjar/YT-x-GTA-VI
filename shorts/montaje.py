@@ -364,7 +364,23 @@ def capa_comparativa(fr, c, t):
         pegar(fr, cr, W - 60 - cr.width / 2, y0 + H // 2 - 40, alpha=0.8 * k)
 
 
-CAPAS = {"titulo": capa_titulo, "fact": capa_fact, "ruta": capa_ruta, "pastillas": capa_pastillas, "cta": capa_cta,
+def capa_golpe(fr, c, t):
+    """Formato «historia con giro» (Adam, 24/11): una o dos palabras ENORMES que entran de golpe en el momento clave.
+    Sustituye a las tarjetas «FACT n/3». c = {"tipo": "golpe", "texto": "NO TRACKER", "color": "amarillo", "desde", "hasta", "giro": bool}"""
+    dur = c["hasta"] - c["desde"]
+    k = (t - c["desde"]) / 0.22
+    sal = min(1.0, max(0.0, (c["hasta"] - t) / 0.18))
+    esc = 1.0 + 0.6 * max(0.0, 1 - ease_back(k))
+    size = c.get("size", 170 if len(c["texto"]) <= 10 else 130)
+    im = texto_img(c["texto"], "Anton-Regular.ttf", size, c.get("color", "amarillo"), stroke=10)
+    if im.width > W - 80:
+        im = im.resize((W - 80, int(im.height * (W - 80) / im.width)))
+    y = c.get("y", SAFE_TOP + 330)
+    pegar(fr, im, W / 2, y, alpha=min(1, k * 1.6) * sal, escala=esc)
+    return k
+
+
+CAPAS = {"titulo": capa_titulo, "fact": capa_fact, "golpe": capa_golpe, "ruta": capa_ruta, "pastillas": capa_pastillas, "cta": capa_cta,
          "tarjeta": capa_tarjeta, "comparativa": capa_comparativa}
 
 
@@ -545,12 +561,13 @@ def eventos_show(plan, palabras, cortes):
     for c in cortes:
         ev.append((c - 0.12, "whoosh"))
     for c in plan.get("capas", []):
-        if c["tipo"] in ("titulo", "fact", "cta", "tarjeta", "comparativa"):
+        if c["tipo"] in ("titulo", "fact", "golpe", "cta", "tarjeta", "comparativa"):
             ev.append((c["desde"], "golpe")); golpes.append(c["desde"])
         if c["tipo"] == "pastillas":
             for it in c.get("items", []):
                 ev.append((it.get("desde", c["desde"]), "ding"))
-    facts = [c for c in plan.get("capas", []) if c["tipo"] == "fact"]
+    facts = [c for c in plan.get("capas", []) if c["tipo"] == "fact"] or \
+        [c for c in plan.get("capas", []) if c["tipo"] == "golpe" and c.get("giro")]
     if facts:
         ev.append((facts[-1]["desde"], "subida"))       # tensión antes del último dato
     vistos = 0

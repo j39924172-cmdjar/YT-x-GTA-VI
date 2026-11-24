@@ -29,7 +29,7 @@ Al recibir el encargo, contesta en el hilo del comentario (ArtifactComments `rep
 6. Crea `shorts/NN-<nombre>/investigacion.md` con las citas literales, las URL, la fecha y lo descartado. NN es el siguiente número libre en `shorts/`.
 
 ## [PASO 2/8] Guion y gancho (El Chapo + Torrente + Pablito)
-- Inglés. **TODOS los Shorts de 40 a 60 s (120-160 palabras)**, decisión de Adam del 22/11. Gancho → datos explicados con personalidad → bucle → "Follow for more GTA 6 secrets".
+- Inglés. **TODOS los Shorts de 40 a 60 s (120-160 palabras)**, decisión de Adam del 22/11. Formato «historia con giro» (manual): gancho de 1-2 s → los 3 datos contados como una historia que sube (sin «Fact one/two/three») → giro final → bucle → "Follow for more GTA 6 secrets".
 - Gancho concreto en el primer segundo, NUEVO: comprueba "Ganchos usados" en `docs/banco-ideas.md`. Primera frase de 3 s o menos, con contraste, negación, número o pregunta, y un bucle abierto que se cierre en el dato 3.
 - Da prioridad a los formatos que mejor funcionan en el canal (tabla de lecciones de `docs/manual-shorts.md`).
 - Frases cortas para leer en voz alta. Nada de "in this video".
@@ -56,7 +56,7 @@ Al recibir el encargo, contesta en el hilo del comentario (ArtifactComments `rep
 - **Modo show (Adam, 21/11):** activado por defecto en `montaje.py` (efectos de sonido, zooms, sacudidas, pausa dramática, microcortes). No lo desactives (`"show": false`) salvo que Adam lo pida. Guion con personalidad: ver "Entretenimiento" en el manual.
 - Escribe `plan.json` siguiendo los de `shorts/03-jason-lucia/` y `shorts/04-florida-real/`:
   - Cortes cada ~2,2 s, cuadrados con los tiempos de `palabras.json`.
-  - Capa "titulo" en el gancho; "fact" n/3 por cada dato; "tarjeta" para cifras (con "contar"); "pastillas" ✅/❌; "cta" al final; "comparativa" si hay foto real de dominio público.
+  - Capa "titulo" en el gancho; 3-5 capas "golpe" (texto enorme, la última con "giro": true) en vez de "fact"; "tarjeta" para cifras (con "contar"); "pastillas" ✅/❌; "cta" al final; "comparativa" si hay foto real de dominio público.
   - Etiquetas con flecha roja apuntando a lo que demuestra el dato.
   - `palabras_clave` en amarillo. **Sin línea de fuentes en pantalla** (Adam no la quiere): las fuentes y "Footage/Images: Rockstar Games" van en la descripción.
 - `python shorts/montaje.py shorts/NN-x/plan.json` → `final.mp4`.
