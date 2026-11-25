@@ -1,0 +1,660 @@
+{
+ "voz": "voz.mp3",
+ "palabras": "palabras.json",
+ "salida": "final.mp4",
+ "fuente": "Footage: Rockstar Games",
+ "marca": "VICECITY DAYS TV",
+ "musica": {
+  "bpm": 130,
+  "volumen": 0.3
+ },
+ "palabras_clave": [
+  "Stole",
+  "tracker",
+  "buys",
+  "three",
+  "Moses,",
+  "two,",
+  "no",
+  "away.",
+  "trick.",
+  "Pay",
+  "Spray",
+  "cash.",
+  "advanced",
+  "location.",
+  "one",
+  "Randy,",
+  "touch.",
+  "scan",
+  "buying?",
+  "Follow",
+  "secrets."
+ ],
+ "escenas": [
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 39.05,
+   "desde": 0,
+   "hasta": 1.33,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 47.02,
+   "desde": 1.33,
+   "hasta": 2.58,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_GROTTI_CHEETAH_01.jpg",
+   "desde": 2.58,
+   "hasta": 4.66,
+   "foco": [
+    0.5,
+    0.55
+   ],
+   "foco_fin": [
+    0.52,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 40.48,
+   "desde": 4.66,
+   "hasta": 6.46,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_24.jpg",
+   "desde": 6.46,
+   "hasta": 7.76,
+   "foco": [
+    0.6,
+    0.6
+   ],
+   "foco_fin": [
+    0.62,
+    0.62
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_22.jpg",
+   "desde": 7.76,
+   "hasta": 10.38,
+   "foco": [
+    0.55,
+    0.65
+   ],
+   "foco_fin": [
+    0.5700000000000001,
+    0.67
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "MOSES",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.5,
+    "flecha": [
+     0.58,
+     0.8
+    ]
+   }
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_02.jpg",
+   "desde": 10.38,
+   "hasta": 12.9,
+   "foco": [
+    0.5,
+    0.6
+   ],
+   "foco_fin": [
+    0.52,
+    0.62
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "NO TRACKER ONLY",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 1.6,
+    "flecha": [
+     0.45,
+     0.7
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 26.42,
+   "desde": 12.9,
+   "hasta": 14.26,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 63.22,
+   "desde": 14.26,
+   "hasta": 15.02,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_18.jpg",
+   "desde": 15.02,
+   "hasta": 17.86,
+   "foco": [
+    0.45,
+    0.55
+   ],
+   "foco_fin": [
+    0.47000000000000003,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "TRACKED CAR",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.6,
+    "flecha": [
+     0.42,
+     0.68
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 59.95,
+   "desde": 17.86,
+   "hasta": 19.24,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_RIDEOUT_CUSTOMS_01.jpg",
+   "desde": 19.24,
+   "hasta": 21.5,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ],
+   "etiqueta": {
+    "texto": "PAY 'N' SPRAY",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.1,
+    "flecha": [
+     0.5,
+     0.6
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.58,
+   "desde": 21.5,
+   "hasta": 23.6,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Raul_Bautista_02.jpg",
+   "desde": 23.6,
+   "hasta": 26.0,
+   "foco": [
+    0.22,
+    0.86
+   ],
+   "foco_fin": [
+    0.24,
+    0.88
+   ],
+   "zoom": [
+    1.15,
+    1.3
+   ]
+  },
+  {
+   "img": "capturas/Boobie_Ike_01.jpg",
+   "desde": 26.0,
+   "hasta": 27.4,
+   "foco": [
+    0.7,
+    0.6
+   ],
+   "foco_fin": [
+    0.72,
+    0.62
+   ],
+   "zoom": [
+    1.15,
+    1.3
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 33.68,
+   "desde": 27.4,
+   "hasta": 28.72,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_GROTTI_CHEETAH_02.jpg",
+   "desde": 28.72,
+   "hasta": 31.0,
+   "foco": [
+    0.5,
+    0.55
+   ],
+   "foco_fin": [
+    0.52,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "ADVANCED TRACKER",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.8,
+    "flecha": [
+     0.5,
+     0.6
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 47.02,
+   "desde": 31.0,
+   "hasta": 32.74,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 55.22,
+   "desde": 32.74,
+   "hasta": 34.5,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_27.jpg",
+   "desde": 34.5,
+   "hasta": 36.14,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.2,
+    1.05
+   ]
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_GROTTI_CHEETAH_01.jpg",
+   "desde": 36.14,
+   "hasta": 38.0,
+   "foco": [
+    0.45,
+    0.65
+   ],
+   "foco_fin": [
+    0.47000000000000003,
+    0.67
+   ],
+   "zoom": [
+    1.1,
+    1.25
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Out_Now.mp4",
+   "inicio": 5.25,
+   "desde": 38.0,
+   "hasta": 39.28,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_04.jpg",
+   "desde": 39.28,
+   "hasta": 41.74,
+   "foco": [
+    0.32,
+    0.5
+   ],
+   "foco_fin": [
+    0.34,
+    0.52
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "SCAN IT",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 1.2,
+    "flecha": [
+     0.31,
+     0.52
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 11.95,
+   "desde": 41.74,
+   "hasta": 43.78,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 39.05,
+   "desde": 43.78,
+   "hasta": 45.11,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_06.jpg",
+   "desde": 45.11,
+   "hasta": 47.18,
+   "foco": [
+    0.3,
+    0.55
+   ],
+   "foco_fin": [
+    0.32,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.15,
+    1.3
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Pre-Load_Now.mp4",
+   "inicio": 11.25,
+   "desde": 47.18,
+   "hasta": 48.55,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 48.55,
+   "hasta": 52.0,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ]
+  }
+ ],
+ "capas": [
+  {
+   "tipo": "titulo",
+   "desde": 0,
+   "hasta": 2.5,
+   "lineas": [
+    [
+     "CAR TRICKS #4",
+     "amarillo"
+    ],
+    [
+     "WHO BUYS",
+     "blanco"
+    ],
+    [
+     "YOUR CAR?",
+     "rosa"
+    ]
+   ],
+   "pastilla": "GTA 6"
+  },
+  {
+   "tipo": "golpe",
+   "texto": "WHO BUYS?",
+   "desde": 3.58,
+   "hasta": 4.6,
+   "color": "amarillo",
+   "giro": false
+  },
+  {
+   "tipo": "golpe",
+   "texto": "REFUSED",
+   "desde": 16.82,
+   "hasta": 17.8,
+   "color": "rosa",
+   "giro": false
+  },
+  {
+   "tipo": "golpe",
+   "texto": "STILL CASH",
+   "desde": 26.0,
+   "hasta": 27.3,
+   "color": "amarillo",
+   "giro": false
+  },
+  {
+   "tipo": "golpe",
+   "texto": "RANDY",
+   "desde": 34.76,
+   "hasta": 36.1,
+   "color": "rosa",
+   "giro": true
+  },
+  {
+   "tipo": "golpe",
+   "texto": "WHO'S BUYING?",
+   "desde": 42.8,
+   "hasta": 43.7,
+   "color": "amarillo",
+   "giro": false
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 4.9,
+   "hasta": 7.7,
+   "items": [
+    {
+     "texto": "3 BUYERS",
+     "fondo": "amarillo",
+     "desde": 4.9,
+     "y": 760
+    },
+    {
+     "texto": "3 KINDS OF CAR",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 6.3,
+     "y": 880
+    }
+   ]
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 21.0,
+   "hasta": 23.5,
+   "items": [
+    {
+     "texto": "NO TRACKER",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 21.28,
+     "y": 760
+    },
+    {
+     "texto": "STANDARD TRACKER",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 22.54,
+     "y": 880
+    }
+   ]
+  },
+  {
+   "tipo": "cta",
+   "desde": 47.18,
+   "hasta": 99,
+   "lineas": [
+    "FOLLOW",
+    "FOR MORE GTA 6 SECRETS"
+   ]
+  }
+ ]
+}
