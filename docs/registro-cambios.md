@@ -291,3 +291,4 @@
 - 25/11 11:54 · Preproducción continua: sin cambios (4 preproducidos en historia con giro).
 - 25/11 14:54 · Preproducción continua: sin cambios.
 - 25/11 17:53 · Preproducción continua: sin cambios.
+- 25/11 20:53 · Preproducción continua: sin cambios.
