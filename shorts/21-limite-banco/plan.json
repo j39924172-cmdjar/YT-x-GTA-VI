@@ -1,0 +1,666 @@
+{
+ "voz": "voz.mp3",
+ "palabras": "palabras.json",
+ "salida": "final.mp4",
+ "fuente": "Footage: Rockstar Games",
+ "marca": "VICECITY DAYS TV",
+ "musica": {
+  "bpm": 128,
+  "volumen": 0.3
+ },
+ "palabras_clave": [
+  "bank",
+  "limit.",
+  "BuckMe",
+  "pending.",
+  "car.",
+  "trick.",
+  "Family",
+  "Savings.",
+  "raises",
+  "limit.",
+  "story",
+  "never",
+  "Ever.",
+  "lose",
+  "die.",
+  "arrested.",
+  "trade.",
+  "more.",
+  "break",
+  "Follow",
+  "secrets."
+ ],
+ "escenas": [
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 35.12,
+   "desde": 0,
+   "hasta": 1.3,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Boobie_Ike_01.jpg",
+   "desde": 1.3,
+   "hasta": 2.68,
+   "foco": [
+    0.7,
+    0.6
+   ],
+   "foco_fin": [
+    0.72,
+    0.62
+   ],
+   "zoom": [
+    1.15,
+    1.3
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 11.95,
+   "desde": 2.68,
+   "hasta": 4.86,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Lucia_Caminos_02.jpg",
+   "desde": 4.86,
+   "hasta": 5.32,
+   "foco": [
+    0.5,
+    0.6
+   ],
+   "foco_fin": [
+    0.52,
+    0.62
+   ],
+   "zoom": [
+    1.1,
+    1.15
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_04.jpg",
+   "desde": 5.32,
+   "hasta": 7.96,
+   "foco": [
+    0.32,
+    0.5
+   ],
+   "foco_fin": [
+    0.34,
+    0.52
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ],
+   "etiqueta": {
+    "texto": "BUCKME APP",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.31,
+     0.52
+    ]
+   }
+  },
+  {
+   "img": "capturas/Raul_Bautista_02.jpg",
+   "desde": 7.96,
+   "hasta": 10.58,
+   "foco": [
+    0.22,
+    0.86
+   ],
+   "foco_fin": [
+    0.24,
+    0.88
+   ],
+   "zoom": [
+    1.15,
+    1.3
+   ],
+   "etiqueta": {
+    "texto": "PENDING",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 1.6,
+    "flecha": [
+     0.2,
+     0.88
+    ]
+   }
+  },
+  {
+   "img": "capturas/ULTIMATE_EDITION_GROTTI_CHEETAH_01.jpg",
+   "desde": 10.58,
+   "hasta": 12.52,
+   "foco": [
+    0.45,
+    0.65
+   ],
+   "foco_fin": [
+    0.47000000000000003,
+    0.67
+   ],
+   "zoom": [
+    1.1,
+    1.25
+   ],
+   "etiqueta": {
+    "texto": "SOLD CAR CASH",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.2,
+    "flecha": [
+     0.45,
+     0.7
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 47.02,
+   "desde": 12.52,
+   "hasta": 13.8,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Lucia_Caminos_02.jpg",
+   "desde": 13.8,
+   "hasta": 15.8,
+   "foco": [
+    0.85,
+    0.62
+   ],
+   "foco_fin": [
+    0.88,
+    0.64
+   ],
+   "zoom": [
+    1.1,
+    1.25
+   ],
+   "etiqueta": {
+    "texto": "BUCKME APP",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.3,
+    "flecha": [
+     0.94,
+     0.67
+    ]
+   }
+  },
+  {
+   "img": "capturas/Jason_and_Lucia_15.jpg",
+   "desde": 15.8,
+   "hasta": 17.38,
+   "foco": [
+    0.25,
+    0.7
+   ],
+   "foco_fin": [
+    0.27,
+    0.72
+   ],
+   "zoom": [
+    1.1,
+    1.25
+   ],
+   "etiqueta": {
+    "texto": "FAMILY SAVINGS",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.1,
+    "flecha": [
+     0.19,
+     0.74
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 40.48,
+   "desde": 17.38,
+   "hasta": 19.18,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_27.jpg",
+   "desde": 19.18,
+   "hasta": 21.14,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.2,
+    1.05
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 26.42,
+   "desde": 21.14,
+   "hasta": 22.5,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 63.22,
+   "desde": 22.5,
+   "hasta": 23.26,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.58,
+   "desde": 23.26,
+   "hasta": 24.96,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 59.95,
+   "desde": 24.96,
+   "hasta": 26.08,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/VINTAGE_VICE_CITY_WEAPON_PATTERN_01.jpg",
+   "desde": 26.08,
+   "hasta": 29.44,
+   "foco": [
+    0.2,
+    0.6
+   ],
+   "foco_fin": [
+    0.22,
+    0.62
+   ],
+   "zoom": [
+    1.1,
+    1.3
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Out_Now.mp4",
+   "inicio": 9.08,
+   "desde": 29.44,
+   "hasta": 30.41,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 58.55,
+   "desde": 30.41,
+   "hasta": 31.66,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 33.68,
+   "desde": 31.66,
+   "hasta": 33.0,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_06.jpg",
+   "desde": 33.0,
+   "hasta": 35.4,
+   "foco": [
+    0.12,
+    0.55
+   ],
+   "foco_fin": [
+    0.13999999999999999,
+    0.5700000000000001
+   ],
+   "zoom": [
+    1.15,
+    1.3
+   ],
+   "etiqueta": {
+    "texto": "ARRESTED",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 1.2,
+    "flecha": [
+     0.08,
+     0.5
+    ]
+   }
+  },
+  {
+   "img": "capturas/Jason_Duval_18.jpg",
+   "desde": 35.4,
+   "hasta": 37.4,
+   "foco": [
+    0.55,
+    0.5
+   ],
+   "foco_fin": [
+    0.5700000000000001,
+    0.52
+   ],
+   "zoom": [
+    1.05,
+    1.18
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 2.72,
+   "desde": 37.4,
+   "hasta": 39.76,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 35.12,
+   "desde": 39.76,
+   "hasta": 41.06,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Out_Now.mp4",
+   "inicio": 5.25,
+   "desde": 41.06,
+   "hasta": 42.53,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Boobie_Ike_01.jpg",
+   "desde": 42.53,
+   "hasta": 44.18,
+   "foco": [
+    0.7,
+    0.6
+   ],
+   "foco_fin": [
+    0.72,
+    0.62
+   ],
+   "zoom": [
+    1.3,
+    1.12
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Pre-Load_Now.mp4",
+   "inicio": 11.25,
+   "desde": 44.18,
+   "hasta": 45.55,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 45.55,
+   "hasta": 49.0,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ]
+  }
+ ],
+ "capas": [
+  {
+   "tipo": "titulo",
+   "desde": 0,
+   "hasta": 2.6,
+   "lineas": [
+    [
+     "MONEY TRICKS",
+     "amarillo"
+    ],
+    [
+     "YOUR BANK",
+     "blanco"
+    ],
+    [
+     "HAS A LIMIT",
+     "rosa"
+    ]
+   ],
+   "pastilla": "GTA 6"
+  },
+  {
+   "tipo": "golpe",
+   "texto": "LIMIT?",
+   "desde": 2.7,
+   "hasta": 4.0,
+   "color": "rosa",
+   "giro": false
+  },
+  {
+   "tipo": "golpe",
+   "texto": "PENDING",
+   "desde": 9.96,
+   "hasta": 11.3,
+   "color": "rosa",
+   "giro": false
+  },
+  {
+   "tipo": "golpe",
+   "texto": "LIMIT UP",
+   "desde": 19.16,
+   "hasta": 20.6,
+   "color": "amarillo",
+   "giro": false
+  },
+  {
+   "tipo": "golpe",
+   "texto": "NEVER COMES OUT",
+   "desde": 27.7,
+   "hasta": 29.3,
+   "color": "rosa",
+   "giro": true
+  },
+  {
+   "tipo": "golpe",
+   "texto": "CAN'T LOSE IT",
+   "desde": 32.3,
+   "hasta": 33.5,
+   "color": "amarillo",
+   "giro": false
+  },
+  {
+   "tipo": "golpe",
+   "texto": "BREAK IT",
+   "desde": 43.44,
+   "hasta": 44.15,
+   "color": "amarillo",
+   "giro": false
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 17.4,
+   "hasta": 24.9,
+   "items": [
+    {
+     "texto": "SAVINGS GOALS",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 17.76,
+     "y": 760
+    },
+    {
+     "texto": "STORY CHAPTERS",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 21.38,
+     "y": 880
+    }
+   ]
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 29.5,
+   "hasta": 31.6,
+   "items": [
+    {
+     "texto": "CAN'T SPEND",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 29.9,
+     "y": 760
+    },
+    {
+     "texto": "CAN'T WITHDRAW",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 30.84,
+     "y": 880
+    }
+   ]
+  },
+  {
+   "tipo": "cta",
+   "desde": 44.18,
+   "hasta": 99,
+   "lineas": [
+    "FOLLOW",
+    "FOR MORE GTA 6 SECRETS"
+   ]
+  }
+ ]
+}
