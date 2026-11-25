@@ -290,3 +290,4 @@
 - 25/11 09:24 · Investigación diaria (historia con giro): 4 ideas nuevas (59 límite del banco, 60 los peces no se quedan, 61 Car Tricks #5 superdeportivos, 62 primer parche 🟡). Car Tricks renumerada: #3 = Short 20, #4 = quién compra tu coche (54), #5 = superdeportivos (61). Recomendadas: límite del banco (🔥 8,5) y Pie Grande (🔥 7,3). Largo nuevo: 15 errores de las primeras horas. Bulos: PC 2028 y GTA 6 en Steam.
 - 25/11 11:54 · Preproducción continua: sin cambios (4 preproducidos en historia con giro).
 - 25/11 14:54 · Preproducción continua: sin cambios.
+- 25/11 17:53 · Preproducción continua: sin cambios.
