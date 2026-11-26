@@ -298,3 +298,4 @@
 - 26/11 09:23 · Investigación diaria: 4 ideas nuevas (63 ¿casa en GTA 6?, 64 Money Tricks #2 billetes marcados, 65 atracar casi cualquier tienda, 66 armas raras en Ammu-Nation 🟡). Recomendadas: Car Tricks #5 (🔥 8,9) y Money Tricks #2 (🔥 6,6). Largo nuevo: todas las formas de ganar dinero, ordenadas. Referentes: el formato «Gran pregunta» explota (×91). X: sin publicaciones nuevas recogidas.
 - 26/11 11:53 · Preproducción continua: 09 «Press Both Sticks» (🔥 1,0) → shorts/_archivo/; preparado el Short 23 «GTA 6 Car Tricks #5: Don't Steal Supercars (Yet)» (🔥 8,9, 140 palabras, giro: el coche puede avisar a la policía si vas despacio).
 - 26/11 14:53 · Preproducción continua: sin cambios (4 preproducidos, ninguno con 🔥 < 3).
+- 26/11 17:53 · Preproducción continua: sin cambios (4 preproducidos).
