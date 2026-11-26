@@ -294,3 +294,4 @@
 - 25/11 20:53 · Preproducción continua: sin cambios.
 - 25/11 21:35 · Encargo zcowwp2j5pgmf2hyh8hu: Short 21 «GTA 6 Money Tricks: Your Bank Has a Limit» producido (Fenrir, 47,8 s, historia con giro, 6 golpes con giro «NEVER COMES OUT», APTO 9,5/10, −14,2 LUFS). En «Listo para subir». Idea 59 → 🎬.
 - 25/11 21:48 · Encargo e5apzr83yic46v16yf41: Short 22 «GTA 6 Car Tricks #4: Who Buys Your Stolen Car?» producido (Fenrir, 50,6 s, historia con giro, giro «RANDY», APTO 9,8/10, −14,2 LUFS). En «Listo para subir». Idea 54 → 🎬.
+- 26/11 08:53 · Preproducción continua: 4 preproducidos (ninguno con 🔥 < 3, sin sustituciones). Short 20 (Car Tricks #3) enlazado al #4 y aviso: confirmar si Moses registra coches antes de producirlo.

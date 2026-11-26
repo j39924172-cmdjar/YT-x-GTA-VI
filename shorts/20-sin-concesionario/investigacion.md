@@ -16,3 +16,7 @@ Estado: **preproducción** (falta voz y montaje). Fecha: 25/11/2026. Origen: pre
 ## Cuidado (Nobita)
 - «Primer registro gratis»: 2 fuentes de guía (GTABase, thegta6map); decirlo tal cual, sin precio del resto.
 - Coherente con el 16: amarillo se puede registrar; rojo, al principio no.
+
+## Repaso 26/11 (preproducción continua)
+- El #4 («Who Buys Your Stolen Car?», Short 22) salió antes que este #3 y se disparó (+1.099 en 6 h). Enlazarlo en la descripción.
+- ⚠️ Comprobar antes de producir: aquí Moses **registra** coches (capítulo 2), y en el Short 22 Moses **compra** coches sin localizador; en el 16, el registro se hace en Pay 'n' Spray. Si las guías no aclaran que Moses hace las dos cosas, decir «register it» sin nombrar a Moses.
