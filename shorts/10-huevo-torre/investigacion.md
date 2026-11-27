@@ -1,5 +1,5 @@
 # 10 · El huevo de Pascua de la torre — investigación (Jarvis + Nobita)
-Estado: **preproducción** (falta voz y montaje). Fecha: 19/11/2026. Origen: preproducción continua, idea 13 del banco. Tipo: curiosidad. Sin spoilers.
+Estado: **producido** (27/11/2026, fábrica automática de Ford; voz Fenrir; título de La Bestia 10/10). Fecha de investigación: 19/11/2026. Idea 13 del banco. Tipo: curiosidad. Sin spoilers.
 
 ## Datos verificados (2 medios o más; descubrimiento de jugadores, no anunciado por Rockstar)
 1. **En lo alto de una torre gigante hay un nido enorme con un huevo de Pascua dentro.**
