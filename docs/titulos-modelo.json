@@ -1,0 +1,98 @@
+{
+ "filas": 146,
+ "canales": 10,
+ "acierto": 61,
+ "pares": 1051,
+ "pesos": {
+  "personaje": {
+   "peso": 0.905,
+   "medido": 1.394,
+   "n": 17,
+   "previo": 0.35
+  },
+  "mayusculas": {
+   "peso": -0.416,
+   "medido": -0.575,
+   "n": 63,
+   "previo": 0.25
+  },
+  "todo_mayus": {
+   "peso": -0.3,
+   "medido": null,
+   "n": 2,
+   "previo": -0.3
+  },
+  "emoji": {
+   "peso": 0.369,
+   "medido": 0.419,
+   "n": 51,
+   "previo": 0.2
+  },
+  "que_pasa_si": {
+   "peso": 0.575,
+   "medido": 0.947,
+   "n": 3,
+   "previo": 0.5
+  },
+  "aviso": {
+   "peso": -0.004,
+   "medido": -0.461,
+   "n": 10,
+   "previo": 0.3
+  },
+  "como": {
+   "peso": 0.613,
+   "medido": 1.973,
+   "n": 4,
+   "previo": 0.25
+  },
+  "cifra": {
+   "peso": 0.462,
+   "medido": 0.79,
+   "n": 12,
+   "previo": 0.2
+  },
+  "pregunta": {
+   "peso": 0.493,
+   "medido": 0.726,
+   "n": 22,
+   "previo": 0.15
+  },
+  "suspense": {
+   "peso": 0.174,
+   "medido": 0.042,
+   "n": 3,
+   "previo": 0.2
+  },
+  "secreto": {
+   "peso": -0.19,
+   "medido": -0.432,
+   "n": 18,
+   "previo": 0.1
+  },
+  "lista": {
+   "peso": -0.287,
+   "medido": -0.765,
+   "n": 9,
+   "previo": 0.0
+  },
+  "serie": {
+   "peso": 0.1,
+   "medido": null,
+   "n": 2,
+   "previo": 0.1
+  },
+  "corto": {
+   "peso": -0.005,
+   "medido": -0.064,
+   "n": 78,
+   "previo": 0.3
+  },
+  "largo": {
+   "peso": -0.04,
+   "medido": 0.155,
+   "n": 20,
+   "previo": -0.3
+  }
+ }
+}

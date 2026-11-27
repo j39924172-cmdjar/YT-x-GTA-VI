@@ -27,3 +27,4 @@ Unofficial fan-made channel. Not affiliated with Rockstar Games or Take-Two Inte
 **Ajustes de subida:** Privado hasta revisarlo · Entretenimiento · Inglés · Contenido alterado: **No** · Hecho para niños: **No**.
 
 **Formato:** curiosidad
+**La Bestia:** 6,2/10: ningún título de este tema pasa de 7 (no hay personaje ni promesa útil). Candidato a cambiarse por otro Short.

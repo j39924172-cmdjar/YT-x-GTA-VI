@@ -1,10 +1,10 @@
 # Short 10 — Ficha de publicación (borrador de preproducción)
 
-**Título recomendado:** GTA 6 Hid a Real Easter Egg on Top of a Tower
-*ES: GTA 6 escondió un huevo de Pascua de verdad en lo alto de una torre*
+**Título recomendado:** What Happens If Jason Throws an Egg Off a Tower? 🥚
+*ES: ¿Qué pasa si Jason tira un huevo desde una torre?*
 **Alternativos para probar:**
-- Rockstar Hid an Actual Egg in GTA 6
-- Climb This GTA 6 Tower for a Secret
+- What Happens If You Throw This Egg in GTA 6? 🥚
+- GTA 6 Hid a Real Easter Egg on Top of a Tower
 
 **Descripción:**
 ```
@@ -28,3 +28,4 @@ Unofficial fan-made channel. Not affiliated with Rockstar Games or Take-Two Inte
 
 **Gancho:** "Rockstar hid an actual egg in GTA 6. Literally."
 **Formato:** curiosidad
+**La Bestia:** 10.0/10 (alternativos 8.6, 4.4) · elegido con shorts/titulos.py el 27/11/2026. Si es serie, el número va en la descripción y en el comentario fijado.

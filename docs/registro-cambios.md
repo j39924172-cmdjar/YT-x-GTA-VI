@@ -308,3 +308,4 @@
 - 27/11 · Referentes de Adam: @mispap1 «Jason is one cold mf» (×32, 3,6 M) y @goliatgam «¿Sabías que hay POLICÍAS CORRUPTOS?» (×106; dato sin verificar, no usar).
 - 27/11 · Referentes de Adam: @BenGun «This is why GTA 6 sold 45 million copies 😂» (×246) y @prajakoko «Let Him Cook 🔥 Jason Statham ✅» (×6,5). Patrón: título-meme corto con emoji.
 - 27/11 · Adam crea 8 puestos nuevos (departamento 07 Crecimiento): Ford, La Bestia, Flash, Mario, Berlín, Sherlock, Paquita y Phileas. Oficina v27 (20 personas, 80/80). Ford en marcha: fábrica automática de 2 Shorts al día (docs/fabrica.md).
+- 27/11 · Cursos del departamento 07 (docs/cursos-crecimiento.md). La Bestia entrenada: shorts/titulos.py con 146 títulos de 10 canales (acierto 61 % frente a 50 % del azar); examen.py la evalúa; títulos nuevos en los Shorts 20, 23 y 10. Ford usa La Bestia, Flash (⚡), Berlín, Paquita y Phileas. Oficina v28.

@@ -39,6 +39,7 @@ EQUIPO = {
     "cristiano": "Cristiano · voz",
     "georgina": "Georgina · montaje",
     "guerrero": "Guerrero · publicación y SEO",
+    "bestia": "La Bestia · títulos virales",
     "taison": "Taison · datos",
     "almudena": "Almudena · calidad final",
 }
@@ -243,6 +244,21 @@ class Examen:
         self.r("guerrero", "Contenido alterado" in self.pub and "niños" in self.pub, "Ajustes: contenido alterado y hecho para niños")
         primera_linea = self.desc.strip().split("\n")[0] if self.desc else ""
         self.r("guerrero", 0 < len(primera_linea) <= 160, "La 1.ª línea de la descripción engancha (≤ 160 caracteres)", f"{len(primera_linea)}", aviso=True)
+
+        # La Bestia · títulos virales (desde el 27/11/2026: shorts/titulos.py elige el título)
+        if "La Bestia" in self.pub:
+            try:
+                import titulos
+                alts = [re.sub(r'^\s*[-·]\s+|\*', "", a).strip(' "“”') for a in self.alternativos]
+                ranking = sorted((titulos.puntuar(t) for t in [self.titulo] + alts if t), key=lambda r: -r["nota"])
+                top = ranking[0] if ranking else {"titulo": "", "nota": 0}
+                self.r("bestia", top["titulo"] == self.titulo or titulos.puntuar(self.titulo)["nota"] >= top["nota"] - 0.3,
+                       "El título recomendado es el que más nota saca", f"{titulos.puntuar(self.titulo)['nota']} frente a {top['nota']} («{top['titulo']}»)")
+                self.r("bestia", titulos.puntuar(self.titulo)["nota"] >= 7, "Nota de La Bestia ≥ 7/10", f"{titulos.puntuar(self.titulo)['nota']}")
+            except Exception as e:
+                self.r("bestia", False, "La Bestia pudo puntuar los títulos", str(e))
+        else:
+            self.r("bestia", False, "Títulos elegidos por La Bestia (shorts/titulos.py)", "añade **La Bestia:** con la nota a publicacion.md", aviso=True)
 
         # Taison · datos
         fmt = re.search(r"\*\*Formato:\*\*\s*(.+)", self.pub)

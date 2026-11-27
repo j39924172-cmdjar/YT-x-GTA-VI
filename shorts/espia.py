@@ -54,7 +54,7 @@ def formato(titulo: str) -> str:
     return "Otro"
 
 
-def canal(handle: str) -> dict:
+def canal(handle: str, todos: bool = False) -> dict:
     handle = handle if handle.startswith("@") else "@" + handle
     html = curl(f"https://www.youtube.com/{handle}/shorts")
     subs = re.search(r"([\d.,]+[KM]?) subscribers", html)
@@ -73,7 +73,7 @@ def canal(handle: str) -> dict:
         s["veces"] = round(s["vistas"] / med, 1) if med else 0
     shorts.sort(key=lambda s: -s["vistas"])
     return {"canal": handle, "url": f"https://www.youtube.com/{handle}", "suscriptores": subs.group(1) if subs else "?",
-            "n": len(shorts), "mediana": int(med), "shorts": shorts[:12]}
+            "n": len(shorts), "mediana": int(med), "shorts": shorts if todos else shorts[:12]}
 
 
 def ranking_formatos(canales: list[dict]) -> list[dict]:
