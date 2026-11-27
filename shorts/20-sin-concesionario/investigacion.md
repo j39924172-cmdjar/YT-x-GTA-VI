@@ -1,5 +1,5 @@
 # 20 · GTA 6 Car Tricks #3: You Can't Buy Cars. Here's the Trick — investigación (Jarvis + Nobita)
-Estado: **preproducción** (falta voz y montaje). Fecha: 25/11/2026. Origen: preproducción continua; idea 28 del banco (✅ desde el 20/11, nunca recomendada). Serie «GTA 6 Car Tricks»: el #1 (16) y el #2 (19) se dispararon (+1.182 y +814 en 6 h). 📡 «gta 6 how to buy cars» y «how to register car» en las búsquedas. Formato: historia con giro. 40-60 s. Sin spoilers.
+Estado: **producido** (27/11/2026, fábrica automática de Ford; voz Fenrir; título de La Bestia 9,4/10). Fecha de investigación: 25/11/2026. Idea 28 del banco. Serie Car Tricks #3.
 
 ## Datos verificados (2 medios o más)
 1. **No hay concesionario: los coches se roban y se registran para quedártelos.**

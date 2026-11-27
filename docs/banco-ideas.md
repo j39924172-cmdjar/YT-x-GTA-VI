@@ -98,6 +98,7 @@ Lo que más busca la gente además de la historia. Sin spoilers de misiones. Vis
 | 11 | The $250,000 Cheat Code in GTA 6 (truco, voz Fenrir) | 🎬 19/11 |
 
 ## Ganchos usados (no repetir)
+- "Where does Jason buy cars in GTA 6? Nowhere."
 - "What happens if Jason throws an egg off a tower?"
 - "No movie in history has ever opened this big. A video game just did." (Short 15)
 - "GTA 5 could never do number three." (Short 12)
