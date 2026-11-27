@@ -304,3 +304,4 @@
 - 27/11 09:23 · Investigación diaria: 4 ideas nuevas (67 la policía recuerda tu ropa, 68 sin testigos no hay delito, 69 más de 170 animales, 70 seis estrellas 🟡). Recomendadas: Car Tricks #3 (Short 20, 🔥 9,8) y «GTA 6 Cops Remember Your Outfit». Largo nuevo: cómo funciona la policía. X: sin publicaciones nuevas.
 - 27/11 11:53 · Preproducción continua: resuelto el aviso del Short 20 (Car Tricks #3): Moses registra coches sin localizador en el capítulo 2 y Pay 'n' Spray los de localizador estándar desde el 3 (games.gg, KeenGamer, NoobFeed). Listo para producir.
 - 27/11 · Referente de Adam: @RomainDotLive «What happens if LUCIA eats 100 TACOS in GTA 6?» (6,2 M, ×25,5, 26 s). Formato «¿Qué pasa si…?».
+- 27/11 · Referentes de Adam: @Wasted.clips67 «If she asks for help... RUN.» (×353) y @FAZZGTA «How to Make JASON STRONGER» (×51). Ideas nuevas 71 (Jason más fuerte gratis) y 72 (¿qué pasa si mueres con 100.000 0).
