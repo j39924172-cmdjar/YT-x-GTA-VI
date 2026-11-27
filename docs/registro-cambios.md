@@ -299,3 +299,4 @@
 - 26/11 11:53 · Preproducción continua: 09 «Press Both Sticks» (🔥 1,0) → shorts/_archivo/; preparado el Short 23 «GTA 6 Car Tricks #5: Don't Steal Supercars (Yet)» (🔥 8,9, 140 palabras, giro: el coche puede avisar a la policía si vas despacio).
 - 26/11 14:53 · Preproducción continua: sin cambios (4 preproducidos, ninguno con 🔥 < 3).
 - 26/11 17:53 · Preproducción continua: sin cambios (4 preproducidos).
+- 27/11 05:48 · Repaso del canal: 16.169 (+100), 7 suscriptores. (La preproducción de las 20:53 y el repaso de las 23:48 llegaron con retraso tras un reinicio: preproducción sin cambios, repaso sustituido por este.)
