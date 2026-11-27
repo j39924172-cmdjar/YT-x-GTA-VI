@@ -20,3 +20,10 @@ Estado: **preproducción** (falta voz y montaje). Fecha: 25/11/2026. Origen: pre
 ## Repaso 26/11 (preproducción continua)
 - El #4 («Who Buys Your Stolen Car?», Short 22) salió antes que este #3 y se disparó (+1.099 en 6 h). Enlazarlo en la descripción.
 - ⚠️ Comprobar antes de producir: aquí Moses **registra** coches (capítulo 2), y en el Short 22 Moses **compra** coches sin localizador; en el 16, el registro se hace en Pay 'n' Spray. Si las guías no aclaran que Moses hace las dos cosas, decir «register it» sin nombrar a Moses.
+
+## Comprobado 27/11 (preproducción continua)
+- ✅ Resuelto el aviso del 26/11: Moses (Port Gellhorn) **registra** coches sin localizador desde la misión del capítulo 2 «Take A Vehicle to Moses» (el primero gratis, se repinta y se elige «Register») y también los compra. En el capítulo 3 el registro se amplía a Pay 'n' Spray, que acepta localizadores estándar (amarillos, Short 16). No hay contradicción con los Shorts 16 y 22.
+  - games.gg, "How to keep stolen cars in Grand Theft Auto 6" — https://games.gg/grand-theft-auto-vi/guides/how-to-keep-stolen-cars-in-grand-theft-auto-6/
+  - KeenGamer, "GTA VI: How to register personal cars and vehicles" — https://www.keengamer.com/articles/guides/gta-vi-how-to-register-personal-cars-and-vehicles/
+  - NoobFeed, "How to Make a Stolen Car Your Own" — https://www.noobfeed.com/articles/gta6-make-stolen-car-your-own
+- Hace falta una plaza libre en el garaje (empiezas con 3). Sin precios de registro.
