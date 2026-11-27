@@ -11,6 +11,18 @@ Basado en el documento maestro (`docs/vicecity-estado.md`). Las personas son las
 | **5. Publicación y SEO** | Guerrero | Título con curiosidad (más 2 alternativos), descripción con datos, fuente y aviso, hashtags, comentario fijado y ajustes de subida | `publicacion.md` | Sección 4.6 |
 | **6. Estrategia y crecimiento** | Almudena (decide) y Taison (datos) | Calendario, banco de ideas, avatar original, handle, requisitos del Programa de Socios y lectura de las métricas | Plan semanal y decisiones | Secciones 1, 2, 6 y 8 |
 
+## 7. Crecimiento (nuevo, 27/11/2026 — Adam: «quiero más, mucho más»)
+| Puesto | Quién | Qué hace | Estado |
+|---|---|---|---|
+| Jefe de fábrica | **Ford** | Produce 2 Shorts al día solo, sin esperar a «Producir» (`docs/fabrica.md`) | ✅ en marcha |
+| Títulos virales | **La Bestia** | 3 títulos por Short con lo aprendido de los virales | ⏳ siguiente |
+| Cazador de novedades | **Flash** | De la novedad al Short en horas | ⏳ |
+| Coordinador de gameplay | **Mario** | Lista de clips para grabar y Shorts con partida real | ⏳ (falta quién grabe) |
+| Jefe de series | **Berlín** | Car Tricks, Money Tricks y series nuevas | ⏳ |
+| Analista de YouTube Studio | **Sherlock** | Retención y «visto frente a deslizado» con capturas de Studio | ⏳ |
+| Comunidad | **Paquita** | Respuestas y preguntas fijadas listas para pegar | ⏳ |
+| Planificador de publicación | **Phileas** | Hora de subida y cola de 3-4 Shorts | ⏳ |
+
 ## Flujo de un Short
 Investigación verifica → Guiones escribe (solo con datos verificados) → Visuales asigna capturas → Montaje pone voz y monta → Publicación prepara la ficha → Estrategia revisa y da luz verde → Antonio aprueba y sube.
 

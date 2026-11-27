@@ -53,9 +53,9 @@ const txt = (page, sel) => page.textContent(sel);
 
   { // 1. La empresa: plantilla, fichas y encargos
     const { page, ctx, errors } = await abrir(browser, "ok");
-    ok("12 personas en la plantilla", (await page.$$eval("#depts .worker", e => e.length)) === 12);
-    ok("6 departamentos", (await page.$$eval("#depts .dept", e => e.length)) === 6);
-    ok("Cada persona muestra su nota del examen", (await page.$$eval("#depts .score b", e => e.every(x => /^\d+\/\d+$/.test(x.textContent)))));
+    ok("20 personas en la plantilla", (await page.$$eval("#depts .worker", e => e.length)) === 20);
+    ok("7 departamentos", (await page.$$eval("#depts .dept", e => e.length)) === 7);
+    ok("Cada persona muestra su nota del examen", (await page.$$eval("#depts .score b", e => e.every(x => /^(\d+\/\d+|nuevo)$/.test(x.textContent)))));
     await page.click('#depts .worker[data-id="nil"]');
     ok("Ficha: se abre al tocar a una persona", await page.isVisible("#sheet") && /Nil/.test(await txt(page, "#sheet")));
     ok("Ficha: lo que domina, lo que nunca hace y su examen", /Lo que domina/.test(await txt(page, "#sheet")) && /Lo que nunca hace/.test(await txt(page, "#sheet")) && /Examen/.test(await txt(page, "#sheet")));
@@ -63,7 +63,7 @@ const txt = (page, sel) => page.textContent(sel);
     ok("Ficha: la cámara pinta a la persona", await page.$eval("#sheet canvas", c => { const d = c.getContext("2d").getImageData(0, 0, c.width, c.height).data; let n = 0; for (let i = 0; i < d.length; i += 4000) if (d[i] + d[i + 1] + d[i + 2] > 60) n++; return n > 50; }));
     await page.keyboard.press("Escape");
     // Cámara en directo
-    ok("Cámara: 12 personas para elegir", (await page.$$eval("#camPick button", e => e.length)) === 12);
+    ok("Cámara: 20 personas para elegir", (await page.$$eval("#camPick button", e => e.length)) === 20);
     const f1 = await page.$eval("#camMain", c => c.toDataURL().length); await page.waitForTimeout(400); const f2 = await page.$eval("#camMain", c => c.toDataURL());
     ok("Cámara: la escena se mueve", f1 !== f2.length || true);
     const a1 = await page.$eval("#camMain", c => c.toDataURL()); await page.waitForTimeout(300); const a2 = await page.$eval("#camMain", c => c.toDataURL());
@@ -99,7 +99,7 @@ const txt = (page, sel) => page.textContent(sel);
     await page.evaluate(id => window.__claudeActualiza(id, { estado: "entregado", paso: 8, nota: "listo" }), id);
     await page.waitForTimeout(150);
     ok("Entregado: los 8 pasos hechos y Nil vuelve a su tarea propia", (await page.$$eval("#pasos li.hecho", e => e.length)) === 8 && !/Eligiendo las capturas: /.test(await page.$eval('#depts .worker[data-id="nil"]', e => e.textContent)));
-    ok("Nadie está parado: los 12 trabajan", (await page.$$eval("#depts .worker.busy", e => e.length)) === 12);
+    ok("Nadie está parado: los 20 trabajan", (await page.$$eval("#depts .worker.busy", e => e.length)) === 20);
 
     // Actividad en directo
     await page.evaluate(() => window.__claudeActividad("a1", { ts: Date.now() - 120000, quien: ["taison"], texto: "Repasó el canal: 1.660 visualizaciones" }));

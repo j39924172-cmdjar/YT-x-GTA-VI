@@ -317,7 +317,7 @@
   <div class="in">
     <div class="brand">
       <div class="mark" aria-hidden="true">VCD</div>
-      <div><h1>VICECITY DAYS <b>TV</b></h1><p>Productora de Shorts de GTA 6 · 12 personas en 6 departamentos</p></div>
+      <div><h1>VICECITY DAYS <b>TV</b></h1><p>Productora de Shorts de GTA 6 · 20 personas en 7 departamentos</p></div>
     </div>
     <span class="clock mono">Madrid <b id="reloj">--:--</b></span>
     <span class="status"><span class="dot" id="teamDot"></span><span id="teamText">Equipo disponible</span></span>
@@ -368,7 +368,7 @@
       </section>
 
       <section class="panel" aria-labelledby="hPlantilla">
-        <div class="ph"><h2 id="hPlantilla">Plantilla</h2><span class="chip" id="plantillaChip">12 personas</span></div>
+        <div class="ph"><h2 id="hPlantilla">Plantilla</h2><span class="chip" id="plantillaChip">20 personas</span></div>
         <p class="note">Toca a una persona para ver qué hace, lo que domina y su nota en el examen.</p>
         <div class="depts" id="depts"></div>
       </section>
@@ -525,6 +525,7 @@
     { id: "mon", n: "04", nombre: "Voz y montaje", color: "var(--sun)", sub: "1080×1920 · −14 LUFS" },
     { id: "pub", n: "05", nombre: "Publicación y SEO", color: "var(--sky)", sub: "título y descripción" },
     { id: "est", n: "06", nombre: "Dirección y datos", color: "var(--ok)", sub: "decide y mide" },
+    { id: "cre", n: "07", nombre: "Crecimiento", color: "var(--pink)", sub: "más Shorts, más vistas" },
   ];
   const P = (id, name, ini, dept, role, mision, sabe, evita, examen, nota, libre) => ({ id, name, ini, dept, role, mision, sabe, evita, examen, nota, libre });
   const PEOPLE = [
@@ -589,6 +590,34 @@
        "Muchos deslizan = falla el gancho; se van a mitad = falla el ritmo o el dato.", "Actualiza cada semana la tabla de lecciones del manual."],
       ["Sacar conclusiones con un solo vídeo", "Mirar solo las visualizaciones"],
       ["Formato anotado", "Gancho anotado"], "6/6", "Vigilando las estadísticas del canal"),
+    P("ford", "Ford", "FO", "cre", "Jefe de fábrica", "Que salgan 2 Shorts al día sin esperar a nadie: coge el mejor preproducido, lo produce entero con la voz gratis y lo deja en «Listo para subir».",
+      ["El cuello de botella es el volumen: sin Short nuevo, el canal se para (25-27/11: de +2.000 a +100 cada 6 h).",
+       "Orden: el preproducido con más 🔥 y que no repita formato con el anterior.", "Solo entrega lo que aprueba el examen; nunca gasta créditos."],
+      ["Dejar días vacíos", "Producir algo sin datos verificados", "Gastar créditos de Higgsfield"],
+      ["2 Shorts al día", "Examen APTO"], "nuevo", "Preparando la cadena de producción"),
+    P("bestia", "La Bestia", "LB", "cre", "Títulos virales", "Da a cada Short 3 títulos que paran el dedo: personaje, mayúsculas, emoji y formatos que explotan.",
+      ["Lo aprendido de 9 Shorts virales: Jason o Lucia en el título, 4-8 palabras, 1-2 palabras en MAYÚSCULAS y un emoji.",
+       "Formatos: «What happens if…?», aviso («…DON'T STOP»), «Did you know…?» y contraste de cifras.", "Nunca promete lo que el vídeo no cumple."],
+      ["Títulos que engañan", "Todo en mayúsculas", "Títulos sin personaje ni emoción"],
+      ["3 títulos por Short", "Personaje o cifra", "≤ 8 palabras"], "nuevo", "Estudiando títulos virales"),
+    P("flash", "Flash", "FL", "cre", "Cazador de novedades", "Encuentra lo que los jugadores acaban de descubrir y lo convierte en Short antes que nadie.",
+      ["En lo viral gana el primero: de la novedad al Short en horas, no en días.", "Solo entra lo que confirman Rockstar o 2 medios fiables."],
+      ["Bulos", "Temas que ya tiene el banco"], ["Novedad con fuente"], "nuevo", "Vigilando novedades"),
+    P("mario", "Mario", "MA", "cre", "Coordinador de gameplay", "Si alguien graba partidas, le dice qué clips grabar cada semana y los convierte en Shorts.",
+      ["6 de 7 Shorts virales estudiados son partida grabada.", "Lista semanal de clips concretos: entrenar a Jason, robar un superdeportivo, acariciar un perro…"],
+      ["Clips de otros creadores", "Spoilers de misiones"], ["Lista semanal"], "nuevo", "Esperando al jugador del equipo"),
+    P("berlin", "Berlín", "BE", "cre", "Jefe de series", "Gestiona las series que funcionan (Car Tricks, Money Tricks) y abre otras nuevas.",
+      ["Cada Short de una serie engancha con el siguiente.", "Series candidatas: «What Happens If…», «Jason Upgrades»."],
+      ["Series sin datos para 3 capítulos"], ["Número de serie en el título"], "nuevo", "Ordenando las series"),
+    P("sherlock", "Sherlock", "SH", "cre", "Analista de YouTube Studio", "Con las capturas de Studio, encuentra el segundo en el que se va la gente y corrige los siguientes Shorts.",
+      ["«Visto frente a deslizado» por debajo del 70 % = falla el gancho.", "Una caída a mitad = falla el ritmo o el dato."],
+      ["Conclusiones con un solo Short"], ["Informe por Short"], "nuevo", "Esperando capturas de Studio"),
+    P("paquita", "Paquita", "PQ", "cre", "Comunidad", "Prepara respuestas a los comentarios y preguntas fijadas que provocan conversación, y saca ideas de lo que pide la gente.",
+      ["Pregunta fijada fácil de responder: un número, sí/no o «¿cuál eliges?».", "Las ideas de los comentarios pasan al banco."],
+      ["Responder con plantillas", "Entrar en la cuenta de Adam"], ["Respuestas listas para pegar"], "nuevo", "Preparando preguntas fijadas"),
+    P("phileas", "Phileas", "PH", "cre", "Planificador de publicación", "Decide a qué hora sube cada Short y mantiene una cola de 3-4 listos para que nunca haya un día vacío.",
+      ["Horario base: 18:00-21:00 de Nueva York (00:00-03:00 en España).", "Ajusta la hora con los repasos del canal."],
+      ["Días vacíos", "Dos Shorts del mismo formato seguidos"], ["Cola de 3-4"], "nuevo", "Planificando la semana"),
   ];
   const person = id => PEOPLE.find(p => p.id === id);
   const deptOf = p => DEPTS.find(d => d.id === p.dept);
@@ -709,7 +738,7 @@
             h("span", { class: "w-now" }, a.busy ? "● " + a.txt : a.txt)),
           h("span", { class: "score", title: "Pruebas del examen superadas" }, h("b", {}, nota), h("span", { class: "bar" }, h("i", { style: { width: pct(nota) + "%" } }))));
       }))));
-    $("plantillaChip").textContent = `${ocupados} de 12 trabajando ahora`;
+    $("plantillaChip").textContent = `${ocupados} de ${PEOPLE.length} trabajando ahora`;
     $("plantillaChip").className = "chip" + (ocupados ? " hot" : "");
     if (typeof renderCamPick === "function" && $("camPick")) renderCamPick();
     if (fichaAbierta) abrirFicha(fichaAbierta, true);
@@ -1118,8 +1147,10 @@
     jarvis: ["#C98E68", "#1C1414"], nobita: ["#E8B48F", "#1A1A1A"], chapo: ["#A86B48", "#2A1B12"], torrente: ["#B57A55", "#141018"],
     pablito: ["#EDC09B", "#5A3A1A"], victillor: ["#BF8460", "#2E2E2E"], nil: ["#D49A72", "#0F0B10"], cristiano: ["#C98E68", "#141018"],
     georgina: ["#DDA582", "#3E1F14"], guerrero: ["#B07250", "#1A1210"], almudena: ["#E3AD86", "#3B2416"], taison: ["#A86B48", "#141018"],
+    ford: ["#C98E68", "#2E2E2E"], bestia: ["#B57A55", "#0F0B10"], flash: ["#EDC09B", "#8A2A1A"], mario: ["#D49A72", "#1A1210"],
+    berlin: ["#E3AD86", "#141018"], sherlock: ["#E8B48F", "#3B2416"], paquita: ["#DDA582", "#5A3A1A"], phileas: ["#BF8460", "#2E2E2E"],
   };
-  const LARGO = new Set(["nil", "georgina", "almudena"]);   // pelo largo
+  const LARGO = new Set(["nil", "georgina", "almudena", "paquita"]);   // pelo largo
   const COLOR = { "var(--violet)": "#8B35FF", "var(--pink)": "#FF2E8C", "var(--lilac)": "#C77DFF", "var(--sun)": "#FFCE28", "var(--sky)": "#5CC8FF", "var(--ok)": "#3DDC97" };
   const CAMS = { main: null, sheet: null };
   let camId = "almudena";
@@ -1141,6 +1172,14 @@
     guerrero:  { pant: [["subida", 290, 152, 120, 76, "portatil"], ["noticias", 430, 116, 100, 64, "monitor"]], mesa: [], pared: "calendario", ropa: [] },
     almudena:  { pant: [["fotogramas", 262, 100, 176, 108, "monitor"]], mesa: ["claqueta"], pared: "tele", ropa: ["auricular"] },
     taison:    { pant: [["graficas", 262, 100, 176, 108, "monitor"], ["barras", 450, 124, 92, 62, "monitor"]], mesa: [], pared: "tele", ropa: ["gafas"] },
+    ford:      { pant: [["timeline", 262, 100, 176, 108, "monitor"], ["subida", 450, 124, 92, 62, "monitor"]], mesa: ["claqueta"], pared: "calendario", ropa: [] },
+    bestia:    { pant: [["titulos", 262, 100, 176, 108, "monitor"]], mesa: ["postits"], pared: "pizarra", ropa: [] },
+    flash:     { pant: [["noticias", 262, 100, 176, 108, "monitor"], ["radar", 450, 124, 92, 62, "monitor"]], mesa: ["movil"], pared: "mapa", ropa: [] },
+    mario:     { pant: [["capturas", 262, 96, 184, 112, "monitor"]], mesa: ["tripode"], pared: "posters", ropa: ["cascos"] },
+    berlin:    { pant: [["guion", 282, 150, 128, 80, "portatil"]], mesa: ["libreta"], pared: "corcho", ropa: [] },
+    sherlock:  { pant: [["retencion", 262, 100, 176, 108, "monitor"], ["barras", 450, 124, 92, 62, "monitor"]], mesa: ["lupa"], pared: "tele", ropa: ["gafas"] },
+    paquita:   { pant: [["noticias", 290, 152, 120, 76, "portatil"]], mesa: ["movil"], pared: "posters", ropa: [] },
+    phileas:   { pant: [["subida", 262, 100, 176, 108, "monitor"]], mesa: ["papeles"], pared: "calendario", ropa: [] },
   };
 
   const TEXTO = new Set(["guion", "titulos", "fuentes", "noticias", "subida"]);
