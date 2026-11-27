@@ -1,8 +1,30 @@
 [
-  {"canal": "@COLETHEMANGTA6", "desde": "2026-11-20", "pasado_por": "Adam",
-   "ejemplos": ["https://youtube.com/shorts/i6IYZIiWWiw", "https://youtube.com/shorts/EdwRiJxY4bw"],
-   "nota": "12 Shorts y todos explotan (225 mil a 4,6 M). Publica antes del lanzamiento con información oficial, como nosotros. Formatos: «How X Works», lista de 5 realista y GTA 6 contra GTA 5. Títulos simples con UNA palabra en mayúsculas."},
-  {"canal": "@GTASixers_Info", "desde": "2026-11-20", "pasado_por": "Adam",
-   "ejemplos": ["https://youtube.com/shorts/0s0t75IKQK8"],
-   "nota": "Canal pequeño (unas 1.300 de media). Explotan la gran pregunta («Will GTA 6 Be the LAST GTA Ever?», 81 mil y 374 comentarios) y el caza robado (37 mil)."}
+ {
+  "canal": "@COLETHEMANGTA6",
+  "desde": "2026-11-20",
+  "pasado_por": "Adam",
+  "ejemplos": [
+   "https://youtube.com/shorts/i6IYZIiWWiw",
+   "https://youtube.com/shorts/EdwRiJxY4bw"
+  ],
+  "nota": "12 Shorts y todos explotan (225 mil a 4,6 M). Publica antes del lanzamiento con información oficial, como nosotros. Formatos: «How X Works», lista de 5 realista y GTA 6 contra GTA 5. Títulos simples con UNA palabra en mayúsculas."
+ },
+ {
+  "canal": "@GTASixers_Info",
+  "desde": "2026-11-20",
+  "pasado_por": "Adam",
+  "ejemplos": [
+   "https://youtube.com/shorts/0s0t75IKQK8"
+  ],
+  "nota": "Canal pequeño (unas 1.300 de media). Explotan la gran pregunta («Will GTA 6 Be the LAST GTA Ever?», 81 mil y 374 comentarios) y el caza robado (37 mil)."
+ },
+ {
+  "canal": "@RomainDotLive",
+  "desde": "2026-11-27",
+  "pasado_por": "Adam",
+  "ejemplos": [
+   "https://youtube.com/shorts/UrLCn5THsEE"
+  ],
+  "nota": "Canal francés de 1,62 M (mediana 243 mil por Short). «Que se passe-t-il si LUCIA mange 100 TACOS dans GTA 6 ? 😱» (en inglés: «What happens if LUCIA eats 100 TACOS in GTA 6?»): 6,2 M en 5 días (×25,5 su mediana), 26 s, 48 mil likes (0,8 %), 381 comentarios. Formato «¿Qué pasa si…?»: experimento exagerado con número grande + personaje + emoji 😱; descripción con reto de likes («10.000 likes y le doy 10.000 $ de tacos»). Es partida grabada: nosotros solo podemos copiar el FORMATO con datos verificados."
+ }
 ]
