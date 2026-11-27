@@ -301,3 +301,4 @@
 - 26/11 17:53 · Preproducción continua: sin cambios (4 preproducidos).
 - 27/11 05:48 · Repaso del canal: 16.169 (+100), 7 suscriptores. (La preproducción de las 20:53 y el repaso de las 23:48 llegaron con retraso tras un reinicio: preproducción sin cambios, repaso sustituido por este.)
 - 27/11 08:53 · Preproducción continua: sin cambios (4 preproducidos, notas 🔥 sin cambios desde ayer).
+- 27/11 09:23 · Investigación diaria: 4 ideas nuevas (67 la policía recuerda tu ropa, 68 sin testigos no hay delito, 69 más de 170 animales, 70 seis estrellas 🟡). Recomendadas: Car Tricks #3 (Short 20, 🔥 9,8) y «GTA 6 Cops Remember Your Outfit». Largo nuevo: cómo funciona la policía. X: sin publicaciones nuevas.
