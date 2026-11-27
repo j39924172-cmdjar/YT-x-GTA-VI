@@ -306,3 +306,4 @@
 - 27/11 · Referente de Adam: @RomainDotLive «What happens if LUCIA eats 100 TACOS in GTA 6?» (6,2 M, ×25,5, 26 s). Formato «¿Qué pasa si…?».
 - 27/11 · Referentes de Adam: @Wasted.clips67 «If she asks for help... RUN.» (×353) y @FAZZGTA «How to Make JASON STRONGER» (×51). Ideas nuevas 71 (Jason más fuerte gratis) y 72 (¿qué pasa si mueres con 100.000 0).
 - 27/11 · Referentes de Adam: @mispap1 «Jason is one cold mf» (×32, 3,6 M) y @goliatgam «¿Sabías que hay POLICÍAS CORRUPTOS?» (×106; dato sin verificar, no usar).
+- 27/11 · Referentes de Adam: @BenGun «This is why GTA 6 sold 45 million copies 😂» (×246) y @prajakoko «Let Him Cook 🔥 Jason Statham ✅» (×6,5). Patrón: título-meme corto con emoji.
