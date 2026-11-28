@@ -316,3 +316,4 @@
 - 27/11 20:53 · Preproducción continua: preparado el Short 25 «What Happens If Jason Robs a Bank in GTA 6? 💸» (Money Tricks #2, idea 64, La Bestia 10/10). Preproducidos: 06, 23, 24, 25.
 - 28/11 08:53 · Preproducción continua: sin cambios (4 preproducidos: 06, 23, 24, 25).
 - 28/11 09:23 · Investigación diaria: 4 ideas nuevas (73 truco que bloquea el guardado, 74 volcar el coche, 75 Lucia contra Jason 🟡, 76 coche destrozado 🟡). Recomendadas: «What Happens If Jason Flips His Car» (🔥 9,2) y «Michael's Boat» (🔥 10). Largo nuevo: «Everything GTA 6 Never Tells You». X: sin publicaciones nuevas.
+- 28/11 11:53 · Preproducción continua: sin cambios (4 preproducidos: 06, 23, 24, 25).
