@@ -1,5 +1,5 @@
 # 23 · GTA 6 Car Tricks #5: Don't Steal Supercars (Yet) — investigación (Jarvis + Nobita)
-Estado: preproducción (26/11/2026, preproducción continua). Idea 61 del banco (🔥 8,9, recomendada hoy). Sustituye al 09 «Press Both Sticks» (🔥 1,0 → shorts/_archivo/). Serie Car Tricks (#4 +1.099 en 6 h). Formato: truco · serie · historia con giro. 40-60 s.
+Estado: **producido** (28/11/2026, fábrica automática de Ford; voz Fenrir; título de La Bestia 10/10). Idea 61 del banco. Serie Car Tricks #5.
 
 ## Datos verificados (2 medios o más)
 1. **Muchos superdeportivos piden el Key Cloner, que no llega hasta el capítulo 3 (misión de Randy).**

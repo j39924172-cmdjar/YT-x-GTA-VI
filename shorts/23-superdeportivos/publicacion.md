@@ -1,11 +1,28 @@
-# Short 23 — Ficha de publicación (borrador)
+# Short 23 — Ficha de publicación
 **Título recomendado:** What Happens If Jason Drives Slow in a Stolen Supercar? 🚔
 *ES: ¿Qué pasa si Jason va despacio en un superdeportivo robado?*
 **Alternativos para probar:**
 - GTA 6 Car Tricks #5: Don't Steal Supercars (Yet)
 - Why Jason Should NEVER Steal a Supercar in GTA 6 🚔
-**Descripción:** (se completa al producir) ✅ muchos superdeportivos piden el Key Cloner (capítulo 3, Randy) · ✅ muchos llevan localizador avanzado que puede avisar a la policía si vas despacio · ✅ escanea con WAINK y elige estándar o sin localizador. Fuentes: PC Gamer, games.gg, Player.One, GTABase, GTABoss. Car Tricks #1, #2 y #4. Créditos de Rockstar, aviso no oficial y #GTA6 #GTAVI #Shorts.
+**Descripción:**
+```
+What happens if Jason drives slow in a stolen supercar in GTA 6? He's in trouble.
+
+✅ A lot of supercars won't even open without the Key Cloner, and you only get it in chapter 3, from Randy.
+✅ Many of those supercars also carry an advanced tracker.
+✅ The twist: slow down in one and the car can call the cops on you. Scan it with WAINK first and pick something fast with a standard tracker, or no tracker at all.
+
+Car Tricks #5 · #1: Yellow or Red? · #2: Check THIS App · #3: Where Does Jason Buy Cars? · #4: Who Buys Your Stolen Car?
+
+Sources: PC Gamer, games.gg, Player.One, GTABase, GTABoss (launch-week guides; details can change with patches).
+Footage and images: Rockstar Games (official trailers and screenshots). The Key Cloner and WAINK are not shown.
+
+Unofficial fan-made channel. Not affiliated with Rockstar Games or Take-Two Interactive.
+
+#GTA6 #GTAVI #Shorts
+```
 **Comentario fijado:** Supercar or sports car: what's YOUR first steal? 🏎️👇
-**Gancho:** "Stop stealing supercars in GTA 6."
+**Ajustes de subida:** Privado hasta revisarlo · Entretenimiento · Inglés · Contenido alterado: **No** · Hecho para niños: **No**.
+**Gancho:** "What if Jason drives slow?"
 **Formato:** truco · serie Car Tricks #5 (historia con giro)
-**La Bestia:** 10.0/10 (alternativos 5.2, 7.1) · elegido con shorts/titulos.py el 27/11/2026. Si es serie, el número va en la descripción y en el comentario fijado.
+**La Bestia:** 10.0/10 (alternativos 5.2, 7.1) · elegido con shorts/titulos.py el 27/11/2026.
