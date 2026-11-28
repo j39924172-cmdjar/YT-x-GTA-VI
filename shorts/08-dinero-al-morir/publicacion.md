@@ -1,10 +1,10 @@
 # Short 08 — Ficha de publicación
 
-**Título recomendado:** Never Die With Cash in Your Pocket in GTA 6
-*ES: Nunca mueras con dinero en el bolsillo en GTA 6*
+**Título recomendado:** What Happens If Jason Dies With Cash in GTA 6? 💸
+*ES: ¿Qué pasa si Jason muere con dinero encima en GTA 6?*
 **Alternativos para probar:**
-- GTA 6's Money Trap Nobody Warns You About
-- Bank Your Cash in GTA 6 (Or Lose It)
+- Never Let Jason Die With Cash in GTA 6 💸
+- Never Die With Cash in Your Pocket in GTA 6
 
 **Descripción:**
 ```
@@ -28,3 +28,4 @@ Unofficial fan-made channel. Not affiliated with Rockstar Games or Take-Two Inte
 
 **Gancho:** "Die in GTA 6, and this money is gone forever."
 **Formato:** truco
+**La Bestia:** 10.0/10 (alternativos 8.2, 5.0) · título cambiado el 28/11/2026 (antes 5,0).
