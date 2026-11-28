@@ -318,3 +318,4 @@
 - 28/11 09:23 · Investigación diaria: 4 ideas nuevas (73 truco que bloquea el guardado, 74 volcar el coche, 75 Lucia contra Jason 🟡, 76 coche destrozado 🟡). Recomendadas: «What Happens If Jason Flips His Car» (🔥 9,2) y «Michael's Boat» (🔥 10). Largo nuevo: «Everything GTA 6 Never Tells You». X: sin publicaciones nuevas.
 - 28/11 11:53 · Preproducción continua: sin cambios (4 preproducidos: 06, 23, 24, 25).
 - 28/11 14:17 · Fábrica (Ford): Short 24 «What Happens If Jason Stops Training in GTA 6? 💪» (What Happens If #2, La Bestia 10/10; Fenrir, 50,3 s, APTO 10/10, −14,2 LUFS). Gancho acortado a «What if Jason stops training?» para cumplir los 3 s.
+- 28/11 14:53 · Preproducción continua: preparado el Short 26 «What Happens If Jason Uses a Cheat in GTA 6? 💀» (idea 73, La Bestia 10/10, What Happens If #3). Preproducidos: 06, 23, 25, 26.
