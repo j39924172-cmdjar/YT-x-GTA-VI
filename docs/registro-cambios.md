@@ -321,3 +321,4 @@
 - 28/11 14:53 · Preproducción continua: preparado el Short 26 «What Happens If Jason Uses a Cheat in GTA 6? 💀» (idea 73, La Bestia 10/10, What Happens If #3). Preproducidos: 06, 23, 25, 26.
 - 28/11 17:53 · Preproducción continua: sin cambios (4 preproducidos: 06, 23, 25, 26).
 - 28/11 20:17 · Fábrica (Ford): Short 23 «What Happens If Jason Drives Slow in a Stolen Supercar? 🚔» (Car Tricks #5, La Bestia 10/10; Fenrir, 48,5 s, APTO 9,8/10, −14,1 LUFS). Cola: 08, 23 y 24.
+- 28/11 20:53 · Preproducción continua: preparado el Short 27 «What Happens If Jason Flips His Car in GTA 6? 🚗» (idea 74, La Bestia 10/10; Scooter Bros con 3 fuentes). Preproducidos: 06, 25, 26, 27.
