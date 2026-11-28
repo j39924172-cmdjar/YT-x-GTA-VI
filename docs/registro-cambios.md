@@ -314,3 +314,4 @@
 - 27/11 17:53 · Preproducción continua: sin cambios (4 preproducidos: 06, 20, 23, 24).
 - 27/11 20:17 · Fábrica (Ford), segundo turno: Short 20 «Where Does Jason Buy Cars in GTA 6? 🚗» (Car Tricks #3, La Bestia 9,4; Fenrir, 48,6 s, APTO 9,8/10, −14,2 LUFS). Cola: 08, 10 y 20 por subir.
 - 27/11 20:53 · Preproducción continua: preparado el Short 25 «What Happens If Jason Robs a Bank in GTA 6? 💸» (Money Tricks #2, idea 64, La Bestia 10/10). Preproducidos: 06, 23, 24, 25.
+- 28/11 08:53 · Preproducción continua: sin cambios (4 preproducidos: 06, 23, 24, 25).
