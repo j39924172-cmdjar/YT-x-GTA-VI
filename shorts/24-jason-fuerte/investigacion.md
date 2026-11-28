@@ -1,5 +1,5 @@
 # 24 · What Happens If Jason Stops Training in GTA 6? — investigación (Jarvis + Nobita)
-Estado: preproducción (27/11/2026, preproducción continua). Idea 71 del banco. Referente: @FAZZGTA «Cómo hacer a JASON MÁS FUERTE» (3,4 M, ×51). Formato: truco · cómo mejorar al personaje · serie What Happens If / Jason Upgrades. 40-60 s.
+Estado: **producido** (28/11/2026, fábrica automática de Ford; voz Fenrir; título de La Bestia 10/10). Idea 71 del banco. Referente: @FAZZGTA (×51). Serie What Happens If #2.
 
 ## Datos verificados (2 medios o más)
 1. **La fuerza sube la vida máxima de Jason: aguanta más en los tiroteos.**

@@ -1,0 +1,646 @@
+{
+ "voz": "voz.mp3",
+ "palabras": "palabras.json",
+ "salida": "final.mp4",
+ "fuente": "Footage: Rockstar Games",
+ "marca": "VICECITY DAYS TV",
+ "musica": {
+  "bpm": 128,
+  "volumen": 0.3
+ },
+ "palabras_clave": [
+  "Jason",
+  "training",
+  "weaker.",
+  "strength",
+  "health,",
+  "gym",
+  "Key",
+  "Lento",
+  "free.",
+  "fed",
+  "rested,",
+  "Hungry",
+  "dropping",
+  "lifting.",
+  "Follow",
+  "secrets."
+ ],
+ "escenas": [
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 57.12,
+   "desde": 0.0,
+   "hasta": 0.72,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_01.jpg",
+   "desde": 0.72,
+   "hasta": 1.6,
+   "foco": [
+    0.74,
+    0.4
+   ],
+   "foco_fin": [
+    0.76,
+    0.42000000000000004
+   ],
+   "zoom": [
+    1.1,
+    1.25
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_02.jpg",
+   "desde": 1.6,
+   "hasta": 3.35,
+   "foco": [
+    0.3,
+    0.45
+   ],
+   "foco_fin": [
+    0.32,
+    0.47000000000000003
+   ],
+   "zoom": [
+    1.15,
+    1.3
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 7.02,
+   "desde": 3.35,
+   "hasta": 6.05,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 40.48,
+   "desde": 6.05,
+   "hasta": 7.82,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_05.jpg",
+   "desde": 7.82,
+   "hasta": 10.31,
+   "foco": [
+    0.4,
+    0.5
+   ],
+   "foco_fin": [
+    0.42000000000000004,
+    0.52
+   ],
+   "zoom": [
+    1.1,
+    1.25
+   ],
+   "etiqueta": {
+    "texto": "MORE HEALTH",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.4,
+    "flecha": [
+     0.3,
+     0.35
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 33.68,
+   "desde": 10.31,
+   "hasta": 11.66,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 59.95,
+   "desde": 11.66,
+   "hasta": 13.91,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 57.12,
+   "desde": 13.91,
+   "hasta": 15.22,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 58.55,
+   "desde": 15.22,
+   "hasta": 16.49,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Leonida_Keys_01.jpg",
+   "desde": 16.49,
+   "hasta": 18.59,
+   "foco": [
+    0.45,
+    0.5
+   ],
+   "foco_fin": [
+    0.47000000000000003,
+    0.52
+   ],
+   "zoom": [
+    1.05,
+    1.25
+   ],
+   "etiqueta": {
+    "texto": "KEY LENTO",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.4,
+    "flecha": [
+     0.45,
+     0.5
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 32.85,
+   "desde": 18.59,
+   "hasta": 19.34,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 10.02,
+   "desde": 19.34,
+   "hasta": 20.64,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_01.jpg",
+   "desde": 20.64,
+   "hasta": 22.78,
+   "foco": [
+    0.74,
+    0.45
+   ],
+   "foco_fin": [
+    0.76,
+    0.47000000000000003
+   ],
+   "zoom": [
+    1.25,
+    1.1
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 14.25,
+   "desde": 22.78,
+   "hasta": 23.52,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 2.72,
+   "desde": 23.52,
+   "hasta": 24.64,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 55.22,
+   "desde": 24.64,
+   "hasta": 26.44,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Lucia_Caminos_02.jpg",
+   "desde": 26.44,
+   "hasta": 28.64,
+   "foco": [
+    0.2,
+    0.6
+   ],
+   "foco_fin": [
+    0.22,
+    0.62
+   ],
+   "zoom": [
+    1.15,
+    1.3
+   ],
+   "etiqueta": {
+    "texto": "FED & RESTED",
+    "fondo": "amarillo",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.4,
+    "flecha": [
+     0.12,
+     0.62
+    ]
+   }
+  },
+  {
+   "img": "capturas/Brian_Heder_02.jpg",
+   "desde": 28.64,
+   "hasta": 30.76,
+   "foco": [
+    0.65,
+    0.5
+   ],
+   "foco_fin": [
+    0.67,
+    0.52
+   ],
+   "zoom": [
+    1.1,
+    1.25
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_02.jpg",
+   "desde": 30.76,
+   "hasta": 32.99,
+   "foco": [
+    0.32,
+    0.4
+   ],
+   "foco_fin": [
+    0.34,
+    0.42000000000000004
+   ],
+   "zoom": [
+    1.3,
+    1.15
+   ],
+   "etiqueta": {
+    "texto": "TIRED?",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.3,
+    "flecha": [
+     0.3,
+     0.3
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Out_Now.mp4",
+   "inicio": 9.08,
+   "desde": 32.99,
+   "hasta": 33.78,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 47.02,
+   "desde": 33.78,
+   "hasta": 35.12,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_18.jpg",
+   "desde": 35.12,
+   "hasta": 37.59,
+   "foco": [
+    0.6,
+    0.45
+   ],
+   "foco_fin": [
+    0.62,
+    0.47000000000000003
+   ],
+   "zoom": [
+    1.1,
+    1.25
+   ],
+   "etiqueta": {
+    "texto": "NO TRAINING",
+    "fondo": "rosa",
+    "pos": [
+     540,
+     1600
+    ],
+    "desde": 0.4,
+    "flecha": [
+     0.6,
+     0.35
+    ]
+   }
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 67.12,
+   "desde": 37.59,
+   "hasta": 38.88,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Boobie_Ike_01.jpg",
+   "desde": 38.88,
+   "hasta": 40.14,
+   "foco": [
+    0.55,
+    0.5
+   ],
+   "foco_fin": [
+    0.5700000000000001,
+    0.52
+   ],
+   "zoom": [
+    1.1,
+    1.2
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_05.jpg",
+   "desde": 40.14,
+   "hasta": 41.53,
+   "foco": [
+    0.45,
+    0.5
+   ],
+   "foco_fin": [
+    0.47000000000000003,
+    0.52
+   ],
+   "zoom": [
+    1.25,
+    1.1
+   ]
+  },
+  {
+   "video": "../../videos/oficiales/GTAVI_Launch_Trailer.mp4",
+   "inicio": 68.58,
+   "desde": 41.53,
+   "hasta": 43.99,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "zoom": [
+    1.0,
+    1.08
+   ]
+  },
+  {
+   "img": "capturas/Jason_Duval_04.jpg",
+   "desde": 43.99,
+   "hasta": 46.68,
+   "foco": [
+    0.4,
+    0.45
+   ],
+   "foco_fin": [
+    0.42000000000000004,
+    0.47000000000000003
+   ],
+   "zoom": [
+    1.1,
+    1.25
+   ]
+  },
+  {
+   "img": "capturas/Vice_City_08.jpg",
+   "desde": 46.68,
+   "hasta": 50.14,
+   "foco": [
+    0.5,
+    0.5
+   ],
+   "foco_fin": [
+    0.52,
+    0.52
+   ],
+   "zoom": [
+    1.18,
+    1.05
+   ]
+  }
+ ],
+ "capas": [
+  {
+   "tipo": "titulo",
+   "desde": 0.0,
+   "hasta": 2.55,
+   "lineas": [
+    [
+     "WHAT IF JASON",
+     "amarillo"
+    ],
+    [
+     "STOPS",
+     "blanco"
+    ],
+    [
+     "TRAINING?",
+     "rosa"
+    ]
+   ],
+   "pastilla": "GTA 6"
+  },
+  {
+   "tipo": "golpe",
+   "texto": "WEAKER",
+   "desde": 2.6,
+   "hasta": 3.7,
+   "color": "rosa",
+   "giro": false
+  },
+  {
+   "tipo": "golpe",
+   "texto": "MORE HEALTH",
+   "desde": 9.03,
+   "hasta": 10.18,
+   "color": "amarillo",
+   "giro": false
+  },
+  {
+   "tipo": "golpe",
+   "texto": "IT'S FREE",
+   "desde": 24.32,
+   "hasta": 25.76,
+   "color": "amarillo",
+   "giro": false
+  },
+  {
+   "tipo": "golpe",
+   "texto": "IT DROPS",
+   "desde": 37.43,
+   "hasta": 38.82,
+   "color": "rosa",
+   "giro": true
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 20.64,
+   "hasta": 23.96,
+   "items": [
+    {
+     "texto": "WEIGHTS · BENCH",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 20.64,
+     "y": 760
+    },
+    {
+     "texto": "PULL UPS · SQUATS",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 22.68,
+     "y": 880
+    }
+   ]
+  },
+  {
+   "tipo": "pastillas",
+   "desde": 27.26,
+   "hasta": 33.65,
+   "items": [
+    {
+     "texto": "FED + RESTED",
+     "fondo": "amarillo",
+     "icono": "ok",
+     "desde": 27.48,
+     "y": 760
+    },
+    {
+     "texto": "HUNGRY = WASTED",
+     "fondo": "rosa",
+     "color": "blanco",
+     "desde": 30.76,
+     "y": 880
+    }
+   ]
+  },
+  {
+   "tipo": "cta",
+   "desde": 46.68,
+   "hasta": 99,
+   "lineas": [
+    "FOLLOW",
+    "FOR MORE GTA 6 SECRETS"
+   ]
+  }
+ ]
+}
